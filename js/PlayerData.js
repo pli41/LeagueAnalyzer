@@ -2,10 +2,10 @@ var https = require('https');
 var fs = require("fs");
 
 var getSummonerIdByName = function(name, callback1, callback2){
-	
+	var summoner_name_escaped= encodeURI(name);
 	var options_ID = {
 		host: "na.api.pvp.net",
-		path: `/api/lol/na/v1.4/summoner/by-name/${name}?api_key=${apiKey[0]}`,
+		path: `/api/lol/na/v1.4/summoner/by-name/${summoner_name_escaped}?api_key=${apiKey[0]}`,
 		method: "GET"
 	};
 	
@@ -18,14 +18,18 @@ var getSummonerIdByName = function(name, callback1, callback2){
 		
 		response.on("end", function(){
 			console.log("request ID ends");
+			console.log(`request ID response: ${request_ID_response}`);
 			var jsonData = JSON.parse(request_ID_response);
+			
+			
+			var summoner_name_trimmed = name.replace(/\s+/g, '');
 			
 			if(callback1){
 				if(callback2){
-					callback1(jsonData[summoner_name]['id'], callback2);
+					callback1(jsonData[summoner_name_trimmed]['id'], callback2);
 				}
 				else{
-					callback1(jsonData[summoner_name]['id']);
+					callback1(jsonData[summoner_name_trimmed]['id']);
 				}
 				
 			}
@@ -233,11 +237,12 @@ var AnalyzeMatchData = function(matchStrArray){
 //24229424
 
 //Inputs
-var summoner_name_original = "xPLzzZx";
+var summoner_name_original = "This is Why";
+var summoner_name_original_escaped = encodeURI(summoner_name_original);
+
 var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
 
 var summoner_name = summoner_name_original.toLowerCase();
-
 
 
 
