@@ -1,4 +1,4 @@
-Total Kills: 17
-Total Deaths: 40
-Total Assists: 99
-KDA: 2.9
+Total Kills: 44
+Total Deaths: 50
+Total Assists: 104
+KDA: 2.96

@@ -1,18 +1,6 @@
-angular.module("AntiAddicter").controller("playerData",['$scope',"userInfo", function($scope,userInfo) {
-	
-	require(['https', 'fs'], function(https, fs){
-		//Inputs
-		var summoner_name_original = userInfo.username;
-		var summoner_name_original_escaped = encodeURI(summoner_name_original);
 
-		var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
 
-		var summoner_name = summoner_name_original.toLowerCase();
-
-		getSummonerIdByName(summoner_name, getSummonerMatchList, GetMatchData);
 		
-	});
-	
 	//var https = require('https');
 	//var fs = require("fs");
 
@@ -222,7 +210,7 @@ angular.module("AntiAddicter").controller("playerData",['$scope',"userInfo", fun
 			
 			for (var j = 0; j < match.participantIdentities.length; j++){
 				identity = match.participantIdentities[j];
-				console.log(`current player name: ${identity.player.summonerName}`);
+				//console.log(`current player name: ${identity.player.summonerName}`);
 				if(identity.player.summonerName == summoner_name_original){
 					participantID = identity.participantId;
 				}
@@ -249,15 +237,16 @@ angular.module("AntiAddicter").controller("playerData",['$scope',"userInfo", fun
 		fs.writeFileSync('Analysis.txt', analysis);
 		console.log('analysis file generated');
 	}
-	//24229424
 
+
+	//Inputs
+	var https = require('https');
+	var fs = require('fs');
 	
+	var summoner_name_original = 'xPLzzZx';
+	var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
 
+	var summoner_name = summoner_name_original.toLowerCase();
 
-
-	//https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/xPLzzZx?api_key=79cfb0e6-89a2-4a0b-95c0-77238c9c6afe
-
-
-
-}])
+	getSummonerIdByName(summoner_name, getSummonerMatchList, GetMatchData);
 
