@@ -184,8 +184,51 @@ var AnalyzeMatchData = function(matchStrArray){
 	}
 	combinedMatchString += ']}';
 	var matchJson = JSON.parse(combinedMatchString);
-	console.log(`${matchJson}`);
-	fs.writeFileSync('data.json', combinedMatchString);
+	//fs.writeFileSync('data.json', combinedMatchString);
+	
+	var analysis = '';
+	
+	//KDA
+	var totalKills = 0;
+	var totalDeaths = 0;
+	var totalAssists = 0;
+	
+	
+	for (var i = 0; i < matchJson.matches.length; i++){
+		
+		var match = matchJson.matches[i];
+		//Find Player
+		var participantID;
+		
+		
+		for (var j = 0; j < match.participantIdentities.length; j++){
+			identity = match.participantIdentities[j];
+			console.log(`current player name: ${identity.player.summonerName}`);
+			if(identity.player.summonerName == summoner_name_original){
+				participantID = identity.participantId;
+			}
+		};
+		
+		//KDA
+		totalKills += match.participants[participantID-1].stats.kills;
+		totalDeaths += match.participants[participantID-1].stats.deaths;
+		totalAssists += match.participants[participantID-1].stats.assists;
+
+	};
+	
+	//KDA
+	var KDA = (totalKills + totalAssists) / Math.max(1, totalDeaths);
+	
+	//format data
+	analysis += `Total Kills: ${totalKills}`;
+	analysis += '\n';
+	analysis += `Total Deaths: ${totalDeaths}`;
+	analysis += '\n';
+	analysis += `Total Assists: ${totalAssists}`;
+	analysis += '\n';
+	analysis += `KDA: ${KDA}`;
+	fs.writeFileSync('Analysis.txt', analysis);
+	console.log('analysis file generated');
 }
 //24229424
 
