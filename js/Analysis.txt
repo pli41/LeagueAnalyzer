@@ -1,4 +1,5 @@
-Total Kills: 44
-Total Deaths: 50
-Total Assists: 104
-KDA: 2.96
+Total Kills: 45
+Total Deaths: 66
+Total Assists: 146
+KDA: 2.893939393939394
+Vision Control: 38
