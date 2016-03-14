@@ -1,6 +1,12 @@
 
+
+	//Inputs
+	var https = require('https');
+	var fs = require('fs');
+	var json2csv = require('json2csv');
 	
-	var summoner_name_original = 'Bo xilai';
+	
+	var summoner_name_original = 'xPLzzZx';
 	var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
 	
 	//deff4e7a-16c6-4144-9d31-0305f9b3d19f
@@ -194,7 +200,7 @@
 		var matchJson = JSON.parse(combinedMatchString);
 		//fs.writeFileSync('data.json', combinedMatchString);
 		
-		var analysis = '';
+		
 		
 		
 		
@@ -353,16 +359,43 @@
 		var control_Duration_parsed = (Math.floor(control_Duration/60)).toString() + 'min' + (Math.floor(control_Duration%60)) + 'sec';
 		
 		//format data
-		analysis += `Total Kills: ${totalKills}`;
-		analysis += '\n';
-		analysis += `Total Deaths: ${totalDeaths}`;
-		analysis += '\n';
-		analysis += `Total Assists: ${totalAssists}`;
-		analysis += '\n';
-		analysis += `KDA: ${KDA}`;
-		analysis += '\n';
-		analysis += `Vision Control: ${wardingValue}`;
-		//fs.writeFileSync('Analysis.txt', analysis);
+		var analysis = '[{';
+		
+		var summonerName_NoSpace = summoner_name_original.replace(/\s/g, '');
+		
+		analysis += `\"SummonerName\": \"${summoner_name_original}\",`;
+		analysis += `\"KDA\": ${KDA.toFixed(2)},`;
+		analysis += `\"AvgKills\": ${(totalKills/10).toFixed(2)},`;
+		analysis += `\"AvgDeaths\": ${(totalDeaths/10).toFixed(2)},`;
+		analysis += `\"AvgAssists\": ${(totalAssists/10).toFixed(2)},`;
+		analysis += `\"TOP_played\": ${topPlayed},`;
+		analysis += `\"JUNGLE_played\": ${junglePlayed},`;
+		analysis += `\"MID_played\": ${midPlayed},`;
+		analysis += `\"ADC_played\": ${adcPlayed},`;
+		analysis += `\"SUPPORT_played\": ${supportPlayed},`;
+		analysis += `\"WinRate\": ${winRate},`;
+		analysis += `\"VisionControl\": ${wardingValue},`;
+		analysis += `\"TowersKilled\": ${total_Towerkills},`;
+		analysis += `\"DragonsKilled\": ${dragonSlained},`;
+		analysis += `\"RiftHeraldKilled\": ${riftHeraldSlained},`;
+		analysis += `\"BaronKilled\": ${baronSlained},`;
+		analysis += `\"KillContribution\": ${KillContribution},`;
+		analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)}`;
+		analysis += '}]';
+		
+		fs.writeFileSync(`../PlayerData/JSON/${summonerName_NoSpace}.json`, analysis);
+		
+		
+		var JSON_Data = JSON.parse(analysis);
+		var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionControl', 'TowersKilled', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'CCDuration'];
+		json2csv({ data: JSON_Data, fields: fields }, function(err, csv) {
+			if (err) 
+				console.log(err);
+			console.log(csv);
+			fs.writeFileSync(`../PlayerData/CSV/${summonerName_NoSpace}.csv`, csv);
+		});
+			
+		
 		
 		console.log('analysis file generated');
 		console.log('\n');
@@ -370,10 +403,10 @@
 		console.log('\n');
 		console.log(`		Data from the recent ${matchJson.matches.length} matches`);
 		console.log('\n');
-		console.log(`		KDA: ${KDA}`);
-		console.log(`			Average Kills: ${totalKills/10}`);
-		console.log(`			Average Deaths: ${totalDeaths/10}`);
-		console.log(`			Average Assists: ${totalAssists/10}`);
+		console.log(`		KDA: ${KDA.toFixed(2)}`);
+		console.log(`			Average Kills: ${(totalKills/10).toFixed(2)}`);
+		console.log(`			Average Deaths: ${(totalDeaths/10).toFixed(2)}`);
+		console.log(`			Average Assists: ${(totalAssists/10).toFixed(2)}`);
 		console.log(`		Positions Played:`);
 		console.log(`			TOP ${topPlayed}`);
 		console.log(`			JUNGLE ${junglePlayed}`);
@@ -387,15 +420,12 @@
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
 		
-		total_Towerkills
-		control_Duration
+		
 	}
 
 	
 
-	//Inputs
-	var https = require('https');
-	var fs = require('fs');
+	
 	
 
 
