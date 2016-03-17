@@ -6,7 +6,7 @@
 	var json2csv = require('json2csv');
 	
 	
-	var summoner_name_original = 'xPLzzZx';
+	var summoner_name_original = 'cigar graves';
 	var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
 	
 	//deff4e7a-16c6-4144-9d31-0305f9b3d19f
@@ -151,7 +151,6 @@
 					
 					if(dataJSON.status){
 						console.log(`failed to get data from ${matchID} because of ${dataJSON.status.message}`);
-						
 						matchIDArray.unshift(matchID);
 					}
 					else{

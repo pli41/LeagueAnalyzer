@@ -3,7 +3,7 @@ var fs = require('fs');
 var json2csv = require('json2csv');
 var path = require('path');
 
-var summoner_name_original = "xPLzzZx";
+var summoner_name_original = "This is Why";
 var summoner_id = '';
 
 var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
@@ -54,7 +54,7 @@ var getLeagueById = function(){
 		method: "GET"
 	};
 		
-	https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/24229424
+	//https://na.api.pvp.net/api/lol/na/v2.5/league/by-summoner/24229424
 		
 	var responseBody ='';
 	var request = https.request(options, function(response){
@@ -65,7 +65,6 @@ var getLeagueById = function(){
 		
 		response.on("end", function(){
 			console.log("request league ends");
-			
 			saveLeagueData(responseBody);
 		});
 	});
