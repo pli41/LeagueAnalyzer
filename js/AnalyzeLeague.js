@@ -7,6 +7,10 @@ var json2csv = require('json2csv');
 var tierToAnalyze = '';
 var legalTier = false;
 
+var currentTime = Date.now();
+
+var log = '';
+
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
 
 
@@ -141,28 +145,32 @@ rl.on('close', function(){
 		}
 		
 		console.log(`${leagueDataArray.length} division data grabbed`)
-		
+		log += `${leagueDataArray.length} division data grabbed\n`;
 		
 		var divisionAnalyzingStatus = [false, false, false, false, false];
+		var playersAnalyzed = [0, 0, 0, 0, 0];
 		
 		var leagueDivisionData = function(index){
 			if(index < leagueDataArray.length){
 				var jsonData = leagueDataArray[index];
 				var division = divisionData[index];
 				console.log(`Analyzing division ${division}`);
+				log += `Analyzing division ${division}\n`;
 				if(!divisionAnalyzingStatus[index]){
 					divisionAnalyzingStatus[index] = true;
 					var players = jsonData.Players;
 					var analyzeDivisionSuccess = false;
-					var playersAnalyzed = 0;
 				
-					(function getPlayerData (i) {          
+					(function getPlayerData (playerIndex) {          
 						setTimeout(function () {
-							var playerData = players[i-1];
+							var playerData = players[playerIndex-1];
 							var playerId = playerData.summonerId;
-							console.log(`\n${playersAnalyzed} Analyzed ; ${players.length-playersAnalyzed} to go`)
-							console.log(`Current summoner: ${playerId}`);
-										
+							console.log(`\n${playersAnalyzed[index]} Analyzed ; ${players.length-playersAnalyzed[index]} to go`)
+							console.log(`Current summoner: ${playerId} in ${division}`);
+							
+							log += `\n${playersAnalyzed[index]} Analyzed ; ${players.length-playersAnalyzed[index]} to go\n`;
+							log += `Current summoner: ${playerId}\n`;
+							
 							var getSummonerMatchList = function(summonerId, number){
 					
 				
@@ -191,6 +199,8 @@ rl.on('close', function(){
 										
 										if(jsonData.status){
 											console.log(`Error getting matchlist, status code: ${jsonData.status.status_code}`);
+											
+											log += `Error getting matchlist, status code: ${jsonData.status.status_code}\n`;
 										}
 										else{
 											getMatchesID(jsonData, number, matchIDArray);
@@ -200,7 +210,7 @@ rl.on('close', function(){
 								
 								request_MatchList.end();
 								request_MatchList.on('error', function(err){
-									console.log('request matchlist error: ${err}');
+									console.log(`request matchlist error: ${err}`);
 								});
 								
 							}
@@ -212,11 +222,9 @@ rl.on('close', function(){
 									if(iterationNum > 0){
 										IDarray.push(jsonData['matches'][i]['matchId']);
 									}
-									
-									
 								};
 								
-								if(GetMatchData){
+								if(GetMatchData && IDarray.length > 0){
 									GetMatchData(IDarray);
 								}
 							};
@@ -230,15 +238,18 @@ rl.on('close', function(){
 								var currentMatchIndex = 0;
 								var matchInterval = setInterval(function(){
 									if(matchIDArray.length > 0){
-										console.log(`${matchIDArray.length} matches left to grab`);
+										//console.log(`${matchIDArray.length} matches left to grab`);
+										//log += `${matchIDArray.length} matches left to grab\n`;
 										var matchID = matchIDArray.shift();
-										console.log(`Grabbing match ${matchID}`);
-										
+										//console.log(`Grabbing match ${matchID}`);
+										//log += `Grabbing match ${matchID}\n`;
 										var options = {
 											host: "na.api.pvp.net",
-											path:`https://na.api.pvp.net/api/lol/na/v2.2/match/${matchID}?api_key=${apiKey[i%apiKey.length]}`,
+											path:`/api/lol/na/v2.2/match/${matchID}?api_key=${apiKey[matchIDArray.length%apiKey.length]}`,
 											method: "GET"
 										};
+										
+										console.log(`/api/lol/na/v2.2/match/${matchID}?api_key=${apiKey[matchIDArray.length%apiKey.length]}`);
 										
 										var request_Match = https.request(options, function(response){
 											var receivedData = '';
@@ -249,14 +260,29 @@ rl.on('close', function(){
 											response.on("end", function(){
 												var dataJSON = JSON.parse(receivedData);
 												if(dataJSON.status){
-													console.log(`failed to get data from ${matchID} because of ${dataJSON.status.message}`);
-													matchIDArray.unshift(matchID);
+													console.log(`failed to get data from ${matchID} because of ${dataJSON.status.status_code} ${dataJSON.status.message}`);
+													log += `failed to get data from ${matchID} because of ${dataJSON.status.message}\n`;
+													if(dataJSON.status.status_code === 404){
+														return;
+													}
+													else if(dataJSON.status.status_code === 429){
+														console.log("Retry in 2 seconds");
+														setTimeout(function(){
+															console.log(`Retry ${matchID}`);
+															matchIDArray.unshift(matchID);
+														}, 2000);
+													}
+													else if(dataJSON.status.status_code === 500){
+														return; 
+													}
 												}
 												else{
-													console.log(`Grabbed ${matchID}`);
+													//console.log(`Grabbed ${matchID}`);
+													//log += `Grabbed ${matchID}\n`;
 													matchJsonData.push(receivedData);
 													if(matchJsonData.length >= matchNum){
 														console.log("All matches are grabbed");
+														log += `All matches are grabbed\n`;
 														AnalyzeMatchData(matchJsonData);
 													};
 												};
@@ -270,12 +296,12 @@ rl.on('close', function(){
 										});
 									}
 								
-								}, 1000);
+								}, 1500);
 							}
 
 							var AnalyzeMatchData = function(matchStrArray){
 								console.log(`\nAnalyzing ${matchStrArray.length} matches`);
-								
+								log += `\nAnalyzing ${matchStrArray.length} matches\n`;
 								//Combine matches and 
 								var combinedMatchString = '{\"matches\":[';
 								for (var i = 0; i < matchStrArray.length; i++){
@@ -402,7 +428,8 @@ rl.on('close', function(){
 								
 								//Start analyzing
 								for (var i = 0; i < matchJson.matches.length; i++){
-									
+									console.log(`Analyzing match ${matchJson.matches[i].matchId}`);
+									log += `Analyzing match ${matchJson.matches[i].matchId}\n`;
 									var match = matchJson.matches[i];
 									//Find Player
 									var participantID;
@@ -411,10 +438,21 @@ rl.on('close', function(){
 									for (var j = 0; j < match.participantIdentities.length; j++){
 										identity = match.participantIdentities[j];
 										//console.log(`${identity.player.summonerId} VS ${playerId}`);
-										if(identity.player.summonerId === parseInt(playerId)){
-											participantID = identity.participantId;
-											summonerName = identity.player.summonerName;
+										if(!identity.player){
+											console.log(JSON.stringify(identity));
+											playerIndex--;
+											console.log(`jump to the next index because of match data error`);
+											console.log(`current playerIndex: ${playerIndex}`);
+											getPlayerData(playerIndex);
+											return;
 										}
+										else{
+											if(identity.player.summonerId === parseInt(playerId)){
+												participantID = identity.participantId;
+												summonerName = identity.player.summonerName;
+											}
+										}
+										
 									};
 									
 									//KDA
@@ -450,7 +488,14 @@ rl.on('close', function(){
 								//fs.writeFileSync(`../PlayerData/JSON/${summonerName_NoSpace}.json`, analysis);
 								
 														//read from file
-								var csvPath = `../PlayerData/CSV/${tierToAnalyze}/${division}/AnalyzedData(${tierToAnalyze}${division}).csv`;
+								var csvPath = '';
+
+								if(tierToAnalyze === "CHALLENGER" || tierToAnalyze === "MASTER"){
+									csvPath += `../PlayerData/CSV/${tierToAnalyze}/AnalyzedData(${tierToAnalyze})_${currentTime}.csv`;
+								}	
+								else{
+									csvPath += `../PlayerData/CSV/${tierToAnalyze}/${division}/AnalyzedData(${tierToAnalyze}${division})_${currentTime}.csv`;
+								}
 								var data = '';
 								var fileExisted = true;
 								try{
@@ -468,13 +513,18 @@ rl.on('close', function(){
 								
 								if(fileExisted){
 									console.log("file Existed");
+									log += `file Existed\n`;
+									log += `Data of ${summonerName}(${playerId}) is added\n`;
+									
 									console.log(`Data of ${summonerName}(${playerId}) is added`);
 									data += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue},${total_Towerkills},${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution},${(control_Duration/60).toFixed(2)}`;
 									console.log(`${data}`);
+									log += `${data}\n`;
 									fs.writeFileSync(csvPath, data);
 								}
 								else{
 									console.log('File not found! Create New File');
+									log += `File not found! Create New File\n`;
 									//format data
 									var analysis = '[{';
 									analysis += `\"SummonerName\": \"${summonerName}\",`;
@@ -503,39 +553,40 @@ rl.on('close', function(){
 										if (err) 
 											console.log(err);
 										console.log(csv);
+										log += `${csv}\n`;
 										fs.writeFileSync(csvPath, csv);
 									});
 								}
-								playersAnalyzed++;
-								if(playersAnalyzed >= players.length){
-									console.log("Proceeding to the next division");
-									leagueDivisionData(++index);
-								}
+								playersAnalyzed[index]++;
+
+								console.log(`Analyzed ${playersAnalyzed[index]} VS total number ${players.length}`);
+								log += `Analyzed ${playersAnalyzed[index]} VS total number ${players.length}\n`;
+
 							}
 
 							getSummonerMatchList(playerId, 10);
 							
-							if (--i){
-								getPlayerData(i);
+							if (--playerIndex){
+								console.log(`current playerIndex: ${playerIndex}`);
+								getPlayerData(playerIndex);
+							}
+							else{
+								console.log("Proceeding to the next division because of playerIndex");
+								log += `Proceeding to the next division\n`;
+								if(!divisionAnalyzingStatus[++index]){
+									leagueDivisionData(index);
+								}
+								return;
 							}
 						//  decrement i and call myLoop again if i > 0
-						}, 15000)
+						}, 20000)
 					})(players.length);
-					
-					
-				}
-				else{
-					if(players.length <= playersAnalyzed){
-						console.log("Proceed to the next division");
-						leagueDivisionData(++index);
-					}
-					else{
-						console.log(`total players ${players.length} VS playersAnalyzed ${playersAnalyzed}`);
-						setTimeout(leagueDivisionData, 1000, index);
-					}
 				}
 			}
 			else{
+				console.log("Analysis done, exporting log");
+				log += `Analysis done`;
+				fs.writeFileSync('log.txt', log);
 				process.exit();
 			}
 		}

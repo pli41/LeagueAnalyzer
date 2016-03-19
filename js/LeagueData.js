@@ -3,7 +3,7 @@ var fs = require('fs');
 var json2csv = require('json2csv');
 var path = require('path');
 
-var summoner_name_original = "This is Why";
+var summoner_name_original = "Andybendy";
 var summoner_id = '';
 
 var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
@@ -96,7 +96,14 @@ var saveLeagueData = function(jsonString){
 		
 		console.log(`${i} current summoner: ${summonerName}(${summonerId}) at ${tier} ${division}`);
 		
-		var path = `../PlayerData/Leagues/${tier}/${division}/LeagueData.json`
+		var path = '';
+		if(tier === "MASTER" || tier === "CHALLENGER"){
+			path = `../PlayerData/Leagues/${tier}/LeagueData.json`;
+		}
+		else{
+			path = `../PlayerData/Leagues/${tier}/${division}/LeagueData.json`;
+		}
+		
 		
 		var data = '';
 		var fileExisted = true;
@@ -123,7 +130,6 @@ var saveLeagueData = function(jsonString){
 			for(var j = 0; j < playerArray.length; j++){
 				if(playerArray[j].summonerId === summonerId){
 					dataExisted = true;
-					
 				}
 			}
 			
