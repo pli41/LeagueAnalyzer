@@ -25,7 +25,7 @@ define([
 
 		}).controller("playerData", ['$scope', "userInfo",
 			function($scope, userInfo) {
-				console.log(userInfo.username)
+				
 				
 				
 				

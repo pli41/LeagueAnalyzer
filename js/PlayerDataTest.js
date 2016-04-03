@@ -7,10 +7,13 @@ var json2csv = require('json2csv');
 var summoner_name_original;
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
 
+var response;
+
 module.exports = {
 	
-	start: function(summonerName, getSummonerIdByName, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
+	start: function(summonerName, getSummonerIdByName, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res){
 		summoner_name_original = summonerName;
+		response = res;
 		getSummonerIdByName(summonerName.toLowerCase(), getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
 	},
 	getSummonerIdByName: function(name, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
@@ -136,8 +139,6 @@ module.exports = {
 	},
     GetMatchData: function(matchIDArray, AnalyzeMatchData){
 		
-		
-	
 		console.log(`in getMatchData with ${matchIDArray}`);
 		var matchJsonData = new Array();
 		var matchNum = matchIDArray.length;
@@ -435,7 +436,15 @@ module.exports = {
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
 		
-	
+		var analysisJson = JSON.parse(analysis);
+		
+		if(analysisJson){
+			console.log("Analysis response sent");
+			response.json(analysisJson);
+		}
+		else{
+			console.log("Error analyzing");
+		}
 	}
 
 }

@@ -20,14 +20,19 @@ app.use(
 app.post('/', 
 	function(req, res){
 		
-		playerData.start(
+		analysisJson = playerData.start(
 			req.body[0], 
 			playerData.getSummonerIdByName, 
 			playerData.getSummonerMatchList, 
 			playerData.getMatchesID, 
 			playerData.GetMatchData, 
-			playerData.AnalyzeMatchData
+			playerData.AnalyzeMatchData,
+			res
 		);
+		
+		console.log("Analyzing");
+		
+		
 		
 		
 	}
