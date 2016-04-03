@@ -1,9 +1,12 @@
 define([
 	"angular",
 	"angular-route",
+	"controller",
+	"controller-require",
+	
 ], function(angular) {
 	return angular
-		.module("AntiAddicter", ['ngRoute'])
+		.module("AntiAddicter", ['ngRoute','antiController'])
 		.config(function($routeProvider) {
 			$routeProvider
 				.when('/login', {
@@ -12,7 +15,7 @@ define([
 				})
 				.when('/stats', {
 					templateUrl: '../stats.html',
-					controller: 'playerData',
+					//controller: 'playerDataCtr',
 				})
 				.otherwise({
 					redirectTo: '/login'
@@ -20,17 +23,17 @@ define([
 		}).service("userInfo", function() {
 			var username = "";
 
-		}).controller("loginCtr", ['$scope', '$location', 'userInfo',
-			function($scope, $location, userInfo) {
-				$scope.username = "";
-				$scope.getLOLInfo = function() {
-					$location.path("stats");
-					userInfo.username = $scope.username;
-					console.log($location.path());
-				}
+		}).controller("playerData", ['$scope', "userInfo",
+			function($scope, userInfo) {
+				console.log(userInfo.username)
+				
+				
+				
+				
+				
+				
+				
 			}
-		]).controller("playerData", ['$scope', "userInfo",
-			function($scope, userInfo) {}
 		])
 
 })

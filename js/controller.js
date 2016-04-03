@@ -1,9 +1,7 @@
 define([
     "angular",
-    "app",
-    //"PlayerData"
-], function(app) {
-    return app
-
-
+], function(angular) {
+	
+	return angular
+		.module("antiController", [])
 })

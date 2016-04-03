@@ -1,8 +1,8 @@
 	<div>
-	<form ng-controller = "loginCtr" ng-submit = "getLOLInfo()">
+	<form ng-controller = "loginCtr" ng-submit = "getLOLInfo()" method="POST">
 			LOL account:</br>
 			<input type="text" name="Account_LOL" placeholder="Enter your LOL account" ng-model="username"></br>
 			
-			<input type="submit" value="Submit" ng-click="getLOLInfo()">
+			<input type="submit" value="Submit">
 		</form>
 	</div>

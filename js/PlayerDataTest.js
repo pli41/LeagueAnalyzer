@@ -1,25 +1,27 @@
 
+//Inputs
+var https = require('https');
+var fs = require('fs');
+var json2csv = require('json2csv');
 
-	//Inputs
-	var https = require('https');
-	var fs = require('fs');
-	var json2csv = require('json2csv');
-	
-	
-	var summoner_name_original = 'cigar graves';
-	var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
-	
-	//deff4e7a-16c6-4144-9d31-0305f9b3d19f
+var summoner_name_original;
+var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
 
-	var getSummonerIdByName = function(name, callback1, callback2){
-		var summoner_name_escaped= encodeURI(name);
+module.exports = {
+	
+	start: function(summonerName, getSummonerIdByName, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
+		summoner_name_original = summonerName;
+		getSummonerIdByName(summonerName.toLowerCase(), getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
+	},
+	getSummonerIdByName: function(name, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
+		var summoner_name_escaped = encodeURI(name);
 		var options_ID = {
 			host: "na.api.pvp.net",
 			path: `/api/lol/na/v1.4/summoner/by-name/${summoner_name_escaped}?api_key=${apiKey[0]}`,
 			method: "GET"
 		};
 		
-		var request_ID_response ='';
+		var request_ID_response ='';4
 		var request_ID = https.request(options_ID, function(response){
 			response.on("data", function(data){
 				//console.log(`Data Received: ${data}`);
@@ -34,15 +36,17 @@
 				
 				var summoner_name_trimmed = name.replace(/\s+/g, '');
 				
-				if(callback1){
-					if(callback2){
-						callback1(jsonData[summoner_name_trimmed]['id'], callback2);
+				getSummonerMatchList(jsonData[summoner_name_trimmed]['id'], getMatchesID, GetMatchData, AnalyzeMatchData);
+				/*
+				if(getSummonerMatchList){
+					if(GetMatchData){
+						getSummonerMatchList(jsonData[summoner_name_trimmed]['id'], GetMatchData);
 					}
 					else{
-						callback1(jsonData[summoner_name_trimmed]['id']);
+						getSummonerMatchList(jsonData[summoner_name_trimmed]['id']);
 					}
-					
 				}
+				*/
 			});
 		});
 		
@@ -50,14 +54,11 @@
 		request_ID.on("error", function(err){
 			console.log(`request ID error: ${err}`);
 		});
-		
-	};
-
-
-	var getSummonerMatchList = function(summonerId, callback){
-		
-		//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/xplzzzx?api_key=79cfb0e6-89a2-4a0b-95c0-77238c9c6afe
-		
+	},
+	getSummonerMatchList: function(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData){
+	
+	//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/xplzzzx?api_key=79cfb0e6-89a2-4a0b-95c0-77238c9c6afe
+	
 		var rankedQueues = 'TEAM_BUILDER_DRAFT_RANKED_5x5';
 		var seasons = 'SEASON2016';
 		
@@ -66,7 +67,7 @@
 
 		var options = {
 			host: "na.api.pvp.net",
-			path:`/api/lol/na/v2.2/matchlist/by-summoner/${summonerId}?rankedQueues=${rankedQueues}&seasons=${seasons}&api_key=${apiKey[0]}`,
+			path:`/api/lol/na/v2.2/matchlist/by-summoner/${summonerId}?rankedQueues=${rankedQueues}&seasons=${seasons}&api_key=${apiKey[1]}`,
 			method: "GET"
 		};
 		
@@ -83,15 +84,21 @@
 				console.log("request Match List ends");
 				var jsonData = JSON.parse(request_MatchList_response);
 				
-				if(callback){
+				
+				//console.log(`JSON Data :${JSON.stringify(jsonData)}`);
+				
+				getMatchesID(jsonData, 10, matchIDArray, GetMatchData, AnalyzeMatchData);
+				
+				/*
+				if(getMatchesID){
 					console.log('get match list has call back');
 					getMatchesID(jsonData, 10, matchIDArray, callback);
 				}
 				else{
 					getMatchesID(jsonData, 10, matchIDArray);
 				};
+				*/
 				
-				console.log(`matchIDArray: ${matchIDArray}`);
 				
 				
 			});
@@ -102,26 +109,35 @@
 			console.log('request matchlist error: ${err}');
 		});
 		
-	}
-
-	var getMatchesID = function(jsonData, number, IDarray, GetMatchData){
+	},
+	getMatchesID: function(jsonData, number, IDarray, GetMatchData, AnalyzeMatchData){
 		var matchesNum = jsonData['endIndex'];
-		if(number < matchesNum){
+		
+		if(number <= matchesNum){
 			for(var i = 0; i < number; i++){
 				IDarray.push(jsonData['matches'][i]['matchId']);
 			};
-			
-			if(GetMatchData){
-				GetMatchData(IDarray);
-			}
 		}
 		else{
-			throw new Exception('number exceeds total number of matches');
+			console.log(`${matchesNum} matches played; not enough`);
+			if(matchesNum > 0){
+				for(var i = 0; i < matchesNum; i++){
+					console.log(jsonDatap['matches']);
+					IDarray.push(jsonData['matches'][i]['matchId']);
+				};
+			}
+			else{
+				return;
+			}
+			
 		};
-	};
-
-	var GetMatchData = function(matchIDArray){
 		
+		GetMatchData(IDarray, AnalyzeMatchData);
+	},
+    GetMatchData: function(matchIDArray, AnalyzeMatchData){
+		
+		
+	
 		console.log(`in getMatchData with ${matchIDArray}`);
 		var matchJsonData = new Array();
 		var matchNum = matchIDArray.length;
@@ -129,11 +145,11 @@
 		while(matchIDArray.length > 0){
 			console.log(`${matchIDArray.length} matches left to grab`);
 			var matchID = matchIDArray.shift();
-			console.log(`Grabbing match ${matchID}`);
+			console.log(`Grabbing match ${matchID} using ${apiKey[((matchIDArray.length+2)%apiKey.length)]}`);
 			
 			var options = {
 				host: "na.api.pvp.net",
-				path:`https://na.api.pvp.net/api/lol/na/v2.2/match/${matchID}?api_key=${apiKey[1]}`,
+				path:`https://na.api.pvp.net/api/lol/na/v2.2/match/${matchID}?api_key=${apiKey[((matchIDArray.length+2)%apiKey.length)]}`,
 				method: "GET"
 			};
 			
@@ -179,10 +195,9 @@
 			});
 			
 		};
-		
-	}
-
-	var AnalyzeMatchData = function(matchStrArray){
+	
+	},
+	AnalyzeMatchData: function(matchStrArray){
 		console.log('Analyzing\n\n\n');
 		//console.log(`${JSON.parse(matchJson)}`);
 		
@@ -215,8 +230,8 @@
 			totalDeaths += match.participants[participantID-1].stats.deaths;
 			totalAssists += match.participants[participantID-1].stats.assists;
 		}
-	
-	
+
+
 		//vision control
 		var wardingValue = 0;
 		var gatherVisionControlData = function(match, participantID){
@@ -382,6 +397,7 @@
 		analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)}`;
 		analysis += '}]';
 		
+		/*
 		fs.writeFileSync(`../PlayerData/JSON/${summonerName_NoSpace}.json`, analysis);
 		
 		
@@ -393,7 +409,7 @@
 			console.log(csv);
 			fs.writeFileSync(`../PlayerData/CSV/${summonerName_NoSpace}.csv`, csv);
 		});
-			
+		*/
 		
 		
 		console.log('analysis file generated');
@@ -419,18 +435,15 @@
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
 		
-		
+	
 	}
 
-	
-
-	
-	
+}
 
 
-	
-	
-	var summoner_name = summoner_name_original.toLowerCase();
 
-	getSummonerIdByName(summoner_name, getSummonerMatchList, GetMatchData);
+//var summoner_name = summoner_name_original.toLowerCase();
+
+//getSummonerIdByName(summoner_name, getSummonerMatchList, GetMatchData);
+	
 

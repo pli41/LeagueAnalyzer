@@ -1,9 +1,9 @@
 angular.module("AntiAddicter").controller("playerData",['$scope',"userInfo", function($scope,userInfo) {
-	
+	cnosole.log(`Start getting data of ${userInfo.username}`);
 	require(['https', 'fs'], function(https, fs){
 		//Inputs
 		var summoner_name_original = userInfo.username;
-		var summoner_name_original_escaped = encodeURI(summoner_name_original);
+		var summoner_name_original_escaped = enc1odeURI(summoner_name_original);
 
 		var apiKey = ["79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832"];
 
