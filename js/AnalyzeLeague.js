@@ -490,12 +490,17 @@ rl.on('close', function(){
 														//read from file
 								var csvPath = '';
 
+								var csvPath_all = `../PlayerData/CSV/ALL/AnalyzedData(ALL)_${currentTime}.csv`;
+								
 								if(tierToAnalyze === "CHALLENGER" || tierToAnalyze === "MASTER"){
 									csvPath += `../PlayerData/CSV/${tierToAnalyze}/AnalyzedData(${tierToAnalyze})_${currentTime}.csv`;
 								}	
 								else{
 									csvPath += `../PlayerData/CSV/${tierToAnalyze}/${division}/AnalyzedData(${tierToAnalyze}${division})_${currentTime}.csv`;
 								}
+								
+								
+								
 								var data = '';
 								var fileExisted = true;
 								try{
@@ -511,13 +516,31 @@ rl.on('close', function(){
 									}
 								}
 								
+								var data_all = '';
+								var fileExisted_all = true;
+								try{
+									data_all = fs.readFileSync(csvPath_all).toString();
+								}
+								catch(e){
+									if(e instanceof Error){
+										if (e.code === 'ENOENT') {
+											fileExisted_all = false;
+										} else {
+											throw e;
+										}
+									}
+								}
+								
+								
+								
+								
 								if(fileExisted){
 									console.log("file Existed");
 									log += `file Existed\n`;
 									log += `Data of ${summonerName}(${playerId}) is added\n`;
 									
 									console.log(`Data of ${summonerName}(${playerId}) is added`);
-									data += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue},${total_Towerkills},${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution},${(control_Duration/60).toFixed(2)}`;
+									data += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue},${total_Towerkills},${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution},${(control_Duration/60).toFixed(2)},${avgDuration}`;
 									console.log(`${data}`);
 									log += `${data}\n`;
 									fs.writeFileSync(csvPath, data);
@@ -544,11 +567,12 @@ rl.on('close', function(){
 									analysis += `\"RiftHeraldKilled\": ${riftHeraldSlained},`;
 									analysis += `\"BaronKilled\": ${baronSlained},`;
 									analysis += `\"KillContribution\": ${KillContribution},`;
-									analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)}`;
+									analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)},`;
+									analysis += `\"AvgGameLength\": ${avgDuration}`;
 									analysis += '}]';
 									
 									var JSON_Data = JSON.parse(analysis);
-									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionControl', 'TowersKilled', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'CCDuration'];
+									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionControl', 'TowersKilled', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'CCDuration', 'AvgGameLength'];
 									json2csv({ data: JSON_Data, fields: fields }, function(err, csv) {
 										if (err) 
 											console.log(err);
@@ -557,11 +581,55 @@ rl.on('close', function(){
 										fs.writeFileSync(csvPath, csv);
 									});
 								}
+								
+								//all csv
+								if(fileExisted_all){
+									console.log(`Data of ${summonerName}(${playerId}) is added to csv_all`);
+									data_all += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue},${total_Towerkills},${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution},${(control_Duration/60).toFixed(2)},${avgDuration}`;
+									fs.writeFileSync(csvPath_all, data_all);
+								}
+								else{
+									var analysis = '[{';
+									analysis += `\"SummonerName\": \"${summonerName}\",`;
+									analysis += `\"KDA\": ${KDA.toFixed(2)},`;
+									analysis += `\"AvgKills\": ${(totalKills/10).toFixed(2)},`;
+									analysis += `\"AvgDeaths\": ${(totalDeaths/10).toFixed(2)},`;
+									analysis += `\"AvgAssists\": ${(totalAssists/10).toFixed(2)},`;
+									analysis += `\"TOP_played\": ${topPlayed},`;
+									analysis += `\"JUNGLE_played\": ${junglePlayed},`;
+									analysis += `\"MID_played\": ${midPlayed},`;
+									analysis += `\"ADC_played\": ${adcPlayed},`;
+									analysis += `\"SUPPORT_played\": ${supportPlayed},`;
+									analysis += `\"WinRate\": ${winRate},`;
+									analysis += `\"VisionControl\": ${wardingValue},`;
+									analysis += `\"TowersKilled\": ${total_Towerkills},`;
+									analysis += `\"DragonsKilled\": ${dragonSlained},`;
+									analysis += `\"RiftHeraldKilled\": ${riftHeraldSlained},`;
+									analysis += `\"BaronKilled\": ${baronSlained},`;
+									analysis += `\"KillContribution\": ${KillContribution},`;
+									analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)},`;
+									analysis += `\"AvgGameLength\": ${avgDuration}`;
+									analysis += '}]';
+									
+									var JSON_Data = JSON.parse(analysis);
+									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionControl', 'TowersKilled', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'CCDuration', 'AvgGameLength'];
+									json2csv({ data: JSON_Data, fields: fields }, function(err, csv) {
+										if (err) 
+											console.log(err);
+										fs.writeFileSync(csvPath_all, csv);
+									});
+								}
+								
+								
+								
 								playersAnalyzed[index]++;
 
 								console.log(`Analyzed ${playersAnalyzed[index]} VS total number ${players.length}`);
 								log += `Analyzed ${playersAnalyzed[index]} VS total number ${players.length}\n`;
 
+								
+								
+								
 							}
 
 							getSummonerMatchList(playerId, 10);

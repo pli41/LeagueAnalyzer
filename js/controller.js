@@ -1,7 +1,9 @@
 define([
     "angular",
+	
+	
 ], function(angular) {
 	
 	return angular
-		.module("antiController", [])
+		.module("antiController",['tc.chartjs'])
 })

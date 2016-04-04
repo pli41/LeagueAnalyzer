@@ -29,10 +29,15 @@ app.post('/',
 			playerData.AnalyzeMatchData,
 			res
 		);
-		
 		console.log("Analyzing");
 		
-		
+		if(analysisJson){
+			console.log("Analysis response sent");
+			res.json(analysisJson);
+		}
+		else{
+			console.log("Error analyzing");
+		}
 		
 		
 	}

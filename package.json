@@ -5,12 +5,14 @@
   "main": "main.js",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "chart.js": "^1.0.2",
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "fs": "0.0.2",
     "https": "^1.0.0",
     "json2csv": "^3.2.0",
-    "requirejs": "^2.2.0"
+    "requirejs": "^2.2.0",
+    "tc-angular-chartjs": "^1.0.15"
   },
   "devDependencies": {},
   "scripts": {

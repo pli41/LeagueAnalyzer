@@ -1,4 +1,21 @@
 
+//Average Data
+
+var KDA_avg = 2.766992;
+var KDA_crit = 4.255425;
+
+var Winrate_avg = 50.11637;
+var Winrate_crit = 75.61936;
+
+var Vision_avg = 12.6087;
+var Vision_crit = 30.43094;
+
+var KillContri_avg = 51.579;
+var KillContri_crit = 61.576;
+
+var TargetControl_avg = 53.069;
+var TargetControl_crit = 78.89065;
+
 //Inputs
 var https = require('https');
 var fs = require('fs');
@@ -90,7 +107,15 @@ module.exports = {
 				
 				//console.log(`JSON Data :${JSON.stringify(jsonData)}`);
 				
-				getMatchesID(jsonData, 10, matchIDArray, GetMatchData, AnalyzeMatchData);
+				if(jsonData.status){
+					console.log(`failed to get data from ${matchID} because of ${dataJSON.status.message}`);
+				}
+				else{
+					
+					getMatchesID(jsonData, 10, matchIDArray, GetMatchData, AnalyzeMatchData);
+				}
+				
+				
 				
 				/*
 				if(getMatchesID){
@@ -373,7 +398,10 @@ module.exports = {
 		
 		var control_Duration_parsed = (Math.floor(control_Duration/60)).toString() + 'min' + (Math.floor(control_Duration%60)) + 'sec';
 		
+		var targetControl = total_Towerkills + dragonSlained + 3 * riftHeraldSlained + 5 * baronSlained;
+		
 		//format data
+		/*
 		var analysis = '[{';
 		
 		var summonerName_NoSpace = summoner_name_original.replace(/\s/g, '');
@@ -397,8 +425,7 @@ module.exports = {
 		analysis += `\"KillContribution\": ${KillContribution},`;
 		analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)}`;
 		analysis += '}]';
-		
-		/*
+
 		fs.writeFileSync(`../PlayerData/JSON/${summonerName_NoSpace}.json`, analysis);
 		
 		
@@ -436,7 +463,71 @@ module.exports = {
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
 		
-		var analysisJson = JSON.parse(analysis);
+		
+/* for reference
+		analysis += `\"SummonerName\": \"${summoner_name_original}\",`;
+		analysis += `\"KDA\": ${KDA.toFixed(2)},`;
+		analysis += `\"AvgKills\": ${(totalKills/10).toFixed(2)},`;
+		analysis += `\"AvgDeaths\": ${(totalDeaths/10).toFixed(2)},`;
+		analysis += `\"AvgAssists\": ${(totalAssists/10).toFixed(2)},`;
+		analysis += `\"TOP_played\": ${topPlayed},`;
+		analysis += `\"JUNGLE_played\": ${junglePlayed},`;
+		analysis += `\"MID_played\": ${midPlayed},`;
+		analysis += `\"ADC_played\": ${adcPlayed},`;
+		analysis += `\"SUPPORT_played\": ${supportPlayed},`;
+		analysis += `\"WinRate\": ${winRate},`;
+		analysis += `\"VisionControl\": ${wardingValue},`;
+		analysis += `\"TowersKilled\": ${total_Towerkills},`;
+		analysis += `\"DragonsKilled\": ${dragonSlained},`;
+		analysis += `\"RiftHeraldKilled\": ${riftHeraldSlained},`;
+		analysis += `\"BaronKilled\": ${baronSlained},`;
+		analysis += `\"KillContribution\": ${KillContribution},`;
+		analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)}`;
+		
+		var KDA_avg = 2.766992;
+		var KDA_crit = 4.255425;
+
+		var Winrate_avg = 50.11637;
+		var Winrate_crit = 75.61936;
+
+		var Vision_avg = 12.6087;
+		var Vision_crit = 30.43094;
+
+		var KillContri_avg = 51.579;
+		var KillContri_crit = 61.576;
+
+		var TargetControl_avg = 53.069;
+		var TargetControl_crit = 78.89065;
+*/
+		
+		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 100 : KDA/KDA_crit*100;
+		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 100 : wardingValue/Vision_crit*100;
+		var WinRate_scaled = winRate/WinRate_crit*100 > 100 ? 100 : winRate/WinRate_crit*100;
+		var KillContribution_scaled = KillContribution/KillContri_crit*100 > 100 ? 100 : KillContribution/KillContri_crit*100;
+		var TargetControl_scaled = targetControl/TargetControl_crit*100 > 100 ? 100 : targetControl/TargetControl_crit*100;
+		
+		var KDA_avg_scaled = KDA_avg/KDA_crit*100 > 100 ? 100 : KDA/KDA_crit*100;
+		var VisionControl_avg_scaled = Vision_avg/Vision_crit*100 > 100 ? 100 : Vision_avg/Vision_crit*100;
+		var WinRate_avg_scaled = Winrate_avg/Winrate_crit*100 > 100 ? 100 : Winrate_avg/Winrate_crit*100;
+		var KillContribution_avg_scaled = KillContri_avg/KillContri_crit*100 > 100 ? 100 : KillContri_avg/KillContri_crit*100;
+		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 100 : TargetControl_avg/TargetControl_crit*100;
+		
+		var dataAnalysis = '[{';
+		dataAnalysis += `\"KDA\": ${KDA_scaled},`;
+		dataAnalysis += `\"VisionControl\": ${VisionControl_scaled},`;
+		dataAnalysis += `\"WinRate\": ${WinRate_scaled},`;
+		dataAnalysis += `\"KillContribution\": ${KillContribution_scaled},`;
+		dataAnalysis += `\"TargetControl\": ${TargetControl_scaled},`;
+		dataAnalysis += `\"KDA_avg\": ${KDA_avg_scaled},`;
+		dataAnalysis += `\"VisionControl_avg\": ${VisionControl_avg_scaled},`;
+		dataAnalysis += `\"WinRate_avg\": ${WinRate_avg_scaled},`;
+		dataAnalysis += `\"KillContribution_avg\": ${KillContribution_avg_scaled},`;
+		dataAnalysis += `\"TargetControl_avg\": ${TargetControl_avg_scaled}`;
+		dataAnalysis = '}]';
+		
+		var analysisJson = JSON.parse(dataAnalysis);
+		
+		
 		
 		if(analysisJson){
 			console.log("Analysis response sent");
