@@ -23,9 +23,9 @@ define([
         data:[userInfo.username]
     }).then(function(response){
 		console.log("success pp hai shi chou sha bi");
-		console.log(response.data[0]);
+		//console.log(response.data[0]);
 		userInfo.data = response.data[0];
-		console.log(userInfo);
+		//console.log(userInfo);
 		$location.path("stats");
 		}, function(response){
 			console.log("error!! pp is chou sha bi");
@@ -37,34 +37,96 @@ define([
 		]).controller("graphCtr", ['$scope','userInfo',
 		function($scope, userInfo){
 			console.log(userInfo.data);
+			$scope.username = `Analysis of ${userInfo.data.name}`;
+			
 			$scope.data =  {
 				labels: ['KDA', 'WinRate', 'VisionControl', 'KillContribution', 'TargetControl'],
 				datasets: [
 					{
-					  label: 'Player's Data',
-					  fillColor: 'rgba(220,220,220,0.2)',
-					  strokeColor: 'rgba(220,220,220,1)',
-					  pointColor: 'rgba(220,220,220,1)',
+					  label: 'Player\'s Data',
+					  fillColor: 'rgba(255,204,0,0.5)',
+					  strokeColor: 'rgba(255,204,0,1)',
+					  pointColor: 'rgba(255,204,0,1)',
+					  
 					  pointStrokeColor: '#fff',
 					  pointHighlightFill: '#fff',
 					  pointHighlightStroke: 'rgba(220,220,220,1)',
-					  data: [65, 59, 90, 81, 56, 55, 40]
+					  data: [userInfo.data.KDA, userInfo.data.WinRate, userInfo.data.VisionControl, userInfo.data.KillContribution, userInfo.data.TargetControl]
 					},
 					{
 					  label: 'Division Average',
-					  fillColor: 'rgba(151,187,205,0.2)',
+					  fillColor: 'rgba(151,187,205,0.5)',
 					  strokeColor: 'rgba(151,187,205,1)',
 					  pointColor: 'rgba(151,187,205,1)',
 					  pointStrokeColor: '#fff',
 					  pointHighlightFill: '#fff',
-					  pointHighlightStroke: 'rgba(151,187,205,1)',
-					  data: [2.766992, 50.11637, 12.6087, 51.579, 53.069]
+					  pointHighlightStroke: 'rgba(255,204,0,1)',
+					  data: [userInfo.data.KDA_avg, userInfo.data.WinRate_avg, userInfo.data.VisionControl_avg, userInfo.data.KillContribution_avg, userInfo.data.TargetControl_avg]
 					}
 				]
 			};
-// userInfo.data;
 			
-			
+
+			$scope.options =  {
+
+			  // Sets the chart to be responsive
+			  responsive: true,
+
+			  //Boolean - Whether to show lines for each scale point
+			  scaleShowLine : true,
+
+			  //Boolean - Whether we show the angle lines out of the radar
+			  angleShowLineOut : true,
+
+			  //Boolean - Whether to show labels on the scale
+			  scaleShowLabels : false,
+
+			  // Boolean - Whether the scale should begin at zero
+			  scaleBeginAtZero : true,
+
+			  //String - Colour of the angle line
+			  angleLineColor : 'rgba(0,0,0,.1)',
+
+			  //Number - Pixel width of the angle line
+			  angleLineWidth : 1,
+
+			  //String - Point label font declaration
+			  pointLabelFontFamily : '"Arial"',
+
+			  //String - Point label font weight
+			  pointLabelFontStyle : 'normal',
+
+			  //Number - Point label font size in pixels
+			  pointLabelFontSize : 10,
+
+			  //String - Point label font colour
+			  pointLabelFontColor : '#666',
+
+			  //Boolean - Whether to show a dot for each point
+			  pointDot : true,
+
+			  //Number - Radius of each point dot in pixels
+			  pointDotRadius : 3,
+
+			  //Number - Pixel width of point dot stroke
+			  pointDotStrokeWidth : 1,
+
+			  //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+			  pointHitDetectionRadius : 20,
+
+			  //Boolean - Whether to show a stroke for datasets
+			  datasetStroke : true,
+
+			  //Number - Pixel width of dataset stroke
+			  datasetStrokeWidth : 2,
+
+			  //Boolean - Whether to fill the dataset with a colour
+			  datasetFill : true,
+
+			  //String - A legend template
+			  legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
+			};
+	
 			
 		}])
 	

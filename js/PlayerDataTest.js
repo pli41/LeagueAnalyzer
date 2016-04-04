@@ -500,19 +500,20 @@ module.exports = {
 		var TargetControl_crit = 78.89065;
 */
 		
-		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 100 : KDA/KDA_crit*100;
-		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 100 : wardingValue/Vision_crit*100;
-		var WinRate_scaled = winRate/WinRate_crit*100 > 100 ? 100 : winRate/WinRate_crit*100;
-		var KillContribution_scaled = KillContribution/KillContri_crit*100 > 100 ? 100 : KillContribution/KillContri_crit*100;
-		var TargetControl_scaled = targetControl/TargetControl_crit*100 > 100 ? 100 : targetControl/TargetControl_crit*100;
+		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 99.99 : (KDA/KDA_crit*100).toFixed(2);
+		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 99.99 : (wardingValue/Vision_crit*100).toFixed(2);
+		var WinRate_scaled = winRate/Winrate_crit*100 > 100 ? 99.99 : (winRate/Winrate_crit*100).toFixed(2);
+		var KillContribution_scaled = KillContribution/KillContri_crit*100 > 100 ? 99.99 : (KillContribution/KillContri_crit*100).toFixed(2);
+		var TargetControl_scaled = targetControl/TargetControl_crit*100 > 100 ? 99.99 : (targetControl/TargetControl_crit*100).toFixed(2);
 		
-		var KDA_avg_scaled = KDA_avg/KDA_crit*100 > 100 ? 100 : KDA/KDA_crit*100;
-		var VisionControl_avg_scaled = Vision_avg/Vision_crit*100 > 100 ? 100 : Vision_avg/Vision_crit*100;
-		var WinRate_avg_scaled = Winrate_avg/Winrate_crit*100 > 100 ? 100 : Winrate_avg/Winrate_crit*100;
-		var KillContribution_avg_scaled = KillContri_avg/KillContri_crit*100 > 100 ? 100 : KillContri_avg/KillContri_crit*100;
-		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 100 : TargetControl_avg/TargetControl_crit*100;
+		var KDA_avg_scaled = KDA_avg/KDA_crit*100 > 100 ? 99.99 : (KDA_avg/KDA_crit*100).toFixed(2);
+		var VisionControl_avg_scaled = Vision_avg/Vision_crit*100 > 100 ? 99.99 : (Vision_avg/Vision_crit*100).toFixed(2);
+		var WinRate_avg_scaled = Winrate_avg/Winrate_crit*100 > 100 ? 99.99 : (Winrate_avg/Winrate_crit*100).toFixed(2);
+		var KillContribution_avg_scaled = KillContri_avg/KillContri_crit*100 > 100 ? 99.99 : (KillContri_avg/KillContri_crit*100).toFixed(2);
+		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 99.99 : (TargetControl_avg/TargetControl_crit*100).toFixed(2);
 		
 		var dataAnalysis = '[{';
+		dataAnalysis += `\"name\": \"${summoner_name_original}\",`;
 		dataAnalysis += `\"KDA\": ${KDA_scaled},`;
 		dataAnalysis += `\"VisionControl\": ${VisionControl_scaled},`;
 		dataAnalysis += `\"WinRate\": ${WinRate_scaled},`;
@@ -523,7 +524,9 @@ module.exports = {
 		dataAnalysis += `\"WinRate_avg\": ${WinRate_avg_scaled},`;
 		dataAnalysis += `\"KillContribution_avg\": ${KillContribution_avg_scaled},`;
 		dataAnalysis += `\"TargetControl_avg\": ${TargetControl_avg_scaled}`;
-		dataAnalysis = '}]';
+		dataAnalysis += '}]';
+		
+		//console.log(dataAnalysis);
 		
 		var analysisJson = JSON.parse(dataAnalysis);
 		
