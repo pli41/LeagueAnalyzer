@@ -1,8 +1,15 @@
 	<div>
-		<form ng-controller = "loginCtr" ng-submit = "getLOLInfo()" method="POST">
+	
+	
+		<div ><p ng-show="isWaiting">Waiting.....</p></div>
+		<form ng-submit = "getLOLInfo()" method="POST" ng-show="!isWaiting">
 			LOL account:</br>
+			
 			<input type="text" name="Account_LOL" placeholder="Enter your LOL account" ng-model="username"></br>
 			
 			<input type="submit" value="Submit">
 		</form>
+		
+		
+		
 	</div>

@@ -10,24 +10,32 @@ define([
 	})
 	.controller("loginCtr", ['$scope', '$location','$http', 'userInfo',
 			function($scope, $location,$http, userInfo) {
+				
+				$scope.isWaiting = false;
+				
+				
 				$scope.username = "";
 				console.log(userInfo);
 				$scope.getLOLInfo = function() {
+					$scope.isWaiting = true;
 					
 					userInfo.username = $scope.username;
 					console.log($location.path());
 					$http({
-        method: 'POST',
-        url: '/',
-        contentType: "application/json",
-        data:[userInfo.username]
-    }).then(function(response){
+						method: 'POST',
+						url: '/',
+						contentType: "application/json",
+						data:[userInfo.username]
+					}).then(function(response){
+		
 		console.log("success pp hai shi chou sha bi");
 		//console.log(response.data[0]);
 		userInfo.data = response.data[0];
+		
 		//console.log(userInfo);
 		$location.path("stats");
 		}, function(response){
+			$scope.isWaiting = false;
 			console.log("error!! pp is chou sha bi");
 		
 		}
