@@ -7,8 +7,8 @@ requirejs.config({
         'angular': 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min',
         'angular-route': 'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min',
         'bootstrap': 'http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min',
-		'chart': '../node_modules/chart.js/Chart.min',
-		'tc.chartjs': '../node_modules/tc-angular-chartjs/dist/tc-angular-chartjs.min',
+        'chart': '../node_modules/chart.js/Chart',
+        'tc.chartjs': '../node_modules/tc-angular-chartjs/dist/tc-angular-chartjs.min',
     },
     shim: {
         'jQuery': {
@@ -23,7 +23,7 @@ requirejs.config({
         'bootstrap': {
             deps: ['jQuery']
         },
-		'tc.chartjs': {
+        'tc.chartjs': {
             deps: ['angular','chart']
         },
     }

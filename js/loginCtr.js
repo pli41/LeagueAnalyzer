@@ -1,14 +1,14 @@
 define([
-"angular",
-], function(angular) {
-	angular.module("antiController")
-	.service("userInfo", function() {
+	"angular",
+	], function(angular) {
+		angular.module("antiController")
+		.service("userInfo", function() {
 			var username = "";
 			var data = "aaa";
 			
 
-	})
-	.controller("loginCtr", ['$scope', '$location','$http', 'userInfo',
+		})
+		.controller("loginCtr", ['$scope', '$location','$http', 'userInfo',
 			function($scope, $location,$http, userInfo) {
 				
 				$scope.isWaiting = false;
@@ -27,55 +27,57 @@ define([
 						contentType: "application/json",
 						data:[userInfo.username]
 					}).then(function(response){
-		
-		console.log("success pp hai shi chou sha bi");
+						
+						console.log("success pp hai shi chou sha bi");
 		//console.log(response.data[0]);
 		userInfo.data = response.data[0];
 		
 		//console.log(userInfo);
 		$location.path("stats");
-		}, function(response){
-			$scope.isWaiting = false;
-			console.log("error!! pp is chou sha bi");
+	}, function(response){
+		$scope.isWaiting = false;
+		console.log("error!! pp is chou sha bi");
 		
-		}
-			); 
+	}
+	); 
 				}
 			}
-		]).controller("graphCtr", ['$scope','userInfo',
-		function($scope, userInfo){
-			console.log(userInfo.data);
-			$scope.username = `Analysis of ${userInfo.data.name}`;
-			
-			$scope.data =  {
-				labels: ['KDA', 'WinRate', 'VisionControl', 'KillContribution', 'TargetControl'],
-				datasets: [
+			]).controller("graphCtr", ['$scope','userInfo',
+			function($scope, userInfo){
+				console.log(userInfo.data);
+				$scope.username = `Analysis of ${userInfo.data.name}`;
+				
+				$scope.data =  {
+					labels: ['KDA', 'WinRate', 'VisionControl', 'KillContribution', 'TargetControl'],
+					datasets: [
 					{
-					  label: 'Player\'s Data',
-					  fillColor: 'rgba(255,204,0,0.5)',
-					  strokeColor: 'rgba(255,204,0,1)',
-					  pointColor: 'rgba(255,204,0,1)',
-					  
-					  pointStrokeColor: '#fff',
-					  pointHighlightFill: '#fff',
-					  pointHighlightStroke: 'rgba(220,220,220,1)',
-					  data: [userInfo.data.KDA, userInfo.data.WinRate, userInfo.data.VisionControl, userInfo.data.KillContribution, userInfo.data.TargetControl]
+						label: 'Player\'s Data',
+						fillColor: 'rgba(255,204,0,0.5)',
+						strokeColor: 'rgba(255,204,0,1)',
+						pointColor: 'rgba(255,204,0,1)',
+						
+						pointStrokeColor: '#fff',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'rgba(220,220,220,1)',
+						data: [userInfo.data.KDA, userInfo.data.WinRate, userInfo.data.VisionControl, userInfo.data.KillContribution, userInfo.data.TargetControl]
+					  //data: [userInfo.data.KDA, userInfo.data.WinRate, userInfo.data.VisionControl, userInfo.data.KillContribution, userInfo.data.TargetControl]
+
 					},
 					{
-					  label: 'Division Average',
-					  fillColor: 'rgba(151,187,205,0.5)',
-					  strokeColor: 'rgba(151,187,205,1)',
-					  pointColor: 'rgba(151,187,205,1)',
-					  pointStrokeColor: '#fff',
-					  pointHighlightFill: '#fff',
-					  pointHighlightStroke: 'rgba(255,204,0,1)',
-					  data: [userInfo.data.KDA_avg, userInfo.data.WinRate_avg, userInfo.data.VisionControl_avg, userInfo.data.KillContribution_avg, userInfo.data.TargetControl_avg]
+						label: 'Division Average',
+						fillColor: 'rgba(151,187,205,0.5)',
+						strokeColor: 'rgba(151,187,205,1)',
+						pointColor: 'rgba(151,187,205,1)',
+						pointStrokeColor: '#fff',
+						pointHighlightFill: '#fff',
+						pointHighlightStroke: 'rgba(255,204,0,1)',
+						data: [userInfo.data.KDA_avg, userInfo.data.WinRate_avg, userInfo.data.VisionControl_avg, userInfo.data.KillContribution_avg, userInfo.data.TargetControl_avg]
 					}
-				]
-			};
-			
+					]
+				};
+				
 
-			$scope.options =  {
+				$scope.options =  {
 
 			  // Sets the chart to be responsive
 			  responsive: true,
@@ -134,8 +136,8 @@ define([
 			  //String - A legend template
 			  legendTemplate : '<ul class="tc-chart-js-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].strokeColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>'
 			};
-	
+			
 			
 		}])
-	
+
 })
