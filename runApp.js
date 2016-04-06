@@ -48,9 +48,9 @@ app.use(express.static("./"));
 
 app.use(cors());
 
-app.listen(3000);
+app.listen(8080);
 
-console.log("express running on port 3000");
+console.log("express running on port 8080");
 
 module.exports = app;
 
