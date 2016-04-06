@@ -2,7 +2,7 @@
   "name": "leagueanalyzer",
   "version": "1.0.0",
   "description": "analyze your league data",
-  "main": "main.js",
+  "main": "runApp.js",
   "dependencies": {
     "body-parser": "^1.15.0",
     "chart.js": "^1.0.2",
