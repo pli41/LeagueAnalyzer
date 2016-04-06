@@ -157,7 +157,7 @@ module.exports = {
 			};
 		}
 		else{
-			console.log(`${matchesNum} matches played; not enough`);
+			//console.log(`${matchesNum} matches played; not enough`);
 			if(matchesNum > 0){
 				for(var i = 0; i < matchesNum; i++){
 					//console.log(jsonData['matches']);
