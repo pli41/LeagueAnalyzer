@@ -7,6 +7,7 @@ var playerData = require("./js/PlayerDataTest");
 
 var app = express();
 
+app.set('ip', process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
