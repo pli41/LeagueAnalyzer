@@ -1,7 +1,7 @@
 {
-  "name": "antiaddicter",
+  "name": "leagueanalyzer",
   "version": "1.0.0",
-  "description": "",
+  "description": "analyze your league data",
   "main": "main.js",
   "dependencies": {
     "body-parser": "^1.15.0",
@@ -16,7 +16,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node runApp.js",
+	"predeploy": "echo im about to deploy",
+    "postdeploy": "echo ive deployed"
   },
   "repository": {
     "type": "git",
@@ -27,5 +30,11 @@
   "bugs": {
     "url": "https://github.com/pli41/AntiAddicter/issues"
   },
-  "homepage": "https://github.com/pli41/AntiAddicter#readme"
+  "homepage": "https://github.com/pli41/AntiAddicter#readme",
+  "keywords": [
+    "lol",
+    "league",
+    "analyze",
+    "analyzer"
+  ]
 }
