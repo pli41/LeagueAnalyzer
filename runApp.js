@@ -3,9 +3,7 @@ var bodyParser = require("body-parser");
 var cors = require("cors");
 var http = require('http');
 
-
 var playerData = require("./js/PlayerDataTest");
-
 
 var app = express();
 
@@ -56,7 +54,7 @@ app.use(cors());
 //app.listen(8080);
 
 http.createServer(app).listen(app.get('port') ,app.get('ip'), function () {
-    //console.log("✔ Express server listening at %s:%d ", app.get('ip'),app.get('port'));
+    console.log("✔ Express server listening at %s:%d ", app.get('ip'), app.get('port'));
     //server();
 });
 

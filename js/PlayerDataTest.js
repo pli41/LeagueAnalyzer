@@ -20,6 +20,7 @@ var TargetControl_crit = 78.89065;
 var https = require('https');
 var fs = require('fs');
 var json2csv = require('json2csv');
+var format = require("string-template");
 
 var summoner_name_original;
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
@@ -37,11 +38,11 @@ module.exports = {
 		var summoner_name_escaped = encodeURI(name);
 		var options_ID = {
 			host: "na.api.pvp.net",
-			path: `/api/lol/na/v1.4/summoner/by-name/${summoner_name_escaped}?api_key=${apiKey[0]}`,
+			path: format("/api/lol/na/v1.4/summoner/by-name/{name}?api_key={key}", {name: summoner_name_escaped, key: apiKey[0]}),
 			method: "GET"
 		};
-		
-		var request_ID_response ='';4
+		 
+		var request_ID_response ='';
 		var request_ID = https.request(options_ID, function(response){
 			response.on("data", function(data){
 				//console.log(`Data Received: ${data}`);
@@ -56,7 +57,15 @@ module.exports = {
 				
 				var summoner_name_trimmed = name.replace(/\s+/g, '');
 				
-				getSummonerMatchList(jsonData[summoner_name_trimmed]['id'], getMatchesID, GetMatchData, AnalyzeMatchData);
+				if(jsonData.status){
+					console.log(format("failed to get summoner from {name} because of {message}", {name: summoner_name_original, message: jsonData.status.message}));
+				}
+				else{
+					
+					getSummonerMatchList(jsonData[summoner_name_trimmed]['id'], getMatchesID, GetMatchData, AnalyzeMatchData);
+				}
+				
+				
 				/*
 				if(getSummonerMatchList){
 					if(GetMatchData){
@@ -75,6 +84,7 @@ module.exports = {
 			console.log(`request ID error: ${err}`);
 		});
 	},
+	
 	getSummonerMatchList: function(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData){
 	
 	//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/xplzzzx?api_key=79cfb0e6-89a2-4a0b-95c0-77238c9c6afe
@@ -87,7 +97,7 @@ module.exports = {
 
 		var options = {
 			host: "na.api.pvp.net",
-			path:`/api/lol/na/v2.2/matchlist/by-summoner/${summonerId}?rankedQueues=${rankedQueues}&seasons=${seasons}&api_key=${apiKey[1]}`,
+			path:format('/api/lol/na/v2.2/matchlist/by-summoner/{ID}?rankedQueues={queue}&seasons={season}&api_key={key}', {ID:summonerId, queue:rankedQueues, season:seasons, key:apiKey[1]}),
 			method: "GET"
 		};
 		
@@ -108,7 +118,7 @@ module.exports = {
 				//console.log(`JSON Data :${JSON.stringify(jsonData)}`);
 				
 				if(jsonData.status){
-					console.log(`failed to get data from ${matchID} because of ${dataJSON.status.message}`);
+					console.log(format('failed to get data from {matchID} because of {message}', {matchID: matchID, message: dataJSON.status.message}));
 				}
 				else{
 					
@@ -134,7 +144,7 @@ module.exports = {
 		
 		request_MatchList.end();
 		request_MatchList.on('error', function(err){
-			console.log('request matchlist error: ${err}');
+			//console.log('request matchlist error: ${err}');
 		});
 		
 	},
@@ -150,7 +160,7 @@ module.exports = {
 			console.log(`${matchesNum} matches played; not enough`);
 			if(matchesNum > 0){
 				for(var i = 0; i < matchesNum; i++){
-					console.log(jsonDatap['matches']);
+					//console.log(jsonData['matches']);
 					IDarray.push(jsonData['matches'][i]['matchId']);
 				};
 			}
@@ -164,18 +174,18 @@ module.exports = {
 	},
     GetMatchData: function(matchIDArray, AnalyzeMatchData){
 		
-		console.log(`in getMatchData with ${matchIDArray}`);
+		//console.log(`in getMatchData with ${matchIDArray}`);
 		var matchJsonData = new Array();
 		var matchNum = matchIDArray.length;
 		
 		while(matchIDArray.length > 0){
-			console.log(`${matchIDArray.length} matches left to grab`);
+			//console.log(`${matchIDArray.length} matches left to grab`);
 			var matchID = matchIDArray.shift();
-			console.log(`Grabbing match ${matchID} using ${apiKey[((matchIDArray.length+2)%apiKey.length)]}`);
+			//console.log(`Grabbing match ${matchID} using ${apiKey[((matchIDArray.length+2)%apiKey.length)]}`);
 			
 			var options = {
 				host: "na.api.pvp.net",
-				path:`https://na.api.pvp.net/api/lol/na/v2.2/match/${matchID}?api_key=${apiKey[((matchIDArray.length+2)%apiKey.length)]}`,
+				path: format('https://na.api.pvp.net/api/lol/na/v2.2/match/{matchID}?api_key={key}', {matchID:matchID, key: apiKey[((matchIDArray.length+2)%apiKey.length)]}),
 				method: "GET"
 			};
 			
@@ -192,8 +202,11 @@ module.exports = {
 					var dataJSON = JSON.parse(receivedData);
 					
 					if(dataJSON.status){
-						console.log(`failed to get data from ${matchID} because of ${dataJSON.status.message}`);
-						matchIDArray.unshift(matchID);
+						console.log(format('failed to get data from {matchID} because of {message}', {matchID:matchID, message: dataJSON.status.message}));
+						
+						if(dataJson.status.status_code == 429){
+							matchIDArray.unshift(matchID);
+						}
 					}
 					else{
 						matchJsonData.push(receivedData);
@@ -213,7 +226,7 @@ module.exports = {
 		
 			request_Match.end();
 			request_Match.on('error', function(err){
-				console.log(`request match error: ${err}`);
+				//console.log(`request match error: ${err}`);
 				setTimeout(function(){
 					console.log('retry');
 					matchIDArray.unshift(matchID);
@@ -251,7 +264,7 @@ module.exports = {
 		var totalDeaths = 0;
 		var totalAssists = 0;
 		var gatherKDA_Data = function(match, participantID){
-			console.log(`KDA participant ID is ${participantID}`);
+			//console.log(`KDA participant ID is ${participantID}`);
 			totalKills += match.participants[participantID-1].stats.kills;
 			totalDeaths += match.participants[participantID-1].stats.deaths;
 			totalAssists += match.participants[participantID-1].stats.assists;
@@ -439,7 +452,7 @@ module.exports = {
 		});
 		*/
 		
-		
+		/*
 		console.log('analysis file generated');
 		console.log('\n');
 		console.log(`	Analysis of ${summoner_name_original}`);
@@ -462,7 +475,7 @@ module.exports = {
 		console.log(`		Average match length: ${avgDuration_parsed}`);
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
-		
+		*/
 		
 /* for reference
 		analysis += `\"SummonerName\": \"${summoner_name_original}\",`;
@@ -513,17 +526,17 @@ module.exports = {
 		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 99.99 : (TargetControl_avg/TargetControl_crit*100).toFixed(2);
 		
 		var dataAnalysis = '[{';
-		dataAnalysis += `\"name\": \"${summoner_name_original}\",`;
-		dataAnalysis += `\"KDA\": ${KDA_scaled},`;
-		dataAnalysis += `\"VisionControl\": ${VisionControl_scaled},`;
-		dataAnalysis += `\"WinRate\": ${WinRate_scaled},`;
-		dataAnalysis += `\"KillContribution\": ${KillContribution_scaled},`;
-		dataAnalysis += `\"TargetControl\": ${TargetControl_scaled},`;
-		dataAnalysis += `\"KDA_avg\": ${KDA_avg_scaled},`;
-		dataAnalysis += `\"VisionControl_avg\": ${VisionControl_avg_scaled},`;
-		dataAnalysis += `\"WinRate_avg\": ${WinRate_avg_scaled},`;
-		dataAnalysis += `\"KillContribution_avg\": ${KillContribution_avg_scaled},`;
-		dataAnalysis += `\"TargetControl_avg\": ${TargetControl_avg_scaled}`;
+		dataAnalysis += format('\"name\": \"{name}\",',{name:summoner_name_original});
+		dataAnalysis += format('\"KDA\": \"{KDA}\",',{KDA:KDA_scaled});
+		dataAnalysis += format('\"VisionControl\": \"{VisionControl}\",',{VisionControl:VisionControl_scaled});
+		dataAnalysis += format('\"WinRate\": \"{WinRate}\",',{WinRate:WinRate_scaled});
+		dataAnalysis += format('\"KillContribution\": \"{KillContribution}\",',{KillContribution:KillContribution_scaled});
+		dataAnalysis += format('\"TargetControl\": \"{TargetControl}\",',{TargetControl:TargetControl_scaled});
+		dataAnalysis += format('\"KDA_avg\": \"{KDA_avg}\",',{KDA_avg:KDA_avg_scaled});
+		dataAnalysis += format('\"VisionControl_avg\": \"{VisionControl_avg}\",',{VisionControl_avg:VisionControl_avg_scaled});
+		dataAnalysis += format('\"WinRate_avg\": \"{WinRate_avg}\",',{WinRate_avg:WinRate_avg_scaled});
+		dataAnalysis += format('\"KillContribution_avg\": \"{KillContribution_avg}\",',{KillContribution_avg:KillContribution_avg_scaled});
+		dataAnalysis += format('\"TargetControl_avg\": \"{TargetControl_avg}\"',{TargetControl_avg:TargetControl_avg_scaled});
 		dataAnalysis += '}]';
 		
 		//console.log(dataAnalysis);

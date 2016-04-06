@@ -12,13 +12,14 @@
     "https": "^1.0.0",
     "json2csv": "^3.2.0",
     "requirejs": "^2.2.0",
+    "string-template": "^1.0.0",
     "tc-angular-chartjs": "^1.0.15"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node runApp.js",
-	"predeploy": "echo im about to deploy",
+    "start": "node runApp.js",
+    "predeploy": "echo im about to deploy",
     "postdeploy": "echo ive deployed"
   },
   "repository": {
