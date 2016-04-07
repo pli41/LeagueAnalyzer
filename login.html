@@ -1,15 +1,14 @@
-	<div>
+	<div class="container">
+		<span style="white-space:pre-wrap;">{{typein}}</span>
 		
 		
-		<div ><p ng-show="isWaiting">Waiting.....</p></div>
 		<form ng-submit = "getLOLInfo()" method="POST" ng-show="!isWaiting">
-			LOL account:</br>
 			
-			<input type="text" name="Account_LOL" placeholder="Enter your LOL account" ng-model="username"></br>
+			<span>$ </span><input type="text" name="Account_LOL" placeholder="" ng-model="username" style="background:none"></br>
 			
-			<input type="submit" value="Submit">
+			<input type="submit" value="Submit" style="display:none">
 		</form>
 		
-		
+		<div ><p ng-show="isWaiting">Waiting.....</p></div>
 		
 	</div>
