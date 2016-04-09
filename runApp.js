@@ -26,7 +26,8 @@ app.post('/',
 		//console.log(`received summonerID: ${req.body[0]}`);
 		analysisJson = playerData.start(
 			req.body[0], 
-			playerData.getSummonerIdByName, 
+			playerData.getSummonerIdByName,
+			playerData.getSummonerLeagueData,
 			playerData.getSummonerMatchList, 
 			playerData.getMatchesID, 
 			playerData.GetMatchData, 

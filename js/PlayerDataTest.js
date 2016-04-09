@@ -1,20 +1,111 @@
+var leagueDataArray = new Array();
 
-//Average Data
+var bronzeDataArray = new Array();
+var silverDataArray = new Array();
+var goldDataArray = new Array();
+var platinumDataArray = new Array();
+var diamondDataArray = new Array();
+var masterDataArray = new Array();
+var challengerDataArray = new Array();
 
-var KDA_avg = 2.766992;
-var KDA_crit = 4.255425;
+bronzeDataArray = {
+	'KDA_AVG': 2.432092,
+	'WINRATE_AVG': 45.94,
+	'VISION_AVG': 5.39,
+	'TARGETCONTROL_AVG': 69.23,
+	'KILLCONTRIBUTION_AVG': 46.97,
+	'KDA_CRIT': 2.432092,
+	'WINRATE_CRIT': 45.94,
+	'VISION_CRIT': 5.39,
+	'TARGETCONTROL_CRIT': 70,
+	'KILLCONTRIBUTION_CRIT': 46.97
+};
 
-var Winrate_avg = 50.11637;
-var Winrate_crit = 75.61936;
+silverDataArray = {
+	'KDA_AVG': 2.669597,
+	'WINRATE_AVG': 49.04839,
+	'VISION_AVG': 8.077957,
+	'TARGETCONTROL_AVG': 76.055,
+	'KILLCONTRIBUTION_AVG': 50.07527,
+	'KDA_CRIT': 2.432092,
+	'WINRATE_CRIT': 45.94,
+	'VISION_CRIT': 5.39,
+	'TARGETCONTROL_CRIT': 70,
+	'KILLCONTRIBUTION_CRIT': 46.97
+};
 
-var Vision_avg = 12.6087;
-var Vision_crit = 30.43094;
+goldDataArray = {
+	'KDA_AVG': 2.735745,
+	'WINRATE_AVG': 48.85106,
+	'VISION_AVG': 10.55319,
+	'TARGETCONTROL_AVG': 81.905,
+	'KILLCONTRIBUTION_AVG':  52.05851,
+	'KDA_CRIT': 2.432092,
+	'WINRATE_CRIT': 45.94,
+	'VISION_CRIT': 5.39,
+	'TARGETCONTROL_CRIT': 70,
+	'KILLCONTRIBUTION_CRIT': 46.97
+};
 
-var KillContri_avg = 51.579;
-var KillContri_crit = 61.576;
+platinumDataArray = {
+	'KDA_AVG': 2.624627,
+	'WINRATE_AVG': 48.79104,
+	'VISION_AVG': 11.69154,
+	'TARGETCONTROL_AVG': 79.085,
+	'KILLCONTRIBUTION_AVG': 51.92537,
+	'KDA_CRIT': 2.432092,
+	'WINRATE_CRIT': 45.94,
+	'VISION_CRIT': 5.39,
+	'TARGETCONTROL_CRIT': 70,
+	'KILLCONTRIBUTION_CRIT': 46.97
+};
 
-var TargetControl_avg = 53.069;
-var TargetControl_crit = 78.89065;
+diamondDataArray = {
+	'KDA_AVG': 2.867525,
+	'WINRATE_AVG': 48.9604,
+	'VISION_AVG': 16.83168,
+	'TARGETCONTROL_AVG': 81.94,
+	'KILLCONTRIBUTION_AVG': 53.54455,
+	'KDA_CRIT': 2.432092,
+	'WINRATE_CRIT': 45.94,
+	'VISION_CRIT': 5.39,
+	'TARGETCONTROL_CRIT': 70,
+	'KILLCONTRIBUTION_CRIT': 46.97
+};
+
+masterDataArray = {
+	'KDA_AVG': 3.010043 ,
+	'WINRATE_AVG': 53.85714,
+	'VISION_AVG': 17.63,
+	'TARGETCONTROL_AVG': 82.54,
+	'KILLCONTRIBUTION_AVG': 53.72857,
+	'KDA_CRIT': 2.432092,
+	'WINRATE_CRIT': 45.94,
+	'VISION_CRIT': 5.39,
+	'TARGETCONTROL_CRIT': 70,
+	'KILLCONTRIBUTION_CRIT': 46.97
+};
+
+challengerDataArray = {
+	'KDA_AVG': 3.160612,
+	'WINRATE_AVG': 56.83673,
+	'VISION_AVG': 20.87245,
+	'TARGETCONTROL_AVG': 83.445,
+	'KILLCONTRIBUTION_AVG': 53.75,
+	'KDA_CRIT': 2.432092,
+	'WINRATE_CRIT': 45.94,
+	'VISION_CRIT': 5.39,
+	'TARGETCONTROL_CRIT': 70,
+	'KILLCONTRIBUTION_CRIT': 46.97
+};
+
+leagueDataArray['BRONZE'] = bronzeDataArray;
+leagueDataArray['SILVER'] = silverDataArray;
+leagueDataArray['GOLD'] = goldDataArray;
+leagueDataArray['PLATINUM'] = platinumDataArray;
+leagueDataArray['DIAMOND'] = diamondDataArray;
+leagueDataArray['MASTER'] = masterDataArray;
+leagueDataArray['CHALLENGER'] = challengerDataArray;
 
 //Inputs
 var https = require('https');
@@ -23,18 +114,22 @@ var json2csv = require('json2csv');
 var format = require("string-template");
 
 var summoner_name_original;
+var summoner_tier;
+
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
+
+
 
 var response;
 
 module.exports = {
 	
-	start: function(summonerName, getSummonerIdByName, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res){
+	start: function(summonerName, getSummonerIdByName, getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res){
 		summoner_name_original = summonerName;
 		response = res;
-		getSummonerIdByName(summonerName.toLowerCase(), getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
+		getSummonerIdByName(summonerName.toLowerCase(), getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
 	},
-	getSummonerIdByName: function(name, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
+	getSummonerIdByName: function(name, getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
 		var summoner_name_escaped = encodeURI(name);
 		var options_ID = {
 			host: "na.api.pvp.net",
@@ -62,7 +157,7 @@ module.exports = {
 				}
 				else{
 					
-					getSummonerMatchList(jsonData[summoner_name_trimmed]['id'], getMatchesID, GetMatchData, AnalyzeMatchData);
+					getSummonerLeagueData(jsonData[summoner_name_trimmed]['id'], getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
 				}
 				
 				
@@ -85,6 +180,55 @@ module.exports = {
 		});
 	},
 	
+	getSummonerLeagueData: function(summonerId, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
+		var options = {
+			host: "na.api.pvp.net",
+			path: format("/api/lol/na/v2.5/league/by-summoner/{name}?api_key={key}", {name: summonerId, key: apiKey[1]}),
+			method: "GET"
+		};
+		
+		var request_response ='';
+		var request = https.request(options, function(response){
+			response.on("data", function(data){
+				//console.log(`Data Received: ${data}`);
+				request_response+= data;
+			});
+			
+			response.on("end", function(){
+				console.log("request League ends");
+				//console.log(`request ID response: ${request_ID_response}`);
+				var jsonData = JSON.parse(request_response);
+				
+				if(jsonData.status){
+					console.log(format("failed to get summoner tier from {name} because of {message}", {name: summoner_name_original, message: jsonData.status.message}));
+				}
+				else{
+					summoner_tier = jsonData[summonerId][0].tier;
+					console.log(format("Summoner Tier: {tier}", {tier: summoner_tier}));
+					getSummonerMatchList(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData);
+				}
+				
+				
+				/*
+				if(getSummonerMatchList){
+					if(GetMatchData){
+						getSummonerMatchList(jsonData[summoner_name_trimmed]['id'], GetMatchData);
+					}
+					else{
+						getSummonerMatchList(jsonData[summoner_name_trimmed]['id']);
+					}
+				}
+				*/
+			});
+		});
+		
+		request.end();
+		request.on("error", function(err){
+			//console.log(`request ID error: ${err}`);
+		});
+	},
+	
+	
 	getSummonerMatchList: function(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData){
 	
 	//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/xplzzzx?api_key=79cfb0e6-89a2-4a0b-95c0-77238c9c6afe
@@ -97,7 +241,7 @@ module.exports = {
 
 		var options = {
 			host: "na.api.pvp.net",
-			path:format('/api/lol/na/v2.2/matchlist/by-summoner/{ID}?rankedQueues={queue}&seasons={season}&api_key={key}', {ID:summonerId, queue:rankedQueues, season:seasons, key:apiKey[1]}),
+			path:format('/api/lol/na/v2.2/matchlist/by-summoner/{ID}?rankedQueues={queue}&seasons={season}&api_key={key}', {ID:summonerId, queue:rankedQueues, season:seasons, key:apiKey[2]}),
 			method: "GET"
 		};
 		
@@ -185,7 +329,7 @@ module.exports = {
 			
 			var options = {
 				host: "na.api.pvp.net",
-				path: format('https://na.api.pvp.net/api/lol/na/v2.2/match/{matchID}?api_key={key}', {matchID:matchID, key: apiKey[((matchIDArray.length+2)%apiKey.length)]}),
+				path: format('https://na.api.pvp.net/api/lol/na/v2.2/match/{matchID}?api_key={key}', {matchID:matchID, key: apiKey[((matchIDArray.length+3)%apiKey.length)]}),
 				method: "GET"
 			};
 			
@@ -513,6 +657,42 @@ module.exports = {
 		var TargetControl_crit = 78.89065;
 */
 		
+		//Average Data
+
+		
+		
+		var KDA_avg;
+		var KDA_crit = 4.255425;
+
+		var Winrate_avg;
+		var Winrate_crit = 75.61936;
+
+		var Vision_avg;
+		var Vision_crit = 30.43094;
+
+		var KillContri_avg;
+		var KillContri_crit = 61.576;
+
+		var TargetControl_avg;
+		var TargetControl_crit = 78.89065;
+		
+		
+		if(summoner_tier){
+			KDA_avg = leagueDataArray[summoner_tier].KDA_AVG;
+			
+			Winrate_avg = leagueDataArray[summoner_tier].WINRATE_AVG;
+			
+			Vision_avg = leagueDataArray[summoner_tier].VISION_AVG;
+			
+			KillContri_avg = leagueDataArray[summoner_tier].KILLCONTRIBUTION_AVG;
+			
+			TargetControl_avg = leagueDataArray[summoner_tier].TARGETCONTROL_AVG;
+		}
+		else{
+			console.log("Summoner tier is not available");
+		}
+		
+		
 		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 99.99 : (KDA/KDA_crit*100).toFixed(2);
 		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 99.99 : (wardingValue/Vision_crit*100).toFixed(2);
 		var WinRate_scaled = winRate/Winrate_crit*100 > 100 ? 99.99 : (winRate/Winrate_crit*100).toFixed(2);
@@ -539,8 +719,7 @@ module.exports = {
 		dataAnalysis += format('\"TargetControl_avg\": \"{TargetControl_avg}\"',{TargetControl_avg:TargetControl_avg_scaled});
 		dataAnalysis += '}]';
 		
-		//console.log(dataAnalysis);
-		
+		console.log(dataAnalysis);
 		var analysisJson = JSON.parse(dataAnalysis);
 		
 		

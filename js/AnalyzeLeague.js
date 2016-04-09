@@ -490,11 +490,11 @@ rl.on('close', function(){
 														//read from file
 								var csvPath = '';
 
-								var csvPath_all = `../PlayerData/CSV/ALL/AnalyzedData(ALL)_${currentTime}.csv`;
+								var csvPath_all = `../PlayerData/CSV/ALL/AnalyzedData(ALL).csv`;
 								
 								if(tierToAnalyze === "CHALLENGER" || tierToAnalyze === "MASTER"){
 									csvPath += `../PlayerData/CSV/${tierToAnalyze}/AnalyzedData(${tierToAnalyze})_${currentTime}.csv`;
-								}	
+								}
 								else{
 									csvPath += `../PlayerData/CSV/${tierToAnalyze}/${division}/AnalyzedData(${tierToAnalyze}${division})_${currentTime}.csv`;
 								}
