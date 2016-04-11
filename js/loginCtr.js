@@ -64,9 +64,8 @@ define([
             }
         ]).controller("graphCtr", ['$scope', 'userInfo',
             function($scope, userInfo) {
-                console.log(userInfo.data);
+                console.log(userInfo);
                 $scope.username = `Analysis of ${userInfo.data.name}`;
-
                 $scope.data = {
                     labels: ['KDA', 'WinRate', 'VisionControl', 'KillContribution', 'TargetControl'],
                     datasets: [{
@@ -111,10 +110,10 @@ define([
                     scaleBeginAtZero: true,
 
                     //String - Colour of the angle line
-                    angleLineColor: 'rgba(0,0,0,.1)',
+                    angleLineColor: 'rgba(0,220,0,0.1)',
 
                     //Number - Pixel width of the angle line
-                    angleLineWidth: 1,
+                    angleLineWidth: 1.5,
 
                     //String - Point label font declaration
                     pointLabelFontFamily: '"Arial"',
@@ -123,10 +122,10 @@ define([
                     pointLabelFontStyle: 'normal',
 
                     //Number - Point label font size in pixels
-                    pointLabelFontSize: 10,
+                    pointLabelFontSize: 20,
 
                     //String - Point label font colour
-                    pointLabelFontColor: '#666',
+                    pointLabelFontColor: 'rgba(0,220,0,1)',
 
                     //Boolean - Whether to show a dot for each point
                     pointDot: true,

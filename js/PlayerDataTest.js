@@ -9,94 +9,94 @@ var masterDataArray = new Array();
 var challengerDataArray = new Array();
 
 bronzeDataArray = {
-	'KDA_AVG': 2.432092,
-	'WINRATE_AVG': 45.94,
-	'VISION_AVG': 5.39,
-	'TARGETCONTROL_AVG': 69.23,
-	'KILLCONTRIBUTION_AVG': 46.97,
-	'KDA_CRIT': 2.432092,
-	'WINRATE_CRIT': 45.94,
-	'VISION_CRIT': 5.39,
-	'TARGETCONTROL_CRIT': 70,
-	'KILLCONTRIBUTION_CRIT': 46.97
+ 'KDA_AVG': 2.432092,
+ 'WINRATE_AVG': 45.94,
+ 'VISION_AVG': 5.39,
+ 'TARGETCONTROL_AVG': 45.53,
+ 'KILLCONTRIBUTION_AVG': 46.97,
+ 'KDA_CRIT': 3.619116,
+ 'WINRATE_CRIT': 71.63218,
+ 'VISION_CRIT': 16.90,
+ 'TARGETCONTROL_CRIT': 69.22,
+ 'KILLCONTRIBUTION_CRIT': 56.94
 };
 
 silverDataArray = {
-	'KDA_AVG': 2.669597,
-	'WINRATE_AVG': 49.04839,
-	'VISION_AVG': 8.077957,
-	'TARGETCONTROL_AVG': 76.055,
-	'KILLCONTRIBUTION_AVG': 50.07527,
-	'KDA_CRIT': 2.432092,
-	'WINRATE_CRIT': 45.94,
-	'VISION_CRIT': 5.39,
-	'TARGETCONTROL_CRIT': 70,
-	'KILLCONTRIBUTION_CRIT': 46.97
+ 'KDA_AVG': 2.670,
+ 'WINRATE_AVG': 49.04,
+ 'VISION_AVG': 8.078,
+ 'TARGETCONTROL_AVG': 50.745,
+ 'KILLCONTRIBUTION_AVG': 50.08,
+ 'KDA_CRIT': 3.619116,
+ 'WINRATE_CRIT': 73.72,
+ 'VISION_CRIT': 20.614,
+ 'TARGETCONTROL_CRIT': 76.043,
+ 'KILLCONTRIBUTION_CRIT': 59.62,
 };
 
 goldDataArray = {
-	'KDA_AVG': 2.735745,
-	'WINRATE_AVG': 48.85106,
-	'VISION_AVG': 10.55319,
-	'TARGETCONTROL_AVG': 81.905,
-	'KILLCONTRIBUTION_AVG':  52.05851,
-	'KDA_CRIT': 2.432092,
-	'WINRATE_CRIT': 45.94,
-	'VISION_CRIT': 5.39,
-	'TARGETCONTROL_CRIT': 70,
-	'KILLCONTRIBUTION_CRIT': 46.97
+ 'KDA_AVG': 2.735745,
+ 'WINRATE_AVG': 48.85106,
+ 'VISION_AVG': 10.55319,
+ 'TARGETCONTROL_AVG': 54.64894,
+ 'KILLCONTRIBUTION_AVG': 52.05851,
+ 'KDA_CRIT': 4.101215,
+ 'WINRATE_CRIT': 72.49036,
+ 'VISION_CRIT': 25.21836,
+ 'TARGETCONTROL_CRIT': 81.90504,
+ 'KILLCONTRIBUTION_CRIT': 61.46661,
 };
 
 platinumDataArray = {
-	'KDA_AVG': 2.624627,
-	'WINRATE_AVG': 48.79104,
-	'VISION_AVG': 11.69154,
-	'TARGETCONTROL_AVG': 79.085,
-	'KILLCONTRIBUTION_AVG': 51.92537,
-	'KDA_CRIT': 2.432092,
-	'WINRATE_CRIT': 45.94,
-	'VISION_CRIT': 5.39,
-	'TARGETCONTROL_CRIT': 70,
-	'KILLCONTRIBUTION_CRIT': 46.97
+ 'KDA_AVG': 2.624627,
+ 'WINRATE_AVG': 48.79104,
+ 'VISION_AVG': 11.69154,
+ 'TARGETCONTROL_AVG': 54.26368,
+ 'KILLCONTRIBUTION_AVG': 51.92537,
+ 'KDA_CRIT': 3.746215,
+ 'WINRATE_CRIT': 73.72338,
+ 'VISION_CRIT': 26.44459,
+ 'TARGETCONTROL_CRIT': 79.0684,
+ 'KILLCONTRIBUTION_CRIT': 60.26076,
 };
 
 diamondDataArray = {
-	'KDA_AVG': 2.867525,
-	'WINRATE_AVG': 48.9604,
-	'VISION_AVG': 16.83168,
-	'TARGETCONTROL_AVG': 81.94,
-	'KILLCONTRIBUTION_AVG': 53.54455,
-	'KDA_CRIT': 2.432092,
-	'WINRATE_CRIT': 45.94,
-	'VISION_CRIT': 5.39,
-	'TARGETCONTROL_CRIT': 70,
-	'KILLCONTRIBUTION_CRIT': 46.97
+ 'KDA_AVG': 2.867525,
+ 'WINRATE_AVG': 48.9604,
+ 'VISION_AVG': 16.83168,
+ 'TARGETCONTROL_AVG': 56.23267,
+ 'KILLCONTRIBUTION_AVG': 53.54455,
+ 'KDA_CRIT': 4.846659,
+ 'WINRATE_CRIT': 73.97122,
+ 'VISION_CRIT': 34.39806,
+ 'TARGETCONTROL_CRIT': 81.93666,
+ 'KILLCONTRIBUTION_CRIT': 62.44582,
 };
 
 masterDataArray = {
-	'KDA_AVG': 3.010043 ,
-	'WINRATE_AVG': 53.85714,
-	'VISION_AVG': 17.63,
-	'TARGETCONTROL_AVG': 82.54,
-	'KILLCONTRIBUTION_AVG': 53.72857,
-	'KDA_CRIT': 2.432092,
-	'WINRATE_CRIT': 45.94,
-	'VISION_CRIT': 5.39,
-	'TARGETCONTROL_CRIT': 70,
-	'KILLCONTRIBUTION_CRIT': 46.97
+ 'KDA_AVG': 3.010043,
+ 'WINRATE_AVG': 53.85714,
+ 'VISION_AVG': 17.63,
+ 'TARGETCONTROL_AVG': 55.16857,
+ 'KILLCONTRIBUTION_AVG': 53.72857,
+ 'KDA_CRIT': 4.609822,
+ 'WINRATE_CRIT': 78.98679,
+ 'VISION_CRIT': 37.51188,
+ 'TARGETCONTROL_CRIT': 80.53753,
+ 'KILLCONTRIBUTION_CRIT': 63.55252,
 };
 
 challengerDataArray = {
-	'KDA_AVG': 3.160612,
-	'WINRATE_AVG': 56.83673,
-	'VISION_AVG': 20.87245,
-	'TARGETCONTROL_AVG': 83.445,
-	'KILLCONTRIBUTION_AVG': 53.75,
-	'KDA_CRIT': 2.432092,
-	'WINRATE_CRIT': 45.94,
-	'VISION_CRIT': 5.39,
-	'TARGETCONTROL_CRIT': 70,
-	'KILLCONTRIBUTION_CRIT': 46.97
+ 'KDA_AVG': 3.160612,
+ 'WINRATE_AVG': 56.83673,
+ 'VISION_AVG': 20.87245,
+ 'TARGETCONTROL_AVG': 55,
+ 'KILLCONTRIBUTION_AVG': 53.72857,
+ 'KDA_CRIT': 4.87272,
+ 'WINRATE_CRIT': 83.1131,
+ 'VISION_CRIT': 39.84241,
+ 'TARGETCONTROL_CRIT': 81.44952,
+ 'KILLCONTRIBUTION_CRIT': 63.23486,
 };
 
 leagueDataArray['BRONZE'] = bronzeDataArray;
@@ -115,6 +115,7 @@ var format = require("string-template");
 
 var summoner_name_original;
 var summoner_tier;
+var summoner_division;
 
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
 
@@ -183,7 +184,7 @@ module.exports = {
 	getSummonerLeagueData: function(summonerId, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
 		var options = {
 			host: "na.api.pvp.net",
-			path: format("/api/lol/na/v2.5/league/by-summoner/{name}?api_key={key}", {name: summonerId, key: apiKey[1]}),
+			path: format("/api/lol/na/v2.5/league/by-summoner/{name}/entry?api_key={key}", {name: summonerId, key: apiKey[1]}),
 			method: "GET"
 		};
 		
@@ -204,7 +205,8 @@ module.exports = {
 				}
 				else{
 					summoner_tier = jsonData[summonerId][0].tier;
-					console.log(format("Summoner Tier: {tier}", {tier: summoner_tier}));
+					summoner_division = jsonData[summonerId][0].entries[0].division;
+					console.log(format("Summoner rank: {tier} {division}", {tier: summoner_tier, division: summoner_division}));
 					getSummonerMatchList(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData);
 				}
 				
@@ -596,7 +598,7 @@ module.exports = {
 		});
 		*/
 		
-		/*
+		
 		console.log('analysis file generated');
 		console.log('\n');
 		console.log(`	Analysis of ${summoner_name_original}`);
@@ -619,7 +621,7 @@ module.exports = {
 		console.log(`		Average match length: ${avgDuration_parsed}`);
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
-		*/
+		
 		
 /* for reference
 		analysis += `\"SummonerName\": \"${summoner_name_original}\",`;
@@ -662,36 +664,87 @@ module.exports = {
 		
 		
 		var KDA_avg;
-		var KDA_crit = 4.255425;
+		var KDA_crit;
 
 		var Winrate_avg;
-		var Winrate_crit = 75.61936;
+		var Winrate_crit;
 
 		var Vision_avg;
-		var Vision_crit = 30.43094;
+		var Vision_crit;
 
 		var KillContri_avg;
-		var KillContri_crit = 61.576;
+		var KillContri_crit;
 
 		var TargetControl_avg;
-		var TargetControl_crit = 78.89065;
+		var TargetControl_crit;
 		
 		
 		if(summoner_tier){
 			KDA_avg = leagueDataArray[summoner_tier].KDA_AVG;
-			
+			KDA_crit = leagueDataArray[summoner_tier].KDA_CRIT;
 			Winrate_avg = leagueDataArray[summoner_tier].WINRATE_AVG;
-			
+			Winrate_crit = leagueDataArray[summoner_tier].WINRATE_CRIT;
 			Vision_avg = leagueDataArray[summoner_tier].VISION_AVG;
-			
-			KillContri_avg = leagueDataArray[summoner_tier].KILLCONTRIBUTION_AVG;
-			
+			Vision_crit = leagueDataArray[summoner_tier].VISION_CRIT;
 			TargetControl_avg = leagueDataArray[summoner_tier].TARGETCONTROL_AVG;
+			TargetControl_crit = leagueDataArray[summoner_tier].TARGETCONTROL_CRIT;
+			KillContri_avg = leagueDataArray[summoner_tier].KILLCONTRIBUTION_AVG;
+			KillContri_crit = leagueDataArray[summoner_tier].KILLCONTRIBUTION_CRIT;
 		}
 		else{
 			console.log("Summoner tier is not available");
 		}
 		
+		var nextTier;
+		
+		var KDA_ThisTier;
+		var KDA_NextTier;
+		var WINRate_ThisTier;
+		var WINRate_NextTier;
+		var VisionControl_ThisTier;
+		var VisionControl_NextTier;
+		var TargetControl_ThisTier;
+		var TargetControl_NextTier;
+		var KillContribution_ThisTier;
+		var KillContribution_NextTier;
+		
+		//Assign tier data
+		if(summoner_tier){
+			if(summoner_tier === 'BRONZE'){
+				nextTier = 'SILVER';
+			}
+			else if(summoner_tier === 'SILVER'){
+				nextTier = 'GOLD';
+			}
+			else if(summoner_tier === 'GOLD'){
+				nextTier = 'PLATINUM';
+			}
+			else if(summoner_tier === 'PLATINUM'){
+				nextTier = 'DIAMOND';
+			}
+			else if(summoner_tier === 'DIAMOND'){
+				nextTier = 'MASTER';
+			}
+			else if(summoner_tier === 'MASTER'){
+				nextTier = 'CHALLENGER';
+			}
+			else if(summoner_tier === 'CHALLENGER'){
+				
+			}
+		}
+		
+		if(nextTier){
+			KDA_ThisTier = leagueDataArray[summoner_tier].KDA_AVG;
+			KDA_NextTier = leagueDataArray[nextTier].KDA_AVG;
+			WINRate_ThisTier = leagueDataArray[summoner_tier].WINRATE_AVG;
+			WINRate_NextTier = leagueDataArray[nextTier].WINRATE_AVG;
+			VisionControl_ThisTier = leagueDataArray[summoner_tier].VISION_AVG;
+			VisionControl_NextTier = leagueDataArray[nextTier].VISION_AVG;
+			TargetControl_ThisTier = leagueDataArray[summoner_tier].TARGETCONTROL_AVG;
+			TargetControl_NextTier = leagueDataArray[nextTier].TARGETCONTROL_AVG;
+			KillContribution_ThisTier = leagueDataArray[summoner_tier].KILLCONTRIBUTION_AVG;
+			KillContribution_NextTier = leagueDataArray[nextTier].KILLCONTRIBUTION_AVG;
+		}
 		
 		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 99.99 : (KDA/KDA_crit*100).toFixed(2);
 		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 99.99 : (wardingValue/Vision_crit*100).toFixed(2);
@@ -716,7 +769,30 @@ module.exports = {
 		dataAnalysis += format('\"VisionControl_avg\": \"{VisionControl_avg}\",',{VisionControl_avg:VisionControl_avg_scaled});
 		dataAnalysis += format('\"WinRate_avg\": \"{WinRate_avg}\",',{WinRate_avg:WinRate_avg_scaled});
 		dataAnalysis += format('\"KillContribution_avg\": \"{KillContribution_avg}\",',{KillContribution_avg:KillContribution_avg_scaled});
-		dataAnalysis += format('\"TargetControl_avg\": \"{TargetControl_avg}\"',{TargetControl_avg:TargetControl_avg_scaled});
+		dataAnalysis += format('\"TargetControl_avg\": \"{TargetControl_avg}\",',{TargetControl_avg:TargetControl_avg_scaled});
+		dataAnalysis += format('\"Tier\": \"{tier}\",',{tier:summoner_tier});
+		dataAnalysis += format('\"NextTier\": \"{tier}\",',{tier:nextTier});
+		dataAnalysis += format('\"Division\": \"{division}\",',{division:summoner_division});
+		dataAnalysis += format('\"KDA_Raw\": \"{KDA}\",',{KDA:KDA});
+		dataAnalysis += format('\"KDA_ThisTier\": \"{KDA}\",',{KDA:KDA_ThisTier});
+		dataAnalysis += format('\"KDA_NextTier\": \"{KDA}\",',{KDA:KDA_NextTier});
+		dataAnalysis += format('\"WINRate_Raw\": \"{WINRate}\",',{WINRate:winRate});
+		dataAnalysis += format('\"WINRate_ThisTier\": \"{WINRate}\",',{WINRate:WINRate_ThisTier});
+		dataAnalysis += format('\"WINRate_NextTier\": \"{WINRate}\",',{WINRate:WINRate_NextTier});
+		dataAnalysis += format('\"VisionControl_Raw\": \"{VisionControl}\",',{VisionControl:wardingValue});
+		dataAnalysis += format('\"VisionControl_ThisTier\": \"{VisionControl}\",',{VisionControl:VisionControl_ThisTier});
+		dataAnalysis += format('\"VisionControl_NextTier\": \"{VisionControl}\",',{VisionControl:VisionControl_NextTier});
+		dataAnalysis += format('\"TargetControl_Raw\": \"{TargetControl}\",',{TargetControl:targetControl});
+		dataAnalysis += format('\"TargetControl_ThisTier\": \"{TargetControl}\",',{TargetControl:TargetControl_ThisTier});
+		dataAnalysis += format('\"TargetControl_NextTier\": \"{TargetControl}\",',{TargetControl:TargetControl_NextTier});
+		dataAnalysis += format('\"KillContribution_Raw\": \"{KillContribution}\",',{KillContribution:KillContribution});
+		dataAnalysis += format('\"KillContribution_ThisTier\": \"{KillContribution}\",',{KillContribution:KillContribution_ThisTier});
+		dataAnalysis += format('\"KillContribution_NextTier\": \"{KillContribution}\",',{KillContribution:KillContribution_NextTier});
+		dataAnalysis += format('\"TopPlayed\": \"{TopPlayed}\",',{TopPlayed:topPlayed});
+		dataAnalysis += format('\"JunglePlayed\": \"{JunglePlayed}\",',{JunglePlayed:junglePlayed});
+		dataAnalysis += format('\"MidPlayed\": \"{MidPlayed}\",',{MidPlayed:midPlayed});
+		dataAnalysis += format('\"AdcPlayed\": \"{AdcPlayed}\",',{AdcPlayed:adcPlayed});
+		dataAnalysis += format('\"SupportPlayed\": \"{SupportPlayed}\"',{SupportPlayed:supportPlayed});
 		dataAnalysis += '}]';
 		
 		console.log(dataAnalysis);
