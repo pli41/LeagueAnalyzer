@@ -332,10 +332,14 @@ rl.on('close', function(){
 							
 								//vision control
 								var wardingValue = 0;
+								var wardsKilled = 0;
+								var wardsPlaced = 0;
 								var gatherVisionControlData = function(match, participantID){
 									//wardingValue += match.participants[participantID-1].stats.wardsPlaced;
 									//wardingValue += match.participants[participantID-1].stats.wardsKilled * 2;
 									wardingValue += match.participants[participantID-1].stats.visionWardsBoughtInGame;
+									wardsKilled += match.participants[participantID-1].stats.wardsKilled;
+									wardsPlaced += match.participants[participantID-1].stats.wardsPlaced;
 								}
 								
 								
@@ -414,8 +418,10 @@ rl.on('close', function(){
 								
 								//Tower Kills
 								var total_Towerkills = 0;
+								var total_InhibitorKills = 0;
 								var gatherTowerKills = function(match, participantID){
 									total_Towerkills += match.participants[participantID-1].stats.towerKills;
+									total_InhibitorKills += match.participants[participantID-1].stats.inhibitorKills;
 								}
 								
 								
@@ -424,6 +430,17 @@ rl.on('close', function(){
 								var gatherControlDuration = function(match, participantID){
 									control_Duration += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 								}
+								
+								var totalHeal = 0;
+								var totalDamageDealtToChampions = 0;
+								var totalDamageTaken = 0;
+								var goldEarned = 0;
+								var gatherMatchDetails = function(match, participantID){
+									totalHeal += match.participants[participantID-1].stats.totalHeal;
+									totalDamageDealtToChampions += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+									totalDamageTaken += match.participants[participantID-1].stats.totalDamageTaken;
+									goldEarned += match.participants[participantID-1].stats.goldEarned;
+								};
 								
 								
 								//Start analyzing
@@ -466,6 +483,7 @@ rl.on('close', function(){
 									gatherVersatilityData(match, participantID);
 									gatherTowerKills(match, participantID);
 									gatherControlDuration(match, participantID)
+									gatherMatchDetails(match, participantID);
 								};
 								
 								//KDA
@@ -482,8 +500,6 @@ rl.on('close', function(){
 								var winRate = Math.round(match_wins/matchJson.matches.length*100);
 								
 								var control_Duration_parsed = (Math.floor(control_Duration/60)).toString() + 'min' + (Math.floor(control_Duration%60)) + 'sec';
-								
-								
 								
 								//fs.writeFileSync(`../PlayerData/JSON/${summonerName_NoSpace}.json`, analysis);
 								
@@ -540,7 +556,7 @@ rl.on('close', function(){
 									log += `Data of ${summonerName}(${playerId}) is added\n`;
 									
 									console.log(`Data of ${summonerName}(${playerId}) is added`);
-									data += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue},${total_Towerkills},${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution},${(control_Duration/60).toFixed(2)},${avgDuration}`;
+									data += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue}, ${wardsKilled}, ${wardsPlaced}, ${total_Towerkills}, ${total_InhibitorKills}, ${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution}, ${totalDamageDealtToChampions}, ${totalDamageTaken}, ${totalHeal}, ${(control_Duration/60).toFixed(2)}, ${goldEarned},${avgDuration}`;
 									console.log(`${data}`);
 									log += `${data}\n`;
 									fs.writeFileSync(csvPath, data);
@@ -561,18 +577,25 @@ rl.on('close', function(){
 									analysis += `\"ADC_played\": ${adcPlayed},`;
 									analysis += `\"SUPPORT_played\": ${supportPlayed},`;
 									analysis += `\"WinRate\": ${winRate},`;
-									analysis += `\"VisionControl\": ${wardingValue},`;
+									analysis += `\"VisionWards\": ${wardingValue},`;
+									analysis += `\"WardsKilled\": ${wardsKilled},`;
+									analysis += `\"WardsPlaced\": ${wardsPlaced},`;
 									analysis += `\"TowersKilled\": ${total_Towerkills},`;
+									analysis += `\"InhibitorKills\": ${total_InhibitorKills},`;
 									analysis += `\"DragonsKilled\": ${dragonSlained},`;
 									analysis += `\"RiftHeraldKilled\": ${riftHeraldSlained},`;
 									analysis += `\"BaronKilled\": ${baronSlained},`;
 									analysis += `\"KillContribution\": ${KillContribution},`;
-									analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)},`;
+									analysis += `\"TotalDamageDealtToChampions\": ${totalDamageDealtToChampions},`;
+									analysis += `\"TotalDamageTaken\": ${totalDamageTaken},`;
+									analysis += `\"TotalHeal\": ${totalHeal},`;
+									analysis += `\"CCDuration\": ${control_Duration},`;
+									analysis += `\"GoldEarned\": ${goldEarned},`;
 									analysis += `\"AvgGameLength\": ${avgDuration}`;
 									analysis += '}]';
 									
 									var JSON_Data = JSON.parse(analysis);
-									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionControl', 'TowersKilled', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'CCDuration', 'AvgGameLength'];
+									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionWards', 'WardsKilled', 'WardsPlaced', 'TowersKilled', 'InhibitorKills', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'TotalDamageDealtToChampions', 'TotalDamageTaken', 'TotalHeal', 'CCDuration', 'GoldEarned', 'AvgGameLength'];
 									json2csv({ data: JSON_Data, fields: fields }, function(err, csv) {
 										if (err) 
 											console.log(err);
@@ -585,7 +608,7 @@ rl.on('close', function(){
 								//all csv
 								if(fileExisted_all){
 									console.log(`Data of ${summonerName}(${playerId}) is added to csv_all`);
-									data_all += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue},${total_Towerkills},${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution},${(control_Duration/60).toFixed(2)},${avgDuration}`;
+									data_all += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue}, ${wardsKilled}, ${wardsPlaced}, ${total_Towerkills}, ${total_InhibitorKills}, ${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution}, ${totalDamageDealtToChampions}, ${totalDamageTaken}, ${totalHeal}, ${(control_Duration/60).toFixed(2)}, ${goldEarned},${avgDuration}`;
 									fs.writeFileSync(csvPath_all, data_all);
 								}
 								else{
@@ -601,18 +624,25 @@ rl.on('close', function(){
 									analysis += `\"ADC_played\": ${adcPlayed},`;
 									analysis += `\"SUPPORT_played\": ${supportPlayed},`;
 									analysis += `\"WinRate\": ${winRate},`;
-									analysis += `\"VisionControl\": ${wardingValue},`;
+									analysis += `\"VisionWards\": ${wardingValue},`;
+									analysis += `\"WardsKilled\": ${wardsKilled},`;
+									analysis += `\"WardsPlaced\": ${wardsPlaced},`;
 									analysis += `\"TowersKilled\": ${total_Towerkills},`;
+									analysis += `\"InhibitorKills\": ${total_InhibitorKills},`;
 									analysis += `\"DragonsKilled\": ${dragonSlained},`;
 									analysis += `\"RiftHeraldKilled\": ${riftHeraldSlained},`;
 									analysis += `\"BaronKilled\": ${baronSlained},`;
 									analysis += `\"KillContribution\": ${KillContribution},`;
-									analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)},`;
+									analysis += `\"TotalDamageDealtToChampions\": ${totalDamageDealtToChampions},`;
+									analysis += `\"TotalDamageTaken\": ${totalDamageTaken},`;
+									analysis += `\"TotalHeal\": ${totalHeal},`;
+									analysis += `\"CCDuration\": ${control_Duration},`;
+									analysis += `\"GoldEarned\": ${goldEarned},`;
 									analysis += `\"AvgGameLength\": ${avgDuration}`;
 									analysis += '}]';
 									
 									var JSON_Data = JSON.parse(analysis);
-									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionControl', 'TowersKilled', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'CCDuration', 'AvgGameLength'];
+									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionWards', 'WardsKilled', 'WardsPlaced', 'TowersKilled', 'InhibitorKills', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'TotalDamageDealtToChampions', 'TotalDamageTaken', 'TotalHeal', 'CCDuration', 'GoldEarned', 'AvgGameLength'];
 									json2csv({ data: JSON_Data, fields: fields }, function(err, csv) {
 										if (err) 
 											console.log(err);
