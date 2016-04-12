@@ -598,7 +598,7 @@ module.exports = {
 		});
 		*/
 		
-		
+		/*
 		console.log('analysis file generated');
 		console.log('\n');
 		console.log(`	Analysis of ${summoner_name_original}`);
@@ -621,7 +621,7 @@ module.exports = {
 		console.log(`		Average match length: ${avgDuration_parsed}`);
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
-		
+		*/
 		
 /* for reference
 		analysis += `\"SummonerName\": \"${summoner_name_original}\",`;
