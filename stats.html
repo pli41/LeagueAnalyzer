@@ -1,10 +1,91 @@
 <div>
-	</br>
-	<p style= "text-align: center">{{username}}</p>
-	</br>
-	<div>
+	<div class = "container">
+		<div class="row">
+			<div class="col-sm-6">
+				<h1>{{username}}</h1>
+				<h2>{{playerData.Tier}} {{playerData.Division}}</h2>
 
-		<canvas tc-chartjs-radar chart-options="options" chart-data="data" auto-legend></canvas>
+				<canvas tc-chartjs-radar chart-options="options" chart-data="data" auto-legend></canvas>
+			</div>
+			<div class="col-sm-5">
+				<h1> Detailed Analysis</h1>
 
+
+				<p>Data from recent 10 matches</p>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th>{{playerData.Tier}}</th>
+							<th>{{playerData.NextTier}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+						<tr>
+							<td>KDA</td>
+							<td>{{playerData.KDA_Raw}}</td>
+							<td>{{playerData.KDA_ThisTier}}</td>
+							<td>{{playerData.KDA_NextTier}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="row">
+					<div class="col-sm-3">
+				<p>Positions plays: </p>
+
+				<p>Top: {{playerData.TopPlayed}}</p>
+				<p>MID: {{playerData.MidPlayed}}</p>
+				<p>JUNGLE: {{playerData.JunglePlayed}}</p>
+				<p>ADC: {{playerData.AdcPlayed}}</p>
+				<p>SUPPORT: {{playerData.SupportPlayed}}</p>
+				</div>
+				<div class="col-sm-8">
+					<canvas tc-chartjs-radar chart-options="options" chart-data="versatility"></canvas>
+				</div>
+
+			</div>
+				<table class="table">
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th>{{playerData.Tier}}</th>
+							<th>{{playerData.NextTier}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>WIN RATE</td>
+							<td>{{playerData.WINRate_Raw}}</td>
+							<td>{{playerData.WINRate_ThisTier}}</td>
+							<td>{{playerData.WINRate_NextTier}}</td>
+						</tr>
+						<tr>
+							<td>VISION CONTROL</td>
+							<td>{{playerData.VisionControl_Raw}}</td>
+							<td>{{playerData.VisionControl_ThisTier}}</td>
+							<td>{{playerData.VisionControl_NextTier}}</td>
+						</tr>
+						<tr>
+							<td>TARGET CONTROL</td>
+							<td>{{playerData.TargetControl_Raw}}</td>
+							<td>{{playerData.TargetControl_ThisTier}}</td>
+							<td>{{playerData.TargetControl_NextTier}}</td>
+						</tr>
+						<tr>
+							<td>KILL CONTRIBUTION</td>
+							<td>{{playerData.KillContribution_Raw}}</td>
+							<td>{{playerData.KillContribution_ThisTier}}</td>
+							<td>{{playerData.KillContribution_NextTier}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
 	</div>
 </div>

@@ -51,6 +51,7 @@ define([
                         console.log("success pp hai shi chou sha bi");
                         //console.log(response.data[0]);
                         userInfo.data = response.data[0];
+                        userInfo.username = response.data[0].name;
 
                         //console.log(userInfo);
                         $location.path("stats");
@@ -65,7 +66,8 @@ define([
         ]).controller("graphCtr", ['$scope', 'userInfo',
             function($scope, userInfo) {
                 console.log(userInfo);
-                $scope.username = `Analysis of ${userInfo.data.name}`;
+                $scope.username = userInfo.username;
+                $scope.playerData = userInfo.data;
                 $scope.data = {
                     labels: ['KDA', 'WinRate', 'VisionControl', 'KillContribution', 'TargetControl'],
                     datasets: [{
@@ -90,6 +92,22 @@ define([
                         data: [userInfo.data.KDA_avg, userInfo.data.WinRate_avg, userInfo.data.VisionControl_avg, userInfo.data.KillContribution_avg, userInfo.data.TargetControl_avg]
                     }]
                 };
+                $scope.versatility = {
+                    labels: ['Top', 'Support', 'Adc', 'Jungle', 'Mid'],
+                    datasets: [{
+                        label: 'Player\'s',
+                        fillColor: 'rgba(255,204,0,0.5)',
+                        strokeColor: 'rgba(255,204,0,1)',
+                        pointColor: 'rgba(255,204,0,1)',
+
+                        pointStrokeColor: '#fff',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(220,220,220,1)',
+                        data: [userInfo.data.TopPlayed, userInfo.data.SupportPlayed, userInfo.data.AdcPlayed, userInfo.data.JunglePlayed, userInfo.data.MidPlayed],
+
+                    }]
+                };
+                console.log([userInfo.data.TopPlayed * 10, userInfo.data.SupportPlayed * 10, userInfo.data.AdcPlayed * 10, userInfo.data.JunglePlayed * 10, userInfo.data.MidPlayed* 10]);
                 $scope.options = {
 
                     // Sets the chart to be responsive
