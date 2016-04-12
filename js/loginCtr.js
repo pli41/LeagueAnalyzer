@@ -90,8 +90,6 @@ define([
                         data: [userInfo.data.KDA_avg, userInfo.data.WinRate_avg, userInfo.data.VisionControl_avg, userInfo.data.KillContribution_avg, userInfo.data.TargetControl_avg]
                     }]
                 };
-
-
                 $scope.options = {
 
                     // Sets the chart to be responsive
@@ -152,8 +150,16 @@ define([
                     legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%> \"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
 
                 };
-
-
+				
+				$scope.adcPlayed = userInfo.data.AdcPlayed;
+				$scope.junglePlayed = userInfo.data.JunglePlayed;
+				$scope.supportPlayed = userInfo.data.SupportPlayed;
+				$scope.topPlayed = userInfo.data.TopPlayed;
+				
+				
+				
+				
+				
             }
         ])
 
