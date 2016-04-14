@@ -116,6 +116,7 @@ var format = require("string-template");
 var summoner_name_original;
 var summoner_tier;
 var summoner_division;
+var summoner_IconId;
 
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
 
@@ -157,7 +158,7 @@ module.exports = {
 					console.log(format("failed to get summoner from {name} because of {message}", {name: summoner_name_original, message: jsonData.status.message}));
 				}
 				else{
-					
+					summoner_IconId = jsonData[summoner_name_trimmed].profileIconId;
 					getSummonerLeagueData(jsonData[summoner_name_trimmed]['id'], getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
 				}
 				
@@ -419,10 +420,14 @@ module.exports = {
 
 		//vision control
 		var wardingValue = 0;
+		var wardsKilled = 0;
+		var wardsPlaced = 0;
 		var gatherVisionControlData = function(match, participantID){
 			//wardingValue += match.participants[participantID-1].stats.wardsPlaced;
 			//wardingValue += match.participants[participantID-1].stats.wardsKilled * 2;
 			wardingValue += match.participants[participantID-1].stats.visionWardsBoughtInGame;
+			wardsKilled += match.participants[participantID-1].stats.wardsKilled;
+			wardsPlaced += match.participants[participantID-1].stats.wardsPlaced;
 		}
 		
 		
@@ -501,8 +506,10 @@ module.exports = {
 		
 		//Tower Kills
 		var total_Towerkills = 0;
+		var total_InhibitorKills = 0;
 		var gatherTowerKills = function(match, participantID){
 			total_Towerkills += match.participants[participantID-1].stats.towerKills;
+			total_InhibitorKills += match.participants[participantID-1].stats.inhibitorKills;
 		}
 		
 		
@@ -543,7 +550,6 @@ module.exports = {
 		
 		//KDA
 		var KDA = (totalKills + totalAssists) / Math.max(1, totalDeaths);
-		
 		
 		//KillContribution
 		var KillContribution = Math.round((totalKills_KillContribution+totalAssists_KillContribution)/totalKills_AllMatches*100);
@@ -760,16 +766,16 @@ module.exports = {
 		
 		var dataAnalysis = '[{';
 		dataAnalysis += format('\"name\": \"{name}\",',{name:summoner_name_original});
-		dataAnalysis += format('\"KDA\": \"{KDA}\",',{KDA:KDA_scaled});
-		dataAnalysis += format('\"VisionControl\": \"{VisionControl}\",',{VisionControl:VisionControl_scaled});
-		dataAnalysis += format('\"WinRate\": \"{WinRate}\",',{WinRate:WinRate_scaled});
-		dataAnalysis += format('\"KillContribution\": \"{KillContribution}\",',{KillContribution:KillContribution_scaled});
-		dataAnalysis += format('\"TargetControl\": \"{TargetControl}\",',{TargetControl:TargetControl_scaled});
-		dataAnalysis += format('\"KDA_avg\": \"{KDA_avg}\",',{KDA_avg:KDA_avg_scaled});
-		dataAnalysis += format('\"VisionControl_avg\": \"{VisionControl_avg}\",',{VisionControl_avg:VisionControl_avg_scaled});
-		dataAnalysis += format('\"WinRate_avg\": \"{WinRate_avg}\",',{WinRate_avg:WinRate_avg_scaled});
-		dataAnalysis += format('\"KillContribution_avg\": \"{KillContribution_avg}\",',{KillContribution_avg:KillContribution_avg_scaled});
-		dataAnalysis += format('\"TargetControl_avg\": \"{TargetControl_avg}\",',{TargetControl_avg:TargetControl_avg_scaled});
+		dataAnalysis += format('\"KDA_graph\": \"{KDA}\",',{KDA:KDA_scaled});
+		dataAnalysis += format('\"VisionControl_graph\": \"{VisionControl}\",',{VisionControl:VisionControl_scaled});
+		dataAnalysis += format('\"WinRate_graph\": \"{WinRate}\",',{WinRate:WinRate_scaled});
+		dataAnalysis += format('\"KillContribution_graph\": \"{KillContribution}\",',{KillContribution:KillContribution_scaled});
+		dataAnalysis += format('\"TargetControl_graph\": \"{TargetControl}\",',{TargetControl:TargetControl_scaled});
+		dataAnalysis += format('\"KDA_avg_graph\": \"{KDA_avg}\",',{KDA_avg:KDA_avg_scaled});
+		dataAnalysis += format('\"VisionControl_avg_graph\": \"{VisionControl_avg}\",',{VisionControl_avg:VisionControl_avg_scaled});
+		dataAnalysis += format('\"WinRate_avg_graph\": \"{WinRate_avg}\",',{WinRate_avg:WinRate_avg_scaled});
+		dataAnalysis += format('\"KillContribution_avg_graph\": \"{KillContribution_avg}\",',{KillContribution_avg:KillContribution_avg_scaled});
+		dataAnalysis += format('\"TargetControl_avg_graph\": \"{TargetControl_avg}\",',{TargetControl_avg:TargetControl_avg_scaled});
 		dataAnalysis += format('\"Tier\": \"{tier}\",',{tier:summoner_tier});
 		dataAnalysis += format('\"NextTier\": \"{tier}\",',{tier:nextTier});
 		dataAnalysis += format('\"Division\": \"{division}\",',{division:summoner_division});
@@ -792,7 +798,18 @@ module.exports = {
 		dataAnalysis += format('\"JunglePlayed\": \"{JunglePlayed}\",',{JunglePlayed:junglePlayed});
 		dataAnalysis += format('\"MidPlayed\": \"{MidPlayed}\",',{MidPlayed:midPlayed});
 		dataAnalysis += format('\"AdcPlayed\": \"{AdcPlayed}\",',{AdcPlayed:adcPlayed});
-		dataAnalysis += format('\"SupportPlayed\": \"{SupportPlayed}\"',{SupportPlayed:supportPlayed});
+		dataAnalysis += format('\"SupportPlayed\": \"{SupportPlayed}\",',{SupportPlayed:supportPlayed});
+		dataAnalysis += format('\"Kill_player\": \"{kill}\",',{kill:(totalKills/10).toFixed(2)});
+		dataAnalysis += format('\"Death_player\": \"{death}\",',{death:(totalDeaths/10).toFixed(2)});
+		dataAnalysis += format('\"Assist_player\": \"{assist}\",',{assist:(totalAssists/10).toFixed(2)});
+		dataAnalysis += format('\"VisionWards\": \"{visionWards}\",',{visionWards:wardingValue});
+		dataAnalysis += format('\"WardsPlaced\": \"{wardsPlaced}\",',{wardsPlaced:wardsPlaced});
+		dataAnalysis += format('\"WardsKilled\": \"{wardsKilled}\",',{wardsKilled:wardsKilled});
+		dataAnalysis += format('\"DragonsKilled\": \"{dragonsKilled}\",',{dragonsKilled:dragonSlained});
+		dataAnalysis += format('\"BaronsKilled\": \"{baronsKilled}\",',{baronsKilled:baronSlained});
+		dataAnalysis += format('\"TowersKilled\": \"{towersKilled}\",',{towersKilled:total_Towerkills});
+		dataAnalysis += format('\"InhibitorsKilled\": \"{inhibitorsKilled}\",',{inhibitorsKilled:total_InhibitorKills});
+		dataAnalysis += format('\"RiftHeraldsKilled\": \"{riftHeraldsKilled}\"',{riftHeraldsKilled:riftHeraldSlained});
 		dataAnalysis += '}]';
 		
 		console.log(dataAnalysis);
