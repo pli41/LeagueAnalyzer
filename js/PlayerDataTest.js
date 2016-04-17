@@ -19,17 +19,21 @@ bronzeDataArray = {
  'VISION_CRIT': 16.90,
  'TARGETCONTROL_CRIT': 69.22,
  'KILLCONTRIBUTION_CRIT': 56.94,
- 'KILLS': 1,
- 'DEATHS': 1,
- 'ASSISTS': 1,
- 'VISIONWARDS': 1,
- 'WARDSPLACED': 1,
- 'WARDSKILLED': 1,
- 'DRAGONS': 1,
- 'BARONS': 1,
- 'TOWERS': 1,
- 'INHIBITORS': 1,
- 'RIFTHERALD': 1
+ 'KILLS': 5.49744898,
+ 'DEATHS': 6.181632653,
+ 'ASSISTS': 9.33877551,
+ 'VISIONWARDS': 5.903061224,
+ 'WARDSPLACED': 120.127551020408,
+ 'WARDSKILLED': 15.1938775510204,
+ 'DRAGONS': 16.1224489795918,
+ 'BARONS': 2.93877551020408,
+ 'TOWERS': 8.59183673469388,
+ 'INHIBITORS': 1.76530612244898,
+ 'RIFTHERALD': 2.01020408163265,
+ 'GAMELENGTH': 2001.505485,
+ 'BE': 3.787453807,
+ 'BE_CRIT': 5.270877683,
+ 'TARGETCONTROL': 2.611088914
 };
 
 silverDataArray = {
@@ -43,17 +47,21 @@ silverDataArray = {
  'VISION_CRIT': 20.614,
  'TARGETCONTROL_CRIT': 76.043,
  'KILLCONTRIBUTION_CRIT': 59.62,
- 'KILLS': 1,
- 'DEATHS': 1,
- 'ASSISTS': 1,
- 'VISIONWARDS': 1,
- 'WARDSPLACED': 1,
- 'WARDSKILLED': 1,
- 'DRAGONS': 1,
- 'BARONS': 1,
- 'TOWERS': 1,
- 'INHIBITORS': 1,
- 'RIFTHERALD': 1
+ 'KILLS': 5.440322581,
+ 'DEATHS': 5.726075269,
+ 'ASSISTS': 8.649462366,
+ 'VISIONWARDS': 8.349462366,
+ 'WARDSPLACED': 125.365591397849,
+ 'WARDSKILLED': 23.58064516,
+ 'DRAGONS': 15.7096774193548,
+ 'BARONS': 3.34408602150538,
+ 'TOWERS': 8.70430107526882,
+ 'INHIBITORS': 1.59677419354839,
+ 'RIFTHERALD': 2.31989247311828,
+ 'GAMELENGTH': 1977.857392,
+ 'BE': 3.986240883,
+ 'BE_CRIT': 5.503906105,
+ 'TARGETCONTROL': 2.788724832
 };
 
 goldDataArray = {
@@ -67,17 +75,21 @@ goldDataArray = {
  'VISION_CRIT': 25.21836,
  'TARGETCONTROL_CRIT': 81.90504,
  'KILLCONTRIBUTION_CRIT': 61.46661,
- 'KILLS': 1,
- 'DEATHS': 1,
- 'ASSISTS': 1,
- 'VISIONWARDS': 1,
- 'WARDSPLACED': 1,
- 'WARDSKILLED': 1,
- 'DRAGONS': 1,
- 'BARONS': 1,
- 'TOWERS': 1,
- 'INHIBITORS': 1,
- 'RIFTHERALD': 1
+ 'KILLS': 5.34,
+ 'DEATHS': 5.35945945945946,
+ 'ASSISTS': 8.27135135135135,
+ 'VISIONWARDS': 10.1621621621622,
+ 'WARDSPLACED': 123.7945946,
+ 'WARDSKILLED': 29.3027027,
+ 'DRAGONS': 15.40540541,
+ 'BARONS': 3.67027027,
+ 'TOWERS': 9.194594595,
+ 'INHIBITORS': 1.724324324,
+ 'RIFTHERALD': 2.681081081,
+ 'GAMELENGTH': 1915.859408,
+ 'BE': 4.382338026,
+ 'BE_CRIT': 6.449782389,
+ 'TARGETCONTROL': 3.077407043 
 };
 
 platinumDataArray = {
@@ -91,17 +103,21 @@ platinumDataArray = {
  'VISION_CRIT': 26.44459,
  'TARGETCONTROL_CRIT': 79.0684,
  'KILLCONTRIBUTION_CRIT': 60.26076,
- 'KILLS': 1,
- 'DEATHS': 1,
- 'ASSISTS': 1,
- 'VISIONWARDS': 1,
- 'WARDSPLACED': 1,
- 'WARDSKILLED': 1,
- 'DRAGONS': 1,
- 'BARONS': 1,
- 'TOWERS': 1,
- 'INHIBITORS': 1,
- 'RIFTHERALD': 1
+ 'KILLS': 5.139593909,
+ 'DEATHS': 5.336040609,
+ 'ASSISTS': 8.089340102,
+ 'VISIONWARDS': 11.37563452,
+ 'WARDSPLACED': 125.751269,
+ 'WARDSKILLED': 32.04568528,
+ 'DRAGONS': 14.81218274,
+ 'BARONS': 3.685279188,
+ 'TOWERS': 8.52284264,
+ 'INHIBITORS': 1.725888325,
+ 'RIFTHERALD': 2.802030457,
+ 'GAMELENGTH': 1875.849239,
+ 'BE': 4.56392417,
+ 'BE_CRIT': 6.239757228,
+ 'TARGETCONTROL': 3.092791453
 };
 
 diamondDataArray = {
@@ -115,17 +131,21 @@ diamondDataArray = {
  'VISION_CRIT': 34.39806,
  'TARGETCONTROL_CRIT': 81.93666,
  'KILLCONTRIBUTION_CRIT': 62.44582,
- 'KILLS': 1,
- 'DEATHS': 1,
- 'ASSISTS': 1,
- 'VISIONWARDS': 1,
- 'WARDSPLACED': 1,
- 'WARDSKILLED': 1,
- 'DRAGONS': 1,
- 'BARONS': 1,
- 'TOWERS': 1,
- 'INHIBITORS': 1,
- 'RIFTHERALD': 1
+ 'KILLS': 4.829787234,
+ 'DEATHS': 4.971914894,
+ 'ASSISTS': 8.103829787,
+ 'VISIONWARDS': 15.2,
+ 'WARDSPLACED': 138.0297872,
+ 'WARDSKILLED': 38.63404255,
+ 'DRAGONS': 13.89787234,
+ 'BARONS': 4.042553191,
+ 'TOWERS': 8.795744681,
+ 'INHIBITORS': 1.544680851,
+ 'RIFTHERALD': 3.110638298,
+ 'GAMELENGTH': 1817.897447,
+ 'BE': 4.949708581,
+ 'BE_CRIT': 6.826535402,
+ 'TARGETCONTROL': 3.311585838
 };
 
 masterDataArray = {
@@ -139,17 +159,21 @@ masterDataArray = {
  'VISION_CRIT': 37.51188,
  'TARGETCONTROL_CRIT': 80.53753,
  'KILLCONTRIBUTION_CRIT': 63.55252,
- 'KILLS': 1,
- 'DEATHS': 1,
- 'ASSISTS': 1,
- 'VISIONWARDS': 1,
- 'WARDSPLACED': 1,
- 'WARDSKILLED': 1,
- 'DRAGONS': 1,
- 'BARONS': 1,
- 'TOWERS': 1,
- 'INHIBITORS': 1,
- 'RIFTHERALD': 1
+ 'KILLS': 4.73418694,
+ 'DEATHS': 4.728040973,
+ 'ASSISTS': 7.987451985,
+ 'VISIONWARDS': 17.21766965,
+ 'WARDSPLACED': 138.8822023,
+ 'WARDSKILLED': 40.95518566,
+ 'DRAGONS': 12.48143406,
+ 'BARONS': 4.121638924,
+ 'TOWERS': 9.003841229,
+ 'INHIBITORS': 1.492957746,
+ 'RIFTHERALD': 3.385403329,
+ 'GAMELENGTH': 1756.2137,
+ 'BE': 5.27238624,
+ 'BE_CRIT': 7.398017641,
+ 'TARGETCONTROL': 3.442769945
 };
 
 challengerDataArray = {
@@ -163,17 +187,22 @@ challengerDataArray = {
  'VISION_CRIT': 39.84241,
  'TARGETCONTROL_CRIT': 81.44952,
  'KILLCONTRIBUTION_CRIT': 63.23486,
- 'KILLS': 1,
- 'DEATHS': 1,
- 'ASSISTS': 1,
- 'VISIONWARDS': 1,
- 'WARDSPLACED': 1,
- 'WARDSKILLED': 1,
- 'DRAGONS': 1,
- 'BARONS': 1,
- 'TOWERS': 1,
- 'INHIBITORS': 1,
- 'RIFTHERALD': 1
+ 'KILLS': 5.038547486,
+ 'DEATHS': 4.515083799,
+ 'ASSISTS': 7.968715084,
+ 'VISIONWARDS': 21.05586592,
+ 'WARDSPLACED': 143.5418994,
+ 'WARDSKILLED': 42.98324022,
+ 'DRAGONS': 11.9273743,
+ 'BARONS': 4.391061453,
+ 'TOWERS': 10.11731844,
+ 'INHIBITORS': 1.603351955,
+ 'RIFTHERALD': 3.927374302,
+ 'GAMELENGTH': 1731.272067,
+ 'BE': 5.598242369,
+ 'BE_CRIT': 7.627591118,
+ 'TARGETCONTROL': 3.756329341
+
 };
 
 leagueDataArray['BRONZE'] = bronzeDataArray;
@@ -405,11 +434,12 @@ module.exports = {
 		while(matchIDArray.length > 0){
 			//console.log(`${matchIDArray.length} matches left to grab`);
 			var matchID = matchIDArray.shift();
+			//console.log(`current match num: ${matchID}`);
 			//console.log(`Grabbing match ${matchID} using ${apiKey[((matchIDArray.length+2)%apiKey.length)]}`);
-			
+			var path = format('/api/lol/na/v2.2/match/{matchID}?api_key={key}', {matchID:matchID, key:apiKey[((matchIDArray.length+3)%apiKey.length)]});
 			var options = {
 				host: "na.api.pvp.net",
-				path: format('https://na.api.pvp.net/api/lol/na/v2.2/match/{matchID}?api_key={key}', {matchID:matchID, key: apiKey[((matchIDArray.length+3)%apiKey.length)]}),
+				path: format('/api/lol/na/v2.2/match/{matchID}?api_key={key}', {matchID:matchID, key:apiKey[((matchIDArray.length+3)%apiKey.length)]}),
 				method: "GET"
 			};
 			
@@ -417,6 +447,7 @@ module.exports = {
 			
 			var request_Match = https.request(options, function(response){
 				var receivedData = '';
+				
 				response.on("data", function(data){
 					receivedData += data;
 				});
@@ -426,14 +457,19 @@ module.exports = {
 					var dataJSON = JSON.parse(receivedData);
 					
 					if(dataJSON.status){
-						console.log(format('failed to get data from {matchID} because of {message}', {matchID:matchID, message: dataJSON.status.message}));
-						
-						if(dataJson.status.status_code == 429){
+						console.log(format('failed to get data from {matchID} because of {message}', {matchID:matchID, message: dataJSON.status.status_code}));
+						console.log(path);
+						console.log(receivedData);
+						if(dataJSON.status.status_code == 429){
 							matchIDArray.unshift(matchID);
+						}
+						else{
+							matchNum --;
 						}
 					}
 					else{
 						matchJsonData.push(receivedData);
+						
 						if(matchJsonData.length < matchNum){
 							console.log("request current Match ends");
 						}
@@ -441,6 +477,7 @@ module.exports = {
 							console.log("All matches are grabbed");
 							AnalyzeMatchData(matchJsonData);
 						};
+						
 					};
 					
 					
@@ -476,12 +513,6 @@ module.exports = {
 		combinedMatchString += ']}';
 		var matchJson = JSON.parse(combinedMatchString);
 		//fs.writeFileSync('data.json', combinedMatchString);
-		
-		
-		
-		
-		
-		
 		
 		//KDA
 		var totalKills = 0;
@@ -596,6 +627,16 @@ module.exports = {
 			control_Duration += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 		}
 		
+		var totalHeal = 0;
+		var totalDamageDealtToChampions = 0;
+		var totalDamageTaken = 0;
+		var goldEarned = 0;
+		var gatherMatchDetails = function(match, participantID){
+			totalHeal += match.participants[participantID-1].stats.totalHeal;
+			totalDamageDealtToChampions += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+			totalDamageTaken += match.participants[participantID-1].stats.totalDamageTaken;
+			goldEarned += match.participants[participantID-1].stats.goldEarned;
+		};
 		
 		//Start analyzing
 		for (var i = 0; i < matchJson.matches.length; i++){
@@ -622,7 +663,8 @@ module.exports = {
 			gatherMatchWinRate(match, participantID);
 			gatherVersatilityData(match, participantID);
 			gatherTowerKills(match, participantID);
-			gatherControlDuration(match, participantID)
+			gatherControlDuration(match, participantID);
+			gatherMatchDetails(match, participantID);
 		};
 		
 		//KDA
@@ -640,8 +682,9 @@ module.exports = {
 		
 		var control_Duration_parsed = (Math.floor(control_Duration/60)).toString() + 'min' + (Math.floor(control_Duration%60)) + 'sec';
 		
-		var targetControl = total_Towerkills + dragonSlained + 3 * riftHeraldSlained + 5 * baronSlained;
+		var targetControl = (total_Towerkills + dragonSlained + 3 * riftHeraldSlained + 5 * baronSlained) /(avgDuration-200);
 		
+		var BE = ((supportPlayed)*wardsPlaced+totalDamageDealtToChampions*supportPlayed/35+(3/5)*totalDamageTaken*supportPlayed/20+(1+0.2*adcPlayed+0.2*midPlayed)*totalDamageDealtToChampions+(3/5)*(1-0.07*junglePlayed-0.1*(adcPlayed+midPlayed))*totalDamageTaken+(control_Duration*supportPlayed/10)+(0.7+supportPlayed/3)*totalHeal+control_Duration+goldEarned)/(Math.pow(avgDuration,3))*50000;
 		//format data
 		/*
 		var analysis = '[{';
@@ -681,7 +724,7 @@ module.exports = {
 		});
 		*/
 		
-		/*
+		
 		console.log('analysis file generated');
 		console.log('\n');
 		console.log(`	Analysis of ${summoner_name_original}`);
@@ -704,43 +747,7 @@ module.exports = {
 		console.log(`		Average match length: ${avgDuration_parsed}`);
 		console.log(`		Target Control: ${total_Towerkills} towers/${dragonSlained} dragons/${riftHeraldSlained} rift Heralds/${baronSlained} barons`);
 		console.log(`		Total CC duration: ${control_Duration_parsed}`);
-		*/
-		
-/* for reference
-		analysis += `\"SummonerName\": \"${summoner_name_original}\",`;
-		analysis += `\"KDA\": ${KDA.toFixed(2)},`;
-		analysis += `\"AvgKills\": ${(totalKills/10).toFixed(2)},`;
-		analysis += `\"AvgDeaths\": ${(totalDeaths/10).toFixed(2)},`;
-		analysis += `\"AvgAssists\": ${(totalAssists/10).toFixed(2)},`;
-		analysis += `\"TOP_played\": ${topPlayed},`;
-		analysis += `\"JUNGLE_played\": ${junglePlayed},`;
-		analysis += `\"MID_played\": ${midPlayed},`;
-		analysis += `\"ADC_played\": ${adcPlayed},`;
-		analysis += `\"SUPPORT_played\": ${supportPlayed},`;
-		analysis += `\"WinRate\": ${winRate},`;
-		analysis += `\"VisionControl\": ${wardingValue},`;
-		analysis += `\"TowersKilled\": ${total_Towerkills},`;
-		analysis += `\"DragonsKilled\": ${dragonSlained},`;
-		analysis += `\"RiftHeraldKilled\": ${riftHeraldSlained},`;
-		analysis += `\"BaronKilled\": ${baronSlained},`;
-		analysis += `\"KillContribution\": ${KillContribution},`;
-		analysis += `\"CCDuration\": ${(control_Duration/60).toFixed(2)}`;
-		
-		var KDA_avg = 2.766992;
-		var KDA_crit = 4.255425;
-
-		var Winrate_avg = 50.11637;
-		var Winrate_crit = 75.61936;
-
-		var Vision_avg = 12.6087;
-		var Vision_crit = 30.43094;
-
-		var KillContri_avg = 51.579;
-		var KillContri_crit = 61.576;
-
-		var TargetControl_avg = 53.069;
-		var TargetControl_crit = 78.89065;
-*/
+		console.log(`		Battle Efficiency: ${BE}`);
 		
 		//Average Data
 
@@ -749,8 +756,8 @@ module.exports = {
 		var KDA_avg;
 		var KDA_crit;
 
-		var Winrate_avg;
-		var Winrate_crit;
+		var BE_avg;
+		var BE_crit;
 
 		var Vision_avg;
 		var Vision_crit;
@@ -765,8 +772,8 @@ module.exports = {
 		if(summoner_tier){
 			KDA_avg = leagueDataArray[summoner_tier].KDA_AVG;
 			KDA_crit = leagueDataArray[summoner_tier].KDA_CRIT;
-			Winrate_avg = leagueDataArray[summoner_tier].WINRATE_AVG;
-			Winrate_crit = leagueDataArray[summoner_tier].WINRATE_CRIT;
+			BE_avg = leagueDataArray[summoner_tier].BE;
+			BE_crit = leagueDataArray[summoner_tier].BE_CRIT;
 			Vision_avg = leagueDataArray[summoner_tier].VISION_AVG;
 			Vision_crit = leagueDataArray[summoner_tier].VISION_CRIT;
 			TargetControl_avg = leagueDataArray[summoner_tier].TARGETCONTROL_AVG;
@@ -782,8 +789,8 @@ module.exports = {
 		
 		var KDA_ThisTier;
 		var KDA_NextTier;
-		var WINRate_ThisTier;
-		var WINRate_NextTier;
+		var BE_ThisTier;
+		var BE_NextTier;
 		var VisionControl_ThisTier;
 		var VisionControl_NextTier;
 		var TargetControl_ThisTier;
@@ -842,60 +849,65 @@ module.exports = {
 		if(nextTier){
 			KDA_ThisTier = leagueDataArray[summoner_tier].KDA_AVG;
 			KDA_NextTier = leagueDataArray[nextTier].KDA_AVG;
-			WINRate_ThisTier = leagueDataArray[summoner_tier].WINRATE_AVG;
-			WINRate_NextTier = leagueDataArray[nextTier].WINRATE_AVG;
+			BE_ThisTier = leagueDataArray[summoner_tier].BE;
+			BE_NextTier = leagueDataArray[nextTier].BE;
 			VisionControl_ThisTier = leagueDataArray[summoner_tier].VISION_AVG;
 			VisionControl_NextTier = leagueDataArray[nextTier].VISION_AVG;
 			TargetControl_ThisTier = leagueDataArray[summoner_tier].TARGETCONTROL_AVG;
 			TargetControl_NextTier = leagueDataArray[nextTier].TARGETCONTROL_AVG;
 			KillContribution_ThisTier = leagueDataArray[summoner_tier].KILLCONTRIBUTION_AVG;
 			KillContribution_NextTier = leagueDataArray[nextTier].KILLCONTRIBUTION_AVG;
-			Kills_ThisTier = leagueDataArray[nextTier].KILLS;
+			Kills_ThisTier = leagueDataArray[summoner_tier].KILLS;
 			Kills_NextTier = leagueDataArray[nextTier].KILLS;
-			Deaths_ThisTier = leagueDataArray[nextTier].DEATHS;
+			Deaths_ThisTier = leagueDataArray[summoner_tier].DEATHS;
 			Deaths_NextTier = leagueDataArray[nextTier].DEATHS;
-			Assists_ThisTier = leagueDataArray[nextTier].ASSISTS;
+			Assists_ThisTier = leagueDataArray[summoner_tier].ASSISTS;
 			Assists_NextTier = leagueDataArray[nextTier].ASSISTS;
-			VisionWards_ThisTier = leagueDataArray[nextTier].VISIONWARDS;
+			VisionWards_ThisTier = leagueDataArray[summoner_tier].VISIONWARDS;
 			VisionWards_NextTier = leagueDataArray[nextTier].VISIONWARDS;
-			WardsPlaced_ThisTier = leagueDataArray[nextTier].WARDSPLACED;
+			WardsPlaced_ThisTier = leagueDataArray[summoner_tier].WARDSPLACED;
 			WardsPlaced_NextTier = leagueDataArray[nextTier].WARDSPLACED;
-			WardsKilled_ThisTier = leagueDataArray[nextTier].WARDSKILLED;
+			WardsKilled_ThisTier = leagueDataArray[summoner_tier].WARDSKILLED;
 			WardsKilled_NextTier = leagueDataArray[nextTier].WARDSKILLED;
-			Dragons_ThisTier = leagueDataArray[nextTier].DRAGONS;
+			Dragons_ThisTier = leagueDataArray[summoner_tier].DRAGONS;
 			Dragons_NextTier = leagueDataArray[nextTier].DRAGONS;
-			Barons_ThisTier = leagueDataArray[nextTier].BARONS;
+			Barons_ThisTier = leagueDataArray[summoner_tier].BARONS;
 			Barons_NextTier = leagueDataArray[nextTier].BARONS;
-			Towers_ThisTier = leagueDataArray[nextTier].TOWERS;
+			Towers_ThisTier = leagueDataArray[summoner_tier].TOWERS;
 			Towers_NextTier = leagueDataArray[nextTier].TOWERS;
-			Inhibitors_ThisTier = leagueDataArray[nextTier].INHIBITORS;
+			Inhibitors_ThisTier = leagueDataArray[summoner_tier].INHIBITORS;
 			Inhibitors_NextTier = leagueDataArray[nextTier].INHIBITORS;
-			RiftHerald_ThisTier = leagueDataArray[nextTier].RIFTHERALD;
+			RiftHerald_ThisTier = leagueDataArray[summoner_tier].RIFTHERALD;
 			RiftHerald_NextTier = leagueDataArray[nextTier].RIFTHERALD;
 		}
 		
-		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 99.99 : (KDA/KDA_crit*100).toFixed(2);
-		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 99.99 : (wardingValue/Vision_crit*100).toFixed(2);
-		var WinRate_scaled = winRate/Winrate_crit*100 > 100 ? 99.99 : (winRate/Winrate_crit*100).toFixed(2);
-		var KillContribution_scaled = KillContribution/KillContri_crit*100 > 100 ? 99.99 : (KillContribution/KillContri_crit*100).toFixed(2);
-		var TargetControl_scaled = targetControl/TargetControl_crit*100 > 100 ? 99.99 : (targetControl/TargetControl_crit*100).toFixed(2);
+		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 100 : (KDA/KDA_crit*100).toFixed(2);
+		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 100 : (wardingValue/Vision_crit*100).toFixed(2);
 		
-		var KDA_avg_scaled = KDA_avg/KDA_crit*100 > 100 ? 99.99 : (KDA_avg/KDA_crit*100).toFixed(2);
-		var VisionControl_avg_scaled = Vision_avg/Vision_crit*100 > 100 ? 99.99 : (Vision_avg/Vision_crit*100).toFixed(2);
-		var WinRate_avg_scaled = Winrate_avg/Winrate_crit*100 > 100 ? 99.99 : (Winrate_avg/Winrate_crit*100).toFixed(2);
-		var KillContribution_avg_scaled = KillContri_avg/KillContri_crit*100 > 100 ? 99.99 : (KillContri_avg/KillContri_crit*100).toFixed(2);
-		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 99.99 : (TargetControl_avg/TargetControl_crit*100).toFixed(2);
+		
+		var BE_scaled = BE/BE_crit*100 > 100 ? 100 : (BE/BE_crit*100).toFixed(2);
+		
+		var KillContribution_scaled = KillContribution/KillContri_crit*100 > 100 ? 100 : (KillContribution/KillContri_crit*100).toFixed(2);
+		var TargetControl_scaled = targetControl/TargetControl_crit*100 > 100 ? 100 : (targetControl/TargetControl_crit*100).toFixed(2);
+		
+		var KDA_avg_scaled = KDA_avg/KDA_crit*100 > 100 ? 100 : (KDA_avg/KDA_crit*100).toFixed(2);
+		var VisionControl_avg_scaled = Vision_avg/Vision_crit*100 > 100 ? 100 : (Vision_avg/Vision_crit*100).toFixed(2);
+		
+		var BE_avg_scaled = BE_avg/BE_crit*100 > 100 ? 100 : (BE_avg/BE_crit*100).toFixed(2);
+		
+		var KillContribution_avg_scaled = KillContri_avg/KillContri_crit*100 > 100 ? 100 : (KillContri_avg/KillContri_crit*100).toFixed(2);
+		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 100 : (TargetControl_avg/TargetControl_crit*100).toFixed(2);
 		
 		var dataAnalysis = '[{';
 		dataAnalysis += format('\"name\": \"{name}\",',{name:summoner_name_original});
-		dataAnalysis += format('\"KDA_graph\": \"{KDA}\",',{KDA:KDA_scaled});
+		dataAnalysis += format('\"KDA_graph\": \"{KDA}\",',{KDA:BE_scaled});
 		dataAnalysis += format('\"VisionControl_graph\": \"{VisionControl}\",',{VisionControl:VisionControl_scaled});
-		dataAnalysis += format('\"WinRate_graph\": \"{WinRate}\",',{WinRate:WinRate_scaled});
+		dataAnalysis += format('\"BE_graph\": \"{BE}\",',{BE:BE_scaled});
 		dataAnalysis += format('\"KillContribution_graph\": \"{KillContribution}\",',{KillContribution:KillContribution_scaled});
 		dataAnalysis += format('\"TargetControl_graph\": \"{TargetControl}\",',{TargetControl:TargetControl_scaled});
 		dataAnalysis += format('\"KDA_avg_graph\": \"{KDA_avg}\",',{KDA_avg:KDA_avg_scaled});
 		dataAnalysis += format('\"VisionControl_avg_graph\": \"{VisionControl_avg}\",',{VisionControl_avg:VisionControl_avg_scaled});
-		dataAnalysis += format('\"WinRate_avg_graph\": \"{WinRate_avg}\",',{WinRate_avg:WinRate_avg_scaled});
+		dataAnalysis += format('\"BE_avg_graph\": \"{BE_avg_scaled}\",',{BE_avg_scaled:BE_avg_scaled});
 		dataAnalysis += format('\"KillContribution_avg_graph\": \"{KillContribution_avg}\",',{KillContribution_avg:KillContribution_avg_scaled});
 		dataAnalysis += format('\"TargetControl_avg_graph\": \"{TargetControl_avg}\",',{TargetControl_avg:TargetControl_avg_scaled});
 		dataAnalysis += format('\"Tier\": \"{tier}\",',{tier:summoner_tier});
@@ -905,8 +917,6 @@ module.exports = {
 		dataAnalysis += format('\"KDA_ThisTier\": \"{KDA}\",',{KDA:KDA_ThisTier});
 		dataAnalysis += format('\"KDA_NextTier\": \"{KDA}\",',{KDA:KDA_NextTier});
 		dataAnalysis += format('\"WINRate_Raw\": \"{WINRate}\",',{WINRate:winRate});
-		dataAnalysis += format('\"WINRate_ThisTier\": \"{WINRate}\",',{WINRate:WINRate_ThisTier});
-		dataAnalysis += format('\"WINRate_NextTier\": \"{WINRate}\",',{WINRate:WINRate_NextTier});
 		dataAnalysis += format('\"VisionControl_Raw\": \"{VisionControl}\",',{VisionControl:wardingValue});
 		dataAnalysis += format('\"VisionControl_ThisTier\": \"{VisionControl}\",',{VisionControl:VisionControl_ThisTier});
 		dataAnalysis += format('\"VisionControl_NextTier\": \"{VisionControl}\",',{VisionControl:VisionControl_NextTier});
@@ -952,7 +962,8 @@ module.exports = {
 		dataAnalysis += format('\"Inhibitors_ThisTier\": \"{Inhibitors_ThisTier}\",',{Inhibitors_ThisTier:Inhibitors_ThisTier});
 		dataAnalysis += format('\"Inhibitors_NextTier\": \"{Inhibitors_NextTier}\",',{Inhibitors_NextTier:Inhibitors_NextTier});
 		dataAnalysis += format('\"RiftHerald_ThisTier\": \"{RiftHerald_ThisTier}\",',{RiftHerald_ThisTier:RiftHerald_ThisTier});
-		dataAnalysis += format('\"RiftHerald_NextTier\": \"{RiftHerald_NextTier}\"',{RiftHerald_NextTier:RiftHerald_NextTier});
+		dataAnalysis += format('\"RiftHerald_NextTier\": \"{RiftHerald_NextTier}\",',{RiftHerald_NextTier:RiftHerald_NextTier});
+		dataAnalysis += format('\"gamesAnalyzed\": \"{number}\"',{number:matchJson.matches.length});
 		dataAnalysis += '}]';
 		
 		console.log(dataAnalysis);
