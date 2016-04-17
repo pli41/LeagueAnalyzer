@@ -1,91 +1,143 @@
-<div>
-	<div class = "container">
-		<div class="row">
-			<div class="col-sm-6">
-				<h1>{{username}}</h1>
-				<h2>{{playerData.Tier}} {{playerData.Division}}</h2>
+<div class = "container">
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="row">
+				<div class="col-sm-3">
+					<img border="0" alt="ProfileIcon" src="http://ddragon.leagueoflegends.com/cdn/6.7.1/img/profileicon/{{playerData.ProfileIcon}}.png" width="100" height="100" />
+				</div>
 
-				<canvas tc-chartjs-radar chart-options="options" chart-data="data" auto-legend></canvas>
+				<div class="col-sm-6">
+					<h2 class="rank">{{username}}</h2>
+					<h2 class="rank">{{playerData.Tier}} {{playerData.Division}}</h2>
+				</div>
 			</div>
-			<div class="col-sm-5">
-				<h1> Detailed Analysis</h1>
-
-
-				<p>Data from recent 10 matches</p>
-
-				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th></th>
-							<th>{{playerData.Tier}}</th>
-							<th>{{playerData.NextTier}}</th>
-						</tr>
-					</thead>
-					<tbody>
-						
-						<tr>
-							<td>KDA</td>
-							<td>{{playerData.KDA_Raw}}</td>
-							<td>{{playerData.KDA_ThisTier}}</td>
-							<td>{{playerData.KDA_NextTier}}</td>
-						</tr>
-					</tbody>
-				</table>
-
-				<div class="row">
-					<div class="col-sm-3">
-				<p>Positions plays: </p>
-
-				<p>Top: {{playerData.TopPlayed}}</p>
-				<p>MID: {{playerData.MidPlayed}}</p>
-				<p>JUNGLE: {{playerData.JunglePlayed}}</p>
-				<p>ADC: {{playerData.AdcPlayed}}</p>
-				<p>SUPPORT: {{playerData.SupportPlayed}}</p>
+			<canvas tc-chartjs-radar chart-options="options" chart-data="data" auto-legend/>
+		</div>
+		<div class="col-sm-6">
+			<h1> Detailed Analysis</h1>
+			<p>Data from recent {{playerData.gamesAnalyzed}} matches</p>
+			<div class="row">
+				<div class="col-sm-4">
+					<p>Positions plays: </p>
+					<p>Top: {{playerData.TopPlayed}}</p>
+					<p>MID: {{playerData.MidPlayed}}</p>
+					<p>JUNGLE: {{playerData.JunglePlayed}}</p>
+					<p>ADC: {{playerData.AdcPlayed}}</p>
+					<p>SUPPORT: {{playerData.SupportPlayed}}</p>
 				</div>
 				<div class="col-sm-8">
-					<canvas tc-chartjs-radar chart-options="options" chart-data="versatility"></canvas>
+					<canvas tc-chartjs-radar chart-options="options" chart-data="versatility"/>
 				</div>
-
 			</div>
-				<table class="table">
-					<thead>
-						<tr>
-							<th></th>
-							<th></th>
-							<th>{{playerData.Tier}}</th>
-							<th>{{playerData.NextTier}}</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>WIN RATE</td>
-							<td>{{playerData.WINRate_Raw}}</td>
-							<td>{{playerData.WINRate_ThisTier}}</td>
-							<td>{{playerData.WINRate_NextTier}}</td>
-						</tr>
-						<tr>
-							<td>VISION CONTROL</td>
-							<td>{{playerData.VisionControl_Raw}}</td>
-							<td>{{playerData.VisionControl_ThisTier}}</td>
-							<td>{{playerData.VisionControl_NextTier}}</td>
-						</tr>
-						<tr>
-							<td>TARGET CONTROL</td>
-							<td>{{playerData.TargetControl_Raw}}</td>
-							<td>{{playerData.TargetControl_ThisTier}}</td>
-							<td>{{playerData.TargetControl_NextTier}}</td>
-						</tr>
-						<tr>
-							<td>KILL CONTRIBUTION</td>
-							<td>{{playerData.KillContribution_Raw}}</td>
-							<td>{{playerData.KillContribution_ThisTier}}</td>
-							<td>{{playerData.KillContribution_NextTier}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-
+			<table class="table">
+				<thead>
+					<tr>
+						<th/>
+						<th/>
+						<th>{{playerData.Tier}}</th>
+						<th>{{playerData.NextTier}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>WIN RATE</td>
+						<td>{{playerData.WINRate_Raw}}%</td>
+						<td/>
+						<td/>
+					</tr>
+					<tr>
+						<td>KDA</td>
+						<td>{{playerData.KDA_Raw}}</td>
+						<td>{{playerData.KDA_ThisTier}}</td>
+						<td>{{playerData.KDA_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Kills</td>
+						<td>{{playerData.Kill_player}}</td>
+						<td>{{playerData.Kills_ThisTier}}</td>
+						<td>{{playerData.Kills_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Deaths</td>
+						<td>{{playerData.Death_player}}</td>
+						<td>{{playerData.Deaths_ThisTier}}</td>
+						<td>{{playerData.Deaths_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Assists</td>
+						<td>{{playerData.Assist_player}}</td>
+						<td>{{playerData.Assists_ThisTier}}</td>
+						<td>{{playerData.Assists_NextTier}}</td>
+					</tr>
+					<tr>
+						<td>VISION CONTROL</td>
+						<td>{{playerData.VisionControl_Raw}}</td>
+						<td>{{playerData.VisionControl_ThisTier}}</td>
+						<td>{{playerData.VisionControl_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Vision Wards Purchased</td>
+						<td>{{playerData.VisionWards}}</td>
+						<td>{{playerData.VisionWards_ThisTier}}</td>
+						<td>{{playerData.VisionWards_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Wards Killed</td>
+						<td>{{playerData.WardsKilled}}</td>
+						<td>{{playerData.WardsKilled_ThisTier}}</td>
+						<td>{{playerData.WardsKilled_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Wards Placed</td>
+						<td>{{playerData.WardsPlaced}}</td>
+						<td>{{playerData.WardsPlaced_ThisTier}}</td>
+						<td>{{playerData.WardsPlaced_NextTier}}</td>
+					</tr>
+					<tr>
+						<td>TARGET CONTROL</td>
+						<td>{{playerData.TargetControl_Raw}}</td>
+						<td>{{playerData.TargetControl_ThisTier}}</td>
+						<td>{{playerData.TargetControl_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Dragons Killed</td>
+						<td>{{playerData.DragonsKilled}}</td>
+						<td>{{playerData.Dragons_ThisTier}}</td>
+						<td>{{playerData.Dragons_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Rift Heralds Killed</td>
+						<td>{{playerData.RiftHeraldsKilled}}</td>
+						<td>{{playerData.RiftHerald_ThisTier}}</td>
+						<td>{{playerData.RiftHerald_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Barons Killed</td>
+						<td>{{playerData.BaronsKilled}}</td>
+						<td>{{playerData.Barons_ThisTier}}</td>
+						<td>{{playerData.Barons_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Towers Killed</td>
+						<td>{{playerData.TowersKilled}}</td>
+						<td>{{playerData.Towers_ThisTier}}</td>
+						<td>{{playerData.Towers_NextTier}}</td>
+					</tr>
+					<tr class="subData">
+						<td>Inhibitors Killed</td>
+						<td>{{playerData.InhibitorsKilled}}</td>
+						<td>{{playerData.Inhibitors_ThisTier}}</td>
+						<td>{{playerData.Inhibitors_NextTier}}</td>
+					</tr>
+					<tr>
+						<td>KILL CONTRIBUTION</td>
+						<td>{{playerData.KillContribution_Raw}}</td>
+						<td>{{playerData.KillContribution_ThisTier}}</td>
+						<td>{{playerData.KillContribution_NextTier}}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
+
 	</div>
 </div>

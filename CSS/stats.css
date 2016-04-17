@@ -1,0 +1,14 @@
+.subData{
+	font-size: 12px;
+	color: gray;
+}
+
+.subData td{
+	padding-top: 0.5px !important;
+	padding-bottom: 0.5px !important;
+	
+}
+
+.rank{
+	margin-top: 12px;
+}

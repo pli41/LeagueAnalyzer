@@ -69,7 +69,7 @@ define([
                 $scope.username = userInfo.username;
                 $scope.playerData = userInfo.data;
                 $scope.data = {
-                    labels: ['KDA', 'WinRate', 'VisionControl', 'KillContribution', 'TargetControl'],
+                    labels: ['KDA', 'BattleEfficiency', 'VisionControl', 'KillContribution', 'TargetControl'],
                     datasets: [{
                         label: 'Player\'s Data',
                         fillColor: 'rgba(255,204,0,0.5)',
@@ -79,7 +79,7 @@ define([
                         pointStrokeColor: '#fff',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [userInfo.data.KDA, userInfo.data.WinRate, userInfo.data.VisionControl, userInfo.data.KillContribution, userInfo.data.TargetControl]
+                        data: [userInfo.data.KDA_graph, userInfo.data.BE_graph, userInfo.data.VisionControl_graph, userInfo.data.KillContribution_graph, userInfo.data.TargetControl_graph]
 
                     }, {
                         label: 'Division Average',
@@ -89,7 +89,7 @@ define([
                         pointStrokeColor: '#fff',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(255,204,0,1)',
-                        data: [userInfo.data.KDA_avg, userInfo.data.WinRate_avg, userInfo.data.VisionControl_avg, userInfo.data.KillContribution_avg, userInfo.data.TargetControl_avg]
+                        data: [userInfo.data.KDA_avg_graph, userInfo.data.BE_avg_graph, userInfo.data.VisionControl_avg_graph, userInfo.data.KillContribution_avg_graph, userInfo.data.TargetControl_avg_graph]
                     }]
                 };
                 $scope.versatility = {
@@ -107,7 +107,6 @@ define([
 
                     }]
                 };
-                console.log([userInfo.data.TopPlayed * 10, userInfo.data.SupportPlayed * 10, userInfo.data.AdcPlayed * 10, userInfo.data.JunglePlayed * 10, userInfo.data.MidPlayed* 10]);
                 $scope.options = {
 
                     // Sets the chart to be responsive
@@ -138,7 +137,7 @@ define([
                     pointLabelFontStyle: 'normal',
 
                     //Number - Point label font size in pixels
-                    pointLabelFontSize: 20,
+                    pointLabelFontSize: 12,
 
                     //String - Point label font colour
                     pointLabelFontColor: 'rgba(0,220,0,1)',
