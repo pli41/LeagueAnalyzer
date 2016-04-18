@@ -102,7 +102,7 @@ platinumDataArray = {
  'WINRATE_CRIT': 73.72,
  'VISION_CRIT': 26.44,
  'TARGETCONTROL_CRIT': 79.06,
- 'KILLCONTRIBUTION_CRIT': 60.26,
+ 'KILLCONTRIBUTION_CRIT': 60.64217406,
  'KILLS': 5.13,
  'DEATHS': 5.33,
  'ASSISTS': 8.08,
@@ -254,7 +254,7 @@ module.exports = {
 			
 			response.on("end", function(){
 				console.log("request ID ends");
-				//console.log(`request ID response: ${request_ID_response}`);
+				console.log(`request ID response: ${request_ID_response}`);
 				var jsonData = JSON.parse(request_ID_response);
 				
 				
@@ -890,7 +890,8 @@ module.exports = {
 		
 		var BE_scaled = BE/BE_crit*100 > 100 ? 100 : (BE/BE_crit*100).toFixed(2);
 		
-		var KillContribution_scaled = KillContribution/KillContri_crit*100 > 100 ? 100 : (KillContribution/KillContri_crit*100).toFixed(2);
+		var KillContribution_scaled = ((KillContribution-KillContri_avg)/(75-18)*100 + KillContri_avg) > 100 ? 100 : ((KillContribution-KillContri_avg)/(75-18)*100 + KillContri_avg);
+		
 		var TargetControl_scaled = targetControl/TargetControl_crit*100 > 100 ? 100 : (targetControl/TargetControl_crit*100).toFixed(2);
 		
 		var KDA_avg_scaled = KDA_avg/KDA_crit*100 > 100 ? 100 : (KDA_avg/KDA_crit*100).toFixed(2);
@@ -898,8 +899,14 @@ module.exports = {
 		
 		var BE_avg_scaled = BE_avg/BE_crit*100 > 100 ? 100 : (BE_avg/BE_crit*100).toFixed(2);
 		
-		var KillContribution_avg_scaled = KillContri_avg/KillContri_crit*100 > 100 ? 100 : (KillContri_avg/KillContri_crit*100).toFixed(2);
+		//var KillContribution_avg_scaled = (KillContri_avg-18)/(75-18)*100/KillContri_crit*100 > 100 ? 100 : (KillContri_avg-18)/(75-18)*100/KillContri_crit*100;
+		
+		var KillContribution_avg_scaled = KillContri_avg;
+		
 		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 100 : (TargetControl_avg/TargetControl_crit*100).toFixed(2);
+		
+		//100(true value-mean)/(max-min)+mean
+		
 		
 		var dataAnalysis = '[{';
 		dataAnalysis += format('\"name\": \"{name}\",',{name:summoner_name_original});
