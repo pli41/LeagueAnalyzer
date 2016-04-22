@@ -910,7 +910,7 @@ module.exports = {
 		
 		var dataAnalysis = '[{';
 		dataAnalysis += format('\"name\": \"{name}\",',{name:summoner_name_original});
-		dataAnalysis += format('\"KDA_graph\": \"{KDA}\",',{KDA:BE_scaled});
+		dataAnalysis += format('\"KDA_graph\": \"{KDA}\",',{KDA:KDA_scaled});
 		dataAnalysis += format('\"VisionControl_graph\": \"{VisionControl}\",',{VisionControl:VisionControl_scaled});
 		dataAnalysis += format('\"BE_graph\": \"{BE}\",',{BE:BE_scaled});
 		dataAnalysis += format('\"KillContribution_graph\": \"{KillContribution}\",',{KillContribution:KillContribution_scaled});
