@@ -18,7 +18,6 @@ define([
 					"...\n" +
 					"DONE\n" +
                     "$ " + d.toString() + "\n" +
-                    "$ Launching info hack \n" +
 					"\n" +
                     "$ Enter a valid summoner name: \n";
 

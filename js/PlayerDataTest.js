@@ -264,6 +264,7 @@ module.exports = {
 				}
 				else{
 					summoner_IconId = jsonData[summoner_name_trimmed].profileIconId;
+					summoner_name_original = jsonData[summoner_name_trimmed].name;
 					getSummonerLeagueData(jsonData[summoner_name_trimmed]['id'], getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res);
 				}
 				

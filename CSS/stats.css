@@ -12,7 +12,7 @@
 
 .subData{
 	font-size: 12px;
-	color: gray;
+	color: 009900;
 }
 
 .subData td{
@@ -22,8 +22,8 @@
 }
 
 .rank{
-	margin-top: 12px !important;
-	margin-left: 10px !important;
+	margin-top: 15px !important;
+	margin-left: 40px !important;
 	font-size: 20px !important;
 }
 
@@ -39,3 +39,32 @@
 	width: 698px !important;
 	height: 517px !important;
 }
+
+.background-image {
+	background-image: url('http://pre02.deviantart.net/41ba/th/pre/i/2012/241/0/4/fallout_terminal_texture_by_team_machine-d5cubxx.jpg');
+	background-size: cover;
+	display: block;
+	z-index: 1;
+	left: 0;
+	position: fixed;
+	right: 0;
+	-webkit-filter: opacity(30%);
+	height: 100%;
+}
+
+.content{
+
+
+  top: 25px;
+  left: 400px;
+  position: fixed;
+  z-index: 2;
+
+}
+
+
+#nameBox{
+	border: 0;
+}
+
+
