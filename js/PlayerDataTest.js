@@ -251,7 +251,7 @@ module.exports = {
 			
 			response.on("end", function(){
 				console.log("request ID ends");
-				console.log(`request ID response: ${request_ID_response}`);
+				//console.log(`request ID response: ${request_ID_response}`);
 				var jsonData = JSON.parse(request_ID_response);
 				
 				
@@ -303,7 +303,7 @@ module.exports = {
 			
 			response.on("end", function(){
 				console.log("request League ends");
-				console.log(`request ID response: ${request_response}`);
+				//console.log(`request ID response: ${request_response}`);
 				var jsonData = JSON.parse(request_response);
 				
 				if(jsonData.status){
