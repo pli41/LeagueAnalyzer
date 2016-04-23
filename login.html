@@ -2,13 +2,13 @@
 		<span style="white-space:pre-wrap;">{{typein}}</span>
 		
 		
-		<form ng-submit = "getLOLInfo()" method="POST" ng-show="!isWaiting">
+		<form ng-submit = "getLOLInfo()" method="POST" ng-show="message==''">
 			
 			<span>$ </span><input type="text" name="Account_LOL" placeholder="" ng-model="username" style="background:none"></br>
 			
 			<input type="submit" value="Submit" style="display:none">
 		</form>
 		
-		<div ><p ng-show="isWaiting">Waiting.....</p></div>
+		<div ><p style="white-space:pre-wrap;">{{message}}</p></div>
 		
 	</div>

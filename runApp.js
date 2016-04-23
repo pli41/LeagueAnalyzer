@@ -34,15 +34,12 @@ app.post('/',
 			playerData.AnalyzeMatchData,
 			res
 		);
-		//console.log("Analyzing");
-		
-		if(analysisJson){
-			//console.log("Analysis response sent");
-			res.json(analysisJson);
-		}
-		else{
-			//console.log("Error analyzing");
-		}
+			
+			//404 Username NOT FOUND
+			//406 Not Acceptable user(not enough rank games)
+			//429 API Key not available
+			//504 Riot API not available
+
 		
 		
 	}

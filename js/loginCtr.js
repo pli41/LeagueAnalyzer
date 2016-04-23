@@ -11,7 +11,7 @@ define([
         .controller("loginCtr", ['$scope', '$location', '$http', '$interval', 'userInfo',
             function($scope, $location, $http, $interval, userInfo) {
 
-                $scope.isWaiting = false;
+                $scope.message = "";
                 var d = new Date();
                 var content = "$ System Initializing...\n" +
 					"...\n" +
@@ -37,28 +37,57 @@ define([
 
                 $scope.username = "";
                 $scope.getLOLInfo = function() {
-                    $scope.isWaiting = true;
-
+                    $scope.message = "\n\n" +
+							"$ Waiting";
+					
+					var j = 0;
+					var waiting = true;
+					var periodNum = 0;
+					var timer1 = $interval(function() {
+                    if (waiting)
+            
+						if(periodNum > 5){
+							$scope.message = "\n\n" +
+							"$ Waiting";
+							periodNum = 0;
+						}
+						else{
+							$scope.message += '.';
+							periodNum++;
+						}
+                    else
+                        $interval.cancel(timer1);
+                    j++;
+					}, 100);
+					
+					
                     userInfo.username = $scope.username;
-                    console.log($location.path());
+                    console.log(userInfo.username);
                     $http({
                         method: 'POST',
                         url: '/',
                         contentType: "application/json",
                         data: [userInfo.username]
                     }).then(function(response) {
-
+						waiting = false;
                         console.log("success pp hai shi chou sha bi");
                         //console.log(response.data[0]);
                         userInfo.data = response.data[0];
                         userInfo.username = response.data[0].name;
-
+						
                         //console.log(userInfo);
                         $location.path("stats");
                     }, function(response) {
-                        $scope.isWaiting = false;
+						waiting = false;
+						console.log(response);
+                        $scope.message = "\n$ Error! " +
+						response.data +
+						"!\n" +
+						"$ Please retry in 10 seconds!";
                         console.log("error!! pp is chou sha bi");
-
+						
+						
+						
                     });
 
                 }

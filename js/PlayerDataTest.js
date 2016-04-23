@@ -219,6 +219,7 @@ var fs = require('fs');
 var json2csv = require('json2csv');
 var format = require("string-template");
 
+
 var summoner_name_original;
 var summoner_tier;
 var summoner_division;
@@ -226,18 +227,14 @@ var summoner_IconId;
 
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2"];
 
-
-
-var response;
-
 module.exports = {
 	
 	start: function(summonerName, getSummonerIdByName, getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res){
 		summoner_name_original = summonerName;
-		response = res;
-		getSummonerIdByName(summonerName.toLowerCase(), getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
+		this.res = res;
+		getSummonerIdByName(summonerName.toLowerCase(), getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res);
 	},
-	getSummonerIdByName: function(name, getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
+	getSummonerIdByName: function(name, getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res){
 		var summoner_name_escaped = encodeURI(name);
 		var options_ID = {
 			host: "na.api.pvp.net",
@@ -254,7 +251,7 @@ module.exports = {
 			
 			response.on("end", function(){
 				console.log("request ID ends");
-				//console.log(`request ID response: ${request_ID_response}`);
+				console.log(`request ID response: ${request_ID_response}`);
 				var jsonData = JSON.parse(request_ID_response);
 				
 				
@@ -262,10 +259,12 @@ module.exports = {
 				
 				if(jsonData.status){
 					console.log(format("failed to get summoner from {name} because of {message}", {name: summoner_name_original, message: jsonData.status.message}));
+					res.status(jsonData.status.status_code).send('Summoner name not valid');
+					return;
 				}
 				else{
 					summoner_IconId = jsonData[summoner_name_trimmed].profileIconId;
-					getSummonerLeagueData(jsonData[summoner_name_trimmed]['id'], getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData);
+					getSummonerLeagueData(jsonData[summoner_name_trimmed]['id'], getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res);
 				}
 				
 				
@@ -288,7 +287,7 @@ module.exports = {
 		});
 	},
 	
-	getSummonerLeagueData: function(summonerId, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData){
+	getSummonerLeagueData: function(summonerId, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res){
 		var options = {
 			host: "na.api.pvp.net",
 			path: format("/api/lol/na/v2.5/league/by-summoner/{name}/entry?api_key={key}", {name: summonerId, key: apiKey[1]}),
@@ -304,17 +303,19 @@ module.exports = {
 			
 			response.on("end", function(){
 				console.log("request League ends");
-				//console.log(`request ID response: ${request_ID_response}`);
+				console.log(`request ID response: ${request_response}`);
 				var jsonData = JSON.parse(request_response);
 				
 				if(jsonData.status){
 					console.log(format("failed to get summoner tier from {name} because of {message}", {name: summoner_name_original, message: jsonData.status.message}));
+					res.status(jsonData.status.status_code).send('Failed to get summoner rank info');
+					return;
 				}
 				else{
 					summoner_tier = jsonData[summonerId][0].tier;
 					summoner_division = jsonData[summonerId][0].entries[0].division;
 					console.log(format("Summoner rank: {tier} {division}", {tier: summoner_tier, division: summoner_division}));
-					getSummonerMatchList(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData);
+					getSummonerMatchList(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData, res);
 				}
 				
 				
@@ -338,7 +339,7 @@ module.exports = {
 	},
 	
 	
-	getSummonerMatchList: function(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData){
+	getSummonerMatchList: function(summonerId, getMatchesID, GetMatchData, AnalyzeMatchData, res){
 	
 	//https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/xplzzzx?api_key=79cfb0e6-89a2-4a0b-95c0-77238c9c6afe
 	
@@ -371,11 +372,14 @@ module.exports = {
 				//console.log(`JSON Data :${JSON.stringify(jsonData)}`);
 				
 				if(jsonData.status){
-					console.log(format('failed to get data from {matchID} because of {message}', {matchID: matchID, message: dataJSON.status.message}));
+					console.log(format('failed to get data from {matchID} because of {message}', {matchID: matchID, message: jsonData.status.message}));
 				}
 				else{
-					
-					getMatchesID(jsonData, 10, matchIDArray, GetMatchData, AnalyzeMatchData);
+					if(jsonData.totalGames <= 0){
+						res.status(406).send('Not enough rank games played');
+						return;
+					}
+					getMatchesID(jsonData, 10, matchIDArray, GetMatchData, AnalyzeMatchData, res);
 				}
 				
 				
@@ -401,7 +405,7 @@ module.exports = {
 		});
 		
 	},
-	getMatchesID: function(jsonData, number, IDarray, GetMatchData, AnalyzeMatchData){
+	getMatchesID: function(jsonData, number, IDarray, GetMatchData, AnalyzeMatchData, res){
 		var matchesNum = jsonData['endIndex'];
 		
 		if(number <= matchesNum){
@@ -423,9 +427,9 @@ module.exports = {
 			
 		};
 		
-		GetMatchData(IDarray, AnalyzeMatchData);
+		GetMatchData(IDarray, AnalyzeMatchData, res);
 	},
-    GetMatchData: function(matchIDArray, AnalyzeMatchData){
+    GetMatchData: function(matchIDArray, AnalyzeMatchData, res){
 		
 		//console.log(`in getMatchData with ${matchIDArray}`);
 		var matchJsonData = new Array();
@@ -475,7 +479,7 @@ module.exports = {
 						}
 						else{
 							console.log("All matches are grabbed");
-							AnalyzeMatchData(matchJsonData);
+							AnalyzeMatchData(matchJsonData, res);
 						};
 						
 					};
@@ -497,7 +501,7 @@ module.exports = {
 		};
 	
 	},
-	AnalyzeMatchData: function(matchStrArray){
+	AnalyzeMatchData: function(matchStrArray, res){
 		console.log('Analyzing\n\n\n');
 		//console.log(`${JSON.parse(matchJson)}`);
 		
@@ -980,15 +984,10 @@ module.exports = {
 		console.log(dataAnalysis);
 		var analysisJson = JSON.parse(dataAnalysis);
 		
+		res.json(analysisJson);
+		return;
 		
-		
-		if(analysisJson){
-			console.log("Analysis response sent");
-			response.json(analysisJson);
-		}
-		else{
-			console.log("Error analyzing");
-		}
+
 	}
 
 }
