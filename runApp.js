@@ -34,12 +34,13 @@ app.post('/',
 			playerData.AnalyzeMatchData,
 			res
 		);
-			
-			//404 Username NOT FOUND
-			//406 Not Acceptable user(not enough rank games)
-			//429 API Key not available
-			//504 Riot API not available
-
+		
+/*		
+		404 Username NOT FOUND
+		406 Not Acceptable user(not enough rank games)
+		429 API Key not available
+		504 Riot API not available
+*/
 		
 		
 	}
