@@ -51,8 +51,6 @@
 
 .content{
   position: relative;
-
-  
   z-index: 2;
 
 }
@@ -66,5 +64,15 @@
 	padding-left: 15%;
     padding-top: 15%;
 	width: 100%;
+}
+
+table th {
+    width: auto !important;
+	text-align:center;
+}
+
+table tr{
+	text-align:center;
+	
 }
 

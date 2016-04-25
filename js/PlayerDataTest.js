@@ -1,5 +1,4 @@
 var leagueDataArray = new Array();
-
 var bronzeDataArray = new Array();
 var silverDataArray = new Array();
 var goldDataArray = new Array();
@@ -202,7 +201,6 @@ challengerDataArray = {
  'BE': 5.59,
  'BE_CRIT': 7.62,
  'TARGETCONTROL': 3.75
-
 };
 
 leagueDataArray['BRONZE'] = bronzeDataArray;
@@ -912,6 +910,54 @@ module.exports = {
 		
 		//100(true value-mean)/(max-min)+mean
 		
+		//Assessment
+		var KDA_Assessment = 'BRONZE';
+		var VisionControl_Assessment = 'BRONZE';
+		var TargetControl_Assessment = 'BRONZE';
+		var KillContribution_Assessment = 'BRONZE';
+		
+		for(var i = 0; i < 7; i ++){
+			var curTier;
+			switch(i){
+				case 0:
+					curTier = 'BRONZE';
+					break;
+				case 1:
+					curTier = 'SILVER';
+					break;
+				case 2:
+					curTier = 'GOLD';
+					break;
+				case 3:
+					curTier = 'PLATINUM';
+					break;
+				case 4:
+					curTier = 'DIAMOND';
+					break;
+				case 5:
+					curTier = 'MASTER';
+					break;
+				case 6:
+					curTier = 'CHALLENGER';
+					break;
+			}
+			
+			if(leagueDataArray[curTier].KDA_AVG < KDA){
+				KDA_Assessment = curTier;
+			}
+			
+			if(leagueDataArray[curTier].VISION_AVG < wardingValue){
+				VisionControl_Assessment = curTier;
+			}
+			
+			if(leagueDataArray[curTier].TARGETCONTROL_AVG < targetControl){
+				TargetControl_Assessment = curTier;
+			}
+			
+			if(leagueDataArray[curTier].KILLCONTRIBUTION_AVG < KillContribution){
+				KillContribution_Assessment = curTier;
+			}
+		}
 		
 		var dataAnalysis = '[{';
 		dataAnalysis += format('\"name\": \"{name}\",',{name:summoner_name_original});
@@ -980,7 +1026,11 @@ module.exports = {
 		dataAnalysis += format('\"RiftHerald_ThisTier\": \"{RiftHerald_ThisTier}\",',{RiftHerald_ThisTier:RiftHerald_ThisTier});
 		dataAnalysis += format('\"RiftHerald_NextTier\": \"{RiftHerald_NextTier}\",',{RiftHerald_NextTier:RiftHerald_NextTier});
 		dataAnalysis += format('\"gamesAnalyzed\": \"{number}\",',{number:matchJson.matches.length});
-		dataAnalysis += format('\"ProfileIcon\": \"{summoner_IconId}\"',{summoner_IconId:summoner_IconId});
+		dataAnalysis += format('\"ProfileIcon\": \"{summoner_IconId}\",',{summoner_IconId:summoner_IconId});
+		dataAnalysis += format('\"KillContribution_Assessment\": \"{KillContribution_Assessment}\",',{KillContribution_Assessment:KillContribution_Assessment});
+		dataAnalysis += format('\"TargetControl_Assessment\": \"{TargetControl_Assessment}\",',{TargetControl_Assessment:TargetControl_Assessment});
+		dataAnalysis += format('\"VisionControl_Assessment\": \"{VisionControl_Assessment}\",',{VisionControl_Assessment:VisionControl_Assessment});
+		dataAnalysis += format('\"KDA_Assessment\": \"{KDA_Assessment}\"',{KDA_Assessment:KDA_Assessment});
 		dataAnalysis += '}]';
 		console.log(dataAnalysis);
 		var analysisJson = JSON.parse(dataAnalysis);

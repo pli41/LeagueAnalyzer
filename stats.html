@@ -33,13 +33,14 @@
 					<canvas tc-chartjs-radar chart-options="options" chart-data="versatility"/>
 				</div>
 			</div>
-			<table class="table table-condensed" >
+			<table class="table table-condensed table-bordered" >
 				<thead>
 					<tr>
 						<th/>
 						<th/>
 						<th>{{playerData.Tier}}</th>
 						<th>{{playerData.NextTier}}</th>
+						<th>Assessment</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,6 +55,7 @@
 						<td>{{playerData.KDA_Raw}}</td>
 						<td>{{playerData.KDA_ThisTier}}</td>
 						<td>{{playerData.KDA_NextTier}}</td>
+						<td>{{playerData.KDA_Assessment}}</td>
 					</tr>
 					<tr class="subData">
 						<td>Kills</td>
@@ -78,6 +80,7 @@
 						<td>{{playerData.VisionControl_Raw}}</td>
 						<td>{{playerData.VisionControl_ThisTier}}</td>
 						<td>{{playerData.VisionControl_NextTier}}</td>
+						<td>{{playerData.VisionControl_Assessment}}</td>
 					</tr>
 					<tr class="subData">
 						<td>Vision Wards Purchased</td>
@@ -102,6 +105,7 @@
 						<td>{{playerData.TargetControl_Raw}}</td>
 						<td>{{playerData.TargetControl_ThisTier}}</td>
 						<td>{{playerData.TargetControl_NextTier}}</td>
+						<td>{{playerData.TargetControl_Assessment}}</td>
 					</tr>
 					<tr class="subData">
 						<td>Dragons Killed</td>
@@ -138,6 +142,7 @@
 						<td>{{playerData.KillContribution_Raw}}%</td>
 						<td>{{playerData.KillContribution_ThisTier}}%</td>
 						<td>{{playerData.KillContribution_NextTier}}%</td>
+						<td>{{playerData.KillContribution_Assessment}}</td>
 					</tr>
 				</tbody>
 			</table>
