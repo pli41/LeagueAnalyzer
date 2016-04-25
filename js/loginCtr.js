@@ -13,13 +13,14 @@ define([
 
                 $scope.message = "";
                 var d = new Date();
-                var content = "$ System Initializing...\n" +
+                var content = "System Initializing...\n" +
 					"...\n" +
 					"...\n" +
 					"DONE\n" +
-                    "$ " + d.toString() + "\n" +
+					"" + 'Rank Analysis System Online' + "\n" +
+                    "" + d.toString() + "\n" +
 					"\n" +
-                    "$ Enter a valid summoner name: \n";
+                    "Enter your summoner name: \n";
 
 
                 $scope.typein = "";
@@ -32,7 +33,7 @@ define([
                         $interval.cancel(timer);
 
                     i++;
-                }, 50);
+                }, 10);
 
                 $scope.username = "";
                 $scope.getLOLInfo = function() {
@@ -192,7 +193,7 @@ define([
                     datasetFill: true,
 
                     //String - A legend template
-                    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].fillColor%> \"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
+                    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0;i<datasets.length;i++){%><li><span><%if(datasets[i].label){%><%=datasets[i].label%><span>&nbsp&nbsp</span><span style=\"background-color:<%=datasets[i].fillColor%> \">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span><%}%></span></li><%}%></ul>"
 
                 };
 				

@@ -32,12 +32,8 @@
 }
 
 #analysisGraph{
-	padding-top: 36px;
-	padding-bottom: 17px;
-	padding-right: 118px;
-	margin-left: -10px;
-	width: 698px !important;
-	height: 517px !important;
+
+	margin-left: -96px;
 }
 
 .background-image {
@@ -48,16 +44,15 @@
 	left: 0;
 	position: fixed;
 	right: 0;
-	-webkit-filter: opacity(30%);
+	top: -1;
+	-webkit-filter: opacity(30%) sepia(30%);
 	height: 100%;
 }
 
 .content{
+  position: relative;
 
-
-  top: 25px;
-  left: 400px;
-  position: fixed;
+  
   z-index: 2;
 
 }
@@ -67,4 +62,9 @@
 	border: 0;
 }
 
+.mainGraph{
+	padding-left: 15%;
+    padding-top: 15%;
+	width: 100%;
+}
 
