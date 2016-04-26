@@ -28,7 +28,7 @@
 }
 
 .container{
-	margin-top: 100px;
+	margin-top: 90px;
 }
 
 #analysisGraph{
@@ -62,17 +62,28 @@
 
 .mainGraph{
 	padding-left: 15%;
-    padding-top: 15%;
+    padding-top: 6%;
 	width: 100%;
 }
 
 table th {
     width: auto !important;
 	text-align:center;
+	border: 1px dashed green;
 }
 
 table tr{
 	text-align:center;
-	
+	border: 1px dashed green;
 }
 
+#GraphNotes > p> .title{
+	font-size:14px;
+}
+
+#GraphNotes{
+	font-size:12px;
+	border: 1px green dashed;
+    padding-left: 2%;
+    padding-right: 2%;
+}

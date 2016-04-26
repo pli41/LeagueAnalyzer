@@ -98,7 +98,7 @@ define([
                 $scope.username = userInfo.username;
                 $scope.playerData = userInfo.data;
                 $scope.data = {
-                    labels: ['KDA', 'BattleEfficiency', 'VisionControl', 'KillContribution', 'TargetControl'],
+                    labels: ['KDA', 'BattleEfficiency', 'VisionControl', 'KillContribution', 'ObjectiveControl'],
                     datasets: [{
                         label: 'Player\'s Data',
                         fillColor: 'rgba(255,204,0,0.5)',

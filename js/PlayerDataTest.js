@@ -688,6 +688,12 @@ module.exports = {
 		var targetControl = (total_Towerkills + dragonSlained + 3 * riftHeraldSlained + 5 * baronSlained);
 		
 		var BE = ((supportPlayed)*wardsPlaced+totalDamageDealtToChampions*supportPlayed/35+(3/5)*totalDamageTaken*supportPlayed/20+(1+0.2*adcPlayed+0.2*midPlayed)*totalDamageDealtToChampions+(3/5)*(1-0.07*junglePlayed-0.1*(adcPlayed+midPlayed))*totalDamageTaken+(control_Duration*supportPlayed/10)+(0.7+supportPlayed/3)*totalHeal+control_Duration+goldEarned)/(Math.pow(avgDuration,3))*50000;
+		
+		var damageTakenPerMatch = (totalDamageTaken/ matchJson.matches.length).toFixed(2);
+		var healPerMatch = (totalHeal/ matchJson.matches.length).toFixed(2);
+		var damageDealtToChampionsPerMatch = (totalDamageDealtToChampions/ matchJson.matches.length).toFixed(2);
+		var GPM = (goldEarned/ match_totalDuration*60).toFixed(2);
+		
 		//format data
 		/*
 		var analysis = '[{';
@@ -1030,8 +1036,14 @@ module.exports = {
 		dataAnalysis += format('\"KillContribution_Assessment\": \"{KillContribution_Assessment}\",',{KillContribution_Assessment:KillContribution_Assessment});
 		dataAnalysis += format('\"TargetControl_Assessment\": \"{TargetControl_Assessment}\",',{TargetControl_Assessment:TargetControl_Assessment});
 		dataAnalysis += format('\"VisionControl_Assessment\": \"{VisionControl_Assessment}\",',{VisionControl_Assessment:VisionControl_Assessment});
-		dataAnalysis += format('\"KDA_Assessment\": \"{KDA_Assessment}\"',{KDA_Assessment:KDA_Assessment});
+		dataAnalysis += format('\"KDA_Assessment\": \"{KDA_Assessment}\",',{KDA_Assessment:KDA_Assessment});
+		dataAnalysis += format('\"damageTakenPerMatch\": \"{damageTakenPerMatch}\",',{damageTakenPerMatch:damageTakenPerMatch});
+		dataAnalysis += format('\"healPerMatch\": \"{healPerMatch}\",',{healPerMatch:healPerMatch});
+		dataAnalysis += format('\"damageDealtToChampionsPerMatch\": \"{damageDealtToChampionsPerMatch}\",',{damageDealtToChampionsPerMatch:damageDealtToChampionsPerMatch});
+		dataAnalysis += format('\"GPM\": \"{GPM}\"',{GPM:GPM});
 		dataAnalysis += '}]';
+		
+		
 		console.log(dataAnalysis);
 		var analysisJson = JSON.parse(dataAnalysis);
 		

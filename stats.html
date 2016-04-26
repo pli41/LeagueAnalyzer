@@ -12,8 +12,17 @@
 				</div>
 			</div>
 			
+			
+			
 			<div class="mainGraph">
 				<canvas id="analysisGraph" tc-chartjs-radar chart-options="options" chart-data="data" auto-legend/>
+			</div>
+			
+			<div id="graphNotes">
+				<h3>Graph Notes:</h3>
+				<p> 1. <span class="title"><strong><em>KDA</strong></em></span>: (Kills + Assists)/Deaths (if Deaths < 0, Deaths = 1)</p>
+				<p> 2. <span class="title"><strong><em>Objective Control</strong></em></span>: this value measures a player's ability to influence his team's controling of neutral objectives(e.g. dragons) and team objectives(e.g. towers).</p>
+				<p> 3. <span class="title"><strong><em>Battle Efficiency</strong></em></span>: this value measures how effectively a player utilizes the gold earned based on the positions played. For example, if an adc earns little gold but he deals a lot of damage, this value tends to be bigger.</p>
 			</div>
 			
 		</div>
@@ -23,13 +32,16 @@
 			<div class="row">
 				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 					<p>Positions plays: </p>
-					<p>Top: {{playerData.TopPlayed}}</p>
-					<p>MID: {{playerData.MidPlayed}}</p>
-					<p>JUNGLE: {{playerData.JunglePlayed}}</p>
-					<p>ADC: {{playerData.AdcPlayed}}</p>
-					<p>SUPPORT: {{playerData.SupportPlayed}}</p>
+					<p>&nbspTop: {{playerData.TopPlayed}}</p>
+					<p>&nbspMID: {{playerData.MidPlayed}}</p>
+					<p>&nbspJUNGLE: {{playerData.JunglePlayed}}</p>
+					<p>&nbspADC: {{playerData.AdcPlayed}}</p>
+					<p>&nbspSUPPORT: {{playerData.SupportPlayed}}</p>
 				</div>
-				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8"> 
+				
+				
+				
+				<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
 					<canvas tc-chartjs-radar chart-options="options" chart-data="versatility"/>
 				</div>
 			</div>
@@ -101,7 +113,7 @@
 						<td>{{playerData.WardsPlaced_NextTier}}</td>
 					</tr>
 					<tr>
-						<td>TARGET CONTROL</td>
+						<td>OBJECTIVE CONTROL</td>
 						<td>{{playerData.TargetControl_Raw}}</td>
 						<td>{{playerData.TargetControl_ThisTier}}</td>
 						<td>{{playerData.TargetControl_NextTier}}</td>
