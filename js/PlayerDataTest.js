@@ -594,22 +594,45 @@ module.exports = {
 		var junglePlayed = 0;
 		var adcPlayed = 0;
 		var supportPlayed = 0;
+		
+		var topPlayedLength = 0;
+		var midPlayedLength = 0;
+		var junglePlayedLength = 0;
+		var adcPlayedLength = 0;
+		var supportPlayedLength = 0;
+		
+		var adcDealtDamage = 0;
+		
+		var adcDamageTaken = 0;
+		
+		var CS_zeroToTen_ADC = 0;
+		var CS_ADC = 0;
+		
 		var gatherVersatilityData = function(match, participantID){
 			if(match.participants[participantID-1].timeline.lane === 'TOP'){
 				topPlayed ++;
+				topPlayedLength = match.matchDuration;
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'MIDDLE'){
 				midPlayed ++;
+				midPlayedLength = match.matchDuration;
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'JUNGLE'){
 				junglePlayed ++;
+				junglePlayedLength = match.matchDuration;
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'BOTTOM'){
 				if(match.participants[participantID-1].timeline.role === 'DUO_SUPPORT'){
 					supportPlayed ++;
+					supportPlayedLength = match.matchDuration;
 				}
 				else{
 					adcPlayed ++;
+					adcPlayedLength += match.matchDuration;
+					adcDealtDamage += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+					adcDamageTaken += match.participants[participantID-1].stats.totalDamageTaken;
+					CS_ADC += match.participants[participantID-1].stats.minionsKilled;
+					CS_zeroToTen_ADC += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
 				}
 			}
 		}
@@ -694,6 +717,16 @@ module.exports = {
 		var damageDealtToChampionsPerMatch = (totalDamageDealtToChampions/ matchJson.matches.length).toFixed(2);
 		var GPM = (goldEarned/ match_totalDuration*60).toFixed(2);
 		
+		var GPM_ADC = (goldEarned/ adcPlayedLength*60).toFixed(2);
+		var GPM_TOP = (goldEarned/ topPlayedLength*60).toFixed(2);
+		var GPM_MID = (goldEarned/ midPlayedLength*60).toFixed(2);
+		var GPM_JUNGLE = (goldEarned/ junglePlayedLength*60).toFixed(2);
+		var GPM_SUPPORT = (goldEarned/ supportPlayedLength*60).toFixed(2);
+		
+		var CS_zeroToTenPerMatch_ADC = (CS_zeroToTen_ADC/adcPlayed*10).toFixed(2);
+		var CSPM_ADC = (CS_ADC/adcPlayedLength*60).toFixed(2);
+		var DPM_ADC = (adcDealtDamage/adcPlayedLength*60).toFixed(2);
+		var DTPM_ADC = (adcDamageTaken/adcPlayedLength*60).toFixed(2);
 		//format data
 		/*
 		var analysis = '[{';
@@ -1040,7 +1073,12 @@ module.exports = {
 		dataAnalysis += format('\"damageTakenPerMatch\": \"{damageTakenPerMatch}\",',{damageTakenPerMatch:damageTakenPerMatch});
 		dataAnalysis += format('\"healPerMatch\": \"{healPerMatch}\",',{healPerMatch:healPerMatch});
 		dataAnalysis += format('\"damageDealtToChampionsPerMatch\": \"{damageDealtToChampionsPerMatch}\",',{damageDealtToChampionsPerMatch:damageDealtToChampionsPerMatch});
-		dataAnalysis += format('\"GPM\": \"{GPM}\"',{GPM:GPM});
+		dataAnalysis += format('\"GPM\": \"{GPM}\",',{GPM:GPM});
+		dataAnalysis += format('\"GPM_ADC\": \"{GPM_ADC}\",',{GPM_ADC:GPM_ADC});
+		dataAnalysis += format('\"CS_zeroToTenPerMatch_ADC\": \"{CS_zeroToTenPerMatch_ADC}\",',{CS_zeroToTenPerMatch_ADC:CS_zeroToTenPerMatch_ADC});
+		dataAnalysis += format('\"CSPM_ADC\": \"{CSPM_ADC}\",',{CSPM_ADC:CSPM_ADC});
+		dataAnalysis += format('\"DPM_ADC\": \"{DPM_ADC}\",',{DPM_ADC:DPM_ADC});
+		dataAnalysis += format('\"DTPM_ADC\": \"{DTPM_ADC}\"',{DTPM_ADC:DTPM_ADC});
 		dataAnalysis += '}]';
 		
 		

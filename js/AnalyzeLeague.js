@@ -395,22 +395,160 @@ rl.on('close', function(){
 								var junglePlayed = 0;
 								var adcPlayed = 0;
 								var supportPlayed = 0;
+								
+								var topTimelineNum = 0;
+								var midTimelineNum = 0;
+								var adcTimelineNum = 0;
+								var jgTimelineNum = 0;
+								var supTimelineNum = 0;								
+								
+								var topPlayedLength = 0;
+								var midPlayedLength = 0;
+								var junglePlayedLength = 0;
+								var adcPlayedLength = 0;
+								var supportPlayedLength = 0;
+								
+								var D_ADC = 0;
+								var DT_ADC = 0;
+								var CS_zeroToTen_ADC = 0;
+								var CS_ADC = 0;
+								var H_ADC = 0;
+
+								var D_MID = 0;
+								var DT_MID = 0;
+								var CS_zeroToTen_MID = 0;
+								var CS_MID = 0;
+								var H_MID = 0;
+								
+								var D_TOP = 0;
+								var DT_TOP = 0;
+								var CS_zeroToTen_TOP = 0;
+								var CS_TOP = 0;
+								var H_TOP = 0;
+								
+								var D_JG = 0;
+								var DT_JG = 0;
+								var CS_zeroToTen_JG = 0;
+								var CS_JG = 0;
+								var H_JG = 0;
+								
+								var D_SUP = 0;
+								var DT_SUP = 0;
+								var CS_zeroToTen_SUP = 0;
+								var CS_SUP = 0;
+								var H_SUP = 0;
+								
 								var gatherVersatilityData = function(match, participantID){
 									if(match.participants[participantID-1].timeline.lane === 'TOP'){
 										topPlayed ++;
+										topTimelineNum ++;
+										topPlayedLength += match.matchDuration;
+										D_TOP += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+										DT_TOP += match.participants[participantID-1].stats.totalDamageTaken;
+										CS_TOP += match.participants[participantID-1].stats.minionsKilled;
+										H_TOP += match.participants[participantID-1].stats.totalHeal;
+										if(match.participants[participantID-1].timeline){
+											if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+												CS_zeroToTen_TOP += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+											}
+											else{
+												topTimelineNum --;
+											}
+											
+										}
+										else{
+											topTimelineNum --;
+										}
+										
 									}
 									else if(match.participants[participantID-1].timeline.lane === 'MIDDLE'){
 										midPlayed ++;
+										midTimelineNum ++;
+										midPlayedLength += match.matchDuration;
+										D_MID += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+										DT_MID += match.participants[participantID-1].stats.totalDamageTaken;
+										CS_MID += match.participants[participantID-1].stats.minionsKilled;
+										H_MID += match.participants[participantID-1].stats.totalHeal;
+										if(match.participants[participantID-1].timeline){
+											if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+												CS_zeroToTen_MID += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+											}
+											else{
+												midTimelineNum --;
+											}
+										}
+										else{
+											midTimelineNum --;
+										}
+										
 									}
 									else if(match.participants[participantID-1].timeline.lane === 'JUNGLE'){
 										junglePlayed ++;
+										jgTimelineNum ++;
+										junglePlayedLength += match.matchDuration;
+										D_JG += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+										DT_JG += match.participants[participantID-1].stats.totalDamageTaken;
+										CS_JG += match.participants[participantID-1].stats.neutralMinionsKilled;
+										H_JG += match.participants[participantID-1].stats.totalHeal;
+										
+										if(match.participants[participantID-1].timeline){
+											
+											if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+												CS_zeroToTen_JG += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+											}
+											else{
+												jgTimelineNum --;
+											}
+										}
+										else{
+											jgTimelineNum --;
+										}
+										
+										
 									}
 									else if(match.participants[participantID-1].timeline.lane === 'BOTTOM'){
 										if(match.participants[participantID-1].timeline.role === 'DUO_SUPPORT'){
 											supportPlayed ++;
+											supTimelineNum ++;
+											supportPlayedLength += match.matchDuration;
+											D_SUP += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+											DT_SUP += match.participants[participantID-1].stats.totalDamageTaken;
+											CS_SUP += match.participants[participantID-1].stats.minionsKilled;
+											H_SUP += match.participants[participantID-1].stats.totalHeal;
+											
+											if(match.participants[participantID-1].timeline){
+												
+												if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+													CS_zeroToTen_SUP += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+												}
+												else{
+													supTimelineNum --;
+												}
+											}
+											else{
+												supTimelineNum --;
+											}
 										}
 										else{
 											adcPlayed ++;
+											adcTimelineNum ++;
+											adcPlayedLength += match.matchDuration;
+											D_ADC += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+											DT_ADC += match.participants[participantID-1].stats.totalDamageTaken;
+											CS_ADC += match.participants[participantID-1].stats.minionsKilled;
+											H_ADC += match.participants[participantID-1].stats.totalHeal;
+											
+											if(match.participants[participantID-1].timeline){
+												if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+													CS_zeroToTen_ADC += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+												}
+												else{
+													adcTimelineNum --;
+												}
+											}
+											else{
+												adcTimelineNum --;
+											}
 										}
 									}
 								}
@@ -501,6 +639,48 @@ rl.on('close', function(){
 								
 								var control_Duration_parsed = (Math.floor(control_Duration/60)).toString() + 'min' + (Math.floor(control_Duration%60)) + 'sec';
 								
+								
+								if(topPlayed){
+									CS_zeroToTen_TOP = (CS_zeroToTen_TOP/topTimelineNum * 10).toFixed(2);
+								}
+								else{
+									CS_zeroToTen_TOP = 0;
+								}
+								
+								if(midPlayed){
+									CS_zeroToTen_MID = (CS_zeroToTen_MID/midTimelineNum * 10).toFixed(2);
+								}
+								else{
+									CS_zeroToTen_MID = 0;
+								}
+								
+								if(adcPlayed){
+									CS_zeroToTen_ADC = (CS_zeroToTen_ADC/adcTimelineNum * 10).toFixed(2);
+								}
+								else{
+									CS_zeroToTen_ADC = 0;
+								}
+								
+								if(junglePlayed){
+									CS_zeroToTen_JG = (CS_zeroToTen_JG/jgTimelineNum * 10).toFixed(2);
+								}
+								else{
+									CS_zeroToTen_JG = 0;
+								}
+								
+								if(supportPlayed){
+									CS_zeroToTen_SUP = (CS_zeroToTen_SUP/supTimelineNum * 10).toFixed(2);
+								}
+								else{
+									CS_zeroToTen_SUP = 0;
+								}
+
+								
+								
+								
+								
+								
+								
 								//fs.writeFileSync(`../PlayerData/JSON/${summonerName_NoSpace}.json`, analysis);
 								
 														//read from file
@@ -556,7 +736,7 @@ rl.on('close', function(){
 									log += `Data of ${summonerName}(${playerId}) is added\n`;
 									
 									console.log(`Data of ${summonerName}(${playerId}) is added`);
-									data += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue}, ${wardsKilled}, ${wardsPlaced}, ${total_Towerkills}, ${total_InhibitorKills}, ${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution}, ${totalDamageDealtToChampions}, ${totalDamageTaken}, ${totalHeal}, ${(control_Duration/60).toFixed(2)}, ${goldEarned},${avgDuration}`;
+									data += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue}, ${wardsKilled}, ${wardsPlaced}, ${total_Towerkills}, ${total_InhibitorKills}, ${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution}, ${totalDamageDealtToChampions}, ${totalDamageTaken}, ${totalHeal}, ${(control_Duration/60).toFixed(2)}, ${goldEarned},${avgDuration},${topPlayedLength},${midPlayedLength},${junglePlayedLength},${adcPlayedLength},${supportPlayedLength},${D_ADC},${DT_ADC},${CS_zeroToTen_ADC},${CS_ADC},${H_ADC},${D_MID},${DT_MID},${CS_zeroToTen_MID},${CS_MID},${H_MID},${D_TOP},${DT_TOP},${CS_zeroToTen_TOP},${CS_TOP},${H_TOP},${D_JG},${DT_JG},${CS_zeroToTen_JG},${CS_JG},${H_JG},${D_SUP},${DT_SUP},${CS_zeroToTen_SUP},${CS_SUP},${H_SUP}`;
 									console.log(`${data}`);
 									log += `${data}\n`;
 									fs.writeFileSync(csvPath, data);
@@ -591,11 +771,41 @@ rl.on('close', function(){
 									analysis += `\"TotalHeal\": ${totalHeal},`;
 									analysis += `\"CCDuration\": ${control_Duration},`;
 									analysis += `\"GoldEarned\": ${goldEarned},`;
-									analysis += `\"AvgGameLength\": ${avgDuration}`;
+									analysis += `\"AvgGameLength\": ${avgDuration},`;
+									analysis += `\"topPlayedLength\": ${topPlayedLength},`;
+									analysis += `\"midPlayedLength\": ${midPlayedLength},`;
+									analysis += `\"junglePlayedLength\": ${junglePlayedLength},`;
+									analysis += `\"adcPlayedLength\": ${adcPlayedLength},`;
+									analysis += `\"supportPlayedLength\": ${supportPlayedLength},`;
+									analysis += `\"D_ADC\": ${D_ADC},`;
+									analysis += `\"DT_ADC\": ${DT_ADC},`;
+									analysis += `\"CS_zeroToTen_ADC\": ${CS_zeroToTen_ADC},`;
+									analysis += `\"CS_ADC\": ${CS_ADC},`;
+									analysis += `\"H_ADC\": ${H_ADC},`;
+									analysis += `\"D_MID\": ${D_MID},`;
+									analysis += `\"DT_MID\": ${DT_MID},`;
+									analysis += `\"CS_zeroToTen_MID\": ${CS_zeroToTen_MID},`;
+									analysis += `\"CS_MID\": ${CS_MID},`;
+									analysis += `\"H_MID\": ${H_MID},`;
+									analysis += `\"D_TOP\": ${D_TOP},`;
+									analysis += `\"DT_TOP\": ${DT_TOP},`;
+									analysis += `\"CS_zeroToTen_TOP\": ${CS_zeroToTen_TOP},`;
+									analysis += `\"CS_TOP\": ${CS_TOP},`;
+									analysis += `\"H_TOP\": ${H_TOP},`;
+									analysis += `\"D_JG\": ${D_JG},`;
+									analysis += `\"DT_JG\": ${DT_JG},`;
+									analysis += `\"CS_zeroToTen_JG\": ${CS_zeroToTen_JG},`;
+									analysis += `\"CS_JG\": ${CS_JG},`;
+									analysis += `\"H_JG\": ${H_JG},`;
+									analysis += `\"D_SUP\": ${D_SUP},`;
+									analysis += `\"DT_SUP\": ${DT_SUP},`;
+									analysis += `\"CS_zeroToTen_SUP\": ${CS_zeroToTen_SUP},`;
+									analysis += `\"CS_SUP\": ${CS_SUP},`;
+									analysis += `\"H_SUP\": ${H_SUP}`;
 									analysis += '}]';
-									
+									console.log(analysis);
 									var JSON_Data = JSON.parse(analysis);
-									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionWards', 'WardsKilled', 'WardsPlaced', 'TowersKilled', 'InhibitorKills', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'TotalDamageDealtToChampions', 'TotalDamageTaken', 'TotalHeal', 'CCDuration', 'GoldEarned', 'AvgGameLength'];
+									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionWards', 'WardsKilled', 'WardsPlaced', 'TowersKilled', 'InhibitorKills', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'TotalDamageDealtToChampions', 'TotalDamageTaken', 'TotalHeal', 'CCDuration', 'GoldEarned', 'AvgGameLength', 'topPlayedLength', 'midPlayedLength','junglePlayedLength','adcPlayedLength','supportPlayedLength','D_ADC','DT_ADC','CS_zeroToTen_ADC','CS_ADC','H_ADC','D_MID','DT_MID','CS_zeroToTen_MID','CS_MID','H_MID','D_TOP','DT_TOP','CS_zeroToTen_TOP','CS_TOP','H_TOP','D_JG','DT_JG','CS_zeroToTen_JG','CS_JG','H_JG','D_SUP','DT_SUP','CS_zeroToTen_SUP','CS_SUP','H_SUP'];
 									json2csv({ data: JSON_Data, fields: fields }, function(err, csv) {
 										if (err) 
 											console.log(err);
@@ -608,7 +818,7 @@ rl.on('close', function(){
 								//all csv
 								if(fileExisted_all){
 									console.log(`Data of ${summonerName}(${playerId}) is added to csv_all`);
-									data_all += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue}, ${wardsKilled}, ${wardsPlaced}, ${total_Towerkills}, ${total_InhibitorKills}, ${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution}, ${totalDamageDealtToChampions}, ${totalDamageTaken}, ${totalHeal}, ${(control_Duration/60).toFixed(2)}, ${goldEarned},${avgDuration}`;
+									data_all += `\n\"${summonerName}\",${KDA.toFixed(2)},${(totalKills/10).toFixed(2)},${(totalDeaths/10).toFixed(2)},${(totalAssists/10).toFixed(2)},${topPlayed},${junglePlayed},${midPlayed},${adcPlayed},${supportPlayed},${winRate},${wardingValue}, ${wardsKilled}, ${wardsPlaced}, ${total_Towerkills}, ${total_InhibitorKills}, ${dragonSlained},${riftHeraldSlained},${baronSlained},${KillContribution}, ${totalDamageDealtToChampions}, ${totalDamageTaken}, ${totalHeal}, ${(control_Duration/60).toFixed(2)}, ${goldEarned},${avgDuration},${topPlayedLength},${midPlayedLength},${junglePlayedLength},${adcPlayedLength},${supportPlayedLength},${D_ADC},${DT_ADC},${CS_zeroToTen_ADC},${CS_ADC},${H_ADC},${D_MID},${DT_MID},${CS_zeroToTen_MID},${CS_MID},${H_MID},${D_TOP},${DT_TOP},${CS_zeroToTen_TOP},${CS_TOP},${H_TOP},${D_JG},${DT_JG},${CS_zeroToTen_JG},${CS_JG},${H_JG},${D_SUP},${DT_SUP},${CS_zeroToTen_SUP},${CS_SUP},${H_SUP}`;
 									fs.writeFileSync(csvPath_all, data_all);
 								}
 								else{
@@ -638,11 +848,41 @@ rl.on('close', function(){
 									analysis += `\"TotalHeal\": ${totalHeal},`;
 									analysis += `\"CCDuration\": ${control_Duration},`;
 									analysis += `\"GoldEarned\": ${goldEarned},`;
-									analysis += `\"AvgGameLength\": ${avgDuration}`;
+									analysis += `\"AvgGameLength\": ${avgDuration},`;
+									analysis += `\"topPlayedLength\": ${topPlayedLength},`;
+									analysis += `\"midPlayedLength\": ${midPlayedLength},`;
+									analysis += `\"junglePlayedLength\": ${junglePlayedLength},`;
+									analysis += `\"adcPlayedLength\": ${adcPlayedLength},`;
+									analysis += `\"supportPlayedLength\": ${supportPlayedLength},`;
+									analysis += `\"D_ADC\": ${D_ADC},`;
+									analysis += `\"DT_ADC\": ${DT_ADC},`;
+									analysis += `\"CS_zeroToTen_ADC\": ${CS_zeroToTen_ADC},`;
+									analysis += `\"CS_ADC\": ${CS_ADC},`;
+									analysis += `\"H_ADC\": ${H_ADC},`;
+									analysis += `\"D_MID\": ${D_MID},`;
+									analysis += `\"DT_MID\": ${DT_MID},`;
+									analysis += `\"CS_zeroToTen_MID\": ${CS_zeroToTen_MID},`;
+									analysis += `\"CS_MID\": ${CS_MID},`;
+									analysis += `\"H_MID\": ${H_MID},`;
+									analysis += `\"D_TOP\": ${D_TOP},`;
+									analysis += `\"DT_TOP\": ${DT_TOP},`;
+									analysis += `\"CS_zeroToTen_TOP\": ${CS_zeroToTen_TOP},`;
+									analysis += `\"CS_TOP\": ${CS_TOP},`;
+									analysis += `\"H_TOP\": ${H_TOP},`;
+									analysis += `\"D_JG\": ${D_JG},`;
+									analysis += `\"DT_JG\": ${DT_JG},`;
+									analysis += `\"CS_zeroToTen_JG\": ${CS_zeroToTen_JG},`;
+									analysis += `\"CS_JG\": ${CS_JG},`;
+									analysis += `\"H_JG\": ${H_JG},`;
+									analysis += `\"D_SUP\": ${D_SUP},`;
+									analysis += `\"DT_SUP\": ${DT_SUP},`;
+									analysis += `\"CS_zeroToTen_SUP\": ${CS_zeroToTen_SUP},`;
+									analysis += `\"CS_SUP\": ${CS_SUP},`;
+									analysis += `\"H_SUP\": ${H_SUP}`;
 									analysis += '}]';
 									
 									var JSON_Data = JSON.parse(analysis);
-									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionWards', 'WardsKilled', 'WardsPlaced', 'TowersKilled', 'InhibitorKills', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'TotalDamageDealtToChampions', 'TotalDamageTaken', 'TotalHeal', 'CCDuration', 'GoldEarned', 'AvgGameLength'];
+									var fields = ['SummonerName', 'KDA', 'AvgKills', 'AvgDeaths', 'AvgAssists', 'TOP_played', 'JUNGLE_played', 'MID_played', 'ADC_played', 'SUPPORT_played', 'WinRate', 'VisionWards', 'WardsKilled', 'WardsPlaced', 'TowersKilled', 'InhibitorKills', 'DragonsKilled', 'RiftHeraldKilled', 'BaronKilled', 'KillContribution', 'TotalDamageDealtToChampions', 'TotalDamageTaken', 'TotalHeal', 'CCDuration', 'GoldEarned', 'AvgGameLength', 'topPlayedLength', 'midPlayedLength','junglePlayedLength','adcPlayedLength','supportPlayedLength','D_ADC','DT_ADC','CS_zeroToTen_ADC','CS_ADC','H_ADC','D_MID','DT_MID','CS_zeroToTen_MID','CS_MID','H_MID','D_TOP','DT_TOP','CS_zeroToTen_TOP','CS_TOP','H_TOP','D_JG','DT_JG','CS_zeroToTen_JG','CS_JG','H_JG','D_SUP','DT_SUP','CS_zeroToTen_SUP','CS_SUP','H_SUP'];
 									json2csv({ data: JSON_Data, fields: fields }, function(err, csv) {
 										if (err) 
 											console.log(err);
