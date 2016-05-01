@@ -32,7 +32,12 @@ bronzeDataArray = {
  'GAMELENGTH': 2001.50,
  'BE': 3.78,
  'BE_CRIT': 5.27,
- 'TARGETCONTROL': 2.61
+ 'TARGETCONTROL': 2.61,
+ 'DTPM_GENERAL': 737.46,
+ 'DPM_GENERAL': 513.08,
+ 'H_GENERAL': 147.2,
+ 'GPM': 343.25,
+ 'GPM_CRIT': 402.07
 };
 
 silverDataArray = {
@@ -60,7 +65,12 @@ silverDataArray = {
  'GAMELENGTH': 1977.85,
  'BE': 3.98,
  'BE_CRIT': 5.50,
- 'TARGETCONTROL': 2.78
+ 'TARGETCONTROL': 2.78,
+ 'DTPM_GENERAL': 720.16,
+ 'DPM_GENERAL': 535.10,
+ 'H_GENERAL': 152.43,
+ 'GPM': 354.97,
+ 'GPM_CRIT': 416.36
 };
 
 goldDataArray = {
@@ -88,7 +98,12 @@ goldDataArray = {
  'GAMELENGTH': 1915.85,
  'BE': 4.38,
  'BE_CRIT': 6.44,
- 'TARGETCONTROL': 3.07 
+ 'TARGETCONTROL': 3.07,
+ 'DTPM_GENERAL': 712.70,
+ 'DPM_GENERAL': 556.72,
+ 'H_GENERAL': 156.72,
+ 'GPM': 363.0175839,
+ 'GPM_CRIT': 434.6414259
 };
 
 platinumDataArray = {
@@ -116,7 +131,12 @@ platinumDataArray = {
  'GAMELENGTH': 1875.84,
  'BE': 4.56,
  'BE_CRIT': 6.23,
- 'TARGETCONTROL': 3.09
+ 'TARGETCONTROL': 3.09,
+ 'DTPM_GENERAL': 711.53,
+ 'DPM_GENERAL': 549.106393,
+ 'H_GENERAL': 154.6209118,
+ 'GPM': 364.9824291,
+ 'GPM_CRIT': 422.4340578
 };
 
 diamondDataArray = {
@@ -144,7 +164,12 @@ diamondDataArray = {
  'GAMELENGTH': 1817.89,
  'BE': 4.94,
  'BE_CRIT': 6.82,
- 'TARGETCONTROL': 3.31
+ 'TARGETCONTROL': 3.31,
+ 'DTPM_GENERAL': 709.1328223,
+ 'DPM_GENERAL': 548.3649939,
+ 'H_GENERAL': 158.9198297,
+ 'GPM': 371.7610833,
+ 'GPM_CRIT': 436.9838794
 };
 
 masterDataArray = {
@@ -172,7 +197,12 @@ masterDataArray = {
  'GAMELENGTH': 1756.21,
  'BE': 5.27,
  'BE_CRIT': 7.39,
- 'TARGETCONTROL': 3.44
+ 'TARGETCONTROL': 3.44,
+ 'DTPM_GENERAL': 728.6830523,
+ 'DPM_GENERAL': 552.7812422,
+ 'H_GENERAL': 172.9936269,
+ 'GPM': 379.7453191,
+ 'GPM_CRIT': 446.5143589
 };
 
 challengerDataArray = {
@@ -200,7 +230,12 @@ challengerDataArray = {
  'GAMELENGTH': 1731.27,
  'BE': 5.59,
  'BE_CRIT': 7.62,
- 'TARGETCONTROL': 3.75
+ 'TARGETCONTROL': 3.75,
+ 'DTPM_GENERAL': 719.6077572,
+ 'DPM_GENERAL': 586.3033333,
+ 'H_GENERAL': 167.5259312,
+ 'GPM': 393.5036169,
+ 'GPM_CRIT': 460.729069
 };
 
 leagueDataArray['BRONZE'] = bronzeDataArray;
@@ -232,6 +267,7 @@ module.exports = {
 		this.res = res;
 		getSummonerIdByName(summonerName.toLowerCase(), getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res);
 	},
+	
 	getSummonerIdByName: function(name, getSummonerLeagueData, getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res){
 		var summoner_name_escaped = encodeURI(name);
 		var options_ID = {
@@ -265,18 +301,6 @@ module.exports = {
 					summoner_name_original = jsonData[summoner_name_trimmed].name;
 					getSummonerLeagueData(jsonData[summoner_name_trimmed]['id'], getSummonerMatchList, getMatchesID, GetMatchData, AnalyzeMatchData, res);
 				}
-				
-				
-				/*
-				if(getSummonerMatchList){
-					if(GetMatchData){
-						getSummonerMatchList(jsonData[summoner_name_trimmed]['id'], GetMatchData);
-					}
-					else{
-						getSummonerMatchList(jsonData[summoner_name_trimmed]['id']);
-					}
-				}
-				*/
 			});
 		});
 		
@@ -595,44 +619,178 @@ module.exports = {
 		var adcPlayed = 0;
 		var supportPlayed = 0;
 		
+		var topTimelineNum = 0;
+		var midTimelineNum = 0;
+		var adcTimelineNum = 0;
+		var jgTimelineNum = 0;
+		var supTimelineNum = 0;								
+		
 		var topPlayedLength = 0;
 		var midPlayedLength = 0;
 		var junglePlayedLength = 0;
 		var adcPlayedLength = 0;
 		var supportPlayedLength = 0;
 		
-		var adcDealtDamage = 0;
-		
-		var adcDamageTaken = 0;
-		
+		var D_ADC = 0;
+		var DT_ADC = 0;
 		var CS_zeroToTen_ADC = 0;
 		var CS_ADC = 0;
+		var H_ADC = 0;
+		var WIN_ADC = 0;
+
+		var D_MID = 0;
+		var DT_MID = 0;
+		var CS_zeroToTen_MID = 0;
+		var CS_MID = 0;
+		var H_MID = 0;
+		var WIN_MID = 0;
+		
+		var D_TOP = 0;
+		var DT_TOP = 0;
+		var CS_zeroToTen_TOP = 0;
+		var CS_TOP = 0;
+		var H_TOP = 0;
+		var WIN_TOP = 0;
+		
+		var D_JG = 0;
+		var DT_JG = 0;
+		var CS_zeroToTen_JG = 0;
+		var CS_JG = 0;
+		var H_JG = 0;
+		var WIN_JG = 0;
+		
+		var D_SUP = 0;
+		var DT_SUP = 0;
+		var CS_zeroToTen_SUP = 0;
+		var CS_SUP = 0;
+		var H_SUP = 0;
+		var WIN_SUP = 0;
 		
 		var gatherVersatilityData = function(match, participantID){
 			if(match.participants[participantID-1].timeline.lane === 'TOP'){
 				topPlayed ++;
-				topPlayedLength = match.matchDuration;
+				topTimelineNum ++;
+				topPlayedLength += match.matchDuration;
+				D_TOP += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+				DT_TOP += match.participants[participantID-1].stats.totalDamageTaken;
+				CS_TOP += match.participants[participantID-1].stats.minionsKilled;
+				H_TOP += match.participants[participantID-1].stats.totalHeal;
+				if(match.participants[participantID-1].timeline){
+					if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+						CS_zeroToTen_TOP += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+					}
+					else{
+						topTimelineNum --;
+					}
+					
+				}
+				else{
+					topTimelineNum --;
+				}
+				if(match.participants[participantID-1].stats.winner){
+					WIN_TOP++;
+				}
+				
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'MIDDLE'){
 				midPlayed ++;
-				midPlayedLength = match.matchDuration;
+				midTimelineNum ++;
+				midPlayedLength += match.matchDuration;
+				D_MID += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+				DT_MID += match.participants[participantID-1].stats.totalDamageTaken;
+				CS_MID += match.participants[participantID-1].stats.minionsKilled;
+				H_MID += match.participants[participantID-1].stats.totalHeal;
+				if(match.participants[participantID-1].timeline){
+					if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+						CS_zeroToTen_MID += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+					}
+					else{
+						midTimelineNum --;
+					}
+				}
+				else{
+					midTimelineNum --;
+				}
+				if(match.participants[participantID-1].stats.winner){
+					WIN_MID++;
+				}
+				
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'JUNGLE'){
 				junglePlayed ++;
-				junglePlayedLength = match.matchDuration;
+				jgTimelineNum ++;
+				junglePlayedLength += match.matchDuration;
+				D_JG += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+				DT_JG += match.participants[participantID-1].stats.totalDamageTaken;
+				CS_JG += match.participants[participantID-1].stats.neutralMinionsKilled;
+				H_JG += match.participants[participantID-1].stats.totalHeal;
+				
+				if(match.participants[participantID-1].timeline){
+					
+					if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+						CS_zeroToTen_JG += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+					}
+					else{
+						jgTimelineNum --;
+					}
+				}
+				else{
+					jgTimelineNum --;
+				}
+				if(match.participants[participantID-1].stats.winner){
+					WIN_JG++;
+				}
+				
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'BOTTOM'){
 				if(match.participants[participantID-1].timeline.role === 'DUO_SUPPORT'){
 					supportPlayed ++;
-					supportPlayedLength = match.matchDuration;
+					supTimelineNum ++;
+					supportPlayedLength += match.matchDuration;
+					D_SUP += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+					DT_SUP += match.participants[participantID-1].stats.totalDamageTaken;
+					CS_SUP += match.participants[participantID-1].stats.minionsKilled;
+					H_SUP += match.participants[participantID-1].stats.totalHeal;
+					
+					if(match.participants[participantID-1].timeline){
+						
+						if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+							CS_zeroToTen_SUP += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+						}
+						else{
+							supTimelineNum --;
+						}
+					}
+					else{
+						supTimelineNum --;
+					}
+					if(match.participants[participantID-1].stats.winner){
+						WIN_SUP++;
+					}
 				}
 				else{
 					adcPlayed ++;
+					adcTimelineNum ++;
 					adcPlayedLength += match.matchDuration;
-					adcDealtDamage += match.participants[participantID-1].stats.totalDamageDealtToChampions;
-					adcDamageTaken += match.participants[participantID-1].stats.totalDamageTaken;
+					D_ADC += match.participants[participantID-1].stats.totalDamageDealtToChampions;
+					DT_ADC += match.participants[participantID-1].stats.totalDamageTaken;
 					CS_ADC += match.participants[participantID-1].stats.minionsKilled;
-					CS_zeroToTen_ADC += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+					H_ADC += match.participants[participantID-1].stats.totalHeal;
+					
+					if(match.participants[participantID-1].timeline){
+						if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
+							CS_zeroToTen_ADC += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
+						}
+						else{
+							adcTimelineNum --;
+						}
+					}
+					else{
+						adcTimelineNum --;
+					}
+					if(match.participants[participantID-1].stats.winner){
+						WIN_ADC++;
+					}
 				}
 			}
 		}
@@ -710,23 +868,112 @@ module.exports = {
 		
 		var targetControl = (total_Towerkills + dragonSlained + 3 * riftHeraldSlained + 5 * baronSlained);
 		
-		var BE = ((supportPlayed)*wardsPlaced+totalDamageDealtToChampions*supportPlayed/35+(3/5)*totalDamageTaken*supportPlayed/20+(1+0.2*adcPlayed+0.2*midPlayed)*totalDamageDealtToChampions+(3/5)*(1-0.07*junglePlayed-0.1*(adcPlayed+midPlayed))*totalDamageTaken+(control_Duration*supportPlayed/10)+(0.7+supportPlayed/3)*totalHeal+control_Duration+goldEarned)/(Math.pow(avgDuration,3))*50000;
+		var BE = (((supportPlayed)*wardsPlaced+totalDamageDealtToChampions*supportPlayed/35+(3/5)*totalDamageTaken*supportPlayed/20+(1+0.2*adcPlayed+0.2*midPlayed)*totalDamageDealtToChampions+(3/5)*(1-0.07*junglePlayed-0.1*(adcPlayed+midPlayed))*totalDamageTaken+(control_Duration*supportPlayed/10)+(0.7+supportPlayed/3)*totalHeal+control_Duration+goldEarned)/(Math.pow(avgDuration,3))*50000).toFixed(2);
 		
 		var damageTakenPerMatch = (totalDamageTaken/ matchJson.matches.length).toFixed(2);
 		var healPerMatch = (totalHeal/ matchJson.matches.length).toFixed(2);
 		var damageDealtToChampionsPerMatch = (totalDamageDealtToChampions/ matchJson.matches.length).toFixed(2);
 		var GPM = (goldEarned/ match_totalDuration*60).toFixed(2);
 		
-		var GPM_ADC = (goldEarned/ adcPlayedLength*60).toFixed(2);
-		var GPM_TOP = (goldEarned/ topPlayedLength*60).toFixed(2);
-		var GPM_MID = (goldEarned/ midPlayedLength*60).toFixed(2);
-		var GPM_JUNGLE = (goldEarned/ junglePlayedLength*60).toFixed(2);
-		var GPM_SUPPORT = (goldEarned/ supportPlayedLength*60).toFixed(2);
 		
-		var CS_zeroToTenPerMatch_ADC = (CS_zeroToTen_ADC/adcPlayed*10).toFixed(2);
-		var CSPM_ADC = (CS_ADC/adcPlayedLength*60).toFixed(2);
-		var DPM_ADC = (adcDealtDamage/adcPlayedLength*60).toFixed(2);
-		var DTPM_ADC = (adcDamageTaken/adcPlayedLength*60).toFixed(2);
+		
+		
+		
+		
+		
+		
+		
+		
+		GPM_ADC = (goldEarned/ adcPlayedLength*60).toFixed(2);
+		CS_zeroToTenPerMatch_ADC = (CS_zeroToTen_ADC/adcPlayed*10).toFixed(2);
+		CSPM_ADC = (CS_ADC/adcPlayedLength*60).toFixed(2);
+		DPM_ADC = (D_ADC/adcPlayedLength*60).toFixed(2);
+		DTPM_ADC = (DT_ADC/adcPlayedLength*60).toFixed(2);
+		WinRate_ADC = (WIN_ADC/adcPlayed * 100).toFixed(2);
+		H_ADC = (H_ADC/adcPlayedLength*60).toFixed(2);
+		
+		if(adcPlayed <= 0){
+			GPM_ADC = 0;
+			CS_zeroToTenPerMatch_ADC = 0;
+			CSPM_ADC = 0;
+			DPM_ADC = 0;
+			DTPM_ADC = 0;
+			WinRate_ADC = 0;
+			H_ADC = 0;
+		}
+		
+		GPM_MID = (goldEarned/ midPlayedLength*60).toFixed(2);
+		CS_zeroToTenPerMatch_MID = (CS_zeroToTen_MID/midPlayed*10).toFixed(2);
+		CSPM_MID = (CS_MID/midPlayedLength*60).toFixed(2);
+		DPM_MID = (D_MID/midPlayedLength*60).toFixed(2);
+		DTPM_MID = (DT_MID/midPlayedLength*60).toFixed(2);
+		WinRate_MID = (WIN_MID/midPlayed * 100).toFixed(2);
+		H_MID = (H_MID/midPlayedLength*60).toFixed(2);
+		
+		if(midPlayed <= 0){
+			GPM_MID = 0;
+			CS_zeroToTenPerMatch_MID = 0;
+			CSPM_MID = 0;
+			DPM_MID = 0;
+			DTPM_MID = 0;
+			WinRate_MID = 0;
+			H_MID = 0;
+		}
+		
+		GPM_TOP = (goldEarned/ topPlayedLength*60).toFixed(2);
+		CS_zeroToTenPerMatch_TOP = (CS_zeroToTen_TOP/topPlayed*10).toFixed(2);
+		CSPM_TOP = (CS_TOP/topPlayedLength*60).toFixed(2);
+		DPM_TOP = (D_TOP/topPlayedLength*60).toFixed(2);
+		DTPM_TOP = (DT_TOP/topPlayedLength*60).toFixed(2);
+		WinRate_TOP = (WIN_TOP/topPlayed * 100).toFixed(2);
+		H_TOP = (H_TOP/topPlayedLength*60).toFixed(2);
+		
+		if(topPlayed <= 0){
+			GPM_TOP = 0;
+			CS_zeroToTenPerMatch_TOP = 0;
+			CSPM_TOP = 0;
+			DPM_TOP = 0;
+			DTPM_TOP = 0;
+			WinRate_TOP = 0;
+			H_TOP = 0;
+		}
+		
+		GPM_SUP = (goldEarned/ supportPlayedLength*60).toFixed(2);
+		CS_zeroToTenPerMatch_SUP = (CS_zeroToTen_SUP/supportPlayedLength*10).toFixed(2);
+		CSPM_SUP = (CS_SUP/supportPlayedLength*60).toFixed(2);
+		DPM_SUP = (D_SUP/supportPlayedLength*60).toFixed(2);
+		DTPM_SUP = (DT_SUP/supportPlayedLength*60).toFixed(2);
+		WinRate_SUP = (WIN_SUP/supportPlayedLength * 100).toFixed(2);
+		H_SUP = (H_SUP/supportPlayedLength*60).toFixed(2);
+		
+		if(supportPlayed <= 0){
+			GPM_SUP = 0;
+			CS_zeroToTenPerMatch_SUP = 0;
+			CSPM_SUP = 0;
+			DPM_SUP = 0;
+			DTPM_SUP = 0;
+			WinRate_SUP = 0;
+			H_SUP = 0;
+		}
+		
+		GPM_JG = (goldEarned/ junglePlayedLength*60).toFixed(2);
+		CS_zeroToTenPerMatch_JG = (CS_zeroToTen_JG/junglePlayed*10).toFixed(2);
+		CSPM_JG = (CS_JG/junglePlayedLength*60).toFixed(2);
+		DPM_JG = (D_JG/junglePlayedLength*60).toFixed(2);
+		DTPM_JG = (DT_JG/junglePlayedLength*60).toFixed(2);
+		WinRate_JG = (WIN_JG/junglePlayed * 100).toFixed(2);
+		H_JG = (H_JG/junglePlayedLength*60).toFixed(2);
+		
+		if(junglePlayed <= 0){
+			GPM_JG = 0;
+			CS_zeroToTenPerMatch_JG = 0;
+			CSPM_JG = 0;
+			DPM_JG = 0;
+			DTPM_JG = 0;
+			WinRate_JG = 0;
+			H_JG = 0;
+		}
+		
 		//format data
 		/*
 		var analysis = '[{';
@@ -813,6 +1060,9 @@ module.exports = {
 		var TargetControl_avg;
 		var TargetControl_crit;
 		
+		var GPM_avg;
+		var GPM_crit;
+		
 		
 		if(summoner_tier){
 			KDA_avg = leagueDataArray[summoner_tier].KDA_AVG;
@@ -825,6 +1075,8 @@ module.exports = {
 			TargetControl_crit = leagueDataArray[summoner_tier].TARGETCONTROL_CRIT;
 			KillContri_avg = leagueDataArray[summoner_tier].KILLCONTRIBUTION_AVG;
 			KillContri_crit = leagueDataArray[summoner_tier].KILLCONTRIBUTION_CRIT;
+			GPM_avg = leagueDataArray[summoner_tier].GPM;
+			GPM_crit = leagueDataArray[summoner_tier].GPM_CRIT;
 		}
 		else{
 			console.log("Summoner tier is not available");
@@ -864,6 +1116,15 @@ module.exports = {
 		var Inhibitors_NextTier;
 		var RiftHerald_ThisTier;
 		var RiftHerald_NextTier;
+		var GPM_ThisTier;
+		var GPM_NextTier;
+		var DTPM_ThisTier;
+		var DTPM_NextTier;
+		var DPM_ThisTier;
+		var DPM_NextTier;
+		var H_ThisTier;
+		var H_NextTier;
+		
 		
 		
 		//Assign tier data
@@ -924,7 +1185,16 @@ module.exports = {
 			Inhibitors_NextTier = leagueDataArray[nextTier].INHIBITORS;
 			RiftHerald_ThisTier = leagueDataArray[summoner_tier].RIFTHERALD;
 			RiftHerald_NextTier = leagueDataArray[nextTier].RIFTHERALD;
+			GPM_ThisTier = (leagueDataArray[summoner_tier].GPM).toFixed(2);
+			GPM_NextTier = (leagueDataArray[nextTier].GPM).toFixed(2);
+			DTPM_ThisTier = (leagueDataArray[summoner_tier].DTPM_GENERAL*avgDuration/60).toFixed(2);
+			DTPM_NextTier = (leagueDataArray[nextTier].DTPM_GENERAL*avgDuration/60).toFixed(2);
+			DPM_ThisTier = (leagueDataArray[summoner_tier].DPM_GENERAL*avgDuration/60).toFixed(2);
+			DPM_NextTier = (leagueDataArray[nextTier].DPM_GENERAL*avgDuration/60).toFixed(2);
+			H_ThisTier = (leagueDataArray[summoner_tier].H_GENERAL*avgDuration/60).toFixed(2);
+			H_NextTier = (leagueDataArray[nextTier].H_GENERAL*avgDuration/60).toFixed(2);
 		}
+		
 		
 		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 100 : (KDA/KDA_crit*100).toFixed(2);
 		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 100 : (wardingValue/Vision_crit*100).toFixed(2);
@@ -947,6 +1217,9 @@ module.exports = {
 		
 		var TargetControl_avg_scaled = TargetControl_avg/TargetControl_crit*100 > 100 ? 100 : (TargetControl_avg/TargetControl_crit*100).toFixed(2);
 		
+		var GPM_scaled = GPM/GPM_crit*100 > 100 ? 100 : (GPM/GPM_crit*100).toFixed(2);
+		var GPM_avg_scaled = GPM_avg/GPM_crit*100 > 100 ? 100 : (GPM_avg/GPM_crit*100).toFixed(2);
+		
 		//100(true value-mean)/(max-min)+mean
 		
 		//Assessment
@@ -954,6 +1227,7 @@ module.exports = {
 		var VisionControl_Assessment = 'BRONZE';
 		var TargetControl_Assessment = 'BRONZE';
 		var KillContribution_Assessment = 'BRONZE';
+		var BE_Assessment = 'BRONZE';
 		
 		for(var i = 0; i < 7; i ++){
 			var curTier;
@@ -995,6 +1269,10 @@ module.exports = {
 			
 			if(leagueDataArray[curTier].KILLCONTRIBUTION_AVG < KillContribution){
 				KillContribution_Assessment = curTier;
+			}
+			
+			if(leagueDataArray[curTier].BE < BE){
+				BE_Assessment = curTier;
 			}
 		}
 		
@@ -1078,7 +1356,50 @@ module.exports = {
 		dataAnalysis += format('\"CS_zeroToTenPerMatch_ADC\": \"{CS_zeroToTenPerMatch_ADC}\",',{CS_zeroToTenPerMatch_ADC:CS_zeroToTenPerMatch_ADC});
 		dataAnalysis += format('\"CSPM_ADC\": \"{CSPM_ADC}\",',{CSPM_ADC:CSPM_ADC});
 		dataAnalysis += format('\"DPM_ADC\": \"{DPM_ADC}\",',{DPM_ADC:DPM_ADC});
-		dataAnalysis += format('\"DTPM_ADC\": \"{DTPM_ADC}\"',{DTPM_ADC:DTPM_ADC});
+		dataAnalysis += format('\"DTPM_ADC\": \"{DTPM_ADC}\",',{DTPM_ADC:DTPM_ADC});
+		dataAnalysis += format('\"WinRate_ADC\": \"{WinRate_ADC}\",',{WinRate_ADC:WinRate_ADC});
+		dataAnalysis += format('\"H_ADC\": \"{H_ADC}\",',{H_ADC:H_ADC});
+		dataAnalysis += format('\"GPM_MID\": \"{GPM_MID}\",',{GPM_MID:GPM_MID});
+		dataAnalysis += format('\"CS_zeroToTenPerMatch_MID\": \"{CS_zeroToTenPerMatch_MID}\",',{CS_zeroToTenPerMatch_MID:CS_zeroToTenPerMatch_MID});
+		dataAnalysis += format('\"CSPM_MID\": \"{CSPM_MID}\",',{CSPM_MID:CSPM_MID});
+		dataAnalysis += format('\"DPM_MID\": \"{DPM_MID}\",',{DPM_MID:DPM_MID});
+		dataAnalysis += format('\"DTPM_MID\": \"{DTPM_MID}\",',{DTPM_MID:DTPM_MID});
+		dataAnalysis += format('\"WinRate_MID\": \"{WinRate_MID}\",',{WinRate_MID:WinRate_MID});
+		dataAnalysis += format('\"H_MID\": \"{H_MID}\",',{H_MID:H_MID});
+		dataAnalysis += format('\"GPM_TOP\": \"{GPM_TOP}\",',{GPM_TOP:GPM_TOP});
+		dataAnalysis += format('\"CS_zeroToTenPerMatch_TOP\": \"{CS_zeroToTenPerMatch_TOP}\",',{CS_zeroToTenPerMatch_TOP:CS_zeroToTenPerMatch_TOP});
+		dataAnalysis += format('\"CSPM_TOP\": \"{CSPM_TOP}\",',{CSPM_TOP:CSPM_TOP});
+		dataAnalysis += format('\"DPM_TOP\": \"{DPM_TOP}\",',{DPM_TOP:DPM_TOP});
+		dataAnalysis += format('\"DTPM_TOP\": \"{DTPM_TOP}\",',{DTPM_TOP:DTPM_TOP});
+		dataAnalysis += format('\"WinRate_TOP\": \"{WinRate_TOP}\",',{WinRate_TOP:WinRate_TOP});
+		dataAnalysis += format('\"H_TOP\": \"{H_TOP}\",',{H_TOP:H_TOP});
+		dataAnalysis += format('\"GPM_SUP\": \"{GPM_SUP}\",',{GPM_SUP:GPM_SUP});
+		dataAnalysis += format('\"CS_zeroToTenPerMatch_SUP\": \"{CS_zeroToTenPerMatch_SUP}\",',{CS_zeroToTenPerMatch_SUP:CS_zeroToTenPerMatch_SUP});
+		dataAnalysis += format('\"CSPM_SUP\": \"{CSPM_SUP}\",',{CSPM_SUP:CSPM_SUP});
+		dataAnalysis += format('\"DPM_SUP\": \"{DPM_SUP}\",',{DPM_SUP:DPM_SUP});
+		dataAnalysis += format('\"DTPM_SUP\": \"{DTPM_SUP}\",',{DTPM_SUP:DTPM_SUP});
+		dataAnalysis += format('\"WinRate_SUP\": \"{WinRate_SUP}\",',{WinRate_SUP:WinRate_SUP});
+		dataAnalysis += format('\"H_SUP\": \"{H_SUP}\",',{H_SUP:H_SUP});
+		dataAnalysis += format('\"GPM_JG\": \"{GPM_JG}\",',{GPM_JG:GPM_JG});
+		dataAnalysis += format('\"CS_zeroToTenPerMatch_JG\": \"{CS_zeroToTenPerMatch_JG}\",',{CS_zeroToTenPerMatch_JG:CS_zeroToTenPerMatch_JG});
+		dataAnalysis += format('\"CSPM_JG\": \"{CSPM_JG}\",',{CSPM_JG:CSPM_JG});
+		dataAnalysis += format('\"DPM_JG\": \"{DPM_JG}\",',{DPM_JG:DPM_JG});
+		dataAnalysis += format('\"DTPM_JG\": \"{DTPM_JG}\",',{DTPM_JG:DTPM_JG});
+		dataAnalysis += format('\"WinRate_JG\": \"{WinRate_JG}\",',{WinRate_JG:WinRate_JG});
+		dataAnalysis += format('\"BE_RAW\": \"{BE}\",',{BE:BE});
+		dataAnalysis += format('\"BE_ThisTier\": \"{BE_ThisTier}\",',{BE_ThisTier:BE_ThisTier});
+		dataAnalysis += format('\"BE_NextTier\": \"{BE_NextTier}\",',{BE_NextTier:BE_NextTier});
+		dataAnalysis += format('\"GPM_ThisTier\": \"{GPM_ThisTier}\",',{GPM_ThisTier:GPM_ThisTier});
+		dataAnalysis += format('\"GPM_NextTier\": \"{GPM_NextTier}\",',{GPM_NextTier:GPM_NextTier});
+		dataAnalysis += format('\"DTPM_ThisTier\": \"{DTPM_ThisTier}\",',{DTPM_ThisTier:DTPM_ThisTier});
+		dataAnalysis += format('\"DTPM_NextTier\": \"{DTPM_NextTier}\",',{DTPM_NextTier:DTPM_NextTier});
+		dataAnalysis += format('\"DPM_ThisTier\": \"{DPM_ThisTier}\",',{DPM_ThisTier:DPM_ThisTier});
+		dataAnalysis += format('\"DPM_NextTier\": \"{DPM_NextTier}\",',{DPM_NextTier:DPM_NextTier});
+		dataAnalysis += format('\"H_ThisTier\": \"{H_ThisTier}\",',{H_ThisTier:H_ThisTier});
+		dataAnalysis += format('\"H_NextTier\": \"{H_NextTier}\",',{H_NextTier:H_NextTier});
+		dataAnalysis += format('\"GPM_scaled\": \"{GPM_scaled}\",',{GPM_scaled:GPM_scaled});
+		dataAnalysis += format('\"GPM_avg_scaled\": \"{GPM_avg_scaled}\",',{GPM_avg_scaled:GPM_avg_scaled});
+		dataAnalysis += format('\"BE_Assessment\": \"{BE_Assessment}\"',{BE_Assessment:BE_Assessment});
 		dataAnalysis += '}]';
 		
 		

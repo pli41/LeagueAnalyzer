@@ -28,7 +28,7 @@
 }
 
 .container{
-	margin-top: 90px;
+	margin-top: 3%;
 }
 
 #analysisGraph{
@@ -62,7 +62,7 @@
 
 .mainGraph{
 	padding-left: 15%;
-    padding-top: 6%;
+    margin-top: 17%;
 	width: 100%;
 }
 
@@ -86,4 +86,20 @@ table tr{
 	border: 1px green dashed;
     padding-left: 2%;
     padding-right: 2%;
+	margin-top: 12%;
+}
+
+#positionNav > li > a{
+	border-bottom-color: green;
+}
+
+.active > a{
+	border-bottom-color: #222 !important;
+	border-top-color: green !important;
+	border-left-color: green !important;
+	border-right-color: green !important;
+}
+
+#DetailedAnalysis{
+	margin-top: -1.6%;
 }

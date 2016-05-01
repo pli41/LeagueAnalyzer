@@ -1,6 +1,7 @@
 define([
 	"angular",
 	"angular-route",
+	"bootstrapjs",
 	"controller",
 	"controller-require",
 	

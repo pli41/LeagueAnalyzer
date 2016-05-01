@@ -92,13 +92,19 @@ define([
 
                 }
             }
-        ]).controller("graphCtr", ['$scope', 'userInfo',
-            function($scope, userInfo) {
+        ]).controller("graphCtr", ['$scope', 'userInfo','$routeParams','$location',
+            function($scope, userInfo,$routeParams,$location) {
+		
+				if (userInfo.username == undefined){
+					$location.path("login");
+				}else {
                 console.log(userInfo);
+				$curlocation = $location.path();
+				console.log($curlocation);
                 $scope.username = userInfo.username;
                 $scope.playerData = userInfo.data;
                 $scope.data = {
-                    labels: ['KDA', 'BattleEfficiency', 'VisionControl', 'KillContribution', 'ObjectiveControl'],
+                    labels: ['KDA', 'BattleEfficiency', 'VisionControl', 'KillContribution', 'ObjectiveControl', 'Farming'],
                     datasets: [{
                         label: 'Player\'s Data',
                         fillColor: 'rgba(255,204,0,0.5)',
@@ -108,17 +114,17 @@ define([
                         pointStrokeColor: '#fff',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(220,220,220,1)',
-                        data: [userInfo.data.KDA_graph, userInfo.data.BE_graph, userInfo.data.VisionControl_graph, userInfo.data.KillContribution_graph, userInfo.data.TargetControl_graph]
+                        data: [userInfo.data.KDA_graph, userInfo.data.BE_graph, userInfo.data.VisionControl_graph, userInfo.data.KillContribution_graph, userInfo.data.TargetControl_graph, userInfo.data.GPM_scaled]
 
                     }, {
-                        label: 'Division Average',
+                        label: 'Tier Average',
                         fillColor: 'rgba(151,187,205,0.5)',
                         strokeColor: 'rgba(151,187,205,1)',
                         pointColor: 'rgba(151,187,205,1)',
                         pointStrokeColor: '#fff',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(255,204,0,1)',
-                        data: [userInfo.data.KDA_avg_graph, userInfo.data.BE_avg_graph, userInfo.data.VisionControl_avg_graph, userInfo.data.KillContribution_avg_graph, userInfo.data.TargetControl_avg_graph]
+                        data: [userInfo.data.KDA_avg_graph, userInfo.data.BE_avg_graph, userInfo.data.VisionControl_avg_graph, userInfo.data.KillContribution_avg_graph, userInfo.data.TargetControl_avg_graph, userInfo.data.GPM_avg_scaled]
                     }]
                 };
                 $scope.versatility = {
@@ -203,7 +209,7 @@ define([
 				$scope.topPlayed = userInfo.data.TopPlayed;
 				
 				
-				
+				}
 				
 				
             }

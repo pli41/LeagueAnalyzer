@@ -26,7 +26,7 @@
 			</div>
 			
 		</div>
-		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+		<div id="DetailedAnalysis" class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 			<h1> Detailed Analysis</h1>
 			<p>Data from recent {{playerData.gamesAnalyzed}} matches</p>
 			<div class="row">
@@ -45,119 +45,395 @@
 					<canvas tc-chartjs-radar chart-options="options" chart-data="versatility"/>
 				</div>
 			</div>
-			<table class="table table-condensed table-bordered" >
-				<thead>
-					<tr>
-						<th/>
-						<th>YOU</th>
-						<th>{{playerData.Tier}}</th>
-						<th>{{playerData.NextTier}}</th>
-						<th>Assessment</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>WIN RATE</td>
-						<td>{{playerData.WINRate_Raw}}%</td>
-						<td/>
-						<td/>
-					</tr>
-					<tr>
-						<td>KDA</td>
-						<td>{{playerData.KDA_Raw}}</td>
-						<td>{{playerData.KDA_ThisTier}}</td>
-						<td>{{playerData.KDA_NextTier}}</td>
-						<td>{{playerData.KDA_Assessment}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Kills</td>
-						<td>{{playerData.Kill_player}}</td>
-						<td>{{playerData.Kills_ThisTier}}</td>
-						<td>{{playerData.Kills_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Deaths</td>
-						<td>{{playerData.Death_player}}</td>
-						<td>{{playerData.Deaths_ThisTier}}</td>
-						<td>{{playerData.Deaths_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Assists</td>
-						<td>{{playerData.Assist_player}}</td>
-						<td>{{playerData.Assists_ThisTier}}</td>
-						<td>{{playerData.Assists_NextTier}}</td>
-					</tr>
-					<tr>
-						<td>VISION CONTROL</td>
-						<td>{{playerData.VisionControl_Raw}}</td>
-						<td>{{playerData.VisionControl_ThisTier}}</td>
-						<td>{{playerData.VisionControl_NextTier}}</td>
-						<td>{{playerData.VisionControl_Assessment}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Vision Wards Purchased</td>
-						<td>{{playerData.VisionWards}}</td>
-						<td>{{playerData.VisionWards_ThisTier}}</td>
-						<td>{{playerData.VisionWards_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Wards Killed</td>
-						<td>{{playerData.WardsKilled}}</td>
-						<td>{{playerData.WardsKilled_ThisTier}}</td>
-						<td>{{playerData.WardsKilled_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Wards Placed</td>
-						<td>{{playerData.WardsPlaced}}</td>
-						<td>{{playerData.WardsPlaced_ThisTier}}</td>
-						<td>{{playerData.WardsPlaced_NextTier}}</td>
-					</tr>
-					<tr>
-						<td>OBJECTIVE CONTROL</td>
-						<td>{{playerData.TargetControl_Raw}}</td>
-						<td>{{playerData.TargetControl_ThisTier}}</td>
-						<td>{{playerData.TargetControl_NextTier}}</td>
-						<td>{{playerData.TargetControl_Assessment}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Dragons Killed</td>
-						<td>{{playerData.DragonsKilled}}</td>
-						<td>{{playerData.Dragons_ThisTier}}</td>
-						<td>{{playerData.Dragons_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Rift Heralds Killed</td>
-						<td>{{playerData.RiftHeraldsKilled}}</td>
-						<td>{{playerData.RiftHerald_ThisTier}}</td>
-						<td>{{playerData.RiftHerald_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Barons Killed</td>
-						<td>{{playerData.BaronsKilled}}</td>
-						<td>{{playerData.Barons_ThisTier}}</td>
-						<td>{{playerData.Barons_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Towers Killed</td>
-						<td>{{playerData.TowersKilled}}</td>
-						<td>{{playerData.Towers_ThisTier}}</td>
-						<td>{{playerData.Towers_NextTier}}</td>
-					</tr>
-					<tr class="subData">
-						<td>Inhibitors Killed</td>
-						<td>{{playerData.InhibitorsKilled}}</td>
-						<td>{{playerData.Inhibitors_ThisTier}}</td>
-						<td>{{playerData.Inhibitors_NextTier}}</td>
-					</tr>
-					<tr>
-						<td>KILL CONTRIBUTION</td>
-						<td>{{playerData.KillContribution_Raw}}%</td>
-						<td>{{playerData.KillContribution_ThisTier}}%</td>
-						<td>{{playerData.KillContribution_NextTier}}%</td>
-						<td>{{playerData.KillContribution_Assessment}}</td>
-					</tr>
-				</tbody>
-			</table>
+			
+			<ul class="nav nav-tabs nav-justified" id="positionNav" role="tablist">
+				<li role="presentation" class="active"><a href="#General" aria-controls="General" role="tab" data-toggle="tab">Home</a></li>
+				<li role="presentation"><a href="#TOP" aria-controls="Top" role="tab" data-toggle="tab">TOP</a></li>
+				<li role="presentation"><a href="#JUNGLE" aria-controls="Jungle" role="tab" data-toggle="tab">JUNGLE</a></li>
+				<li role="presentation"><a href="#MID" aria-controls="Mid" role="tab" data-toggle="tab">MID</a></li>
+				<li role="presentation"><a href="#ADC" aria-controls="Adc" role="tab" data-toggle="tab">ADC</a></li>
+				<li role="presentation"><a href="#SUPPORT" aria-controls="Support" role="tab" data-toggle="tab">SUPPORT</a></li>
+			</ul>
+			
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane fade in active" id="General">				
+					<table class="table table-condensed table-bordered" >
+						<thead>
+							<tr>
+								<th/>
+								<th>YOU</th>
+								<th>{{playerData.Tier}}</th>
+								<th>{{playerData.NextTier}}</th>
+								<th>Assessment</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>WIN RATE</td>
+								<td>{{playerData.WINRate_Raw}}%</td>
+								<td/>
+								<td/>
+							</tr>
+							<tr>
+								<td>KDA</td>
+								<td>{{playerData.KDA_Raw}}</td>
+								<td>{{playerData.KDA_ThisTier}}</td>
+								<td>{{playerData.KDA_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Kills</td>
+								<td>{{playerData.Kill_player}}</td>
+								<td>{{playerData.Kills_ThisTier}}</td>
+								<td>{{playerData.Kills_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Deaths</td>
+								<td>{{playerData.Death_player}}</td>
+								<td>{{playerData.Deaths_ThisTier}}</td>
+								<td>{{playerData.Deaths_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Assists</td>
+								<td>{{playerData.Assist_player}}</td>
+								<td>{{playerData.Assists_ThisTier}}</td>
+								<td>{{playerData.Assists_NextTier}}</td>
+							</tr>
+							<tr>
+								<td>VISION CONTROL</td>
+								<td>{{playerData.VisionControl_Raw}}</td>
+								<td>{{playerData.VisionControl_ThisTier}}</td>
+								<td>{{playerData.VisionControl_NextTier}}</td>
+								<td>{{playerData.VisionControl_Assessment}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Vision Wards Purchased</td>
+								<td>{{playerData.VisionWards}}</td>
+								<td>{{playerData.VisionWards_ThisTier}}</td>
+								<td>{{playerData.VisionWards_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Wards Killed</td>
+								<td>{{playerData.WardsKilled}}</td>
+								<td>{{playerData.WardsKilled_ThisTier}}</td>
+								<td>{{playerData.WardsKilled_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Wards Placed</td>
+								<td>{{playerData.WardsPlaced}}</td>
+								<td>{{playerData.WardsPlaced_ThisTier}}</td>
+								<td>{{playerData.WardsPlaced_NextTier}}</td>
+							</tr>
+							<tr>
+								<td>OBJECTIVE CONTROL</td>
+								<td>{{playerData.TargetControl_Raw}}</td>
+								<td>{{playerData.TargetControl_ThisTier}}</td>
+								<td>{{playerData.TargetControl_NextTier}}</td>
+								<td>{{playerData.TargetControl_Assessment}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Dragons Killed</td>
+								<td>{{playerData.DragonsKilled}}</td>
+								<td>{{playerData.Dragons_ThisTier}}</td>
+								<td>{{playerData.Dragons_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Rift Heralds Killed</td>
+								<td>{{playerData.RiftHeraldsKilled}}</td>
+								<td>{{playerData.RiftHerald_ThisTier}}</td>
+								<td>{{playerData.RiftHerald_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Barons Killed</td>
+								<td>{{playerData.BaronsKilled}}</td>
+								<td>{{playerData.Barons_ThisTier}}</td>
+								<td>{{playerData.Barons_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Towers Killed</td>
+								<td>{{playerData.TowersKilled}}</td>
+								<td>{{playerData.Towers_ThisTier}}</td>
+								<td>{{playerData.Towers_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Inhibitors Killed</td>
+								<td>{{playerData.InhibitorsKilled}}</td>
+								<td>{{playerData.Inhibitors_ThisTier}}</td>
+								<td>{{playerData.Inhibitors_NextTier}}</td>
+							</tr>
+							<tr>
+								<td>KILL CONTRIBUTION</td>
+								<td>{{playerData.KillContribution_Raw}}%</td>
+								<td>{{playerData.KillContribution_ThisTier}}%</td>
+								<td>{{playerData.KillContribution_NextTier}}%</td>
+								<td>{{playerData.KillContribution_Assessment}}</td>
+							</tr>
+							<tr>
+								<td>BATTLE EFFICIENCY</td>
+								<td>{{playerData.BE_RAW}}</td>
+								<td>{{playerData.BE_ThisTier}}</td>
+								<td>{{playerData.BE_NextTier}}</td>
+								<td>{{playerData.BE_Assessment}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Gold Per Min</td>
+								<td>{{playerData.GPM}}</td>
+								<td>{{playerData.GPM_ThisTier}}</td>
+								<td>{{playerData.GPM_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>DamageTaken Per Match</td>
+								<td>{{playerData.damageTakenPerMatch}}</td>
+								<td>{{playerData.DTPM_ThisTier}}</td>
+								<td>{{playerData.DTPM_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Damage to champions Per Match</td>
+								<td>{{playerData.damageDealtToChampionsPerMatch}}</td>
+								<td>{{playerData.DPM_ThisTier}}</td>
+								<td>{{playerData.DPM_NextTier}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Healing Per Match</td>
+								<td>{{playerData.healPerMatch}}</td>
+								<td>{{playerData.H_ThisTier}}</td>
+								<td>{{playerData.H_NextTier}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="TOP">
+					<table class="table table-condensed table-bordered" >
+						<thead>
+							<tr>
+								<th/>
+								<th>YOU</th>
+								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.NextTier}}</th>
+								<th>Assessment</th-->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>WIN RATE</td>
+								<td>{{playerData.WinRate_TOP}}%</td>
+							</tr>
+							<tr>
+								<td>Performance Details</td>
+							</tr>
+							<tr class="subData">
+								<td>Gold Per Min</td>
+								<td>{{playerData.GPM_TOP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS in the first 10 mins</td>
+								<td>{{playerData.CS_zeroToTenPerMatch_TOP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS Per Min</td>
+								<td>{{playerData.CSPM_TOP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Damage Per Min</td>
+								<td>{{playerData.DPM_TOP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>DamageTaken Per Min</td>
+								<td>{{playerData.DTPM_TOP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Healing Per Min</td>
+								<td>{{playerData.H_TOP}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="JUNGLE">
+					<table class="table table-condensed table-bordered" >
+						<thead>
+							<tr>
+								<th/>
+								<th>YOU</th>
+								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.NextTier}}</th>
+								<th>Assessment</th-->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>WIN RATE</td>
+								<td>{{playerData.WinRate_JG}}%</td>
+							</tr>
+							<tr>
+								<td>Performance Details</td>
+							</tr>
+							<tr class="subData">
+								<td>Gold Per Min</td>
+								<td>{{playerData.GPM_JG}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS in the first 10 mins</td>
+								<td>{{playerData.CS_zeroToTenPerMatch_JG}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS Per Min</td>
+								<td>{{playerData.CSPM_JG}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Damage Per Min</td>
+								<td>{{playerData.DPM_JG}}</td>
+							</tr>
+							<tr class="subData">
+								<td>DamageTaken Per Min</td>
+								<td>{{playerData.DTPM_JG}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Healing Per Min</td>
+								<td>{{playerData.H_JG}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="MID">
+					<table class="table table-condensed table-bordered" >
+						<thead>
+							<tr>
+								<th/>
+								<th>YOU</th>
+								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.NextTier}}</th>
+								<th>Assessment</th-->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>WIN RATE</td>
+								<td>{{playerData.WinRate_MID}}%</td>
+							</tr>
+							<tr>
+								<td>Performance Details</td>
+							</tr>
+							<tr class="subData">
+								<td>Gold Per Min</td>
+								<td>{{playerData.GPM_MID}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS in the first 10 mins</td>
+								<td>{{playerData.CS_zeroToTenPerMatch_MID}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS Per Min</td>
+								<td>{{playerData.CSPM_MID}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Damage Per Min</td>
+								<td>{{playerData.DPM_MID}}</td>
+							</tr>
+							<tr class="subData">
+								<td>DamageTaken Per Min</td>
+								<td>{{playerData.DTPM_MID}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Healing Per Min</td>
+								<td>{{playerData.H_MID}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="ADC">
+					<table class="table table-condensed table-bordered" >
+						<thead>
+							<tr>
+								<th/>
+								<th>YOU</th>
+								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.NextTier}}</th>
+								<th>Assessment</th-->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>WIN RATE</td>
+								<td>{{playerData.WinRate_ADC}}%</td>
+							</tr>
+							<tr>
+								<td>Performance Details</td>
+							</tr>
+							<tr class="subData">
+								<td>Gold Per Min</td>
+								<td>{{playerData.GPM_ADC}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS in the first 10 mins</td>
+								<td>{{playerData.CS_zeroToTenPerMatch_ADC}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS Per Min</td>
+								<td>{{playerData.CSPM_ADC}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Damage Per Min</td>
+								<td>{{playerData.DPM_ADC}}</td>
+							</tr>
+							<tr class="subData">
+								<td>DamageTaken Per Min</td>
+								<td>{{playerData.DTPM_ADC}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Healing Per Min</td>
+								<td>{{playerData.H_ADC}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div role="tabpanel" class="tab-pane fade" id="SUPPORT">
+					<table class="table table-condensed table-bordered" >
+						<thead>
+							<tr>
+								<th/>
+								<th>YOU</th>
+								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.NextTier}}</th>
+								<th>Assessment</th-->
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>WIN RATE</td>
+								<td>{{playerData.WinRate_SUP}}%</td>
+							</tr>
+							<tr>
+								<td>Performance Details</td>
+							</tr>
+							<tr class="subData">
+								<td>Gold Per Min</td>
+								<td>{{playerData.GPM_SUP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS in the first 10 mins</td>
+								<td>{{playerData.CS_zeroToTenPerMatch_SUP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>CS Per Min</td>
+								<td>{{playerData.CSPM_SUP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Damage Per Min</td>
+								<td>{{playerData.DPM_SUP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>DamageTaken Per Min</td>
+								<td>{{playerData.DTPM_SUP}}</td>
+							</tr>
+							<tr class="subData">
+								<td>Healing Per Min</td>
+								<td>{{playerData.H_SUP}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			
 		</div>
 
 	</div>
