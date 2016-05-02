@@ -100,7 +100,7 @@ define([
 				}else {
                 console.log(userInfo);
 				$curlocation = $location.path();
-				console.log($curlocation);
+				//console.log(userInfo.data.ADC.ThisTier.CS_zeroToTenPerMatch_ADC);
                 $scope.username = userInfo.username;
                 $scope.playerData = userInfo.data;
                 $scope.data = {

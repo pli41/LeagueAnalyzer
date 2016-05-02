@@ -37,7 +37,32 @@ bronzeDataArray = {
  'DPM_GENERAL': 513.08,
  'H_GENERAL': 147.2,
  'GPM': 343.25,
- 'GPM_CRIT': 402.07
+ 'GPM_CRIT': 402.07,
+ 'CS_zeroToTenPerMatch_ADC': 41.22,
+ 'CS_ADC': 4.19,
+ 'D_ADC': 560.73,
+ 'DT_ADC': 610.92,
+ 'H_ADC': 101.54,
+ 'CS_zeroToTenPerMatch_MID': 46.21,
+ 'CS_MID': 4.20,
+ 'D_MID': 633.05,
+ 'DT_MID': 610.11,
+ 'H_MID': 73.63,
+ 'CS_zeroToTenPerMatch_TOP': 46.05,
+ 'CS_TOP': 4.65,
+ 'D_TOP': 550.97,
+ 'DT_TOP': 875.08,
+ 'H_TOP': 156.68,
+ 'CS_zeroToTenPerMatch_JG': 5.61,
+ 'CS_JG': 1.85,
+ 'D_JG': 482.54,
+ 'DT_JG': 921.84,
+ 'H_JG': 247.97,
+ 'CS_zeroToTenPerMatch_SUP': 7.22,
+ 'CS_SUP': 1.09,
+ 'D_SUP': 317.00,
+ 'DT_SUP': 666.61,
+ 'H_SUP': 150.98
 };
 
 silverDataArray = {
@@ -70,7 +95,32 @@ silverDataArray = {
  'DPM_GENERAL': 535.10,
  'H_GENERAL': 152.43,
  'GPM': 354.97,
- 'GPM_CRIT': 416.36
+ 'GPM_CRIT': 416.36,
+ 'CS_zeroToTenPerMatch_ADC': 51.64,
+ 'CS_ADC': 5.176738,
+ 'D_ADC': 575.1337,
+ 'DT_ADC': 584.8045,
+ 'H_ADC': 97.22983,
+ 'CS_zeroToTenPerMatch_MID': 52.84093,
+ 'CS_MID': 4.769194,
+ 'D_MID': 631.1428,
+ 'DT_MID': 607.8646,
+ 'H_MID': 81.85914,
+ 'CS_zeroToTenPerMatch_TOP': 52.06204,
+ 'CS_TOP': 5.18612,
+ 'D_TOP': 589.7158,
+ 'DT_TOP': 846.0083,
+ 'H_TOP': 146.6239,
+ 'CS_zeroToTenPerMatch_JG': 5.313088,
+ 'CS_JG': 2.086805,
+ 'D_JG': 462.8668,
+ 'DT_JG': 911.6442,
+ 'H_JG': 259.4577,
+ 'CS_zeroToTenPerMatch_SUP': 6.515254,
+ 'CS_SUP': 1.0459,
+ 'D_SUP': 293.3001,
+ 'DT_SUP': 632.5766,
+ 'H_SUP': 170.6871
 };
 
 goldDataArray = {
@@ -103,7 +153,32 @@ goldDataArray = {
  'DPM_GENERAL': 556.72,
  'H_GENERAL': 156.72,
  'GPM': 363.0175839,
- 'GPM_CRIT': 434.6414259
+ 'GPM_CRIT': 434.6414259,
+ 'CS_zeroToTenPerMatch_ADC': 59.95434,
+ 'CS_ADC': 5.815613,
+ 'D_ADC': 655.2553,
+ 'DT_ADC': 572.5909,
+ 'H_ADC': 94.25504,
+ 'CS_zeroToTenPerMatch_MID': 57.04071,
+ 'CS_MID': 5.177813,
+ 'D_MID': 611.1606,
+ 'DT_MID': 604.8372,
+ 'H_MID': 78.37717,
+ 'CS_zeroToTenPerMatch_TOP': 56.27551,
+ 'CS_TOP': 5.610543,
+ 'D_TOP': 594.503,
+ 'DT_TOP': 858.05,
+ 'H_TOP': 152.0733,
+ 'CS_zeroToTenPerMatch_JG': 7.325333,
+ 'CS_JG': 2.242723,
+ 'D_JG': 500.6723,
+ 'DT_JG': 884.5847,
+ 'H_JG': 263.5943,
+ 'CS_zeroToTenPerMatch_SUP': 8.006389,
+ 'CS_SUP': 1.087654,
+ 'D_SUP': 268.9358,
+ 'DT_SUP': 646.7516,
+ 'H_SUP': 150.4234
 };
 
 platinumDataArray = {
@@ -136,7 +211,32 @@ platinumDataArray = {
  'DPM_GENERAL': 549.106393,
  'H_GENERAL': 154.6209118,
  'GPM': 364.9824291,
- 'GPM_CRIT': 422.4340578
+ 'GPM_CRIT': 422.4340578,
+ 'CS_zeroToTenPerMatch_ADC': 58.53614,
+ 'CS_ADC': 5.669069,
+ 'D_ADC': 620.6933,
+ 'DT_ADC': 594.6983,
+ 'H_ADC': 96.38024,
+ 'CS_zeroToTenPerMatch_MID': 58.08068,
+ 'CS_MID': 5.320488,
+ 'D_MID': 632.615,
+ 'DT_MID': 623.7903,
+ 'H_MID': 90.23448,
+ 'CS_zeroToTenPerMatch_TOP': 56.79487,
+ 'CS_TOP': 5.928681,
+ 'D_TOP': 548.1093,
+ 'DT_TOP': 839.3771,
+ 'H_TOP': 158.5227,
+ 'CS_zeroToTenPerMatch_JG': 7.685,
+ 'CS_JG': 2.233414,
+ 'D_JG': 479.1523,
+ 'DT_JG': 874.2897,
+ 'H_JG': 259.6069,
+ 'CS_zeroToTenPerMatch_SUP': 7.034375,
+ 'CS_SUP': 1.01271,
+ 'D_SUP': 280.3085,
+ 'DT_SUP': 610.5673,
+ 'H_SUP': 153.9793
 };
 
 diamondDataArray = {
@@ -169,7 +269,32 @@ diamondDataArray = {
  'DPM_GENERAL': 548.3649939,
  'H_GENERAL': 158.9198297,
  'GPM': 371.7610833,
- 'GPM_CRIT': 436.9838794
+ 'GPM_CRIT': 436.9838794,
+ 'CS_zeroToTenPerMatch_ADC': 60.03946,
+ 'CS_ADC': 6.020369,
+ 'D_ADC': 609.9212,
+ 'DT_ADC': 573.2934,
+ 'H_ADC': 92.19754,
+ 'CS_zeroToTenPerMatch_MID': 62.52217,
+ 'CS_MID': 5.842995,
+ 'D_MID': 588.9385,
+ 'DT_MID': 631.8092,
+ 'H_MID': 87.65604,
+ 'CS_zeroToTenPerMatch_TOP': 60.09566,
+ 'CS_TOP': 6.116665,
+ 'D_TOP': 578.2164,
+ 'DT_TOP': 836.7498,
+ 'H_TOP': 162.1128,
+ 'CS_zeroToTenPerMatch_JG': 10.81146,
+ 'CS_JG': 2.217632,
+ 'D_JG': 484.9831,
+ 'DT_JG': 874.3494,
+ 'H_JG': 263.1379,
+ 'CS_zeroToTenPerMatch_SUP': 6.735376,
+ 'CS_SUP': 1.013749,
+ 'D_SUP': 250.5981,
+ 'DT_SUP': 621.9626,
+ 'H_SUP': 180.3654
 };
 
 masterDataArray = {
@@ -202,7 +327,32 @@ masterDataArray = {
  'DPM_GENERAL': 552.7812422,
  'H_GENERAL': 172.9936269,
  'GPM': 379.7453191,
- 'GPM_CRIT': 446.5143589
+ 'GPM_CRIT': 446.5143589,
+ 'CS_zeroToTenPerMatch_ADC': 61.99997,
+ 'CS_ADC': 6.184273,
+ 'D_ADC': 651.7377,
+ 'DT_ADC': 580.6486,
+ 'H_ADC': 100.0616,
+ 'CS_zeroToTenPerMatch_MID': 65.20282,
+ 'CS_MID': 6.106245,
+ 'D_MID': 623.9753,
+ 'DT_MID': 615.7327,
+ 'H_MID': 83.02311,
+ 'CS_zeroToTenPerMatch_TOP': 61.44952,
+ 'CS_TOP': 6.185975,
+ 'D_TOP': 563.8368,
+ 'DT_TOP': 855.0649,
+ 'H_TOP': 169.9538,
+ 'CS_zeroToTenPerMatch_JG': 9.99561,
+ 'CS_JG': 2.466477,
+ 'D_JG': 524.4744,
+ 'DT_JG': 904.1218,
+ 'H_JG': 285.8498,
+ 'CS_zeroToTenPerMatch_SUP': 7.458861,
+ 'CS_SUP': 1.013975,
+ 'D_SUP': 239.5489,
+ 'DT_SUP': 637.9768,
+ 'H_SUP': 173.4436
 };
 
 challengerDataArray = {
@@ -235,7 +385,32 @@ challengerDataArray = {
  'DPM_GENERAL': 586.3033333,
  'H_GENERAL': 167.5259312,
  'GPM': 393.5036169,
- 'GPM_CRIT': 460.729069
+ 'GPM_CRIT': 460.729069,
+ 'CS_zeroToTenPerMatch_ADC': 64.00747,
+ 'CS_ADC': 6.48367,
+ 'D_ADC': 688.3789,
+ 'DT_ADC': 608.3339,
+ 'H_ADC': 109.4315,
+ 'CS_zeroToTenPerMatch_MID': 65.99967,
+ 'CS_MID': 6.28519,
+ 'D_MID': 645.2944,
+ 'DT_MID': 643.0063,
+ 'H_MID': 85.99746,
+ 'CS_zeroToTenPerMatch_TOP': 63.736,
+ 'CS_TOP': 6.446065,
+ 'D_TOP': 599.7133,
+ 'DT_TOP': 875.08,
+ 'H_TOP': 167.9741,
+ 'CS_zeroToTenPerMatch_JG': 14.59786,
+ 'CS_JG': 2.444959,
+ 'D_JG': 549.94,
+ 'DT_JG': 896.3726,
+ 'H_JG': 281.1807,
+ 'CS_zeroToTenPerMatch_SUP': 7.510244,
+ 'CS_SUP': 1.027085,
+ 'D_SUP': 263.1874,
+ 'DT_SUP': 635.4074,
+ 'H_SUP': 166.8783
 };
 
 leagueDataArray['BRONZE'] = bronzeDataArray;
@@ -682,7 +857,6 @@ module.exports = {
 					else{
 						topTimelineNum --;
 					}
-					
 				}
 				else{
 					topTimelineNum --;
@@ -1125,6 +1299,58 @@ module.exports = {
 		var H_ThisTier;
 		var H_NextTier;
 		
+		var CS_zeroToTenPerMatch_ADC_ThisTier;
+		var CS_ADC_ThisTier;
+		var D_ADC_ThisTier;
+		var DT_ADC_ThisTier;
+		var H_ADC_ThisTier;
+		var CS_zeroToTenPerMatch_MID_ThisTier;
+		var CS_MID_ThisTier;
+		var D_MID_ThisTier;
+		var DT_MID_ThisTier;
+		var H_MID_ThisTier;
+		var CS_zeroToTenPerMatch_TOP_ThisTier;
+		var CS_TOP_ThisTier;
+		var D_TOP_ThisTier;
+		var DT_TOP_ThisTier;
+		var H_TOP_ThisTier;
+		var CS_zeroToTenPerMatch_JG_ThisTier;
+		var CS_JG_ThisTier;
+		var D_JG_ThisTier;
+		var DT_JG_ThisTier;
+		var H_JG_ThisTier;
+		var CS_zeroToTenPerMatch_SUP_ThisTier;
+		var CS_SUP_ThisTier;
+		var D_SUP_ThisTier;
+		var DT_SUP_ThisTier;
+		var H_SUP_ThisTier;
+		
+		var CS_zeroToTenPerMatch_ADC_NextTier;
+		var CS_ADC_NextTier;
+		var D_ADC_NextTier;
+		var DT_ADC_NextTier;
+		var H_ADC_NextTier;
+		var CS_zeroToTenPerMatch_MID_NextTier;
+		var CS_MID_NextTier;
+		var D_MID_NextTier;
+		var DT_MID_NextTier;
+		var H_MID_NextTier;
+		var CS_zeroToTenPerMatch_TOP_NextTier;
+		var CS_TOP_NextTier;
+		var D_TOP_NextTier;
+		var DT_TOP_NextTier;
+		var H_TOP_NextTier;
+		var CS_zeroToTenPerMatch_JG_NextTier;
+		var CS_JG_NextTier;
+		var D_JG_NextTier;
+		var DT_JG_NextTier;
+		var H_JG_NextTier;
+		var CS_zeroToTenPerMatch_SUP_NextTier;
+		var CS_SUP_NextTier;
+		var D_SUP_NextTier;
+		var DT_SUP_NextTier;
+		var H_SUP_NextTier;
+		
 		
 		
 		//Assign tier data
@@ -1193,6 +1419,58 @@ module.exports = {
 			DPM_NextTier = (leagueDataArray[nextTier].DPM_GENERAL*avgDuration/60).toFixed(2);
 			H_ThisTier = (leagueDataArray[summoner_tier].H_GENERAL*avgDuration/60).toFixed(2);
 			H_NextTier = (leagueDataArray[nextTier].H_GENERAL*avgDuration/60).toFixed(2);
+			
+			CS_zeroToTenPerMatch_ADC_ThisTier = (leagueDataArray[summoner_tier].CS_zeroToTenPerMatch_ADC).toFixed(2);
+			CS_ADC_ThisTier = (leagueDataArray[summoner_tier].CS_ADC).toFixed(2);
+			D_ADC_ThisTier = (leagueDataArray[summoner_tier].D_ADC).toFixed(2);
+			DT_ADC_ThisTier = (leagueDataArray[summoner_tier].DT_ADC).toFixed(2);
+			H_ADC_ThisTier = (leagueDataArray[summoner_tier].H_ADC).toFixed(2);
+			CS_zeroToTenPerMatch_MID_ThisTier = (leagueDataArray[summoner_tier].CS_zeroToTenPerMatch_MID*avgDuration/60).toFixed(2);
+			CS_MID_ThisTier = (leagueDataArray[summoner_tier].CS_MID).toFixed(2);
+			D_MID_ThisTier = (leagueDataArray[summoner_tier].D_MID).toFixed(2);
+			DT_MID_ThisTier = (leagueDataArray[summoner_tier].DT_MID).toFixed(2);
+			H_MID_ThisTier = (leagueDataArray[summoner_tier].H_MID).toFixed(2);
+			CS_zeroToTenPerMatch_TOP_ThisTier = (leagueDataArray[summoner_tier].CS_zeroToTenPerMatch_TOP).toFixed(2);
+			CS_TOP_ThisTier = (leagueDataArray[summoner_tier].CS_TOP).toFixed(2);
+			D_TOP_ThisTier = (leagueDataArray[summoner_tier].D_TOP).toFixed(2);
+			DT_TOP_ThisTier = (leagueDataArray[summoner_tier].DT_TOP).toFixed(2);
+			H_TOP_ThisTier = (leagueDataArray[summoner_tier].H_TOP).toFixed(2);
+			CS_zeroToTenPerMatch_JG_ThisTier = (leagueDataArray[summoner_tier].CS_zeroToTenPerMatch_JG).toFixed(2);
+			CS_JG_ThisTier = (leagueDataArray[summoner_tier].CS_JG).toFixed(2);
+			D_JG_ThisTier = (leagueDataArray[summoner_tier].D_JG).toFixed(2);
+			DT_JG_ThisTier = (leagueDataArray[summoner_tier].DT_JG).toFixed(2);
+			H_JG_ThisTier = (leagueDataArray[summoner_tier].H_JG).toFixed(2);
+			CS_zeroToTenPerMatch_SUP_ThisTier = (leagueDataArray[summoner_tier].CS_zeroToTenPerMatch_SUP).toFixed(2);
+			CS_SUP_ThisTier = (leagueDataArray[summoner_tier].CS_SUP).toFixed(2);
+			D_SUP_ThisTier = (leagueDataArray[summoner_tier].D_SUP).toFixed(2);
+			DT_SUP_ThisTier = (leagueDataArray[summoner_tier].DT_SUP).toFixed(2);
+			H_SUP_ThisTier = (leagueDataArray[summoner_tier].H_SUP).toFixed(2);
+			
+			CS_zeroToTenPerMatch_ADC_NextTier = (leagueDataArray[nextTier].CS_zeroToTenPerMatch_ADC).toFixed(2);
+			CS_ADC_NextTier = (leagueDataArray[nextTier].CS_ADC).toFixed(2);
+			D_ADC_NextTier = (leagueDataArray[nextTier].D_ADC).toFixed(2);
+			DT_ADC_NextTier = (leagueDataArray[nextTier].DT_ADC).toFixed(2);
+			H_ADC_NextTier = (leagueDataArray[nextTier].H_ADC).toFixed(2);
+			CS_zeroToTenPerMatch_MID_NextTier = (leagueDataArray[nextTier].CS_zeroToTenPerMatch_MID).toFixed(2);
+			CS_MID_NextTier = (leagueDataArray[nextTier].CS_MID).toFixed(2);
+			D_MID_NextTier = (leagueDataArray[nextTier].D_MID).toFixed(2);
+			DT_MID_NextTier = (leagueDataArray[nextTier].DT_MID).toFixed(2);
+			H_MID_NextTier = (leagueDataArray[nextTier].H_MID).toFixed(2);
+			CS_zeroToTenPerMatch_TOP_NextTier = (leagueDataArray[nextTier].CS_zeroToTenPerMatch_TOP).toFixed(2);
+			CS_TOP_NextTier = (leagueDataArray[nextTier].CS_TOP).toFixed(2);
+			D_TOP_NextTier = (leagueDataArray[nextTier].D_TOP).toFixed(2);
+			DT_TOP_NextTier = (leagueDataArray[nextTier].DT_TOP).toFixed(2);
+			H_TOP_NextTier = (leagueDataArray[nextTier].H_TOP).toFixed(2);
+			CS_zeroToTenPerMatch_JG_NextTier = (leagueDataArray[nextTier].CS_zeroToTenPerMatch_JG).toFixed(2);
+			CS_JG_NextTier = (leagueDataArray[nextTier].CS_JG).toFixed(2);
+			D_JG_NextTier = (leagueDataArray[nextTier].D_JG).toFixed(2);
+			DT_JG_NextTier = (leagueDataArray[nextTier].DT_JG).toFixed(2);
+			H_JG_NextTier = (leagueDataArray[nextTier].H_JG).toFixed(2);
+			CS_zeroToTenPerMatch_SUP_NextTier = (leagueDataArray[nextTier].CS_zeroToTenPerMatch_SUP).toFixed(2);
+			CS_SUP_NextTier = (leagueDataArray[nextTier].CS_SUP).toFixed(2);
+			D_SUP_NextTier = (leagueDataArray[nextTier].D_SUP).toFixed(2);
+			DT_SUP_NextTier = (leagueDataArray[nextTier].DT_SUP).toFixed(2);
+			H_SUP_NextTier = (leagueDataArray[nextTier].H_SUP).toFixed(2);
 		}
 		
 		
@@ -1386,6 +1664,7 @@ module.exports = {
 		dataAnalysis += format('\"DPM_JG\": \"{DPM_JG}\",',{DPM_JG:DPM_JG});
 		dataAnalysis += format('\"DTPM_JG\": \"{DTPM_JG}\",',{DTPM_JG:DTPM_JG});
 		dataAnalysis += format('\"WinRate_JG\": \"{WinRate_JG}\",',{WinRate_JG:WinRate_JG});
+		dataAnalysis += format('\"H_JG\": \"{H_JG}\",',{H_JG:H_JG});
 		dataAnalysis += format('\"BE_RAW\": \"{BE}\",',{BE:BE});
 		dataAnalysis += format('\"BE_ThisTier\": \"{BE_ThisTier}\",',{BE_ThisTier:BE_ThisTier});
 		dataAnalysis += format('\"BE_NextTier\": \"{BE_NextTier}\",',{BE_NextTier:BE_NextTier});
@@ -1402,9 +1681,113 @@ module.exports = {
 		dataAnalysis += format('\"BE_Assessment\": \"{BE_Assessment}\"',{BE_Assessment:BE_Assessment});
 		dataAnalysis += '}]';
 		
-		
-		console.log(dataAnalysis);
 		var analysisJson = JSON.parse(dataAnalysis);
+		
+		analysisJson[0].ADC = {'ThisTier': {},'NextTier': {}};
+		analysisJson[0].TOP = {'ThisTier': {},'NextTier': {}};
+		analysisJson[0].MID = {'ThisTier': {},'NextTier': {}};
+		analysisJson[0].SUP = {'ThisTier': {},'NextTier': {}};
+		analysisJson[0].JG = {'ThisTier': {},'NextTier': {}};
+		
+		
+		/*
+		analysisJson.ADC.ThisTier = {[]};
+		analysisJson.MID.ThisTier = {[]};
+		analysisJson.TOP.ThisTier = {[]};
+		analysisJson.JG.ThisTier = {[]};
+		analysisJson.SUP.ThisTier = {[]};
+		
+		analysisJson.ADC.NextTier = {[]};
+		analysisJson.MID.NextTier = {[]};
+		analysisJson.TOP.NextTier = {[]};
+		analysisJson.JG.NextTier = {[]};
+		analysisJson.SUP.NextTier = {[]};
+		*/
+		
+		/*
+		analysisJson.ADC.ThisTier = {
+			CS_zeroToTenPerMatch_ADC: CS_zeroToTenPerMatch_ADC_ThisTier,
+			CS_ADC: CS_ADC_ThisTier,
+			D_ADC: D_ADC_ThisTier,
+			DT_ADC: DT_ADC_ThisTier,
+			H_ADC: H_ADC_ThisTier,
+			CS_zeroToTenPerMatch_MID: CS_zeroToTenPerMatch_MID_ThisTier,
+			CS_MID: CS_MID_ThisTier,
+			D_MID: D_MID_ThisTier,
+			DT_MID: DT_MID_ThisTier,
+			H_MID: H_MID_ThisTier
+			
+			
+			
+			
+		};
+		*/
+		
+		
+		analysisJson[0].ADC.ThisTier.CS_zeroToTenPerMatch_ADC = CS_zeroToTenPerMatch_ADC_ThisTier;
+		analysisJson[0].ADC.ThisTier.CS_ADC = CS_ADC_ThisTier;
+		analysisJson[0].ADC.ThisTier.D_ADC = D_ADC_ThisTier;
+		analysisJson[0].ADC.ThisTier.DT_ADC = DT_ADC_ThisTier;
+		analysisJson[0].ADC.ThisTier.H_ADC = H_ADC_ThisTier;
+		
+		analysisJson[0].MID.ThisTier.CS_zeroToTenPerMatch_MID = CS_zeroToTenPerMatch_MID_ThisTier;
+		analysisJson[0].MID.ThisTier.CS_MID = CS_MID_ThisTier;
+		analysisJson[0].MID.ThisTier.D_MID = D_MID_ThisTier;
+		analysisJson[0].MID.ThisTier.DT_MID = DT_MID_ThisTier;
+		analysisJson[0].MID.ThisTier.H_MID = H_MID_ThisTier;
+		
+		analysisJson[0].TOP.ThisTier.CS_zeroToTenPerMatch_TOP = CS_zeroToTenPerMatch_TOP_ThisTier;
+		analysisJson[0].TOP.ThisTier.CS_TOP = CS_TOP_ThisTier;
+		analysisJson[0].TOP.ThisTier.D_TOP = D_TOP_ThisTier;
+		analysisJson[0].TOP.ThisTier.DT_TOP = DT_TOP_ThisTier;
+		analysisJson[0].TOP.ThisTier.H_TOP = H_TOP_ThisTier;
+		
+		analysisJson[0].JG.ThisTier.CS_zeroToTenPerMatch_JG = CS_zeroToTenPerMatch_JG_ThisTier;
+		analysisJson[0].JG.ThisTier.CS_JG = CS_JG_ThisTier;
+		analysisJson[0].JG.ThisTier.D_JG = D_JG_ThisTier;
+		analysisJson[0].JG.ThisTier.DT_JG = DT_JG_ThisTier;
+		analysisJson[0].JG.ThisTier.H_JG = H_JG_ThisTier;
+		
+		analysisJson[0].SUP.ThisTier.CS_zeroToTenPerMatch_SUP = CS_zeroToTenPerMatch_SUP_ThisTier;
+		analysisJson[0].SUP.ThisTier.CS_SUP = CS_SUP_ThisTier;
+		analysisJson[0].SUP.ThisTier.D_SUP = D_SUP_ThisTier;
+		analysisJson[0].SUP.ThisTier.DT_SUP = DT_SUP_ThisTier;
+		analysisJson[0].SUP.ThisTier.H_SUP = H_SUP_ThisTier;
+		
+		
+		analysisJson[0].ADC.NextTier.CS_zeroToTenPerMatch_ADC = CS_zeroToTenPerMatch_ADC_NextTier;
+		analysisJson[0].ADC.NextTier.CS_ADC = CS_ADC_NextTier;
+		analysisJson[0].ADC.NextTier.D_ADC = D_ADC_NextTier;
+		analysisJson[0].ADC.NextTier.DT_ADC = DT_ADC_NextTier;
+		analysisJson[0].ADC.NextTier.H_ADC = H_ADC_NextTier;
+		
+		analysisJson[0].MID.NextTier.CS_zeroToTenPerMatch_MID = CS_zeroToTenPerMatch_MID_NextTier;
+		analysisJson[0].MID.NextTier.CS_MID = CS_MID_NextTier;
+		analysisJson[0].MID.NextTier.D_MID = D_MID_NextTier;
+		analysisJson[0].MID.NextTier.DT_MID = DT_MID_NextTier;
+		analysisJson[0].MID.NextTier.H_MID = H_MID_NextTier;
+		
+		analysisJson[0].TOP.NextTier.CS_zeroToTenPerMatch_TOP = CS_zeroToTenPerMatch_TOP_NextTier;
+		analysisJson[0].TOP.NextTier.CS_TOP = CS_TOP_NextTier;
+		analysisJson[0].TOP.NextTier.D_TOP = D_TOP_NextTier;
+		analysisJson[0].TOP.NextTier.DT_TOP = DT_TOP_NextTier;
+		analysisJson[0].TOP.NextTier.H_TOP = H_TOP_NextTier;
+		
+		analysisJson[0].JG.NextTier.CS_zeroToTenPerMatch_JG = CS_zeroToTenPerMatch_JG_NextTier;
+		analysisJson[0].JG.NextTier.CS_JG = CS_JG_NextTier;
+		analysisJson[0].JG.NextTier.D_JG = D_JG_NextTier;
+		analysisJson[0].JG.NextTier.DT_JG = DT_JG_NextTier;
+		analysisJson[0].JG.NextTier.H_JG = H_JG_NextTier;
+		
+		analysisJson[0].SUP.NextTier.CS_zeroToTenPerMatch_SUP = CS_zeroToTenPerMatch_SUP_NextTier;
+		analysisJson[0].SUP.NextTier.CS_SUP = CS_SUP_NextTier;
+		analysisJson[0].SUP.NextTier.D_SUP = D_SUP_NextTier;
+		analysisJson[0].SUP.NextTier.DT_SUP = DT_SUP_NextTier;
+		analysisJson[0].SUP.NextTier.H_SUP = H_SUP_NextTier;
+		
+		console.log(JSON.stringify(analysisJson));
+		console.log(JSON.stringify(analysisJson[0].ADC.ThisTier));
+		
 		
 		res.json(analysisJson);
 		return;

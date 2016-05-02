@@ -207,9 +207,9 @@
 							<tr>
 								<th/>
 								<th>YOU</th>
-								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.Tier}}</th>
 								<th>{{playerData.NextTier}}</th>
-								<th>Assessment</th-->
+								<th>Assessment</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -223,26 +223,38 @@
 							<tr class="subData">
 								<td>Gold Per Min</td>
 								<td>{{playerData.GPM_TOP}}</td>
+								<!--td>{{playerData.ThisTier.CS_zeroToTenPerMatch_TOP}}</td>
+								<td>{{playerData.NextTier.CS_zeroToTenPerMatch_TOP}}</td-->
 							</tr>
 							<tr class="subData">
 								<td>CS in the first 10 mins</td>
 								<td>{{playerData.CS_zeroToTenPerMatch_TOP}}</td>
+								<td>{{playerData.TOP.ThisTier.CS_zeroToTenPerMatch_TOP}}</td>
+								<td>{{playerData.TOP.NextTier.CS_zeroToTenPerMatch_TOP}}</td>
 							</tr>
 							<tr class="subData">
 								<td>CS Per Min</td>
 								<td>{{playerData.CSPM_TOP}}</td>
+								<td>{{playerData.TOP.ThisTier.CS_TOP}}</td>
+								<td>{{playerData.TOP.NextTier.CS_TOP}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Damage Per Min</td>
 								<td>{{playerData.DPM_TOP}}</td>
+								<td>{{playerData.TOP.ThisTier.D_TOP}}</td>
+								<td>{{playerData.TOP.NextTier.D_TOP}}</td>
 							</tr>
 							<tr class="subData">
 								<td>DamageTaken Per Min</td>
 								<td>{{playerData.DTPM_TOP}}</td>
+								<td>{{playerData.TOP.ThisTier.DT_TOP}}</td>
+								<td>{{playerData.TOP.NextTier.DT_TOP}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Healing Per Min</td>
 								<td>{{playerData.H_TOP}}</td>
+								<td>{{playerData.TOP.ThisTier.H_TOP}}</td>
+								<td>{{playerData.TOP.NextTier.H_TOP}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -253,9 +265,9 @@
 							<tr>
 								<th/>
 								<th>YOU</th>
-								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.Tier}}</th>
 								<th>{{playerData.NextTier}}</th>
-								<th>Assessment</th-->
+								<th>Assessment</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -273,22 +285,32 @@
 							<tr class="subData">
 								<td>CS in the first 10 mins</td>
 								<td>{{playerData.CS_zeroToTenPerMatch_JG}}</td>
+								<td>{{playerData.JG.ThisTier.CS_zeroToTenPerMatch_JG}}</td>
+								<td>{{playerData.JG.NextTier.CS_zeroToTenPerMatch_JG}}</td>
 							</tr>
 							<tr class="subData">
 								<td>CS Per Min</td>
 								<td>{{playerData.CSPM_JG}}</td>
+								<td>{{playerData.JG.ThisTier.CS_JG}}</td>
+								<td>{{playerData.JG.NextTier.CS_JG}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Damage Per Min</td>
 								<td>{{playerData.DPM_JG}}</td>
+								<td>{{playerData.JG.ThisTier.D_JG}}</td>
+								<td>{{playerData.JG.NextTier.D_JG}}</td>
 							</tr>
 							<tr class="subData">
 								<td>DamageTaken Per Min</td>
 								<td>{{playerData.DTPM_JG}}</td>
+								<td>{{playerData.JG.ThisTier.DT_JG}}</td>
+								<td>{{playerData.JG.NextTier.DT_JG}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Healing Per Min</td>
 								<td>{{playerData.H_JG}}</td>
+								<td>{{playerData.JG.ThisTier.H_JG}}</td>
+								<td>{{playerData.JG.NextTier.H_JG}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -299,9 +321,9 @@
 							<tr>
 								<th/>
 								<th>YOU</th>
-								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.Tier}}</th>
 								<th>{{playerData.NextTier}}</th>
-								<th>Assessment</th-->
+								<th>Assessment</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -319,22 +341,32 @@
 							<tr class="subData">
 								<td>CS in the first 10 mins</td>
 								<td>{{playerData.CS_zeroToTenPerMatch_MID}}</td>
+								<td>{{playerData.MID.ThisTier.CS_zeroToTenPerMatch_MID}}</td>
+								<td>{{playerData.MID.NextTier.CS_zeroToTenPerMatch_MID}}</td>
 							</tr>
 							<tr class="subData">
 								<td>CS Per Min</td>
 								<td>{{playerData.CSPM_MID}}</td>
+								<td>{{playerData.MID.ThisTier.CS_MID}}</td>
+								<td>{{playerData.MID.NextTier.CS_MID}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Damage Per Min</td>
 								<td>{{playerData.DPM_MID}}</td>
+								<td>{{playerData.MID.ThisTier.D_MID}}</td>
+								<td>{{playerData.MID.NextTier.D_MID}}</td>
 							</tr>
 							<tr class="subData">
 								<td>DamageTaken Per Min</td>
 								<td>{{playerData.DTPM_MID}}</td>
+								<td>{{playerData.MID.ThisTier.DT_MID}}</td>
+								<td>{{playerData.MID.NextTier.DT_MID}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Healing Per Min</td>
 								<td>{{playerData.H_MID}}</td>
+								<td>{{playerData.MID.ThisTier.H_MID}}</td>
+								<td>{{playerData.MID.NextTier.H_MID}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -345,9 +377,9 @@
 							<tr>
 								<th/>
 								<th>YOU</th>
-								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.Tier}}</th>
 								<th>{{playerData.NextTier}}</th>
-								<th>Assessment</th-->
+								<th>Assessment</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -365,22 +397,32 @@
 							<tr class="subData">
 								<td>CS in the first 10 mins</td>
 								<td>{{playerData.CS_zeroToTenPerMatch_ADC}}</td>
+								<td>{{playerData.ADC.ThisTier.CS_zeroToTenPerMatch_ADC}}</td>
+								<td>{{playerData.ADC.NextTier.CS_zeroToTenPerMatch_ADC}}</td>
 							</tr>
 							<tr class="subData">
 								<td>CS Per Min</td>
 								<td>{{playerData.CSPM_ADC}}</td>
+								<td>{{playerData.ADC.ThisTier.CS_ADC}}</td>
+								<td>{{playerData.ADC.NextTier.CS_ADC}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Damage Per Min</td>
 								<td>{{playerData.DPM_ADC}}</td>
+								<td>{{playerData.ADC.ThisTier.DT_ADC}}</td>
+								<td>{{playerData.ADC.NextTier.DT_ADC}}</td>
 							</tr>
 							<tr class="subData">
 								<td>DamageTaken Per Min</td>
 								<td>{{playerData.DTPM_ADC}}</td>
+								<td>{{playerData.ADC.ThisTier.DT_ADC}}</td>
+								<td>{{playerData.ADC.NextTier.DT_ADC}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Healing Per Min</td>
 								<td>{{playerData.H_ADC}}</td>
+								<td>{{playerData.ADC.ThisTier.H_ADC}}</td>
+								<td>{{playerData.ADC.NextTier.H_ADC}}</td>
 							</tr>
 						</tbody>
 					</table>
@@ -391,9 +433,9 @@
 							<tr>
 								<th/>
 								<th>YOU</th>
-								<!--th>{{playerData.Tier}}</th>
+								<th>{{playerData.Tier}}</th>
 								<th>{{playerData.NextTier}}</th>
-								<th>Assessment</th-->
+								<th>Assessment</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -411,22 +453,32 @@
 							<tr class="subData">
 								<td>CS in the first 10 mins</td>
 								<td>{{playerData.CS_zeroToTenPerMatch_SUP}}</td>
+								<td>{{playerData.SUP.ThisTier.CS_zeroToTenPerMatch_SUP}}</td>
+								<td>{{playerData.SUP.NextTier.CS_zeroToTenPerMatch_SUP}}</td>
 							</tr>
 							<tr class="subData">
 								<td>CS Per Min</td>
 								<td>{{playerData.CSPM_SUP}}</td>
+								<td>{{playerData.SUP.ThisTier.CS_SUP}}</td>
+								<td>{{playerData.SUP.NextTier.CS_SUP}}</td>	
 							</tr>
 							<tr class="subData">
 								<td>Damage Per Min</td>
 								<td>{{playerData.DPM_SUP}}</td>
+								<td>{{playerData.SUP.ThisTier.DT_SUP}}</td>
+								<td>{{playerData.SUP.NextTier.DT_SUP}}</td>
 							</tr>
 							<tr class="subData">
 								<td>DamageTaken Per Min</td>
 								<td>{{playerData.DTPM_SUP}}</td>
+								<td>{{playerData.SUP.ThisTier.DT_SUP}}</td>
+								<td>{{playerData.SUP.NextTier.DT_SUP}}</td>
 							</tr>
 							<tr class="subData">
 								<td>Healing Per Min</td>
 								<td>{{playerData.H_SUP}}</td>
+								<td>{{playerData.SUP.ThisTier.H_SUP}}</td>
+								<td>{{playerData.SUP.NextTier.H_SUP}}</td>
 							</tr>
 						</tbody>
 					</table>
