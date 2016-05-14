@@ -45,7 +45,7 @@ var data = {
 };
 ```
 
-The line chart requires an array of labels for each of the data points. This is shown on the X axis.
+The line chart requires an array of labels. This labels are shown on the X axis. There must be one label for each data point. More labels than datapoints are allowed, in which case the line ends at the last data point.
 The data for line charts is broken up into an array of datasets. Each dataset has a colour for the fill, a colour for the line and colours for the points and strokes of the points. These colours are strings just like CSS. You can use RGBA, RGB, HEX or HSL notation.
 
 The label key on each dataset is optional, and can be used when generating a scale for the chart.
@@ -100,8 +100,11 @@ These are the customisation options specific to Line charts. These options are m
 	datasetFill : true,
 	{% raw %}
 	//String - A legend template
-	legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+	legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
 	{% endraw %}
+
+	//Boolean - Whether to horizontally center the label and point dot inside the grid
+	offsetGridLines : false
 };
 ```
 

@@ -76,6 +76,9 @@ These are the customisation options specific to Radar charts. These options are 
 	//Number - Pixel width of the angle line
 	angleLineWidth : 1,
 
+	//Number - Interval at which to draw angle lines ("every Nth point")
+	angleLineInterval: 1,
+      
 	//String - Point label font declaration
 	pointLabelFontFamily : "'Arial'",
 
@@ -110,7 +113,7 @@ These are the customisation options specific to Radar charts. These options are 
 	datasetFill : true,
 	{% raw %}
 	//String - A legend template
-	legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
+	legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"><%if(datasets[i].label){%><%=datasets[i].label%><%}%></span></li><%}%></ul>"
 	{% endraw %}
 }
 ```

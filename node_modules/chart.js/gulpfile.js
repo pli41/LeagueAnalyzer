@@ -12,7 +12,8 @@ var gulp = require('gulp'),
 	exec = require('child_process').exec,
 	fs = require('fs'),
 	package = require('./package.json'),
-	bower = require('./bower.json');
+	bower = require('./bower.json'),
+	livereload = require('gulp-livereload');
 
 var srcDir = './src/';
 /*
@@ -28,7 +29,7 @@ gulp.task('build', function(){
 		isCustom = !!(util.env.types),
 		outputDir = (isCustom) ? 'custom' : '.';
 	if (isCustom){
-		util.env.types.split(',').forEach(function(type){ return srcFiles.push(FileName(type))});
+		util.env.types.split(',').forEach(function(type){ return srcFiles.push(FileName(type));});
 	}
 	else{
 		// Seems gulp-concat remove duplicates - nice!
@@ -46,7 +47,7 @@ gulp.task('build', function(){
 
 	function FileName(moduleName){
 		return srcDir+'Chart.'+moduleName+'.js';
-	};
+	}
 });
 
 /*
@@ -109,11 +110,20 @@ gulp.task('module-sizes', function(){
 	.pipe(size({
 		showFiles: true,
 		gzip: true
-	}))
+	}));
 });
 
 gulp.task('watch', function(){
 	gulp.watch('./src/*', ['build']);
+
+	livereload.listen(35729);
+
+	var reloadPage = function (evt) {
+	  livereload.changed(evt.path);
+	};
+
+	gulp.watch(['Chart.js', 'samples/*'], reloadPage);
+
 });
 
 gulp.task('test', ['jshint', 'valid']);
