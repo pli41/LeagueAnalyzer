@@ -1010,11 +1010,11 @@ module.exports = {
 		var jgTimelineNum = 0;
 		var supTimelineNum = 0;								
 		
-		var topPlayedLength = 0;
-		var midPlayedLength = 0;
-		var junglePlayedLength = 0;
-		var adcPlayedLength = 0;
-		var supportPlayedLength = 0;
+		var PlayedLength_TOP = 0;
+		var PlayedLength_MID = 0;
+		var PlayedLength_ADC = 0;
+		var PlayedLength_JG = 0;
+		var PlayedLength_SUP = 0;
 		
 		var D_ADC = 0;
 		var DT_ADC = 0;
@@ -1022,6 +1022,18 @@ module.exports = {
 		var CS_ADC = 0;
 		var H_ADC = 0;
 		var WIN_ADC = 0;
+		var CC_ADC = 0;
+		
+		var G_ADC = 0;
+		var K_ADC = 0;
+		var De_ADC = 0;
+		var A_ADC = 0;
+		var VW_ADC = 0;
+		var WK_ADC = 0;
+		var WP_ADC = 0;
+		var KC_ADC = 0;
+		var KDA_ADC = 0;
+		var TeamKills_ADC = 0;
 
 		var D_MID = 0;
 		var DT_MID = 0;
@@ -1029,6 +1041,18 @@ module.exports = {
 		var CS_MID = 0;
 		var H_MID = 0;
 		var WIN_MID = 0;
+		var CC_MID = 0;
+		
+		var G_MID = 0;
+		var K_MID = 0;
+		var De_MID = 0;
+		var A_MID = 0;
+		var VW_MID = 0;
+		var WK_MID = 0;
+		var WP_MID = 0;
+		var KC_MID = 0;
+		var KDA_MID = 0;
+		var TeamKills_MID = 0;
 		
 		var D_TOP = 0;
 		var DT_TOP = 0;
@@ -1036,6 +1060,19 @@ module.exports = {
 		var CS_TOP = 0;
 		var H_TOP = 0;
 		var WIN_TOP = 0;
+		var CC_TOP = 0;
+		
+		var G_TOP = 0;
+		var K_TOP = 0;
+		var De_TOP = 0;
+		var A_TOP = 0;
+		var KDA_TOP = 0;
+		var VW_TOP = 0;
+		var WK_TOP = 0;
+		var WP_TOP = 0;
+		var KC_TOP = 0;
+		var KDA_TOP = 0;
+		var TeamKills_TOP = 0;
 		
 		var D_JG = 0;
 		var DT_JG = 0;
@@ -1043,6 +1080,18 @@ module.exports = {
 		var CS_JG = 0;
 		var H_JG = 0;
 		var WIN_JG = 0;
+		var CC_JG = 0;
+		
+		var G_JG = 0;
+		var K_JG = 0;
+		var De_JG = 0;
+		var A_JG = 0;
+		var KDA_JG = 0;
+		var VW_JG = 0;
+		var WK_JG = 0;
+		var WP_JG = 0;
+		var KC_JG = 0;
+		var TeamKills_JG = 0;
 		
 		var D_SUP = 0;
 		var DT_SUP = 0;
@@ -1050,12 +1099,24 @@ module.exports = {
 		var CS_SUP = 0;
 		var H_SUP = 0;
 		var WIN_SUP = 0;
+		var CC_SUP = 0;
+		
+		var G_SUP = 0;
+		var K_SUP = 0;
+		var De_SUP = 0;
+		var A_SUP = 0;
+		var KDA_SUP = 0;
+		var VW_SUP = 0;
+		var WK_SUP = 0;
+		var WP_SUP = 0;
+		var KC_SUP = 0;
+		var TeamKills_SUP = 0;
 		
 		var gatherVersatilityData = function(match, participantID){
 			if(match.participants[participantID-1].timeline.lane === 'TOP'){
 				topPlayed ++;
 				topTimelineNum ++;
-				topPlayedLength += match.matchDuration;
+				PlayedLength_TOP += match.matchDuration;
 				D_TOP += match.participants[participantID-1].stats.totalDamageDealtToChampions;
 				DT_TOP += match.participants[participantID-1].stats.totalDamageTaken;
 				CS_TOP += match.participants[participantID-1].stats.minionsKilled;
@@ -1071,15 +1132,32 @@ module.exports = {
 				else{
 					topTimelineNum --;
 				}
+				
+				G_TOP += match.participants[participantID-1].stats.goldEarned;
+				K_TOP += match.participants[participantID-1].stats.kills;
+				De_TOP += match.participants[participantID-1].stats.deaths;
+				A_TOP += match.participants[participantID-1].stats.assists;
+				
+				VW_TOP += match.participants[participantID-1].stats.visionWardsBoughtInGame;
+				WK_TOP += match.participants[participantID-1].stats.wardsKilled;
+				WP_TOP += match.participants[participantID-1].stats.wardsPlaced;
+				
+				var participant_teamID = match.participants[participantID-1].teamId;
+				for(var i = 0; i < 10; i++){
+					if(match.participants[i].teamId === participant_teamID){
+						TeamKills_TOP += match.participants[i].stats.kills;
+					}
+				}
+				
 				if(match.participants[participantID-1].stats.winner){
 					WIN_TOP++;
 				}
-				
+				CC_TOP += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'MIDDLE'){
 				midPlayed ++;
 				midTimelineNum ++;
-				midPlayedLength += match.matchDuration;
+				PlayedLength_MID += match.matchDuration;
 				D_MID += match.participants[participantID-1].stats.totalDamageDealtToChampions;
 				DT_MID += match.participants[participantID-1].stats.totalDamageTaken;
 				CS_MID += match.participants[participantID-1].stats.minionsKilled;
@@ -1095,15 +1173,31 @@ module.exports = {
 				else{
 					midTimelineNum --;
 				}
+				G_MID += match.participants[participantID-1].stats.goldEarned;
+				K_MID += match.participants[participantID-1].stats.kills;
+				De_MID += match.participants[participantID-1].stats.deaths;
+				A_MID += match.participants[participantID-1].stats.assists;
+				
+				VW_MID += match.participants[participantID-1].stats.visionWardsBoughtInGame;
+				WK_MID += match.participants[participantID-1].stats.wardsKilled;
+				WP_MID += match.participants[participantID-1].stats.wardsPlaced;
+				
+				var participant_teamID = match.participants[participantID-1].teamId;
+				for(var i = 0; i < 10; i++){
+					if(match.participants[i].teamId === participant_teamID){
+						TeamKills_MID += match.participants[i].stats.kills;
+					}
+				}
+				
 				if(match.participants[participantID-1].stats.winner){
 					WIN_MID++;
 				}
-				
+				CC_MID += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'JUNGLE'){
 				junglePlayed ++;
 				jgTimelineNum ++;
-				junglePlayedLength += match.matchDuration;
+				PlayedLength_JG += match.matchDuration;
 				D_JG += match.participants[participantID-1].stats.totalDamageDealtToChampions;
 				DT_JG += match.participants[participantID-1].stats.totalDamageTaken;
 				CS_JG += match.participants[participantID-1].stats.neutralMinionsKilled;
@@ -1121,16 +1215,32 @@ module.exports = {
 				else{
 					jgTimelineNum --;
 				}
+				G_JG+= match.participants[participantID-1].stats.goldEarned;
+				K_JG += match.participants[participantID-1].stats.kills;
+				De_JG += match.participants[participantID-1].stats.deaths;
+				A_JG += match.participants[participantID-1].stats.assists;
+				
+				VW_JG += match.participants[participantID-1].stats.visionWardsBoughtInGame;
+				WK_JG += match.participants[participantID-1].stats.wardsKilled;
+				WP_JG += match.participants[participantID-1].stats.wardsPlaced;
+				
+				
+				var participant_teamID = match.participants[participantID-1].teamId;
+				for(var i = 0; i < 10; i++){
+					if(match.participants[i].teamId === participant_teamID){
+						TeamKills_JG += match.participants[i].stats.kills;
+					}
+				}
 				if(match.participants[participantID-1].stats.winner){
 					WIN_JG++;
 				}
-				
+				CC_JG += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'BOTTOM'){
 				if(match.participants[participantID-1].timeline.role === 'DUO_SUPPORT'){
 					supportPlayed ++;
 					supTimelineNum ++;
-					supportPlayedLength += match.matchDuration;
+					PlayedLength_SUP += match.matchDuration;
 					D_SUP += match.participants[participantID-1].stats.totalDamageDealtToChampions;
 					DT_SUP += match.participants[participantID-1].stats.totalDamageTaken;
 					CS_SUP += match.participants[participantID-1].stats.minionsKilled;
@@ -1148,14 +1258,31 @@ module.exports = {
 					else{
 						supTimelineNum --;
 					}
+					
+					G_SUP+= match.participants[participantID-1].stats.goldEarned;
+					K_SUP += match.participants[participantID-1].stats.kills;
+					De_SUP += match.participants[participantID-1].stats.deaths;
+					A_SUP += match.participants[participantID-1].stats.assists;
+					
+					VW_SUP += match.participants[participantID-1].stats.visionWardsBoughtInGame;
+					WK_SUP += match.participants[participantID-1].stats.wardsKilled;
+					WP_SUP += match.participants[participantID-1].stats.wardsPlaced;
+					
+					var participant_teamID = match.participants[participantID-1].teamId;
+					for(var i = 0; i < 10; i++){
+						if(match.participants[i].teamId === participant_teamID){
+							TeamKills_SUP += match.participants[i].stats.kills;
+						}
+					}
 					if(match.participants[participantID-1].stats.winner){
 						WIN_SUP++;
 					}
+					CC_SUP += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 				}
 				else{
 					adcPlayed ++;
 					adcTimelineNum ++;
-					adcPlayedLength += match.matchDuration;
+					PlayedLength_ADC += match.matchDuration;
 					D_ADC += match.participants[participantID-1].stats.totalDamageDealtToChampions;
 					DT_ADC += match.participants[participantID-1].stats.totalDamageTaken;
 					CS_ADC += match.participants[participantID-1].stats.minionsKilled;
@@ -1172,9 +1299,26 @@ module.exports = {
 					else{
 						adcTimelineNum --;
 					}
+					
+					G_ADC += match.participants[participantID-1].stats.goldEarned;
+					K_ADC += match.participants[participantID-1].stats.kills;
+					De_ADC += match.participants[participantID-1].stats.deaths;
+					A_ADC += match.participants[participantID-1].stats.assists;
+					
+					VW_ADC += match.participants[participantID-1].stats.visionWardsBoughtInGame;
+					WK_ADC += match.participants[participantID-1].stats.wardsKilled;
+					WP_ADC += match.participants[participantID-1].stats.wardsPlaced;
+					
+					var participant_teamID = match.participants[participantID-1].teamId;
+					for(var i = 0; i < 10; i++){
+						if(match.participants[i].teamId === participant_teamID){
+							TeamKills_ADC += match.participants[i].stats.kills;
+						}
+					}
 					if(match.participants[participantID-1].stats.winner){
 						WIN_ADC++;
 					}
+					CC_ADC += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 				}
 			}
 		}
@@ -1268,13 +1412,13 @@ module.exports = {
 		
 		
 		
-		GPM_ADC = (goldEarned/ adcPlayedLength*60).toFixed(2);
+		GPM_ADC = (G_ADC/ PlayedLength_ADC*60).toFixed(2);
 		CS_zeroToTenPerMatch_ADC = (CS_zeroToTen_ADC/adcPlayed*10).toFixed(2);
-		CSPM_ADC = (CS_ADC/adcPlayedLength*60).toFixed(2);
-		DPM_ADC = (D_ADC/adcPlayedLength*60).toFixed(2);
-		DTPM_ADC = (DT_ADC/adcPlayedLength*60).toFixed(2);
+		CSPM_ADC = (CS_ADC/PlayedLength_ADC*60).toFixed(2);
+		DPM_ADC = (D_ADC/PlayedLength_ADC*60).toFixed(2);
+		DTPM_ADC = (DT_ADC/PlayedLength_ADC*60).toFixed(2);
 		WinRate_ADC = (WIN_ADC/adcPlayed * 100).toFixed(2);
-		H_ADC = (H_ADC/adcPlayedLength*60).toFixed(2);
+		H_ADC = (H_ADC/PlayedLength_ADC*60).toFixed(2);
 		
 		if(adcPlayed <= 0){
 			GPM_ADC = 0;
@@ -1286,13 +1430,13 @@ module.exports = {
 			H_ADC = 0;
 		}
 		
-		GPM_MID = (goldEarned/ midPlayedLength*60).toFixed(2);
+		GPM_MID = (G_MID/ PlayedLength_MID*60).toFixed(2);
 		CS_zeroToTenPerMatch_MID = (CS_zeroToTen_MID/midPlayed*10).toFixed(2);
-		CSPM_MID = (CS_MID/midPlayedLength*60).toFixed(2);
-		DPM_MID = (D_MID/midPlayedLength*60).toFixed(2);
-		DTPM_MID = (DT_MID/midPlayedLength*60).toFixed(2);
+		CSPM_MID = (CS_MID/PlayedLength_MID*60).toFixed(2);
+		DPM_MID = (D_MID/PlayedLength_MID*60).toFixed(2);
+		DTPM_MID = (DT_MID/PlayedLength_MID*60).toFixed(2);
 		WinRate_MID = (WIN_MID/midPlayed * 100).toFixed(2);
-		H_MID = (H_MID/midPlayedLength*60).toFixed(2);
+		H_MID = (H_MID/PlayedLength_MID*60).toFixed(2);
 		
 		if(midPlayed <= 0){
 			GPM_MID = 0;
@@ -1304,13 +1448,13 @@ module.exports = {
 			H_MID = 0;
 		}
 		
-		GPM_TOP = (goldEarned/ topPlayedLength*60).toFixed(2);
+		GPM_TOP = (G_TOP/ PlayedLength_TOP*60).toFixed(2);
 		CS_zeroToTenPerMatch_TOP = (CS_zeroToTen_TOP/topPlayed*10).toFixed(2);
-		CSPM_TOP = (CS_TOP/topPlayedLength*60).toFixed(2);
-		DPM_TOP = (D_TOP/topPlayedLength*60).toFixed(2);
-		DTPM_TOP = (DT_TOP/topPlayedLength*60).toFixed(2);
+		CSPM_TOP = (CS_TOP/PlayedLength_TOP*60).toFixed(2);
+		DPM_TOP = (D_TOP/PlayedLength_TOP*60).toFixed(2);
+		DTPM_TOP = (DT_TOP/PlayedLength_TOP*60).toFixed(2);
 		WinRate_TOP = (WIN_TOP/topPlayed * 100).toFixed(2);
-		H_TOP = (H_TOP/topPlayedLength*60).toFixed(2);
+		H_TOP = (H_TOP/PlayedLength_TOP*60).toFixed(2);
 		
 		if(topPlayed <= 0){
 			GPM_TOP = 0;
@@ -1322,13 +1466,13 @@ module.exports = {
 			H_TOP = 0;
 		}
 		
-		GPM_SUP = (goldEarned/ supportPlayedLength*60).toFixed(2);
-		CS_zeroToTenPerMatch_SUP = (CS_zeroToTen_SUP/supportPlayedLength*10).toFixed(2);
-		CSPM_SUP = (CS_SUP/supportPlayedLength*60).toFixed(2);
-		DPM_SUP = (D_SUP/supportPlayedLength*60).toFixed(2);
-		DTPM_SUP = (DT_SUP/supportPlayedLength*60).toFixed(2);
-		WinRate_SUP = (WIN_SUP/supportPlayedLength * 100).toFixed(2);
-		H_SUP = (H_SUP/supportPlayedLength*60).toFixed(2);
+		GPM_SUP = (goldEarned/ PlayedLength_SUP*60).toFixed(2);
+		CS_zeroToTenPerMatch_SUP = (CS_zeroToTen_SUP/supportPlayed*10).toFixed(2);
+		CSPM_SUP = (CS_SUP/PlayedLength_SUP*60).toFixed(2);
+		DPM_SUP = (D_SUP/PlayedLength_SUP*60).toFixed(2);
+		DTPM_SUP = (DT_SUP/PlayedLength_SUP*60).toFixed(2);
+		WinRate_SUP = (WIN_SUP/supportPlayed * 100).toFixed(2);
+		H_SUP = (H_SUP/PlayedLength_SUP*60).toFixed(2);
 		
 		if(supportPlayed <= 0){
 			GPM_SUP = 0;
@@ -1340,13 +1484,13 @@ module.exports = {
 			H_SUP = 0;
 		}
 		
-		GPM_JG = (goldEarned/ junglePlayedLength*60).toFixed(2);
+		GPM_JG = (G_JG/ PlayedLength_JG*60).toFixed(2);
 		CS_zeroToTenPerMatch_JG = (CS_zeroToTen_JG/junglePlayed*10).toFixed(2);
-		CSPM_JG = (CS_JG/junglePlayedLength*60).toFixed(2);
-		DPM_JG = (D_JG/junglePlayedLength*60).toFixed(2);
-		DTPM_JG = (DT_JG/junglePlayedLength*60).toFixed(2);
+		CSPM_JG = (CS_JG/PlayedLength_JG*60).toFixed(2);
+		DPM_JG = (D_JG/PlayedLength_JG*60).toFixed(2);
+		DTPM_JG = (DT_JG/PlayedLength_JG*60).toFixed(2);
 		WinRate_JG = (WIN_JG/junglePlayed * 100).toFixed(2);
-		H_JG = (H_JG/junglePlayedLength*60).toFixed(2);
+		H_JG = (H_JG/PlayedLength_JG*60).toFixed(2);
 		
 		if(junglePlayed <= 0){
 			GPM_JG = 0;
@@ -1635,7 +1779,7 @@ module.exports = {
 			D_ADC_ThisTier = (leagueDataArray[summoner_tier].D_ADC).toFixed(2);
 			DT_ADC_ThisTier = (leagueDataArray[summoner_tier].DT_ADC).toFixed(2);
 			H_ADC_ThisTier = (leagueDataArray[summoner_tier].H_ADC).toFixed(2);
-			CS_zeroToTenPerMatch_MID_ThisTier = (leagueDataArray[summoner_tier].CS_zeroToTenPerMatch_MID*avgDuration/60).toFixed(2);
+			CS_zeroToTenPerMatch_MID_ThisTier = (leagueDataArray[summoner_tier].CS_zeroToTenPerMatch_MID).toFixed(2);
 			CS_MID_ThisTier = (leagueDataArray[summoner_tier].CS_MID).toFixed(2);
 			D_MID_ThisTier = (leagueDataArray[summoner_tier].D_MID).toFixed(2);
 			DT_MID_ThisTier = (leagueDataArray[summoner_tier].DT_MID).toFixed(2);
