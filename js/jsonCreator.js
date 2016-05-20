@@ -634,5 +634,4 @@ leagueDataArray['CHALLENGER'] = challengerDataArray;
 
 var dataString = JSON.stringify(leagueDataArray);
 var fs = require('fs');
-
 fs.writeFileSync('leagueData.json', dataString);
