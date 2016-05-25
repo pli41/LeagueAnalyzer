@@ -82,86 +82,86 @@
 							<td/>
 						</tr>
 						<tr>
-							<td>KDA</td>
+							<td ng-click= "kdaSubShow = !kdaSubShow" ng-init = "kdaSubShow = false">KDA</td>
 							<td>{{playerData.KDA_Raw}}</td>
 							<td>{{playerData.KDA_ThisTier}}</td>
 							<td>{{playerData.KDA_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="kdaSubShow">
 							<td>Kills</td>
 							<td>{{playerData.Kill_player}}</td>
 							<td>{{playerData.Kills_ThisTier}}</td>
 							<td>{{playerData.Kills_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="kdaSubShow">
 							<td>Deaths</td>
 							<td>{{playerData.Death_player}}</td>
 							<td>{{playerData.Deaths_ThisTier}}</td>
 							<td>{{playerData.Deaths_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="kdaSubShow">
 							<td>Assists</td>
 							<td>{{playerData.Assist_player}}</td>
 							<td>{{playerData.Assists_ThisTier}}</td>
 							<td>{{playerData.Assists_NextTier}}</td>
 						</tr>
 						<tr>
-							<td>VISION CONTROL</td>
+							<td ng-click= "visionSubShow = !visionSubShow" ng-init = "visionSubShow = false">VISION CONTROL</td>
 							<td>{{playerData.VisionControl_Raw}}</td>
 							<td>{{playerData.VisionControl_ThisTier}}</td>
 							<td>{{playerData.VisionControl_NextTier}}</td>
 							<td>{{playerData.VisionControl_Assessment}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="visionSubShow">
 							<td>Vision Wards Purchased</td>
 							<td>{{playerData.VisionWards}}</td>
 							<td>{{playerData.VisionWards_ThisTier}}</td>
 							<td>{{playerData.VisionWards_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="visionSubShow">
 							<td>Wards Killed</td>
 							<td>{{playerData.WardsKilled}}</td>
 							<td>{{playerData.WardsKilled_ThisTier}}</td>
 							<td>{{playerData.WardsKilled_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="visionSubShow">
 							<td>Wards Placed</td>
 							<td>{{playerData.WardsPlaced}}</td>
 							<td>{{playerData.WardsPlaced_ThisTier}}</td>
 							<td>{{playerData.WardsPlaced_NextTier}}</td>
 						</tr>
 						<tr>
-							<td>OBJECTIVE CONTROL</td>
+							<td ng-click= "objSubShow = !objSubShow" ng-init = "objSubShow = false">OBJECTIVE CONTROL</td>
 							<td>{{playerData.TargetControl_Raw}}</td>
 							<td>{{playerData.TargetControl_ThisTier}}</td>
 							<td>{{playerData.TargetControl_NextTier}}</td>
 							<td>{{playerData.TargetControl_Assessment}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="objSubShow">
 							<td>Dragons Killed</td>
 							<td>{{playerData.DragonsKilled}}</td>
 							<td>{{playerData.Dragons_ThisTier}}</td>
 							<td>{{playerData.Dragons_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="objSubShow">
 							<td>Rift Heralds Killed</td>
 							<td>{{playerData.RiftHeraldsKilled}}</td>
 							<td>{{playerData.RiftHerald_ThisTier}}</td>
 							<td>{{playerData.RiftHerald_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="objSubShow">
 							<td>Barons Killed</td>
 							<td>{{playerData.BaronsKilled}}</td>
 							<td>{{playerData.Barons_ThisTier}}</td>
 							<td>{{playerData.Barons_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="objSubShow">
 							<td>Towers Killed</td>
 							<td>{{playerData.TowersKilled}}</td>
 							<td>{{playerData.Towers_ThisTier}}</td>
 							<td>{{playerData.Towers_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="objSubShow">
 							<td>Inhibitors Killed</td>
 							<td>{{playerData.InhibitorsKilled}}</td>
 							<td>{{playerData.Inhibitors_ThisTier}}</td>
@@ -175,31 +175,31 @@
 							<td>{{playerData.KillContribution_Assessment}}</td>
 						</tr>
 						<tr>
-							<td>BATTLE EFFICIENCY</td>
+							<td ng-click= "battleSubShow = !battleSubShow" ng-init = "battleSubShow = false">BATTLE EFFICIENCY</td>
 							<td>{{playerData.BE_RAW}}</td>
 							<td>{{playerData.BE_ThisTier}}</td>
 							<td>{{playerData.BE_NextTier}}</td>
 							<td>{{playerData.BE_Assessment}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="battleSubShow">
 							<td>Gold Per Min</td>
 							<td>{{playerData.GPM}}</td>
 							<td>{{playerData.GPM_ThisTier}}</td>
 							<td>{{playerData.GPM_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="battleSubShow">
 							<td>DamageTaken Per Match</td>
 							<td>{{playerData.damageTakenPerMatch}}</td>
 							<td>{{playerData.DTPM_ThisTier}}</td>
 							<td>{{playerData.DTPM_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="battleSubShow">
 							<td>Damage to champions Per Match</td>
 							<td>{{playerData.damageDealtToChampionsPerMatch}}</td>
 							<td>{{playerData.DPM_ThisTier}}</td>
 							<td>{{playerData.DPM_NextTier}}</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="battleSubShow">
 							<td>Healing Per Match</td>
 							<td>{{playerData.healPerMatch}}</td>
 							<td>{{playerData.H_ThisTier}}</td>
