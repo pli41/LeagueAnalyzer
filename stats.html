@@ -225,39 +225,39 @@
 							<td>{{playerData.WinRate_TOP}}%</td>
 						</tr>
 						<tr>
-							<td>Performance Details</td>
+							<td ng-click= "TopPerformSubShow = !TopPerformSubShow" ng-init = "TopPerformSubShow = false">Performance Details</td>
 						</tr>
-						<tr class="subData">
+						<tr class="subData" ng-if="TopPerformSubShow">
 							<td>Gold Per Min</td>
 							<td>{{playerData.GPM_TOP}}</td>
 								<!--td>{{playerData.ThisTier.CS_zeroToTenPerMatch_TOP}}</td>
 								<td>{{playerData.NextTier.CS_zeroToTenPerMatch_TOP}}</td-->
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="TopPerformSubShow">
 									<td>CS in the first 10 mins</td>
 									<td>{{playerData.CS_zeroToTenPerMatch_TOP}}</td>
 									<td>{{playerData.TOP.ThisTier.CS_zeroToTenPerMatch_TOP}}</td>
 									<td>{{playerData.TOP.NextTier.CS_zeroToTenPerMatch_TOP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="TopPerformSubShow">
 									<td>CS Per Min</td>
 									<td>{{playerData.CSPM_TOP}}</td>
 									<td>{{playerData.TOP.ThisTier.CS_TOP}}</td>
 									<td>{{playerData.TOP.NextTier.CS_TOP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="TopPerformSubShow">
 									<td>Damage Per Min</td>
 									<td>{{playerData.DPM_TOP}}</td>
 									<td>{{playerData.TOP.ThisTier.D_TOP}}</td>
 									<td>{{playerData.TOP.NextTier.D_TOP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="TopPerformSubShow">
 									<td>DamageTaken Per Min</td>
 									<td>{{playerData.DTPM_TOP}}</td>
 									<td>{{playerData.TOP.ThisTier.DT_TOP}}</td>
 									<td>{{playerData.TOP.NextTier.DT_TOP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="TopPerformSubShow">
 									<td>Healing Per Min</td>
 									<td>{{playerData.H_TOP}}</td>
 									<td>{{playerData.TOP.ThisTier.H_TOP}}</td>
@@ -283,37 +283,37 @@
 									<td>{{playerData.WinRate_JG}}%</td>
 								</tr>
 								<tr>
-									<td>Performance Details</td>
+									<td ng-click= "JunglePerformSubShow = !JunglePerformSubShow" ng-init = "JunglePerformSubShow = false">Performance Details</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="JunglePerformSubShow">
 									<td>Gold Per Min</td>
 									<td>{{playerData.GPM_JG}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="JunglePerformSubShow">
 									<td>CS in the first 10 mins</td>
 									<td>{{playerData.CS_zeroToTenPerMatch_JG}}</td>
 									<td>{{playerData.JG.ThisTier.CS_zeroToTenPerMatch_JG}}</td>
 									<td>{{playerData.JG.NextTier.CS_zeroToTenPerMatch_JG}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="JunglePerformSubShow">
 									<td>CS Per Min</td>
 									<td>{{playerData.CSPM_JG}}</td>
 									<td>{{playerData.JG.ThisTier.CS_JG}}</td>
 									<td>{{playerData.JG.NextTier.CS_JG}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="JunglePerformSubShow">
 									<td>Damage Per Min</td>
 									<td>{{playerData.DPM_JG}}</td>
 									<td>{{playerData.JG.ThisTier.D_JG}}</td>
 									<td>{{playerData.JG.NextTier.D_JG}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="JunglePerformSubShow">
 									<td>DamageTaken Per Min</td>
 									<td>{{playerData.DTPM_JG}}</td>
 									<td>{{playerData.JG.ThisTier.DT_JG}}</td>
 									<td>{{playerData.JG.NextTier.DT_JG}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="JunglePerformSubShow">
 									<td>Healing Per Min</td>
 									<td>{{playerData.H_JG}}</td>
 									<td>{{playerData.JG.ThisTier.H_JG}}</td>
@@ -339,37 +339,37 @@
 									<td>{{playerData.WinRate_MID}}%</td>
 								</tr>
 								<tr>
-									<td>Performance Details</td>
+									<td ng-click= "MidPerformSubShow = !MidPerformSubShow" ng-init = "MidPerformSubShow = false">Performance Details</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="MidPerformSubShow">
 									<td>Gold Per Min</td>
 									<td>{{playerData.GPM_MID}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="MidPerformSubShow">
 									<td>CS in the first 10 mins</td>
 									<td>{{playerData.CS_zeroToTenPerMatch_MID}}</td>
 									<td>{{playerData.MID.ThisTier.CS_zeroToTenPerMatch_MID}}</td>
 									<td>{{playerData.MID.NextTier.CS_zeroToTenPerMatch_MID}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="MidPerformSubShow">
 									<td>CS Per Min</td>
 									<td>{{playerData.CSPM_MID}}</td>
 									<td>{{playerData.MID.ThisTier.CS_MID}}</td>
 									<td>{{playerData.MID.NextTier.CS_MID}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="MidPerformSubShow">
 									<td>Damage Per Min</td>
 									<td>{{playerData.DPM_MID}}</td>
 									<td>{{playerData.MID.ThisTier.D_MID}}</td>
 									<td>{{playerData.MID.NextTier.D_MID}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="MidPerformSubShow">
 									<td>DamageTaken Per Min</td>
 									<td>{{playerData.DTPM_MID}}</td>
 									<td>{{playerData.MID.ThisTier.DT_MID}}</td>
 									<td>{{playerData.MID.NextTier.DT_MID}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="MidPerformSubShow">
 									<td>Healing Per Min</td>
 									<td>{{playerData.H_MID}}</td>
 									<td>{{playerData.MID.ThisTier.H_MID}}</td>
@@ -395,37 +395,37 @@
 									<td>{{playerData.WinRate_ADC}}%</td>
 								</tr>
 								<tr>
-									<td>Performance Details</td>
+									<td ng-click= "AdcPerformSubShow = !AdcPerformSubShow" ng-init = "AdcPerformSubShow = false">Performance Details</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="AdcPerformSubShow">
 									<td>Gold Per Min</td>
 									<td>{{playerData.GPM_ADC}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="AdcPerformSubShow">
 									<td>CS in the first 10 mins</td>
 									<td>{{playerData.CS_zeroToTenPerMatch_ADC}}</td>
 									<td>{{playerData.ADC.ThisTier.CS_zeroToTenPerMatch_ADC}}</td>
 									<td>{{playerData.ADC.NextTier.CS_zeroToTenPerMatch_ADC}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="AdcPerformSubShow">
 									<td>CS Per Min</td>
 									<td>{{playerData.CSPM_ADC}}</td>
 									<td>{{playerData.ADC.ThisTier.CS_ADC}}</td>
 									<td>{{playerData.ADC.NextTier.CS_ADC}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="AdcPerformSubShow">
 									<td>Damage Per Min</td>
 									<td>{{playerData.DPM_ADC}}</td>
 									<td>{{playerData.ADC.ThisTier.DT_ADC}}</td>
 									<td>{{playerData.ADC.NextTier.DT_ADC}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="AdcPerformSubShow">
 									<td>DamageTaken Per Min</td>
 									<td>{{playerData.DTPM_ADC}}</td>
 									<td>{{playerData.ADC.ThisTier.DT_ADC}}</td>
 									<td>{{playerData.ADC.NextTier.DT_ADC}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="AdcPerformSubShow">
 									<td>Healing Per Min</td>
 									<td>{{playerData.H_ADC}}</td>
 									<td>{{playerData.ADC.ThisTier.H_ADC}}</td>
@@ -451,37 +451,37 @@
 									<td>{{playerData.WinRate_SUP}}%</td>
 								</tr>
 								<tr>
-									<td>Performance Details</td>
+									<td ng-click= "SupportPerformSubShow = !SupportPerformSubShow" ng-init = "SupportPerformSubShow = false">Performance Details</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="SupportPerformSubShow">
 									<td>Gold Per Min</td>
 									<td>{{playerData.GPM_SUP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="SupportPerformSubShow">
 									<td>CS in the first 10 mins</td>
 									<td>{{playerData.CS_zeroToTenPerMatch_SUP}}</td>
 									<td>{{playerData.SUP.ThisTier.CS_zeroToTenPerMatch_SUP}}</td>
 									<td>{{playerData.SUP.NextTier.CS_zeroToTenPerMatch_SUP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="SupportPerformSubShow">
 									<td>CS Per Min</td>
 									<td>{{playerData.CSPM_SUP}}</td>
 									<td>{{playerData.SUP.ThisTier.CS_SUP}}</td>
 									<td>{{playerData.SUP.NextTier.CS_SUP}}</td>	
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="SupportPerformSubShow">
 									<td>Damage Per Min</td>
 									<td>{{playerData.DPM_SUP}}</td>
 									<td>{{playerData.SUP.ThisTier.DT_SUP}}</td>
 									<td>{{playerData.SUP.NextTier.DT_SUP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="SupportPerformSubShow">
 									<td>DamageTaken Per Min</td>
 									<td>{{playerData.DTPM_SUP}}</td>
 									<td>{{playerData.SUP.ThisTier.DT_SUP}}</td>
 									<td>{{playerData.SUP.NextTier.DT_SUP}}</td>
 								</tr>
-								<tr class="subData">
+								<tr class="subData" ng-if="SupportPerformSubShow">
 									<td>Healing Per Min</td>
 									<td>{{playerData.H_SUP}}</td>
 									<td>{{playerData.SUP.ThisTier.H_SUP}}</td>
