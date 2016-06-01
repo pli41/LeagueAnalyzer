@@ -4,8 +4,23 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 	var csvPath = `../PlayerData/CSV/${parent_name}.csv`;
 	var newdata = '';
 	if(obj.constructor == Array){
+		var data = '';
+		try{
+			data = fs.readFileSync(csvPath).toString();
+			//console.log(data);
+		} catch(e) {
+			if(e instanceof Error){
+				if (e.code === 'ENOENT') {
+					fileExisted = false;
+				} else {
+					throw e;
+				}
+			}
+		}
+		var row_count = data.split('\r\n').length - 1;
+		var start_row = (row_count-2>0)?(row_count-2):0;
 		for(var i = 0; i < obj.length; i++){
-			newdata = MyJSON2CSV(obj[i],parent_name,i,colname,id);
+			newdata = MyJSON2CSV(obj[i],parent_name,start_row++,colname,id);
 		}
 	} else if(obj && typeof obj === 'object'){
 		var fileExisted = true;
@@ -25,7 +40,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 					//add col in current csv
 					try{
 						data = fs.readFileSync(csvPath).toString();
-						console.log(data);
+						//console.log(data);
 					} catch(e) {
 						if(e instanceof Error){
 							if (e.code === 'ENOENT') {
@@ -98,7 +113,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 								newcontent = newcontent.substring(0,track_rowStart) + inject + newcontent.substring(track_rowEnd);
 								rowEnd += inject.length;
 							} else {
-								console.log('add ,');
+								//console.log('add ,');
 								newcontent = newcontent.substring(0,rowEnd) + ',' + newcontent.substring(rowEnd);
 								rowEnd += 1;
 							}
@@ -126,8 +141,8 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 						rowEnd = rowEnd + 2 + content.search('\r\n');
 						rowidx += 1;
 					}
-					console.log(head_str);
-					console.log(newcontent);
+					//console.log(head_str);
+					///console.log(newcontent);
 					newdata = head_str + newcontent;
 					try{
 							fs.writeFileSync(csvPath, newdata);
@@ -142,7 +157,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 						}
 					console.log("The file was saved!"); 
 					if(val.constructor == Array){
-						newdata = MyJSON2CSV(val,key,null,null,new_id);
+						MyJSON2CSV(val,track_colname,null,null,new_id);
 					} else {
 						//return;
 						//continue;
@@ -178,7 +193,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 }
 
 
-var jsontorun = fs.readFileSync(`test.json`).toString();
+var jsontorun = fs.readFileSync(`match_timeline.json`).toString();
 var combinedMatchString = '{\"match\":[' + jsontorun + ']}';
 //var matchJsontorun = JSON.parse(combinedMatchString);
 var matchJsontorun = JSON.parse(jsontorun);

@@ -9,6 +9,19 @@
 		"b": 456
 		}
    },
+   "test4": {
+		"array": [
+			{
+				"a": 123,
+				"b": 456
+			},
+			{
+				"a": 123,
+				"b": 456,
+				"c": 789
+			}
+		]
+   },
    "matches": [
       {
          "timestamp": 1456853509683,
@@ -19,7 +32,18 @@
          "matchId": 2111656338,
          "role": "NONE",
          "platformId": "NA1",
-         "lane": "JUNGLE"
+         "lane": "JUNGLE",
+		 "array2": [
+			{
+				"a": 123,
+				"b": 456
+			},
+			{
+				"a": 123,
+				"b": 456,
+				"c": 789
+			}
+		 ]
       },
       {
          "timestamp": 1456774650946,
@@ -31,14 +55,25 @@
          "role": "SOLO",
          "platformId": "NA1",
          "lane": "MID",
-		 "test3": {
+		 "test5": {
 			"a": 123,
 			"b": 456,
 			"c": {
 			"a": 123,
 			"b": 456
 				}
-		}
+			},
+		 "array2": [
+			{
+				"a": 123,
+				"b": 456
+			},
+			{
+				"a": 123,
+				"b": 456,
+				"c": 789
+			}
+		 ]
       },
       {
          "timestamp": 1456772737802,
@@ -50,7 +85,7 @@
          "role": "DUO_SUPPORT",
          "platformId": "NA1",
          "lane": "BOTTOM",
-		 "test4": {
+		 "test6": {
 			"a": 123,
 			"b": 456,
 			"c": {
@@ -69,7 +104,7 @@
          "role": "SOLO",
          "platformId": "NA1",
          "lane": "MID",
-		 "test5": {
+		 "test7": {
 			"a": 123,
 			"b": 456,
 			"c": {
