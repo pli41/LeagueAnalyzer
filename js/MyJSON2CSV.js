@@ -25,6 +25,23 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 	} else if(obj && typeof obj === 'object'){
 		var fileExisted = true;
 		var write_in;
+		//add col in current csv
+		try{
+			var data = fs.readFileSync(csvPath).toString();
+			//console.log(data);
+		} catch(e) {
+			if(e instanceof Error){
+				if (e.code === 'ENOENT') {
+					fileExisted = false;
+				} else {
+					throw e;
+				}
+			}
+		}
+		if(fileExisted == true){
+			var row_count = data.split('\r\n').length - 1;
+			var start_row = (row_count-2>0)?(row_count-2):0;
+		}		
 		for (var key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				var data = '';
@@ -126,6 +143,9 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 									newcontent = newcontent.substring(0,rowEnd) + ',' + newcontent.substring(rowEnd);
 									rowEnd += 1;
 								}
+								track_rowStart = prev_rowEnd+2;
+								track_rowEnd = rowEnd;
+								var row = newcontent.substring(track_rowStart,track_rowEnd).split(',');
 							}
 							if(rowidx == track_rownum){
 								console.log(rowidx,track_rownum);
@@ -142,7 +162,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 						rowidx += 1;
 					}
 					//console.log(head_str);
-					///console.log(newcontent);
+					//console.log(newcontent);
 					newdata = head_str + newcontent;
 					try{
 							fs.writeFileSync(csvPath, newdata);
@@ -164,7 +184,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 					}	
 				} else if(val && typeof val === 'object'){
 					var newcolname = colname?(colname + '_' + key):(key);
-					newdata = MyJSON2CSV(val,parent_name,rownum,newcolname,id);
+					newdata = MyJSON2CSV(val,parent_name,start_row,newcolname,id);
 				} else {
 					console.log("undefined or null");
 				}
@@ -193,7 +213,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 }
 
 
-var jsontorun = fs.readFileSync(`match_timeline.json`).toString();
+var jsontorun = fs.readFileSync(`test.json`).toString();
 var combinedMatchString = '{\"match\":[' + jsontorun + ']}';
 //var matchJsontorun = JSON.parse(combinedMatchString);
 var matchJsontorun = JSON.parse(jsontorun);
