@@ -11,7 +11,6 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 		} catch(e) {
 			if(e instanceof Error){
 				if (e.code === 'ENOENT') {
-					fileExisted = false;
 				} else {
 					throw e;
 				}
@@ -19,8 +18,13 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 		}
 		var row_count = data.split('\r\n').length - 1;
 		var start_row = (row_count-2>0)?(row_count-2):0;
+		var this_id = id;
+		while(data.indexOf(`\r\n${this_id},`)!=-1){
+			this_id = (Math.random()+1).toString(36).substr(2, 8);
+			console.log(`${parent_name}.csv duplicate id ${id} found, changed to ${this_id}`);
+		}
 		for(var i = 0; i < obj.length; i++){
-			newdata = MyJSON2CSV(obj[i],parent_name,start_row++,colname,id);
+			newdata = MyJSON2CSV(obj[i],parent_name,start_row++,colname,this_id);
 		}
 	} else if(obj && typeof obj === 'object'){
 		var fileExisted = true;
@@ -39,16 +43,20 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 				}
 			}
 		}
-		var row_count = data.split('\r\n').length - 1;
-		var start_row = (row_count-2>0&&rownum==null)?(row_count-2):0;	
+		if(!fileExisted){
+			var start_row = 0;		
+		} else {
+			var row_count = data.split('\r\n').length - 1;
+			var start_row = (row_count-2>0&&rownum==null)?(row_count-2):0;	
+		}
 		for (var key in obj) {
 			if (obj.hasOwnProperty(key)) {
 				data = '';
 				var val = obj[key];
-			    console.log(val,key,parent_name,rownum,colname,id);
+			    //console.log(val,key,parent_name,rownum,colname,id);
 			    if(val.constructor == Array || (typeof val === 'string' || typeof val === 'number' || typeof val === 'boolean')){
 					if(val.constructor == Array){
-						var new_id = (Math.random()+1).toString(36).substr(2, 5);
+						var new_id = (Math.random()+1).toString(36).substr(2, 8);
 						write_in = new_id;
 					} else {
 						write_in = val;
@@ -56,7 +64,8 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 					//add col in current csv
 					try{
 						data = fs.readFileSync(csvPath).toString();
-						//console.log(data);
+						//console.log(`data is:\r\n${data}`);
+						fileExisted = true;
 					} catch(e) {
 						if(e instanceof Error){
 							if (e.code === 'ENOENT') {
@@ -66,6 +75,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 							}
 						}
 					}
+					//console.log(`fileExisted:\r\n${fileExisted}`);
 					if(!fileExisted){
 						data = `${parent_name}\r\n${id}\r\n`;
 						try{
@@ -79,7 +89,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 								}
 							}
 						}
-						console.log("The file was saved!"); 
+						//console.log("The file was saved!"); 
 						fileExisted = true;
 					}
 					var rowidx = 0;
@@ -109,6 +119,8 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 					}
 					if(head.indexOf(track_colname)==-1){
 						head_str += `,${track_colname}\r\n`;
+						head_length += 1;
+						track_indx = head.length;
 					} else {
 						head_str += '\r\n';
 						track_indx = head.indexOf(track_colname);
@@ -117,37 +129,40 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 						//console.log("writing content");
 						//rowEnd = content.search('\r\n');
 						if(head.indexOf(track_colname)==-1){
-							if(rowidx == track_rownum){
-								inject = `,${write_in}`;
-								newcontent = newcontent.substring(0,rowEnd) + inject + newcontent.substring(rowEnd);
-								rowEnd += inject.length;
+							track_rowStart = prev_rowEnd+2;
+							track_rowEnd = rowEnd;
+							var row = newcontent.substring(track_rowStart,track_rowEnd).split(',');
+							if(row.length < head_length){
+								for(var i=0;i<head_length-row.length;i++){
+									newcontent = newcontent.substring(0,rowEnd) + ',' + newcontent.substring(rowEnd);
+									rowEnd += 1;
+								}
 								track_rowStart = prev_rowEnd+2;
 								track_rowEnd = rowEnd;
-								var row = newcontent.substring(track_rowStart,track_rowEnd).split(',');
+								row = newcontent.substring(track_rowStart,track_rowEnd).split(',');
+							}
+							if(rowidx == track_rownum){
 								row[0] = (row[0]=="")?id:row[0];
+								row[track_indx] = write_in;
 								inject = row.join(',');
 								newcontent = newcontent.substring(0,track_rowStart) + inject + newcontent.substring(track_rowEnd);
 								rowEnd += inject.length;
-							} else {
-								//console.log('add ,');
-								newcontent = newcontent.substring(0,rowEnd) + ',' + newcontent.substring(rowEnd);
-								rowEnd += 1;
 							}
 						} else {
 							track_rowStart = prev_rowEnd+2;
 							track_rowEnd = rowEnd;
 							var row = newcontent.substring(track_rowStart,track_rowEnd).split(',');
 							if(row.length < head_length){
-								for(var i=0;i<head_length-row.length-1;i++){
+								for(var i=0;i<head_length-row.length;i++){
 									newcontent = newcontent.substring(0,rowEnd) + ',' + newcontent.substring(rowEnd);
 									rowEnd += 1;
 								}
 								track_rowStart = prev_rowEnd+2;
 								track_rowEnd = rowEnd;
-								var row = newcontent.substring(track_rowStart,track_rowEnd).split(',');
+								row = newcontent.substring(track_rowStart,track_rowEnd).split(',');
 							}
 							if(rowidx == track_rownum){
-								console.log(rowidx,track_rownum);
+								//console.log(rowidx,track_rownum);
 								row[0] = (row[0]=="")?id:row[0];
 								row[track_indx] = write_in;
 								inject = row.join(',');
@@ -174,7 +189,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 								}
 							}
 						}
-					console.log("The file was saved!"); 
+					//console.log("The file was saved!"); 
 					if(val.constructor == Array){
 						MyJSON2CSV(val,track_colname,null,null,new_id);
 					} else {
@@ -209,14 +224,19 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 				}
 			}
 		}
+	} else if(obj && (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean')){
+		console.log(`primitive type`);
+		//console.log(obj,parent_name,rownum,colname,id);
+		
 	} else {
-		console.log("undefined or null or primitive");
+		console.log(`undefined or null`);
+		console.log(obj,parent_name,rownum,colname,id);
 	}
 	return newdata;
 }
 
 
-var jsontorun = fs.readFileSync(`test.json`).toString();
+var jsontorun = fs.readFileSync(`match_timeline.json`).toString();
 var combinedMatchString = '{\"match\":[' + jsontorun + ']}';
 //var matchJsontorun = JSON.parse(combinedMatchString);
 var matchJsontorun = JSON.parse(jsontorun);
