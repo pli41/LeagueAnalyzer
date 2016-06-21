@@ -225,9 +225,11 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 			}
 		}
 	} else if(obj && (typeof obj === 'string' || typeof obj === 'number' || typeof obj === 'boolean')){
-		console.log(`primitive type`);
+		//console.log(`primitive type`);
 		//console.log(obj,parent_name,rownum,colname,id);
-		
+		var newobj = new Object();
+		newobj.val = obj;
+		newdata = MyJSON2CSV(newobj,parent_name,rownum,colname,id);
 	} else {
 		console.log(`undefined or null`);
 		console.log(obj,parent_name,rownum,colname,id);
