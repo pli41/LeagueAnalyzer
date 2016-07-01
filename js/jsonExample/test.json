@@ -1,0 +1,249 @@
+{
+   "test": 13123,
+   "test2": "abc",
+   "test3": {
+   		"c": {
+		"a": 123,
+		"b": 456
+		},
+		"a": 123,
+		"b": 456
+   },
+   "test4": {
+		"array": [
+			{
+				"a": 123,
+				"b": 456
+			},
+			{
+				"a": 123,
+				"b": 456,
+				"c": 789
+			}
+		]
+   },
+   "matches": [
+      {
+		 "test3": {
+			"a": 123,
+			"b": 456
+		 },
+         "timestamp": 1456853509683,
+         "champion": 104,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2111656338,
+         "role": "NONE",
+         "platformId": "NA1",
+         "lane": "JUNGLE",
+		 "array2": [
+			{
+				"a": 123,
+				"b": 456
+			},
+			{
+				"a": 123,
+				"b": 456,
+				"c": 789
+			}
+		 ]
+      },
+      {
+		 "test3": {
+			"c": 123,
+			"d": 456
+		 },
+         "timestamp": 1456774650946,
+         "champion": 42,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2111083655,
+         "role": "SOLO",
+         "platformId": "NA1",
+         "lane": "MID",
+		 "test5": {
+			"a": 123,
+			"b": 456,
+			"c": {
+			"a": 123,
+			"b": 456
+				}
+			},
+		 "array2": [
+			{
+				"a": 123,
+				"b": 456
+			},
+			{
+				"a": 123,
+				"b": 456,
+				"c": 789
+			}
+		 ]
+      },
+      {
+         "timestamp": 1456772737802,
+         "champion": 16,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2111102282,
+         "role": "DUO_SUPPORT",
+         "platformId": "NA1",
+         "lane": "BOTTOM",
+		 "test6": {
+			"a": 123,
+			"b": 456,
+			"c": {
+			"a": 123,
+			"b": 456
+				}
+			}
+      },
+      {
+         "timestamp": 1456714846288,
+         "champion": 112,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2110782163,
+         "role": "SOLO",
+         "platformId": "NA1",
+         "lane": "MID",
+		 "test7": {
+			"a": 123,
+			"b": 456,
+			"c": {
+			"a": 123,
+			"b": 456
+				}
+			}
+      },
+      {
+         "timestamp": 1456712480450,
+         "champion": 114,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2110437778,
+         "role": "SOLO",
+         "platformId": "NA1",
+         "lane": "TOP"
+      },
+      {
+         "timestamp": 1456600503615,
+         "champion": 12,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2109017501,
+         "role": "DUO_SUPPORT",
+         "platformId": "NA1",
+         "lane": "BOTTOM"
+      },
+      {
+         "timestamp": 1456598841348,
+         "champion": 412,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2109025312,
+         "role": "DUO_SUPPORT",
+         "platformId": "NA1",
+         "lane": "BOTTOM"
+      },
+      {
+         "timestamp": 1456596594722,
+         "champion": 12,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2109012529,
+         "role": "DUO_SUPPORT",
+         "platformId": "NA1",
+         "lane": "BOTTOM"
+      },
+      {
+         "timestamp": 1456454266858,
+         "champion": 12,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2107751765,
+         "role": "DUO_SUPPORT",
+         "platformId": "NA1",
+         "lane": "BOTTOM"
+      },
+      {
+         "timestamp": 1456360389218,
+         "champion": 201,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2106719511,
+         "role": "DUO_SUPPORT",
+         "platformId": "NA1",
+         "lane": "BOTTOM"
+      },
+      {
+         "timestamp": 1456357596768,
+         "champion": 104,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2106695325,
+         "role": "NONE",
+         "platformId": "NA1",
+         "lane": "JUNGLE"
+      },
+      {
+         "timestamp": 1456336688351,
+         "champion": 5,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2106504403,
+         "role": "NONE",
+         "platformId": "NA1",
+         "lane": "JUNGLE"
+      },
+      {
+         "timestamp": 1456265007331,
+         "champion": 201,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2105782137,
+         "role": "DUO_SUPPORT",
+         "platformId": "NA1",
+         "lane": "BOTTOM"
+      },
+      {
+         "timestamp": 1456258220418,
+         "champion": 79,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2105715395,
+         "role": "NONE",
+         "platformId": "NA1",
+         "lane": "JUNGLE"
+      },
+      {
+         "timestamp": 1456256328002,
+         "champion": 79,
+         "region": "NA",
+         "queue": "TEAM_BUILDER_DRAFT_RANKED_5x5",
+         "season": "SEASON2016",
+         "matchId": 2105713955,
+         "role": "NONE",
+         "platformId": "NA1",
+         "lane": "JUNGLE"
+      }
+   ],
+   "totalGames": 15,
+   "startIndex": 0,
+   "endIndex": 15
+}
