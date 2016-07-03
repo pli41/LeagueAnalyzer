@@ -1,0 +1,17 @@
+{"21103810": [{
+   "queue": "RANKED_SOLO_5x5",
+   "name": "Urgot's Gladiators",
+   "entries": [{
+      "leaguePoints": 79,
+      "isFreshBlood": false,
+      "isHotStreak": false,
+      "division": "III",
+      "isInactive": false,
+      "isVeteran": false,
+      "losses": 279,
+      "playerOrTeamName": "Andybendy",
+      "playerOrTeamId": "21103810",
+      "wins": 274
+   }],
+   "tier": "DIAMOND"
+}]}

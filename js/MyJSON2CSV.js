@@ -232,7 +232,7 @@ MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
 		//console.log(obj,parent_name,rownum,colname,id);
 		var newobj = new Object();
 		newobj.val = obj;
-		newdata = MyJSON2CSV(newobj,parent_name,rownum,colname,id);
+		newdata = this.MyJSON2CSV(newobj,parent_name,rownum,colname,id);
 	} else {
 		console.log(`undefined or null`);
 		console.log(obj,parent_name,rownum,colname,id);
