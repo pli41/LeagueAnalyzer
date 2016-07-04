@@ -211,7 +211,7 @@ MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
 				}
 			}
 		}
-		console.log("Row END"); 
+		//console.log("Row END"); 
 		try{
 			if(newdata.slice(-4) != '\r\n\r\n'){
 				fs.writeFileSync(csvPath, newdata + '\r\n');
