@@ -1,6 +1,6 @@
 var fs = require('fs');
 module.exports = {
-MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
+MyJSON2CSV: function (obj,csvPath,parent_name,rownum,colname,id){
 	var csvPath = `../PlayerData/CSV/${parent_name}.csv`;
 	var newdata = '';
 	if(obj.constructor == Array){
@@ -24,7 +24,7 @@ MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
 			console.log(`${parent_name}.csv duplicate id ${id} found, changed to ${this_id}`);
 		}
 		for(var i = 0; i < obj.length; i++){
-			newdata = this.MyJSON2CSV(obj[i],parent_name,start_row++,colname,this_id);
+			newdata = this.MyJSON2CSV(obj[i],csvPath,parent_name,start_row++,colname,this_id);
 		}
 	} else if(obj && typeof obj === 'object'){
 		var fileExisted = true;
@@ -194,7 +194,7 @@ MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
 						}
 					//console.log("The file was saved!"); 
 					if(val.constructor == Array){
-						this.MyJSON2CSV(val,track_colname,null,null,new_id);
+						this.MyJSON2CSV(val,csvPath,track_colname,null,null,new_id);
 					} else {
 						//return;
 						//continue;
@@ -202,9 +202,9 @@ MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
 				} else if(val && typeof val === 'object'){
 					var newcolname = colname?(colname + '_' + key):(key);
 					if(rownum==null){
-						newdata = this.MyJSON2CSV(val,parent_name,start_row,newcolname,id);
+						newdata = this.MyJSON2CSV(val,csvPath,parent_name,start_row,newcolname,id);
 					} else {
-						newdata = this.MyJSON2CSV(val,parent_name,rownum,newcolname,id);
+						newdata = this.MyJSON2CSV(val,csvPath,parent_name,rownum,newcolname,id);
 					}
 				} else {
 					console.log("undefined or null");
@@ -232,7 +232,7 @@ MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
 		//console.log(obj,parent_name,rownum,colname,id);
 		var newobj = new Object();
 		newobj.val = obj;
-		newdata = this.MyJSON2CSV(newobj,parent_name,rownum,colname,id);
+		newdata = this.MyJSON2CSV(newobj,csvPath,parent_name,rownum,colname,id);
 	} else {
 		console.log(`undefined or null`);
 		console.log(obj,parent_name,rownum,colname,id);
@@ -240,7 +240,3 @@ MyJSON2CSV: function (obj,parent_name,rownum,colname,id){
 	return newdata;
 }
 };
-/* var jsontorun = fs.readFileSync(`match_timeline.json`).toString();
-var matchJsontorun = JSON.parse(jsontorun);
-MyJSON2CSV(matchJsontorun,'main',null,null,0)
-console.log("DONE"); */

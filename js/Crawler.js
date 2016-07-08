@@ -1,25 +1,29 @@
 var https = require('https');
 var format = require("string-template");
 var fs = require('fs');
-var json2csv = require('json2csv');
 var path = require('path');
 var MyJSON2CSV = require("./MyJSON2CSV.js");
+var util = require('util');
+var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
+var log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\r\n');
+  log_stdout.write(util.format(d) + '\r\n');
+};
 
 var summoner_name_original = "Andybendy"; //21103810
 var summoner_id_original = 21103810;
 
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2",'55c0033d-23b5-4cb6-8104-e0d5311073b2'];
 
-var matchIntervalTime = 500;
-var playerIntervalTime = 15000;
 var requestCount = 0;
 var Interval = 5000;
-var jsonArray = new Array();
 var requestQueue = 0;
-var csvPath = `../PlayerData/CSV/crawler.json`;	
+var csvPath = `../PlayerData/CSV/`;	
+var filename = `crawler`;	
 	
-	
-function getSummonerIdByName(name, csvPath) {
+function getSummonerIdByName(name, csvPath, filename) {
 	requestQueue++;
     setTimeout(function () {
 		var summoner_name_escaped= encodeURI(name);
@@ -45,7 +49,7 @@ function getSummonerIdByName(name, csvPath) {
 				} catch(e) {
 					console.log(e);
 					console.log(`Retry ${summonerId} from getSummonerIdByName`);
-					getLeagueById(summonerId, csvPath);
+					getLeagueById(summonerId, csvPath, filename);
 					return;
 				}
 				if(jsonData.status){
@@ -61,7 +65,7 @@ function getSummonerIdByName(name, csvPath) {
 					} else if(jsonData.status.status_code === 429){
 						console.log(`Rate limit exceeded  with apiKey ${key}. Retry.`);
 						console.log(`Retry ${summonerId} from getSummonerIdByName`);
-						getSummonerIdByName(name, csvPath);
+						getSummonerIdByName(name, csvPath, filename);
 					} else if(jsonData.status.status_code === 500){
 						console.log(`Internal server error from getSummonerIdByName`);
 						return; 
@@ -74,8 +78,7 @@ function getSummonerIdByName(name, csvPath) {
 					}
 				} else{
 					console.log(`request LeagueByID ends summonerId ${summonerId}`);		
-					jsonArray.push(jsonData);
-					writeJSON(request_response, csvPath);					
+					writeJSON(`${request_response}\r\nSummonerIdByName`, `${csvPath}${filename}_${requestCount-1}.json`);			
 				}		
 			});
 		});
@@ -84,12 +87,12 @@ function getSummonerIdByName(name, csvPath) {
 		request.on("error", function(err){
 			console.log(`request SummonerIdByName summonerId ${summonerId}error: ${err}`);
 			console.log(`Retry ${summonerId} from getSummonerIdByName`);
-			getSummonerIdByName(name, csvPath);
+			getSummonerIdByName(name, csvPath, filename);
 		});
 	}, (requestQueue-1)*Interval);
 }
 
-function getLeagueById(summonerId, csvPath){
+function getLeagueById(summonerId, csvPath, filename){
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
@@ -113,7 +116,7 @@ function getLeagueById(summonerId, csvPath){
 				} catch(e) {
 					console.log(e);
 					console.log(`Retry ${summonerId} from getLeagueById`);
-					getLeagueById(summonerId, csvPath);
+					getLeagueById(summonerId, csvPath, filename);
 					return;
 				}
 				if(jsonData.status){
@@ -129,7 +132,7 @@ function getLeagueById(summonerId, csvPath){
 					} else if(jsonData.status.status_code === 429){
 						console.log(`Rate limit exceeded  with apiKey ${key}. Retry.`);
 						console.log(`Retry ${summonerId} from getLeagueById`);
-						getLeagueById(summonerId, csvPath);
+						getLeagueById(summonerId, csvPath, filename);
 					} else if(jsonData.status.status_code === 500){
 						console.log(`Internal server error from getLeagueById`);
 						return; 
@@ -142,8 +145,7 @@ function getLeagueById(summonerId, csvPath){
 					}
 				} else{
 					console.log(`request LeagueByID ends summonerId ${summonerId}`);
-					jsonArray.push(jsonData);
-					writeJSON(request_response, csvPath);
+					writeJSON(`${request_response}\r\nLeagueById`, `${csvPath}${filename}_${requestCount-1}.json`);
 				}
 			});
 		});
@@ -152,12 +154,12 @@ function getLeagueById(summonerId, csvPath){
 		request.on("error", function(err){
 			console.log(`request LeagueById summonerId ${summonerId} error: ${err}`);
 			console.log(`Retry ${summonerId} from getLeagueById`);
-			getLeagueById(summonerId, csvPath);
+			getLeagueById(summonerId, csvPath, filename);
 		});
 	}, (requestQueue-1)*Interval);
 }
 
-function getLeagueData(summonerId, csvPath){
+function getLeagueData(summonerId, csvPath, filename){
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
@@ -181,7 +183,7 @@ function getLeagueData(summonerId, csvPath){
 				} catch(e) {
 					console.log(e);
 					console.log(`Retry ${summonerId} from getLeagueData`);
-					getLeagueData(summonerId, csvPath);
+					getLeagueData(summonerId, csvPath, filename);
 					return;
 				}
 				if(jsonData.status){
@@ -197,7 +199,7 @@ function getLeagueData(summonerId, csvPath){
 					} else if(jsonData.status.status_code === 429){
 						console.log(`Rate limit exceeded  with apiKey ${key}. Retry.`);
 						console.log(`Retry ${summonerId} from getLeagueData`);
-						getLeagueData(summonerId, csvPath);
+						getLeagueData(summonerId, csvPath, filename);
 					} else if(jsonData.status.status_code === 500){
 						console.log(`Internal server error from getLeagueData`);
 						return; 
@@ -210,8 +212,7 @@ function getLeagueData(summonerId, csvPath){
 					}
 				} else {
 					console.log(`request League(entry) ends summonerId ${summonerId}`);
-					jsonArray.push(jsonData);
-					writeJSON(request_response, csvPath);
+					writeJSON(`${request_response}\r\ngetLeagueData`, `${csvPath}${filename}_${requestCount-1}.json`);
 				}
 			});
 		});
@@ -219,13 +220,13 @@ function getLeagueData(summonerId, csvPath){
 		request.on("error", function(err){
 			console.log(`request LeagueData summonerId ${summonerId} error: ${err}`);
 			console.log(`Retry ${summonerId} from LeagueData`);
-			getLeagueData(summonerId, csvPath);
+			getLeagueData(summonerId, csvPath, filename);
 		});
 	}, (requestQueue-1)*Interval);
 }
 							
 							
-var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1, callback2, csvpath){
+var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1, callback2, csvpath, filename){
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
@@ -253,7 +254,7 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 				} catch(e) {
 					console.log(e);
 					console.log(`Retry ${summonerId} from getSummonerMatchList`);
-					getSummonerMatchList(summonerId, rankedQueues, seasons, callback1, callback2, csvpath);
+					getSummonerMatchList(summonerId, rankedQueues, seasons, callback1, callback2, csvpath, filename);
 					return;
 				}
 				var matchesNum = jsonData['totalGames'];
@@ -271,7 +272,7 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 						} else if(jsonData.status.status_code === 429){
 							console.log(`Rate limit exceeded  with apiKey ${key}. Retry.`);
 							console.log(`Retry ${summonerId} from getSummonerMatchList`);
-							getSummonerMatchList(summonerId, rankedQueues, seasons, callback1, callback2, csvpath);
+							getSummonerMatchList(summonerId, rankedQueues, seasons, callback1, callback2, csvpath, filename);
 							return;
 						} else if(jsonData.status.status_code === 500){
 							console.log(`Internal server error from getSummonerMatchList`);
@@ -285,11 +286,10 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 						}
 					} else {
 						console.log(`request Match List ends summonerId ${summonerId}, totalGames ${matchesNum}`);
-						jsonArray.push(jsonData);
-						writeJSON(request_response, csvPath);
+						writeJSON(`${request_response}\r\nSummonerMatchList`, `${csvPath}${filename}_${requestCount-1}.json`);
 						if(callback1){
 							for(var i=0;i<matchesNum;i++){
-								callback1(jsonData['matches'][i]['matchId'], true, summonerId, callback2, csvpath);
+								callback1(jsonData['matches'][i]['matchId'], true, summonerId, callback2, csvpath, filename);
 							}
 						}
 					}
@@ -301,12 +301,12 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 		request.on('error', function(err){
 			console.log(`request SummonerMatchList summonerId ${summonerId} error: ${err}`);
 			console.log(`Retry ${summonerId} from getSummonerMatchList`);
-			getSummonerMatchList(summonerId, rankedQueues, seasons, callback1, callback2, csvpath);
+			getSummonerMatchList(summonerId, rankedQueues, seasons, callback1, callback2, csvpath, filename);
 		});
 	}, (requestQueue-1)*Interval);
 }						
 
-var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvpath){
+var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvpath, filename){
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
@@ -331,7 +331,7 @@ var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvp
 				} catch(e) {
 					console.log(e);
 					console.log(`Retry ${matchID} from GetMatchData`);
-					GetMatchData(matchID, includeTimeline, summonerId, callback, csvpath);
+					GetMatchData(matchID, includeTimeline, summonerId, callback, csvpath, filename);
 					return;
 				}
 				if(jsonData.status){
@@ -347,7 +347,7 @@ var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvp
 					} else if(jsonData.status.status_code === 429){
 						console.log(`Rate limit exceeded  with apiKey ${key}. Retry.`);
 						console.log(`Retry ${matchID} from GetMatchData`);
-						GetMatchData(matchID, includeTimeline, summonerId, callback, csvpath);
+						GetMatchData(matchID, includeTimeline, summonerId, callback, csvpath, filename);
 						return;
 					} else if(jsonData.status.status_code === 500){
 						console.log(`Internal server error from GetMatchData`);
@@ -361,16 +361,13 @@ var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvp
 					}
 				} else {
 					console.log(`request Match Data ends matchID ${matchID}`);
-					jsonArray.push(jsonData);
-					writeJSON(request_response, csvPath);
-					if(callback){
-						var participantIdentities = jsonData['participantIdentities'];
-						var participantNum = participantIdentities.length;
-						for(var i=0;i<participantNum;i++){
-							var new_summonerID = participantIdentities[i]['player']['summonerId'];
-							if(new_summonerID != summonerId){
-								callback(new_summonerID, null, null, GetMatchData, callback, csvpath);
-							}
+					writeJSON(`${request_response}\r\nMatchData`, `${csvPath}${filename}_${requestCount-1}.json`);
+					var participantIdentities = jsonData['participantIdentities'];
+					var participantNum = participantIdentities.length;
+					for(var i=0;i<participantNum;i++){
+						var new_summonerID = participantIdentities[i]['player']['summonerId'];
+						if(new_summonerID != summonerId){
+							callback(new_summonerID, null, null, GetMatchData, callback, csvpath, filename);
 						}
 					}
 				}
@@ -381,7 +378,7 @@ var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvp
 		request.on('error', function(err){
 			console.log(`request GetMatchData matchID ${matchID} error: ${err}`);
 			console.log(`Retry ${matchID} from GetMatchData`);
-			GetMatchData(matchID, includeTimeline, summonerId, callback, csvpath);
+			GetMatchData(matchID, includeTimeline, summonerId, callback, csvpath, filename);
 			return;
 		});
 	}, (requestQueue-1)*Interval);	
@@ -393,25 +390,20 @@ crawler(summoner_id_original);
 //console.log(requestCount);
 //MyJSON2CSV.MyJSON2CSV(leagueDataResult, "leagueData", null, null, null);
 
-// for(var i=0;i<jsonArray.length;i++){
-	// console.log(jsonArray[i])
-// }
 
 
 function crawler(summonerID) {
 	//getLeagueById(summonerID);
 	//getLeagueData(summonerID);
-	getSummonerMatchList(summonerID, null, null, GetMatchData, getSummonerMatchList, csvPath);
+	getSummonerMatchList(summonerID, null, null, GetMatchData, getSummonerMatchList, csvPath, filename);
 }
 
 
-function writeJSON(jsonData, csvPath){
+function writeJSON(jsonData, path){
 	try{
-		fs.appendFileSync(csvPath, jsonData);
+		fs.appendFileSync(path, jsonData);
 	} catch(e) {
-		if(e instanceof Error){
-			console.log(e);
-		}
+		console.log(e);
 	}
 }
 
