@@ -18,10 +18,14 @@ var summoner_id_original = 21103810;
 var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-77238c9c6afe", "eb44fe5e-8a30-4eaa-8376-69d39f8c6832", "6f0bb062-d871-4681-abc8-945b882bebcf", "880e263b-b5a2-422f-924a-46336a7b0f18", "bf3f360a-7b04-476c-8a11-ba0a66c447f2",'55c0033d-23b5-4cb6-8104-e0d5311073b2'];
 
 var requestCount = 0;
-var Interval = 5000;
+var requestTracker = 0;
 var requestQueue = 0;
 var csvPath = `../PlayerData/CSV/`;	
 var filename = `crawler`;	
+var Interval = 5000;
+
+var matchIDCrawled = new Array();
+var summonerIDCrawled = new Array();
 	
 function getSummonerIdByName(name, csvPath, filename) {
 	requestQueue++;
@@ -29,9 +33,11 @@ function getSummonerIdByName(name, csvPath, filename) {
 		var summoner_name_escaped= encodeURI(name);
 		var summoner_name_trimmed = name.replace(/\s+/g, '');
 		var jsonData = "";
+		requestCount++;
+		var key = apiKey[requestCount%apiKey.length];
 		var options_ID = {
 			host: "na.api.pvp.net",
-			path: format("/api/lol/na/v1.4/summoner/by-name/{summoner_name_escaped}?api_key={key}", {summoner_name_escaped: summoner_name_escaped, key: apiKey[requestCount%apiKey.length]}),
+			path: format("/api/lol/na/v1.4/summoner/by-name/{summoner_name_escaped}?api_key={key}", {summoner_name_escaped: summoner_name_escaped, key: key}),
 			method: "GET"
 		};
 		
@@ -42,7 +48,7 @@ function getSummonerIdByName(name, csvPath, filename) {
 			});
 			
 			response.on("end", function(){
-				requestCount++;
+				requestTracker++;
 				requestQueue--;
 				try{
 					jsonData = JSON.parse(request_response);	
@@ -78,7 +84,7 @@ function getSummonerIdByName(name, csvPath, filename) {
 					}
 				} else{
 					console.log(`request LeagueByID ends summonerId ${summonerId}`);		
-					writeJSON(`${request_response}\r\nSummonerIdByName`, `${csvPath}${filename}_${requestCount-1}.json`);			
+					writeFile(`${request_response}\r\nSummonerIdByName`, `${csvPath}${filename}_${requestTracker-1}.json`);			
 				}		
 			});
 		});
@@ -96,9 +102,11 @@ function getLeagueById(summonerId, csvPath, filename){
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
+		requestCount++;
+		var key = apiKey[requestCount%apiKey.length];
 		var options = {
 			host: "na.api.pvp.net",
-			path: format("/api/lol/na/v2.5/league/by-summoner/{summoner_id}?api_key={key}", {summoner_id: summonerId, key: apiKey[requestCount%apiKey.length]}),
+			path: format("/api/lol/na/v2.5/league/by-summoner/{summoner_id}?api_key={key}", {summoner_id: summonerId, key: key}),
 			method: "GET"
 		};
 			
@@ -109,7 +117,7 @@ function getLeagueById(summonerId, csvPath, filename){
 			});
 			
 			response.on("end", function(){
-				requestCount++;
+				requestTracker++;
 				requestQueue--;
 				try{
 					jsonData = JSON.parse(request_response);	
@@ -145,7 +153,7 @@ function getLeagueById(summonerId, csvPath, filename){
 					}
 				} else{
 					console.log(`request LeagueByID ends summonerId ${summonerId}`);
-					writeJSON(`${request_response}\r\nLeagueById`, `${csvPath}${filename}_${requestCount-1}.json`);
+					writeFile(`${request_response}\r\nLeagueById`, `${csvPath}${filename}_${requestTracker-1}.json`);
 				}
 			});
 		});
@@ -163,9 +171,11 @@ function getLeagueData(summonerId, csvPath, filename){
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
+		requestCount++;
+		var key = apiKey[requestCount%apiKey.length];
 		var options = {
 			host: "na.api.pvp.net",
-			path: format("/api/lol/na/v2.5/league/by-summoner/{summoner_id}/entry?api_key={key}", {summoner_id: summonerId, key: apiKey[requestCount%apiKey.length]}),
+			path: format("/api/lol/na/v2.5/league/by-summoner/{summoner_id}/entry?api_key={key}", {summoner_id: summonerId, key: key}),
 			method: "GET"
 		};
 		
@@ -176,7 +186,7 @@ function getLeagueData(summonerId, csvPath, filename){
 			});
 			
 			response.on("end", function(){
-				requestCount++;
+				requestTracker++;
 				requestQueue--;
 				try{
 					jsonData = JSON.parse(request_response);	
@@ -212,7 +222,7 @@ function getLeagueData(summonerId, csvPath, filename){
 					}
 				} else {
 					console.log(`request League(entry) ends summonerId ${summonerId}`);
-					writeJSON(`${request_response}\r\ngetLeagueData`, `${csvPath}${filename}_${requestCount-1}.json`);
+					writeFile(`${request_response}\r\ngetLeagueData`, `${csvPath}${filename}_${requestTracker-1}.json`);
 				}
 			});
 		});
@@ -230,8 +240,9 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
-		rankedQueues = 'TEAM_BUILDER_DRAFT_RANKED_5x5';
+		rankedQueues = 'RANKED_SOLO_5x5'; //TEAM_BUILDER_DRAFT_RANKED_5x5 RANKED_SOLO_5x5 RANKED_TEAM_5x5 RANKED_TEAM_3x3
 		seasons = 'SEASON2016';
+		requestCount++;
 		var key = apiKey[requestCount%apiKey.length];
 		var options = {
 			host: "na.api.pvp.net",
@@ -239,15 +250,13 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 			method: "GET"
 		};
 		
-		
 		var request_response =' ';
 		var request = https.request(options, function(response){	
 			response.on("data", function(data){
 				request_response += data;
-			});
-			
+			});	
 			response.on("end", function(){
-				requestCount++;
+				requestTracker++
 				requestQueue--;
 				try{
 					jsonData = JSON.parse(request_response);	
@@ -286,11 +295,12 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 						}
 					} else {
 						console.log(`request Match List ends summonerId ${summonerId}, totalGames ${matchesNum}`);
-						writeJSON(`${request_response}\r\nSummonerMatchList`, `${csvPath}${filename}_${requestCount-1}.json`);
+						writeFile(`${request_response}\r\nSummonerMatchList`, `${csvPath}${filename}_${requestTracker-1}.json`);
 						if(callback1){
 							for(var i=0;i<matchesNum;i++){
 								callback1(jsonData['matches'][i]['matchId'], true, summonerId, callback2, csvpath, filename);
 							}
+							//summonerIDCrawled.push(summonerId);
 						}
 					}
 				}
@@ -307,16 +317,20 @@ var getSummonerMatchList = function(summonerId, rankedQueues, seasons, callback1
 }						
 
 var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvpath, filename){
+	if(matchIDCrawled.indexOf(matchID) != -1){
+		console.log(`${matchID} already crawled. Skip.`);
+		return;
+	}
 	requestQueue++;
     setTimeout(function () {
 		var jsonData = "";
+		requestCount++;
 		var key = apiKey[requestCount%apiKey.length];
 		var options = {
 			host: "na.api.pvp.net",
 			path: format("/api/lol/na/v2.2/match/{matchID}?includeTimeline={includeTimeline}&api_key={key}", {matchID: matchID, includeTimeline: includeTimeline, key: key}),
 			method: "GET"
 		};
-
 		var request_response = '';	
 		var request = https.request(options, function(response){
 			response.on("data", function(data){
@@ -324,7 +338,7 @@ var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvp
 			});
 			
 			response.on("end", function(){
-				requestCount++;
+				requestTracker++
 				requestQueue--;
 				try{
 					jsonData = JSON.parse(request_response);	
@@ -361,7 +375,8 @@ var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvp
 					}
 				} else {
 					console.log(`request Match Data ends matchID ${matchID}`);
-					writeJSON(`${request_response}\r\nMatchData`, `${csvPath}${filename}_${requestCount-1}.json`);
+					writeFile(`${request_response}\r\nMatchData`, `${csvPath}${filename}_${requestTracker-1}.json`);
+					matchIDCrawled.push(matchID);
 					var participantIdentities = jsonData['participantIdentities'];
 					var participantNum = participantIdentities.length;
 					for(var i=0;i<participantNum;i++){
@@ -386,6 +401,7 @@ var GetMatchData = function(matchID, includeTimeline, summonerId, callback, csvp
 							
 //getLeagueData(summoner_id_original);
 //getSummonerMatchList(summoner_id_original,null,null,GetMatchData, getSummonerMatchList);
+
 crawler(summoner_id_original);
 //console.log(requestCount);
 //MyJSON2CSV.MyJSON2CSV(leagueDataResult, "leagueData", null, null, null);
@@ -393,19 +409,44 @@ crawler(summoner_id_original);
 
 
 function crawler(summonerID) {
-	//getLeagueById(summonerID);
-	//getLeagueData(summonerID);
+	var session = readFile(`${csvPath}${filename}_matchID.s`);
+	if(session != null) {
+		matchIDCrawled = session.split("\r\n");
+		console.log(`session recovered. Total ${matchIDCrawled.length} matchess crawled`);
+		console.log(matchIDCrawled);
+	}
+	process.on('SIGINT', function() {
+		console.log( "\nGracefully shutting down from SIGINT (Ctrl-C)" );
+		// some other closing procedures go here
+		if(matchIDCrawled != null) {
+			var matchID_temp = matchIDCrawled.join("\r\n");
+			//var summonerID_temp = summonerIDCrawled.join("\r\n");
+			writeFile(matchID_temp,`${csvPath}${filename}_matchID.s`);
+		}
+		//writeFile(summonerID_temp,`${csvPath}${filename}_summonerID.s`);
+		process.exit();
+	})
 	getSummonerMatchList(summonerID, null, null, GetMatchData, getSummonerMatchList, csvPath, filename);
 }
 
 
-function writeJSON(jsonData, path){
+function writeFile(data, path){
 	try{
-		fs.appendFileSync(path, jsonData);
+		fs.writeFileSync(path, data);
 	} catch(e) {
 		console.log(e);
 	}
 }
 
-
+function readFile(path) {
+	var data = null;
+	try{
+		var data = fs.readFileSync(path).toString();
+	} catch(e) {
+		if (e.code !== 'ENOENT') {
+			console.log(e);
+		}
+	}
+	return data;
+}
 

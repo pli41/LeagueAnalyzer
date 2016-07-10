@@ -1,0 +1,65 @@
+session recovered. Total 1 matchess crawled
+[ '2078978809' ]
+request Match List ends summonerId 21103810, totalGames 8
+request Match Data ends matchID 2079018152
+request Match Data ends matchID 2078685959
+request Match Data ends matchID 2077727807
+request Match Data ends matchID 2078648075
+request Match Data ends matchID 2077706169
+request Match Data ends matchID 2076725429
+request Match Data ends matchID 2076495503
+request Match List ends summonerId 19819627, totalGames 7
+2079018152 already crawled
+request Match List ends summonerId 21366420, totalGames 2
+2079018152 already crawled
+request Match List ends summonerId 507907, totalGames 15
+2079018152 already crawled
+request Match List ends summonerId 23645787, totalGames 53
+2079018152 already crawled
+request Match List ends summonerId 21706564, totalGames 90
+2079018152 already crawled
+request GetMatchData matchID 2078978809 error: Error: socket hang up
+Retry 2078978809 from GetMatchData
+request Match List ends summonerId 20239565, totalGames 3
+2079018152 already crawled
+request Match List ends summonerId 19787999, totalGames 37
+2079018152 already crawled
+request Match List ends summonerId 29429678, totalGames 45
+2079018152 already crawled
+request Match List ends summonerId 31602758, totalGames 6
+2079018152 already crawled
+request Match List ends summonerId 43839117, totalGames 9
+2078685959 already crawled
+request Match List ends summonerId 73170082, totalGames 33
+2078685959 already crawled
+request Match List ends summonerId 70139078, totalGames 72
+2078685959 already crawled
+request Match List ends summonerId 20156016, totalGames 13
+2078685959 already crawled
+request Match List ends summonerId 30933113, totalGames 58
+2078685959 already crawled
+2077706169 already crawled
+request Match List ends summonerId 26423851, totalGames 11
+2078685959 already crawled
+request Match List ends summonerId 66401633, totalGames 38
+2078685959 already crawled
+request Match List ends summonerId 21124626, totalGames 44
+2078685959 already crawled
+request Match List ends summonerId 24803075, totalGames 7
+2077727807 already crawled
+2077706169 already crawled
+request Match List ends summonerId 70199703, totalGames 13
+2077727807 already crawled
+request Match List ends summonerId 19257786, totalGames 5
+2077727807 already crawled
+2077706169 already crawled
+request Match List ends summonerId 21893827, totalGames 18
+2077727807 already crawled
+request Match List ends summonerId 23186259, totalGames 5
+2077727807 already crawled
+request Match List ends summonerId 35317527, totalGames 8
+2077727807 already crawled
+request Match List ends summonerId 24595876, totalGames 10
+2077727807 already crawled
+
+Gracefully shutting down from SIGINT (Ctrl-C)

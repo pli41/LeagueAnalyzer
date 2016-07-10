@@ -4,7 +4,7 @@ var MyJSON2CSV = require("./MyJSON2CSV.js");
 var csvPath = `../PlayerData/CSV/`;	
 var filename = `crawler`;
 var trackNum = 0;
-function readJSON(path) {
+function readFile(path) {
 	var data = null;
 	try{
 		var data = fs.readFileSync(path).toString();
@@ -32,7 +32,7 @@ function CrawlerJSON2CSV(csvPath, filename){
 			
 		}
 		console.log(`${filename}_${trackNum}.json read`);
-		var jsonCrawler = readJSON(path);
+		var jsonCrawler = readFile(path);
 		try{
 			jsonData = JSON.parse(jsonCrawler);	
 		} catch(e) {
