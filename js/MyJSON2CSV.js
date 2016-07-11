@@ -1,13 +1,12 @@
 var fs = require('fs');
 module.exports = {
 MyJSON2CSV: function (obj,csvPath,parent_name,rownum,colname,id){
-	var csvPath = `../PlayerData/CSV/${parent_name}.csv`;
+	var csvPath = `../PlayerData/CSV/CSVCRAWLER/${parent_name}.csv`;
 	var newdata = '';
 	if(obj.constructor == Array){
 		var data = '';
 		try{
 			data = fs.readFileSync(csvPath).toString();
-			//console.log(data);
 		} catch(e) {
 			if(e instanceof Error){
 				if (e.code === 'ENOENT') {

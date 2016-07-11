@@ -20,7 +20,7 @@ var apiKey = ['089dfe65-99a9-4eaf-8b49-4d4550da6f75', "79cfb0e6-89a2-4a0b-95c0-7
 var requestCount = 0;
 var requestTracker = 0;
 var requestQueue = 0;
-var csvPath = `../PlayerData/CSV/`;	
+var csvPath = `../PlayerData/CSV/CRAWLER/`;	
 var filename = `crawler`;	
 var Interval = 5000;
 
