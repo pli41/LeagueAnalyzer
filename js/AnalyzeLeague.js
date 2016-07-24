@@ -1120,8 +1120,8 @@ rl.on('close', function(){
 											playerIndex--;
 											console.log(`jump to the next index because of match data error`);
 											console.log(`current playerIndex: ${playerIndex}`);
-											getPlayerData(playerIndex);
-											return;
+											//getPlayerData(playerIndex);
+											continue;
 										}
 										else{
 											if(identity.player.summonerId === parseInt(playerId)){
@@ -1129,8 +1129,11 @@ rl.on('close', function(){
 												summonerName = identity.player.summonerName;
 											}
 										}
-										
 									};
+									
+									if(!participantID){
+										continue;
+									}
 									
 									//KDA
 									
@@ -1160,7 +1163,7 @@ rl.on('close', function(){
 								var winRate = Math.round(match_wins/matchJson.matches.length*100);
 								
 								var control_Duration_parsed = (Math.floor(control_Duration/60)).toString() + 'min' + (Math.floor(control_Duration%60)) + 'sec';
-							
+								
 								var WinRate_ADC = (WIN_ADC/adcPlayed * 100).toFixed(2);
 								var WinRate_TOP = (WIN_TOP/topPlayed * 100).toFixed(2);
 								var WinRate_MID = (WIN_MID/midPlayed * 100).toFixed(2);

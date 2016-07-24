@@ -389,6 +389,8 @@ module.exports = {
 		var PlayedLength_JG = 0;
 		var PlayedLength_SUP = 0;
 		
+
+		
 		var D_ADC = 0;
 		var DT_ADC = 0;
 		var CS_zeroToTen_ADC = 0;
@@ -407,6 +409,20 @@ module.exports = {
 		var KC_ADC = 0;
 		var KDA_ADC = 0;
 		var TeamKills_ADC = 0;
+		
+		var FBContribution_ADC = 0;
+		var KillSprees_ADC = 0;
+		var LargestKillingSpree_ADC = 0;
+		var CSDiffPerMin_zeroToTen_ADC = 0;
+		var XPPerMin_zeroToTen_ADC = 0;
+		var XPPerMin_zeroToThirty_ADC = 0;
+		var XPDiffPerMin_zeroToTen_ADC = 0;
+		var XPDiffPerMin_tenToTwenty_ADC = 0;
+		var XPDiffPerMin_twentyToThirty_ADC = 0;
+		var TeamGoldPercent_ADC = 0;
+		var TeamDamagePercent_ADC = 0;
+		var TeamGold_ADC = 0;
+		var TeamDamage_ADC = 0;
 
 		var D_MID = 0;
 		var DT_MID = 0;
@@ -426,6 +442,20 @@ module.exports = {
 		var KC_MID = 0;
 		var KDA_MID = 0;
 		var TeamKills_MID = 0;
+		
+		var FBContribution_MID = 0;
+		var KillSprees_MID = 0;
+		var LargestKillingSpree_MID = 0;
+		var CSDiffPerMin_zeroToTen_MID = 0;
+		var XPPerMin_zeroToTen_MID = 0;
+		var XPPerMin_zeroToThirty_MID = 0;
+		var XPDiffPerMin_zeroToTen_MID = 0;
+		var XPDiffPerMin_tenToTwenty_MID = 0;
+		var XPDiffPerMin_twentyToThirty_MID = 0;
+		var TeamGoldPercent_MID = 0;
+		var TeamDamagePercent_MID = 0;
+		var TeamGold_MID = 0;
+		var TeamDamage_MID = 0;
 		
 		var D_TOP = 0;
 		var DT_TOP = 0;
@@ -447,6 +477,20 @@ module.exports = {
 		var KDA_TOP = 0;
 		var TeamKills_TOP = 0;
 		
+		var FBContribution_TOP = 0;
+		var KillSprees_TOP = 0;
+		var LargestKillingSpree_TOP = 0;
+		var CSDiffPerMin_zeroToTen_TOP= 0;
+		var XPPerMin_zeroToTen_TOP = 0;
+		var XPPerMin_zeroToThirty_TOP = 0;
+		var XPDiffPerMin_zeroToTen_TOP = 0;
+		var XPDiffPerMin_tenToTwenty_TOP = 0;
+		var XPDiffPerMin_twentyToThirty_TOP = 0;
+		var TeamGoldPercent_TOP = 0;
+		var TeamDamagePercent_TOP = 0;
+		var TeamGold_TOP = 0;
+		var TeamDamage_TOP = 0;
+		
 		var D_JG = 0;
 		var DT_JG = 0;
 		var CS_zeroToTen_JG = 0;
@@ -465,6 +509,20 @@ module.exports = {
 		var WP_JG = 0;
 		var KC_JG = 0;
 		var TeamKills_JG = 0;
+		
+		var FBContribution_JG = 0;
+		var KillSprees_JG = 0;
+		var LargestKillingSpree_JG = 0;
+		var CSDiffPerMin_zeroToTen_JG = 0;
+		var XPPerMin_zeroToTen_JG = 0;
+		var XPPerMin_zeroToThirty_JG = 0;
+		var XPDiffPerMin_zeroToTen_JG = 0;
+		var XPDiffPerMin_tenToTwenty_JG = 0;
+		var XPDiffPerMin_twentyToThirty_JG = 0;
+		var TeamGoldPercent_JG = 0;
+		var TeamDamagePercent_JG = 0;
+		var TeamGold_JG = 0;
+		var TeamDamage_JG = 0;
 		
 		var D_SUP = 0;
 		var DT_SUP = 0;
@@ -485,8 +543,42 @@ module.exports = {
 		var KC_SUP = 0;
 		var TeamKills_SUP = 0;
 		
+		var FBContribution_SUP = 0;
+		var KillSprees_SUP = 0;
+		var LargestKillingSpree_SUP = 0;
+		var CSDiffPerMin_zeroToTen_SUP = 0;
+		var XPPerMin_zeroToTen_SUP = 0;
+		var XPPerMin_zeroToThirty_SUP = 0;
+		var XPDiffPerMin_zeroToTen_SUP = 0;
+		var XPDiffPerMin_tenToTwenty_SUP = 0;
+		var XPDiffPerMin_twentyToThirty_SUP = 0;
+		var TeamGoldPercent_SUP = 0;
+		var TeamDamagePercent_SUP = 0;
+		var TeamGold_SUP = 0;
+		var TeamDamage_SUP = 0;
+		
+		var numberOfMatchesOverTwenty_TOP = 0;
+		var numberOfMatchesOverThirty_TOP = 0;
+		var numberOfMatchesOverTwenty_ADC = 0;
+		var numberOfMatchesOverThirty_ADC = 0;
+		var numberOfMatchesOverTwenty_MID = 0;
+		var numberOfMatchesOverThirty_MID = 0;
+		var numberOfMatchesOverTwenty_JG = 0;
+		var numberOfMatchesOverThirty_JG = 0;
+		var numberOfMatchesOverTwenty_SUP = 0;
+		var numberOfMatchesOverThirty_SUP = 0;
+		
 		var gatherVersatilityData = function(match, participantID){
 			if(match.participants[participantID-1].timeline.lane === 'TOP'){
+				
+				if(match.matchDuration > 1200){
+					numberOfMatchesOverTwenty_TOP ++;
+					if(match.matchDuration > 1800){
+						numberOfMatchesOverThirty_TOP ++;
+					}
+				}
+				
+				
 				topPlayed ++;
 				topTimelineNum ++;
 				PlayedLength_TOP += match.matchDuration;
@@ -494,16 +586,48 @@ module.exports = {
 				DT_TOP += match.participants[participantID-1].stats.totalDamageTaken;
 				CS_TOP += match.participants[participantID-1].stats.minionsKilled;
 				H_TOP += match.participants[participantID-1].stats.totalHeal;
+				
+				
+				if(match.participants[participantID-1].stats.firstBloodAssist||match.participants[participantID-1].stats.firstBloodKill){
+					FBContribution_TOP ++;
+				}
+				KillSprees_TOP += match.participants[participantID-1].stats.killingSprees;
+				LargestKillingSpree_TOP += match.participants[participantID-1].stats.largestKillingSpree;
+				
 				if(match.participants[participantID-1].timeline){
+					
 					if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
 						CS_zeroToTen_TOP += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
 					}
-					else{
-						topTimelineNum --;
+					if(match.participants[participantID-1].timeline.csDiffPerMinDeltas){
+						CSDiffPerMin_zeroToTen_TOP += match.participants[participantID-1].timeline.csDiffPerMinDeltas.zeroToTen;
+					}
+						
+					if(match.participants[participantID-1].timeline.xpPerMinDeltas){
+						XPPerMin_zeroToTen_TOP += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+						XPPerMin_zeroToThirty_TOP += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+						if(match.matchDuration > 1800){
+							XPPerMin_zeroToThirty_TOP += match.participants[participantID-1].timeline.xpPerMinDeltas.twentyToThirty;
+						}
+						if(match.matchDuration> 1200){
+							XPPerMin_zeroToThirty_TOP += match.participants[participantID-1].timeline.xpPerMinDeltas.tenToTwenty;
+						}
+					}
+					
+					if(match.participants[participantID-1].timeline.xpDiffPerMinDeltas){
+						XPDiffPerMin_zeroToTen_TOP += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.zeroToTen;
+						if(match.matchDuration > 1800){
+							XPDiffPerMin_twentyToThirty_TOP += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.twentyToThirty;
+						}
+						if(match.matchDuration> 1200){
+							XPDiffPerMin_tenToTwenty_TOP += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.tenToTwenty;
+						}
 					}
 				}
 				else{
 					topTimelineNum --;
+					numberOfMatchesOverTwenty_TOP--;
+					numberOfMatchesOverThirty_TOP--;
 				}
 				
 				G_TOP += match.participants[participantID-1].stats.goldEarned;
@@ -519,6 +643,8 @@ module.exports = {
 				for(var i = 0; i < 10; i++){
 					if(match.participants[i].teamId === participant_teamID){
 						TeamKills_TOP += match.participants[i].stats.kills;
+						TeamGold_TOP += match.participants[i].stats.goldEarned;
+						TeamDamage_TOP += match.participants[i].stats.totalDamageDealtToChampions;
 					}
 				}
 				
@@ -528,6 +654,12 @@ module.exports = {
 				CC_TOP += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'MIDDLE'){
+				if(match.matchDuration > 1200){
+					numberOfMatchesOverTwenty_MID ++;
+					if(match.matchDuration > 1800){
+						numberOfMatchesOverThirty_MID ++;
+					}
+				}
 				midPlayed ++;
 				midTimelineNum ++;
 				PlayedLength_MID += match.matchDuration;
@@ -535,17 +667,54 @@ module.exports = {
 				DT_MID += match.participants[participantID-1].stats.totalDamageTaken;
 				CS_MID += match.participants[participantID-1].stats.minionsKilled;
 				H_MID += match.participants[participantID-1].stats.totalHeal;
+				
+				if(match.participants[participantID-1].stats.firstBloodAssist||match.participants[participantID-1].stats.firstBloodKill){
+					FBContribution_MID ++;
+				}
+				KillSprees_MID += match.participants[participantID-1].stats.killingSprees;
+				LargestKillingSpree_MID += match.participants[participantID-1].stats.largestKillingSpree;
+				
 				if(match.participants[participantID-1].timeline){
+					
 					if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
 						CS_zeroToTen_MID += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
 					}
-					else{
-						midTimelineNum --;
+					if(match.participants[participantID-1].timeline.csDiffPerMinDeltas){
+						CSDiffPerMin_zeroToTen_MID += match.participants[participantID-1].timeline.csDiffPerMinDeltas.zeroToTen;
+					}
+						
+					if(match.participants[participantID-1].timeline.xpPerMinDeltas){
+						XPPerMin_zeroToTen_MID += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+						XPPerMin_zeroToThirty_MID += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+						
+						
+						
+						if(match.matchDuration > 1800){
+							XPPerMin_zeroToThirty_MID += match.participants[participantID-1].timeline.xpPerMinDeltas.twentyToThirty;
+						}
+						if(match.matchDuration> 1200){
+							XPPerMin_zeroToThirty_MID += match.participants[participantID-1].timeline.xpPerMinDeltas.tenToTwenty;
+						}
+					}
+					
+					if(match.participants[participantID-1].timeline.xpDiffPerMinDeltas){
+						XPDiffPerMin_zeroToTen_MID += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.zeroToTen;
+						
+						
+						if(match.matchDuration > 1800){
+							XPDiffPerMin_twentyToThirty_MID += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.twentyToThirty;
+						}
+						if(match.matchDuration> 1200){
+							XPDiffPerMin_tenToTwenty_MID += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.tenToTwenty;
+						}
 					}
 				}
 				else{
 					midTimelineNum --;
+					numberOfMatchesOverTwenty_MID--;
+					numberOfMatchesOverThirty_MID--;
 				}
+				
 				G_MID += match.participants[participantID-1].stats.goldEarned;
 				K_MID += match.participants[participantID-1].stats.kills;
 				De_MID += match.participants[participantID-1].stats.deaths;
@@ -559,6 +728,8 @@ module.exports = {
 				for(var i = 0; i < 10; i++){
 					if(match.participants[i].teamId === participant_teamID){
 						TeamKills_MID += match.participants[i].stats.kills;
+						TeamGold_MID += match.participants[i].stats.goldEarned;
+						TeamDamage_MID += match.participants[i].stats.totalDamageDealtToChampions;
 					}
 				}
 				
@@ -567,7 +738,13 @@ module.exports = {
 				}
 				CC_MID += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 			}
-			else if(match.participants[participantID-1].timeline.lane === 'JUNGLE'){
+			else if(match.participants[participantID-1].timeline.lane === 'JUNGLE'){		
+				if(match.matchDuration > 1200){
+					numberOfMatchesOverTwenty_JG ++;
+					if(match.matchDuration > 1800){
+						numberOfMatchesOverThirty_JG ++;
+					}
+				}
 				junglePlayed ++;
 				jgTimelineNum ++;
 				PlayedLength_JG += match.matchDuration;
@@ -576,17 +753,51 @@ module.exports = {
 				CS_JG += match.participants[participantID-1].stats.neutralMinionsKilled;
 				H_JG += match.participants[participantID-1].stats.totalHeal;
 				
+				if(match.participants[participantID-1].stats.firstBloodAssist||match.participants[participantID-1].stats.firstBloodKill){
+					FBContribution_JG ++;
+				}
+				KillSprees_JG += match.participants[participantID-1].stats.killingSprees;
+				LargestKillingSpree_JG += match.participants[participantID-1].stats.largestKillingSpree;
+				
 				if(match.participants[participantID-1].timeline){
 					
 					if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
 						CS_zeroToTen_JG += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
 					}
-					else{
-						jgTimelineNum --;
+					if(match.participants[participantID-1].timeline.csDiffPerMinDeltas){
+						CSDiffPerMin_zeroToTen_JG += match.participants[participantID-1].timeline.csDiffPerMinDeltas.zeroToTen;
+					}
+						
+					if(match.participants[participantID-1].timeline.xpPerMinDeltas){
+						XPPerMin_zeroToTen_JG += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+						XPPerMin_zeroToThirty_JG += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+						
+						
+						if(match.matchDuration > 1800){
+							XPPerMin_zeroToThirty_JG += match.participants[participantID-1].timeline.xpPerMinDeltas.twentyToThirty;
+						}
+						if(match.matchDuration> 1200){
+							XPPerMin_zeroToThirty_JG += match.participants[participantID-1].timeline.xpPerMinDeltas.tenToTwenty;
+						}
+					}
+					
+					if(match.participants[participantID-1].timeline.xpDiffPerMinDeltas){
+						XPDiffPerMin_zeroToTen_JG += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.zeroToTen;
+						
+						
+						
+						if(match.matchDuration > 1800){
+							XPDiffPerMin_twentyToThirty_JG += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.twentyToThirty;
+						}
+						if(match.matchDuration> 1200){
+							XPDiffPerMin_tenToTwenty_JG += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.tenToTwenty;
+						}
 					}
 				}
 				else{
 					jgTimelineNum --;
+					numberOfMatchesOverTwenty_JG--;
+					numberOfMatchesOverThirty_JG--;
 				}
 				G_JG+= match.participants[participantID-1].stats.goldEarned;
 				K_JG += match.participants[participantID-1].stats.kills;
@@ -602,6 +813,8 @@ module.exports = {
 				for(var i = 0; i < 10; i++){
 					if(match.participants[i].teamId === participant_teamID){
 						TeamKills_JG += match.participants[i].stats.kills;
+						TeamGold_JG += match.participants[i].stats.goldEarned;
+						TeamDamage_JG += match.participants[i].stats.totalDamageDealtToChampions;
 					}
 				}
 				if(match.participants[participantID-1].stats.winner){
@@ -611,6 +824,12 @@ module.exports = {
 			}
 			else if(match.participants[participantID-1].timeline.lane === 'BOTTOM'){
 				if(match.participants[participantID-1].timeline.role === 'DUO_SUPPORT'){
+					if(match.matchDuration > 1200){
+						numberOfMatchesOverTwenty_SUP ++;
+						if(match.matchDuration > 1800){
+							numberOfMatchesOverThirty_SUP ++;
+						}
+					}
 					supportPlayed ++;
 					supTimelineNum ++;
 					PlayedLength_SUP += match.matchDuration;
@@ -619,17 +838,50 @@ module.exports = {
 					CS_SUP += match.participants[participantID-1].stats.minionsKilled;
 					H_SUP += match.participants[participantID-1].stats.totalHeal;
 					
+					if(match.participants[participantID-1].stats.firstBloodAssist||match.participants[participantID-1].stats.firstBloodKill){
+						FBContribution_SUP ++;
+					}
+					KillSprees_SUP += match.participants[participantID-1].stats.killingSprees;
+					LargestKillingSpree_SUP += match.participants[participantID-1].stats.largestKillingSpree;
+					
 					if(match.participants[participantID-1].timeline){
 						
 						if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
 							CS_zeroToTen_SUP += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
 						}
-						else{
-							supTimelineNum --;
+						if(match.participants[participantID-1].timeline.csDiffPerMinDeltas){
+							CSDiffPerMin_zeroToTen_SUP += match.participants[participantID-1].timeline.csDiffPerMinDeltas.zeroToTen;
+						}
+						
+						if(match.participants[participantID-1].timeline.xpPerMinDeltas){
+							XPPerMin_zeroToTen_SUP += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+							XPPerMin_zeroToThirty_SUP += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+							
+							
+							if(match.matchDuration > 1800){
+								XPPerMin_zeroToThirty_SUP += match.participants[participantID-1].timeline.xpPerMinDeltas.twentyToThirty;
+							}
+							if(match.matchDuration> 1200){
+								XPPerMin_zeroToThirty_SUP += match.participants[participantID-1].timeline.xpPerMinDeltas.tenToTwenty;
+							}
+						}
+						
+						if(match.participants[participantID-1].timeline.xpDiffPerMinDeltas){
+							XPDiffPerMin_zeroToTen_SUP += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.zeroToTen;
+							
+							
+							if(match.matchDuration > 1800){
+								XPDiffPerMin_twentyToThirty_SUP += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.twentyToThirty;
+							}
+							if(match.matchDuration> 1200){
+								XPDiffPerMin_tenToTwenty_SUP += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.tenToTwenty;
+							}
 						}
 					}
 					else{
 						supTimelineNum --;
+						numberOfMatchesOverTwenty_SUP--;
+						numberOfMatchesOverThirty_SUP--;
 					}
 					
 					G_SUP+= match.participants[participantID-1].stats.goldEarned;
@@ -645,6 +897,8 @@ module.exports = {
 					for(var i = 0; i < 10; i++){
 						if(match.participants[i].teamId === participant_teamID){
 							TeamKills_SUP += match.participants[i].stats.kills;
+							TeamGold_SUP += match.participants[i].stats.goldEarned;
+							TeamDamage_SUP += match.participants[i].stats.totalDamageDealtToChampions;
 						}
 					}
 					if(match.participants[participantID-1].stats.winner){
@@ -653,6 +907,12 @@ module.exports = {
 					CC_SUP += match.participants[participantID-1].stats.totalTimeCrowdControlDealt;
 				}
 				else{
+					if(match.matchDuration > 1200){
+						numberOfMatchesOverTwenty_ADC ++;
+						if(match.matchDuration > 1800){
+							numberOfMatchesOverThirty_ADC ++;
+						}
+					}
 					adcPlayed ++;
 					adcTimelineNum ++;
 					PlayedLength_ADC += match.matchDuration;
@@ -661,16 +921,52 @@ module.exports = {
 					CS_ADC += match.participants[participantID-1].stats.minionsKilled;
 					H_ADC += match.participants[participantID-1].stats.totalHeal;
 					
+					if(match.participants[participantID-1].stats.firstBloodAssist||match.participants[participantID-1].stats.firstBloodKill){
+						FBContribution_ADC ++;
+					}
+					KillSprees_ADC += match.participants[participantID-1].stats.killingSprees;
+					LargestKillingSpree_ADC += match.participants[participantID-1].stats.largestKillingSpree;
+					
+					
+					
 					if(match.participants[participantID-1].timeline){
 						if(match.participants[participantID-1].timeline.creepsPerMinDeltas){
 							CS_zeroToTen_ADC += match.participants[participantID-1].timeline.creepsPerMinDeltas.zeroToTen;
 						}
-						else{
-							adcTimelineNum --;
+						
+						if(match.participants[participantID-1].timeline.csDiffPerMinDeltas){
+							CSDiffPerMin_zeroToTen_ADC += match.participants[participantID-1].timeline.csDiffPerMinDeltas.zeroToTen;
+						}
+						
+						if(match.participants[participantID-1].timeline.xpPerMinDeltas){
+							XPPerMin_zeroToTen_ADC += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+							XPPerMin_zeroToThirty_ADC += match.participants[participantID-1].timeline.xpPerMinDeltas.zeroToTen;
+							
+							
+							if(match.matchDuration > 1800){
+								XPPerMin_zeroToThirty_ADC += match.participants[participantID-1].timeline.xpPerMinDeltas.twentyToThirty;
+							}
+							if(match.matchDuration> 1200){
+								XPPerMin_zeroToThirty_ADC += match.participants[participantID-1].timeline.xpPerMinDeltas.tenToTwenty;
+							}
+						}
+						
+						if(match.participants[participantID-1].timeline.xpDiffPerMinDeltas){
+							XPDiffPerMin_zeroToTen_ADC += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.zeroToTen;
+							
+							
+							if(match.matchDuration > 1800){
+								XPDiffPerMin_twentyToThirty_ADC += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.twentyToThirty;
+							}
+							if(match.matchDuration> 1200){
+								XPDiffPerMin_tenToTwenty_ADC += match.participants[participantID-1].timeline.xpDiffPerMinDeltas.tenToTwenty;
+							}
 						}
 					}
 					else{
 						adcTimelineNum --;
+						numberOfMatchesOverTwenty_ADC--;
+						numberOfMatchesOverThirty_ADC--;
 					}
 					
 					G_ADC += match.participants[participantID-1].stats.goldEarned;
@@ -686,6 +982,8 @@ module.exports = {
 					for(var i = 0; i < 10; i++){
 						if(match.participants[i].teamId === participant_teamID){
 							TeamKills_ADC += match.participants[i].stats.kills;
+							TeamGold_ADC += match.participants[i].stats.goldEarned;
+							TeamDamage_ADC += match.participants[i].stats.totalDamageDealtToChampions;
 						}
 					}
 					if(match.participants[participantID-1].stats.winner){
@@ -695,6 +993,8 @@ module.exports = {
 				}
 			}
 		}
+								
+
 		
 		
 		//Tower Kills
@@ -779,7 +1079,198 @@ module.exports = {
 		
 		
 		
+		if(topPlayed){
+			CS_zeroToTen_TOP = (CS_zeroToTen_TOP/topTimelineNum * 10).toFixed(2);
+			KC_TOP = ((K_TOP+A_TOP)/TeamKills_TOP).toFixed(2);
+			KDA_TOP = ((K_TOP + A_TOP) / Math.max(1, De_TOP)).toFixed(2);
+			TeamGoldPercent_TOP = (G_TOP/TeamGold_TOP).toFixed(2);
+			TeamDamagePercent_TOP = (D_TOP/TeamDamage_TOP).toFixed(2);
+			FBContribution_TOP = (FBContribution_TOP/topTimelineNum*100).toFixed(2);
+			CSDiffPerMin_zeroToTen_TOP = (CSDiffPerMin_zeroToTen_TOP/topTimelineNum).toFixed(2);
+			XPPerMin_zeroToTen_TOP = (XPPerMin_zeroToTen_TOP/topTimelineNum).toFixed(2);
+			if(numberOfMatchesOverThirty_TOP){
+				XPPerMin_zeroToThirty_TOP = (XPPerMin_zeroToThirty_TOP/numberOfMatchesOverThirty_TOP).toFixed(2);
+				XPDiffPerMin_twentyToThirty_TOP = (XPDiffPerMin_twentyToThirty_TOP/numberOfMatchesOverThirty_TOP).toFixed(2);
+			}
+			else{
+				XPPerMin_zeroToThirty_TOP = 0;
+				XPDiffPerMin_twentyToThirty_TOP = 0;
+			}
+			XPDiffPerMin_zeroToTen_TOP = (XPDiffPerMin_zeroToTen_TOP/topTimelineNum).toFixed(2);
+			if(numberOfMatchesOverTwenty_TOP){
+				XPDiffPerMin_tenToTwenty_TOP = (XPDiffPerMin_tenToTwenty_TOP/numberOfMatchesOverTwenty_TOP).toFixed(2);
+			}
+			else{
+				XPDiffPerMin_tenToTwenty_TOP = 0;
+			}
+			KillSprees_TOP = (KillSprees_TOP/topPlayed).toFixed(2);
+			LargestKillingSpree_TOP = (LargestKillingSpree_TOP/topPlayed).toFixed(2);
+		}
+		else{
+			CS_zeroToTen_TOP = 0;
+			KC_TOP = 0;
+			KDA_TOP = 0;
+			WinRate_TOP = 0;
+			TeamGoldPercent_TOP = 0;
+			TeamDamagePercent_TOP = 0;
+			FBContribution_TOP = 0;
+		}
 		
+		if(midPlayed){
+			CS_zeroToTen_MID = (CS_zeroToTen_MID/midTimelineNum * 10).toFixed(2);
+			KC_MID = ((K_MID+A_MID)/TeamKills_MID).toFixed(2);
+			KDA_MID = ((K_MID + A_MID) / Math.max(1, De_MID)).toFixed(2);
+			TeamGoldPercent_MID = (G_MID/TeamGold_MID).toFixed(2);
+			TeamDamagePercent_MID = (D_MID/TeamDamage_MID).toFixed(2);
+			FBContribution_MID = (FBContribution_MID/midTimelineNum*100).toFixed(2);
+			CSDiffPerMin_zeroToTen_MID = (CSDiffPerMin_zeroToTen_MID/midTimelineNum).toFixed(2);
+			XPPerMin_zeroToTen_MID = (XPPerMin_zeroToTen_MID/midTimelineNum).toFixed(2);
+			if(numberOfMatchesOverThirty_MID){
+				XPPerMin_zeroToThirty_MID = (XPPerMin_zeroToThirty_MID/numberOfMatchesOverThirty_MID).toFixed(2);
+				XPDiffPerMin_twentyToThirty_MID = (XPDiffPerMin_twentyToThirty_MID/numberOfMatchesOverThirty_MID).toFixed(2);
+			}
+			else{
+				XPPerMin_zeroToThirty_MID = 0;
+				XPDiffPerMin_twentyToThirty_MID = 0;
+			}
+			
+			XPDiffPerMin_zeroToTen_MID = (XPDiffPerMin_zeroToTen_MID/midTimelineNum).toFixed(2);
+			if(numberOfMatchesOverTwenty_MID){
+				XPDiffPerMin_tenToTwenty_MID = (XPDiffPerMin_tenToTwenty_MID/numberOfMatchesOverTwenty_MID).toFixed(2);
+			}
+			else{
+				XPDiffPerMin_tenToTwenty_MID = 0;
+			}
+			KillSprees_MID = (KillSprees_MID/midPlayed).toFixed(2);
+			LargestKillingSpree_MID = (LargestKillingSpree_MID/midPlayed).toFixed(2);
+		}
+		else{
+			CS_zeroToTen_MID = 0;
+			KC_MID = 0;
+			KDA_MID = 0;
+			WinRate_MID = 0;
+			TeamGoldPercent_MID = 0;
+			TeamDamagePercent_MID = 0;
+			FBContribution_MID = 0;
+		}
+		
+		if(adcPlayed){
+			CS_zeroToTen_ADC = (CS_zeroToTen_ADC/adcTimelineNum * 10).toFixed(2);
+			KC_ADC = ((K_ADC+A_ADC)/TeamKills_ADC).toFixed(2);
+			KDA_ADC = ((K_ADC + A_ADC) / Math.max(1, De_ADC)).toFixed(2);
+			TeamGoldPercent_ADC = (G_ADC/TeamGold_ADC).toFixed(2);
+			TeamDamagePercent_ADC = (D_ADC/TeamDamage_ADC).toFixed(2);
+			FBContribution_ADC = (FBContribution_ADC/adcTimelineNum*100).toFixed(2);
+			CSDiffPerMin_zeroToTen_ADC = (CSDiffPerMin_zeroToTen_TOP/adcTimelineNum).toFixed(2);
+			XPPerMin_zeroToTen_ADC = (XPPerMin_zeroToTen_ADC/adcTimelineNum).toFixed(2);
+			
+			if(numberOfMatchesOverThirty_ADC){
+				XPPerMin_zeroToThirty_ADC = (XPPerMin_zeroToThirty_ADC/numberOfMatchesOverThirty_ADC).toFixed(2);
+				XPDiffPerMin_twentyToThirty_ADC = (XPDiffPerMin_twentyToThirty_ADC/numberOfMatchesOverThirty_ADC).toFixed(2);
+			}
+			else{
+				XPPerMin_zeroToThirty_ADC = 0;
+				XPDiffPerMin_twentyToThirty_ADC = 0;
+			}
+			XPDiffPerMin_zeroToTen_ADC = (XPDiffPerMin_zeroToTen_ADC/adcTimelineNum).toFixed(2);
+			if(numberOfMatchesOverTwenty_ADC){
+				XPDiffPerMin_tenToTwenty_ADC = (XPDiffPerMin_tenToTwenty_ADC/numberOfMatchesOverTwenty_ADC).toFixed(2);
+			}
+			else{
+				XPDiffPerMin_tenToTwenty_ADC = 0;
+			}
+			KillSprees_ADC = (KillSprees_ADC/adcPlayed).toFixed(2);
+			LargestKillingSpree_ADC = (LargestKillingSpree_ADC/adcPlayed).toFixed(2);
+		}
+		else{
+			CS_zeroToTen_ADC = 0;
+			KC_ADC = 0;
+			KDA_ADC = 0;
+			WinRate_ADC = 0;
+			TeamGoldPercent_ADC = 0;
+			TeamDamagePercent_ADC = 0;
+			FBContribution_ADC = 0;
+		}
+		
+		
+		if(junglePlayed){
+			CS_zeroToTen_JG = (CS_zeroToTen_JG/jgTimelineNum * 10).toFixed(2);
+			KC_JG = ((K_JG+A_JG)/TeamKills_JG).toFixed(2);
+			KDA_JG = ((K_JG + A_JG) / Math.max(1, De_JG)).toFixed(2);
+			TeamGoldPercent_JG = (G_JG/TeamGold_JG).toFixed(2);
+			TeamDamagePercent_JG = (D_JG/TeamDamage_JG).toFixed(2);
+			FBContribution_JG = (FBContribution_JG/jgTimelineNum*100).toFixed(2);
+			CSDiffPerMin_zeroToTen_JG = (CSDiffPerMin_zeroToTen_JG/jgTimelineNum).toFixed(2);
+			
+			if(numberOfMatchesOverThirty_JG){
+				XPPerMin_zeroToThirty_JG = (XPPerMin_zeroToThirty_JG/numberOfMatchesOverThirty_JG).toFixed(2);
+				XPDiffPerMin_twentyToThirty_JG = (XPDiffPerMin_twentyToThirty_JG/numberOfMatchesOverThirty_JG).toFixed(2);
+			}
+			else{
+				XPPerMin_zeroToThirty_JG = 0;
+				XPDiffPerMin_twentyToThirty_JG = 0;
+			}
+			
+			XPPerMin_zeroToTen_JG = (XPPerMin_zeroToTen_JG/jgTimelineNum).toFixed(2);
+			
+			XPDiffPerMin_zeroToTen_JG = (XPDiffPerMin_zeroToTen_JG/jgTimelineNum).toFixed(2);
+			if(numberOfMatchesOverTwenty_JG){
+				XPDiffPerMin_tenToTwenty_JG = (XPDiffPerMin_tenToTwenty_JG/numberOfMatchesOverTwenty_JG).toFixed(2);
+			}
+			else{
+				XPDiffPerMin_tenToTwenty_JG = 0;
+			}
+			KillSprees_JG = (KillSprees_JG/junglePlayed).toFixed(2);
+			LargestKillingSpree_JG = (LargestKillingSpree_JG/junglePlayed).toFixed(2);
+		}
+		else{
+			CS_zeroToTen_JG = 0;
+			KC_JG = 0;
+			KDA_JG = 0;
+			WinRate_JG = 0;
+			TeamGoldPercent_JG = 0;
+			TeamDamagePercent_JG = 0;
+			FBContribution_JG = 0;
+		}
+		
+		if(supportPlayed){
+			CS_zeroToTen_SUP = (CS_zeroToTen_SUP/supTimelineNum * 10).toFixed(2);
+			KC_SUP = ((K_SUP+A_SUP)/TeamKills_SUP).toFixed(2);
+			KDA_SUP = ((K_SUP + A_SUP) / Math.max(1, De_SUP)).toFixed(2);
+			TeamGoldPercent_SUP = (G_SUP/TeamGold_SUP).toFixed(2);
+			TeamDamagePercent_SUP = (D_SUP/TeamDamage_SUP).toFixed(2);
+			FBContribution_SUP = (FBContribution_SUP/supTimelineNum*100).toFixed(2);
+			CSDiffPerMin_zeroToTen_SUP = (CSDiffPerMin_zeroToTen_SUP/supTimelineNum).toFixed(2);
+			XPPerMin_zeroToTen_SUP = (XPPerMin_zeroToTen_SUP/supTimelineNum).toFixed(2);
+			XPDiffPerMin_zeroToTen_SUP = (XPDiffPerMin_zeroToTen_SUP/supTimelineNum).toFixed(2);
+			if(numberOfMatchesOverThirty_SUP){
+				XPPerMin_zeroToThirty_SUP = (XPPerMin_zeroToThirty_SUP/numberOfMatchesOverThirty_SUP).toFixed(2);
+				XPDiffPerMin_twentyToThirty_SUP = (XPDiffPerMin_twentyToThirty_SUP/numberOfMatchesOverThirty_SUP).toFixed(2);
+			}
+			else{
+				XPPerMin_zeroToThirty_SUP = 0;
+				XPDiffPerMin_twentyToThirty_SUP = 0;
+			}
+			
+			if(numberOfMatchesOverTwenty_SUP){
+				XPDiffPerMin_tenToTwenty_SUP = (XPDiffPerMin_tenToTwenty_SUP/numberOfMatchesOverTwenty_SUP).toFixed(2);
+			}
+			else{
+				XPDiffPerMin_tenToTwenty_SUP = 0;
+			}
+			KillSprees_SUP = (KillSprees_SUP/supportPlayed).toFixed(2);
+			LargestKillingSpree_SUP = (LargestKillingSpree_SUP/supportPlayed).toFixed(2);
+			
+		}
+		else{
+			CS_zeroToTen_SUP = 0;
+			KC_SUP = 0;
+			KDA_SUP = 0;
+			WinRate_SUP = 0;
+			TeamGoldPercent_SUP = 0;
+			TeamDamagePercent_SUP = 0;
+			FBContribution_SUP = 0;
+		}
 		
 		
 		
@@ -1198,12 +1689,177 @@ module.exports = {
 			D_SUP_NextTier = (leagueDataArray[nextTier].D_SUP).toFixed(2);
 			DT_SUP_NextTier = (leagueDataArray[nextTier].DT_SUP).toFixed(2);
 			H_SUP_NextTier = (leagueDataArray[nextTier].H_SUP).toFixed(2);
+			
+			
+			VW_ADC_NextTier = (leagueDataArray[nextTier].VW_ADC).toFixed(2);
+			WK_ADC_NextTier = (leagueDataArray[nextTier].WK_ADC).toFixed(2);
+			WP_ADC_NextTier = (leagueDataArray[nextTier].WP_ADC).toFixed(2);
+			KC_ADC_NextTier = (leagueDataArray[nextTier].KC_ADC).toFixed(2);
+			KDA_ADC_NextTier = (leagueDataArray[nextTier].KDA_ADC).toFixed(2);
+			FBContribution_ADC_NextTier = (leagueDataArray[nextTier].FBContribution_ADC).toFixed(2);
+			KillSprees_ADC_NextTier = (leagueDataArray[nextTier].KillSprees_ADC).toFixed(2);
+			LargestKillingSpree_ADC_NextTier = (leagueDataArray[nextTier].LargestKillingSpree_ADC).toFixed(2);
+			CSDiffPerMin_zeroToTen_ADC_NextTier = (leagueDataArray[nextTier].CSDiffPerMin_zeroToTen_ADC).toFixed(2);
+			XPPerMin_zeroToTen_ADC_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToTen_ADC).toFixed(2);
+			XPPerMin_zeroToThirty_ADC_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToThirty_ADC).toFixed(2);
+			XPDiffPerMin_zeroToTen_ADC_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_zeroToTen_ADC).toFixed(2);
+			XPDiffPerMin_tenToTwenty_ADC_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_tenToTwenty_ADC).toFixed(2);
+			XPDiffPerMin_twentyToThirty_ADC_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_twentyToThirty_ADC).toFixed(2);
+			TeamGoldPercent_ADC_NextTier = (leagueDataArray[nextTier].TeamGoldPercent_ADC).toFixed(2);
+			TeamDamagePercent_ADC_NextTier = (leagueDataArray[nextTier].TeamDamagePercent_ADC).toFixed(2);
+			VW_ADC_ThisTier = (leagueDataArray[ThisTier].VW_ADC).toFixed(2);
+			WK_ADC_ThisTier = (leagueDataArray[ThisTier].WK_ADC).toFixed(2);
+			WP_ADC_ThisTier = (leagueDataArray[ThisTier].WP_ADC).toFixed(2);
+			KC_ADC_ThisTier = (leagueDataArray[ThisTier].KC_ADC).toFixed(2);
+			KDA_ADC_ThisTier = (leagueDataArray[ThisTier].KDA_ADC).toFixed(2);
+			FBContribution_ADC_ThisTier = (leagueDataArray[ThisTier].FBContribution_ADC).toFixed(2);
+			KillSprees_ADC_ThisTier = (leagueDataArray[ThisTier].KillSprees_ADC).toFixed(2);
+			LargestKillingSpree_ADC_ThisTier = (leagueDataArray[ThisTier].LargestKillingSpree_ADC).toFixed(2);
+			CSDiffPerMin_zeroToTen_ADC_ThisTier = (leagueDataArray[ThisTier].CSDiffPerMin_zeroToTen_ADC).toFixed(2);
+			XPPerMin_zeroToTen_ADC_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToTen_ADC).toFixed(2);
+			XPPerMin_zeroToThirty_ADC_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToThirty_ADC).toFixed(2);
+			XPDiffPerMin_zeroToTen_ADC_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_zeroToTen_ADC).toFixed(2);
+			XPDiffPerMin_tenToTwenty_ADC_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_tenToTwenty_ADC).toFixed(2);
+			XPDiffPerMin_twentyToThirty_ADC_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_twentyToThirty_ADC).toFixed(2);
+			TeamGoldPercent_ADC_ThisTier = (leagueDataArray[ThisTier].TeamGoldPercent_ADC).toFixed(2);
+			TeamDamagePercent_ADC_ThisTier = (leagueDataArray[ThisTier].TeamDamagePercent_ADC).toFixed(2);
+			
+			VW_TOP_NextTier = (leagueDataArray[nextTier].VW_TOP).toFixed(2);
+			WK_TOP_NextTier = (leagueDataArray[nextTier].WK_TOP).toFixed(2);
+			WP_TOP_NextTier = (leagueDataArray[nextTier].WP_TOP).toFixed(2);
+			KC_TOP_NextTier = (leagueDataArray[nextTier].KC_TOP).toFixed(2);
+			KDA_TOP_NextTier = (leagueDataArray[nextTier].KDA_TOP).toFixed(2);
+			FBContribution_TOP_NextTier = (leagueDataArray[nextTier].FBContribution_TOP).toFixed(2);
+			KillSprees_TOP_NextTier = (leagueDataArray[nextTier].KillSprees_TOP).toFixed(2);
+			LargestKillingSpree_TOP_NextTier = (leagueDataArray[nextTier].LargestKillingSpree_TOP).toFixed(2);
+			CSDiffPerMin_zeroToTen_TOP_NextTier = (leagueDataArray[nextTier].CSDiffPerMin_zeroToTen_TOP).toFixed(2);
+			XPPerMin_zeroToTen_TOP_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToTen_TOP).toFixed(2);
+			XPPerMin_zeroToThirty_TOP_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToThirty_TOP).toFixed(2);
+			XPDiffPerMin_zeroToTen_TOP_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_zeroToTen_TOP).toFixed(2);
+			XPDiffPerMin_tenToTwenty_TOP_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_tenToTwenty_TOP).toFixed(2);
+			XPDiffPerMin_twentyToThirty_TOP_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_twentyToThirty_TOP).toFixed(2);
+			TeamGoldPercent_TOP_NextTier = (leagueDataArray[nextTier].TeamGoldPercent_TOP).toFixed(2);
+			TeamDamagePercent_TOP_NextTier = (leagueDataArray[nextTier].TeamDamagePercent_TOP).toFixed(2);
+			VW_TOP_ThisTier = (leagueDataArray[ThisTier].VW_TOP).toFixed(2);
+			WK_TOP_ThisTier = (leagueDataArray[ThisTier].WK_TOP).toFixed(2);
+			WP_TOP_ThisTier = (leagueDataArray[ThisTier].WP_TOP).toFixed(2);
+			KC_TOP_ThisTier = (leagueDataArray[ThisTier].KC_TOP).toFixed(2);
+			KDA_TOP_ThisTier = (leagueDataArray[ThisTier].KDA_TOP).toFixed(2);
+			FBContribution_TOP_ThisTier = (leagueDataArray[ThisTier].FBContribution_TOP).toFixed(2);
+			KillSprees_TOP_ThisTier = (leagueDataArray[ThisTier].KillSprees_TOP).toFixed(2);
+			LargestKillingSpree_TOP_ThisTier = (leagueDataArray[ThisTier].LargestKillingSpree_TOP).toFixed(2);
+			CSDiffPerMin_zeroToTen_TOP_ThisTier = (leagueDataArray[ThisTier].CSDiffPerMin_zeroToTen_TOP).toFixed(2);
+			XPPerMin_zeroToTen_TOP_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToTen_TOP).toFixed(2);
+			XPPerMin_zeroToThirty_TOP_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToThirty_TOP).toFixed(2);
+			XPDiffPerMin_zeroToTen_TOP_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_zeroToTen_TOP).toFixed(2);
+			XPDiffPerMin_tenToTwenty_TOP_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_tenToTwenty_TOP).toFixed(2);
+			XPDiffPerMin_twentyToThirty_TOP_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_twentyToThirty_TOP).toFixed(2);
+			TeamGoldPercent_TOP_ThisTier = (leagueDataArray[ThisTier].TeamGoldPercent_TOP).toFixed(2);
+			TeamDamagePercent_TOP_ThisTier = (leagueDataArray[ThisTier].TeamDamagePercent_TOP).toFixed(2);
+			
+			VW_MID_NextTier = (leagueDataArray[nextTier].VW_MID).toFixed(2);
+			WK_MID_NextTier = (leagueDataArray[nextTier].WK_MID).toFixed(2);
+			WP_MID_NextTier = (leagueDataArray[nextTier].WP_MID).toFixed(2);
+			KC_MID_NextTier = (leagueDataArray[nextTier].KC_MID).toFixed(2);
+			KDA_MID_NextTier = (leagueDataArray[nextTier].KDA_MID).toFixed(2);
+			FBContribution_MID_NextTier = (leagueDataArray[nextTier].FBContribution_MID).toFixed(2);
+			KillSprees_MID_NextTier = (leagueDataArray[nextTier].KillSprees_MID).toFixed(2);
+			LargestKillingSpree_MID_NextTier = (leagueDataArray[nextTier].LargestKillingSpree_MID).toFixed(2);
+			CSDiffPerMin_zeroToTen_MID_NextTier = (leagueDataArray[nextTier].CSDiffPerMin_zeroToTen_MID).toFixed(2);
+			XPPerMin_zeroToTen_MID_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToTen_MID).toFixed(2);
+			XPPerMin_zeroToThirty_MID_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToThirty_MID).toFixed(2);
+			XPDiffPerMin_zeroToTen_MID_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_zeroToTen_MID).toFixed(2);
+			XPDiffPerMin_tenToTwenty_MID_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_tenToTwenty_MID).toFixed(2);
+			XPDiffPerMin_twentyToThirty_MID_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_twentyToThirty_MID).toFixed(2);
+			TeamGoldPercent_MID_NextTier = (leagueDataArray[nextTier].TeamGoldPercent_MID).toFixed(2);
+			TeamDamagePercent_MID_NextTier = (leagueDataArray[nextTier].TeamDamagePercent_MID).toFixed(2);
+			VW_MID_ThisTier = (leagueDataArray[ThisTier].VW_MID).toFixed(2);
+			WK_MID_ThisTier = (leagueDataArray[ThisTier].WK_MID).toFixed(2);
+			WP_MID_ThisTier = (leagueDataArray[ThisTier].WP_MID).toFixed(2);
+			KC_MID_ThisTier = (leagueDataArray[ThisTier].KC_MID).toFixed(2);
+			KDA_MID_ThisTier = (leagueDataArray[ThisTier].KDA_MID).toFixed(2);
+			FBContribution_MID_ThisTier = (leagueDataArray[ThisTier].FBContribution_MID).toFixed(2);
+			KillSprees_MID_ThisTier = (leagueDataArray[ThisTier].KillSprees_MID).toFixed(2);
+			LargestKillingSpree_MID_ThisTier = (leagueDataArray[ThisTier].LargestKillingSpree_MID).toFixed(2);
+			CSDiffPerMin_zeroToTen_MID_ThisTier = (leagueDataArray[ThisTier].CSDiffPerMin_zeroToTen_MID).toFixed(2);
+			XPPerMin_zeroToTen_MID_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToTen_MID).toFixed(2);
+			XPPerMin_zeroToThirty_MID_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToThirty_MID).toFixed(2);
+			XPDiffPerMin_zeroToTen_MID_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_zeroToTen_MID).toFixed(2);
+			XPDiffPerMin_tenToTwenty_MID_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_tenToTwenty_MID).toFixed(2);
+			XPDiffPerMin_twentyToThirty_MID_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_twentyToThirty_MID).toFixed(2);
+			TeamGoldPercent_MID_ThisTier = (leagueDataArray[ThisTier].TeamGoldPercent_MID).toFixed(2);
+			TeamDamagePercent_MID_ThisTier = (leagueDataArray[ThisTier].TeamDamagePercent_MID).toFixed(2);
+			
+			VW_JG_NextTier = (leagueDataArray[nextTier].VW_JG).toFixed(2);
+			WK_JG_NextTier = (leagueDataArray[nextTier].WK_JG).toFixed(2);
+			WP_JG_NextTier = (leagueDataArray[nextTier].WP_JG).toFixed(2);
+			KC_JG_NextTier = (leagueDataArray[nextTier].KC_JG).toFixed(2);
+			KDA_JG_NextTier = (leagueDataArray[nextTier].KDA_JG).toFixed(2);
+			FBContribution_JG_NextTier = (leagueDataArray[nextTier].FBContribution_JG).toFixed(2);
+			KillSprees_JG_NextTier = (leagueDataArray[nextTier].KillSprees_JG).toFixed(2);
+			LargestKillingSpree_JG_NextTier = (leagueDataArray[nextTier].LargestKillingSpree_JG).toFixed(2);
+			CSDiffPerMin_zeroToTen_JG_NextTier = (leagueDataArray[nextTier].CSDiffPerMin_zeroToTen_JG).toFixed(2);
+			XPPerMin_zeroToTen_JG_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToTen_JG).toFixed(2);
+			XPPerMin_zeroToThirty_JG_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToThirty_JG).toFixed(2);
+			XPDiffPerMin_zeroToTen_JG_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_zeroToTen_JG).toFixed(2);
+			XPDiffPerMin_tenToTwenty_JG_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_tenToTwenty_JG).toFixed(2);
+			XPDiffPerMin_twentyToThirty_JG_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_twentyToThirty_JG).toFixed(2);
+			TeamGoldPercent_JG_NextTier = (leagueDataArray[nextTier].TeamGoldPercent_JG).toFixed(2);
+			TeamDamagePercent_JG_NextTier = (leagueDataArray[nextTier].TeamDamagePercent_JG).toFixed(2);
+			VW_JG_ThisTier = (leagueDataArray[ThisTier].VW_JG).toFixed(2);
+			WK_JG_ThisTier = (leagueDataArray[ThisTier].WK_JG).toFixed(2);
+			WP_JG_ThisTier = (leagueDataArray[ThisTier].WP_JG).toFixed(2);
+			KC_JG_ThisTier = (leagueDataArray[ThisTier].KC_JG).toFixed(2);
+			KDA_JG_ThisTier = (leagueDataArray[ThisTier].KDA_JG).toFixed(2);
+			FBContribution_JG_ThisTier = (leagueDataArray[ThisTier].FBContribution_JG).toFixed(2);
+			KillSprees_JG_ThisTier = (leagueDataArray[ThisTier].KillSprees_JG).toFixed(2);
+			LargestKillingSpree_JG_ThisTier = (leagueDataArray[ThisTier].LargestKillingSpree_JG).toFixed(2);
+			CSDiffPerMin_zeroToTen_JG_ThisTier = (leagueDataArray[ThisTier].CSDiffPerMin_zeroToTen_JG).toFixed(2);
+			XPPerMin_zeroToTen_JG_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToTen_JG).toFixed(2);
+			XPPerMin_zeroToThirty_JG_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToThirty_JG).toFixed(2);
+			XPDiffPerMin_zeroToTen_JG_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_zeroToTen_JG).toFixed(2);
+			XPDiffPerMin_tenToTwenty_JG_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_tenToTwenty_JG).toFixed(2);
+			XPDiffPerMin_twentyToThirty_JG_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_twentyToThirty_JG).toFixed(2);
+			TeamGoldPercent_JG_ThisTier = (leagueDataArray[ThisTier].TeamGoldPercent_JG).toFixed(2);
+			TeamDamagePercent_JG_ThisTier = (leagueDataArray[ThisTier].TeamDamagePercent_JG).toFixed(2);
+			
+			VW_SUP_NextTier = (leagueDataArray[nextTier].VW_SUP).toFixed(2);
+			WK_SUP_NextTier = (leagueDataArray[nextTier].WK_SUP).toFixed(2);
+			WP_SUP_NextTier = (leagueDataArray[nextTier].WP_SUP).toFixed(2);
+			KC_SUP_NextTier = (leagueDataArray[nextTier].KC_SUP).toFixed(2);
+			KDA_SUP_NextTier = (leagueDataArray[nextTier].KDA_SUP).toFixed(2);
+			FBContribution_SUP_NextTier = (leagueDataArray[nextTier].FBContribution_SUP).toFixed(2);
+			KillSprees_SUP_NextTier = (leagueDataArray[nextTier].KillSprees_SUP).toFixed(2);
+			LargestKillingSpree_SUP_NextTier = (leagueDataArray[nextTier].LargestKillingSpree_SUP).toFixed(2);
+			CSDiffPerMin_zeroToTen_SUP_NextTier = (leagueDataArray[nextTier].CSDiffPerMin_zeroToTen_SUP).toFixed(2);
+			XPPerMin_zeroToTen_SUP_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToTen_SUP).toFixed(2);
+			XPPerMin_zeroToThirty_SUP_NextTier = (leagueDataArray[nextTier].XPPerMin_zeroToThirty_SUP).toFixed(2);
+			XPDiffPerMin_zeroToTen_SUP_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_zeroToTen_SUP).toFixed(2);
+			XPDiffPerMin_tenToTwenty_SUP_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_tenToTwenty_SUP).toFixed(2);
+			XPDiffPerMin_twentyToThirty_SUP_NextTier = (leagueDataArray[nextTier].XPDiffPerMin_twentyToThirty_SUP).toFixed(2);
+			TeamGoldPercent_SUP_NextTier = (leagueDataArray[nextTier].TeamGoldPercent_SUP).toFixed(2);
+			TeamDamagePercent_SUP_NextTier = (leagueDataArray[nextTier].TeamDamagePercent_SUP).toFixed(2);
+			VW_SUP_ThisTier = (leagueDataArray[ThisTier].VW_SUP).toFixed(2);
+			WK_SUP_ThisTier = (leagueDataArray[ThisTier].WK_SUP).toFixed(2);
+			WP_SUP_ThisTier = (leagueDataArray[ThisTier].WP_SUP).toFixed(2);
+			KC_SUP_ThisTier = (leagueDataArray[ThisTier].KC_SUP).toFixed(2);
+			KDA_SUP_ThisTier = (leagueDataArray[ThisTier].KDA_SUP).toFixed(2);
+			FBContribution_SUP_ThisTier = (leagueDataArray[ThisTier].FBContribution_SUP).toFixed(2);
+			KillSprees_SUP_ThisTier = (leagueDataArray[ThisTier].KillSprees_SUP).toFixed(2);
+			LargestKillingSpree_SUP_ThisTier = (leagueDataArray[ThisTier].LargestKillingSpree_SUP).toFixed(2);
+			CSDiffPerMin_zeroToTen_SUP_ThisTier = (leagueDataArray[ThisTier].CSDiffPerMin_zeroToTen_SUP).toFixed(2);
+			XPPerMin_zeroToTen_SUP_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToTen_SUP).toFixed(2);
+			XPPerMin_zeroToThirty_SUP_ThisTier = (leagueDataArray[ThisTier].XPPerMin_zeroToThirty_SUP).toFixed(2);
+			XPDiffPerMin_zeroToTen_SUP_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_zeroToTen_SUP).toFixed(2);
+			XPDiffPerMin_tenToTwenty_SUP_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_tenToTwenty_SUP).toFixed(2);
+			XPDiffPerMin_twentyToThirty_SUP_ThisTier = (leagueDataArray[ThisTier].XPDiffPerMin_twentyToThirty_SUP).toFixed(2);
+			TeamGoldPercent_SUP_ThisTier = (leagueDataArray[ThisTier].TeamGoldPercent_SUP).toFixed(2);
+			TeamDamagePercent_SUP_ThisTier = (leagueDataArray[ThisTier].TeamDamagePercent_SUP).toFixed(2);
 		}
 		
 		
 		var KDA_scaled = KDA/KDA_crit*100 > 100 ? 100 : (KDA/KDA_crit*100).toFixed(2);
 		var VisionControl_scaled = wardingValue/Vision_crit*100 > 100 ? 100 : (wardingValue/Vision_crit*100).toFixed(2);
-		
 		
 		var BE_scaled = BE/BE_crit*100 > 100 ? 100 : (BE/BE_crit*100).toFixed(2);
 		
@@ -1410,6 +2066,7 @@ module.exports = {
 		
 		var analysisJson = JSON.parse(dataAnalysis);
 		
+		analysisJson[0].player = {};
 		analysisJson[0].ADC = {'ThisTier': {},'NextTier': {}};
 		analysisJson[0].TOP = {'ThisTier': {},'NextTier': {}};
 		analysisJson[0].MID = {'ThisTier': {},'NextTier': {}};
@@ -1417,100 +2074,326 @@ module.exports = {
 		analysisJson[0].JG = {'ThisTier': {},'NextTier': {}};
 		
 		
-		/*
-		analysisJson.ADC.ThisTier = {[]};
-		analysisJson.MID.ThisTier = {[]};
-		analysisJson.TOP.ThisTier = {[]};
-		analysisJson.JG.ThisTier = {[]};
-		analysisJson.SUP.ThisTier = {[]};
-		
-		analysisJson.ADC.NextTier = {[]};
-		analysisJson.MID.NextTier = {[]};
-		analysisJson.TOP.NextTier = {[]};
-		analysisJson.JG.NextTier = {[]};
-		analysisJson.SUP.NextTier = {[]};
-		*/
-		
-		/*
-		analysisJson.ADC.ThisTier = {
-			CS_zeroToTenPerMatch_ADC: CS_zeroToTenPerMatch_ADC_ThisTier,
-			CS_ADC: CS_ADC_ThisTier,
-			D_ADC: D_ADC_ThisTier,
-			DT_ADC: DT_ADC_ThisTier,
-			H_ADC: H_ADC_ThisTier,
-			CS_zeroToTenPerMatch_MID: CS_zeroToTenPerMatch_MID_ThisTier,
-			CS_MID: CS_MID_ThisTier,
-			D_MID: D_MID_ThisTier,
-			DT_MID: DT_MID_ThisTier,
-			H_MID: H_MID_ThisTier
+		(function createJson(){
+			analysisJson[0].ADC.ThisTier.CS_zeroToTenPerMatch_ADC = CS_zeroToTenPerMatch_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.CS_ADC = CS_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.D_ADC = D_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.DT_ADC = DT_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.H_ADC = H_ADC_ThisTier;
+
+			analysisJson[0].ADC.ThisTier.VW_ADC = VW_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.WK_ADC = WK_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.WP_ADC = WP_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.KC_ADC = KC_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.KDA_ADC = KDA_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.FBContribution_ADC = FBContribution_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.KillSprees_ADC = KillSprees_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.LargestKillingSpree_ADC = LargestKillingSpree_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.CSDiffPerMin_zeroToTen_ADC = CSDiffPerMin_zeroToTen_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.XPPerMin_zeroToTen_ADC = XPPerMin_zeroToTen_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.XPPerMin_zeroToThirty_ADC = XPPerMin_zeroToThirty_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.XPDiffPerMin_zeroToTen_ADC = XPDiffPerMin_zeroToTen_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.XPDiffPerMin_tenToTwenty_ADC = XPDiffPerMin_tenToTwenty_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.XPDiffPerMin_twentyToThirty_ADC = XPDiffPerMin_twentyToThirty_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.TeamGoldPercent_ADC = TeamGoldPercent_ADC_ThisTier;
+			analysisJson[0].ADC.ThisTier.TeamDamagePercent_ADC = TeamDamagePercent_ADC_ThisTier;
+			
+			analysisJson[0].MID.ThisTier.CS_zeroToTenPerMatch_MID = CS_zeroToTenPerMatch_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.CS_MID = CS_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.D_MID = D_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.DT_MID = DT_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.H_MID = H_MID_ThisTier;
+			
+			analysisJson[0].MID.ThisTier.VW_MID = VW_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.WK_MID = WK_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.WP_MID = WP_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.KC_MID = KC_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.KDA_MID = KDA_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.FBContribution_MID = FBContribution_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.KillSprees_MID = KillSprees_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.LargestKillingSpree_MID = LargestKillingSpree_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.CSDiffPerMin_zeroToTen_MID = CSDiffPerMin_zeroToTen_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.XPPerMin_zeroToTen_MID = XPPerMin_zeroToTen_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.XPPerMin_zeroToThirty_MID = XPPerMin_zeroToThirty_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.XPDiffPerMin_zeroToTen_MID = XPDiffPerMin_zeroToTen_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.XPDiffPerMin_tenToTwenty_MID = XPDiffPerMin_tenToTwenty_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.XPDiffPerMin_twentyToThirty_MID = XPDiffPerMin_twentyToThirty_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.TeamGoldPercent_MID = TeamGoldPercent_MID_ThisTier;
+			analysisJson[0].MID.ThisTier.TeamDamagePercent_MID = TeamDamagePercent_MID_ThisTier;
 			
 			
+			analysisJson[0].TOP.ThisTier.CS_zeroToTenPerMatch_TOP = CS_zeroToTenPerMatch_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.CS_TOP = CS_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.D_TOP = D_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.DT_TOP = DT_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.H_TOP = H_TOP_ThisTier;
+			
+			analysisJson[0].TOP.ThisTier.VW_TOP = VW_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.WK_TOP = WK_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.WP_TOP = WP_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.KC_TOP = KC_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.KDA_TOP = KDA_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.FBContribution_TOP = FBContribution_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.KillSprees_TOP = KillSprees_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.LargestKillingSpree_TOP = LargestKillingSpree_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.CSDiffPerMin_zeroToTen_TOP = CSDiffPerMin_zeroToTen_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.XPPerMin_zeroToTen_TOP = XPPerMin_zeroToTen_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.XPPerMin_zeroToThirty_TOP = XPPerMin_zeroToThirty_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.XPDiffPerMin_zeroToTen_TOP = XPDiffPerMin_zeroToTen_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.XPDiffPerMin_tenToTwenty_TOP = XPDiffPerMin_tenToTwenty_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.XPDiffPerMin_twentyToThirty_TOP = XPDiffPerMin_twentyToThirty_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.TeamGoldPercent_TOP = TeamGoldPercent_TOP_ThisTier;
+			analysisJson[0].TOP.ThisTier.TeamDamagePercent_TOP = TeamDamagePercent_TOP_ThisTier;
+			
+			analysisJson[0].JG.ThisTier.CS_zeroToTenPerMatch_JG = CS_zeroToTenPerMatch_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.CS_JG = CS_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.D_JG = D_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.DT_JG = DT_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.H_JG = H_JG_ThisTier;
+			
+			analysisJson[0].JG.ThisTier.VW_JG = VW_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.WK_JG = WK_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.WP_JG = WP_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.KC_JG = KC_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.KDA_JG = KDA_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.FBContribution_JG = FBContribution_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.KillSprees_JG = KillSprees_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.LargestKillingSpree_JG = LargestKillingSpree_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.CSDiffPerMin_zeroToTen_JG = CSDiffPerMin_zeroToTen_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.XPPerMin_zeroToTen_JG = XPPerMin_zeroToTen_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.XPPerMin_zeroToThirty_JG = XPPerMin_zeroToThirty_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.XPDiffPerMin_zeroToTen_JG = XPDiffPerMin_zeroToTen_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.XPDiffPerMin_tenToTwenty_JG = XPDiffPerMin_tenToTwenty_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.XPDiffPerMin_twentyToThirty_JG = XPDiffPerMin_twentyToThirty_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.TeamGoldPercent_JG = TeamGoldPercent_JG_ThisTier;
+			analysisJson[0].JG.ThisTier.TeamDamagePercent_JG = TeamDamagePercent_JG_ThisTier;
+			
+			analysisJson[0].SUP.ThisTier.CS_zeroToTenPerMatch_SUP = CS_zeroToTenPerMatch_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.CS_SUP = CS_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.D_SUP = D_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.DT_SUP = DT_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.H_SUP = H_SUP_ThisTier;
+			
+			analysisJson[0].SUP.ThisTier.VW_SUP = VW_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.WK_SUP = WK_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.WP_SUP = WP_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.KC_SUP = KC_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.KDA_SUP = KDA_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.FBContribution_SUP = FBContribution_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.KillSprees_SUP = KillSprees_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.LargestKillingSpree_SUP = LargestKillingSpree_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.CSDiffPerMin_zeroToTen_SUP = CSDiffPerMin_zeroToTen_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.XPPerMin_zeroToTen_SUP = XPPerMin_zeroToTen_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.XPPerMin_zeroToThirty_SUP = XPPerMin_zeroToThirty_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.XPDiffPerMin_zeroToTen_SUP = XPDiffPerMin_zeroToTen_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.XPDiffPerMin_tenToTwenty_SUP = XPDiffPerMin_tenToTwenty_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.XPDiffPerMin_twentyToThirty_SUP = XPDiffPerMin_twentyToThirty_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.TeamGoldPercent_SUP = TeamGoldPercent_SUP_ThisTier;
+			analysisJson[0].SUP.ThisTier.TeamDamagePercent_SUP = TeamDamagePercent_SUP_ThisTier;
 			
 			
-		};
-		*/
+			analysisJson[0].ADC.NextTier.CS_zeroToTenPerMatch_ADC = CS_zeroToTenPerMatch_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.CS_ADC = CS_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.D_ADC = D_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.DT_ADC = DT_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.H_ADC = H_ADC_NextTier;
+			
+			analysisJson[0].ADC.NextTier.VW_ADC = VW_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.WK_ADC = WK_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.WP_ADC = WP_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.KC_ADC = KC_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.KDA_ADC = KDA_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.FBContribution_ADC = FBContribution_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.KillSprees_ADC = KillSprees_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.LargestKillingSpree_ADC = LargestKillingSpree_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.CSDiffPerMin_zeroToTen_ADC = CSDiffPerMin_zeroToTen_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.XPPerMin_zeroToTen_ADC = XPPerMin_zeroToTen_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.XPPerMin_zeroToThirty_ADC = XPPerMin_zeroToThirty_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.XPDiffPerMin_zeroToTen_ADC = XPDiffPerMin_zeroToTen_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.XPDiffPerMin_tenToTwenty_ADC = XPDiffPerMin_tenToTwenty_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.XPDiffPerMin_twentyToThirty_ADC = XPDiffPerMin_twentyToThirty_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.TeamGoldPercent_ADC = TeamGoldPercent_ADC_NextTier;
+			analysisJson[0].ADC.NextTier.TeamDamagePercent_ADC = TeamDamagePercent_ADC_NextTier;
+			
+			analysisJson[0].MID.NextTier.CS_zeroToTenPerMatch_MID = CS_zeroToTenPerMatch_MID_NextTier;
+			analysisJson[0].MID.NextTier.CS_MID = CS_MID_NextTier;
+			analysisJson[0].MID.NextTier.D_MID = D_MID_NextTier;
+			analysisJson[0].MID.NextTier.DT_MID = DT_MID_NextTier;
+			analysisJson[0].MID.NextTier.H_MID = H_MID_NextTier;
+			
+			analysisJson[0].MID.NextTier.VW_MID = VW_MID_NextTier;
+			analysisJson[0].MID.NextTier.WK_MID = WK_MID_NextTier;
+			analysisJson[0].MID.NextTier.WP_MID = WP_MID_NextTier;
+			analysisJson[0].MID.NextTier.KC_MID = KC_MID_NextTier;
+			analysisJson[0].MID.NextTier.KDA_MID = KDA_MID_NextTier;
+			analysisJson[0].MID.NextTier.FBContribution_MID = FBContribution_MID_NextTier;
+			analysisJson[0].MID.NextTier.KillSprees_MID = KillSprees_MID_NextTier;
+			analysisJson[0].MID.NextTier.LargestKillingSpree_MID = LargestKillingSpree_MID_NextTier;
+			analysisJson[0].MID.NextTier.CSDiffPerMin_zeroToTen_MID = CSDiffPerMin_zeroToTen_MID_NextTier;
+			analysisJson[0].MID.NextTier.XPPerMin_zeroToTen_MID = XPPerMin_zeroToTen_MID_NextTier;
+			analysisJson[0].MID.NextTier.XPPerMin_zeroToThirty_MID = XPPerMin_zeroToThirty_MID_NextTier;
+			analysisJson[0].MID.NextTier.XPDiffPerMin_zeroToTen_MID = XPDiffPerMin_zeroToTen_MID_NextTier;
+			analysisJson[0].MID.NextTier.XPDiffPerMin_tenToTwenty_MID = XPDiffPerMin_tenToTwenty_MID_NextTier;
+			analysisJson[0].MID.NextTier.XPDiffPerMin_twentyToThirty_MID = XPDiffPerMin_twentyToThirty_MID_NextTier;
+			analysisJson[0].MID.NextTier.TeamGoldPercent_MID = TeamGoldPercent_MID_NextTier;
+			analysisJson[0].MID.NextTier.TeamDamagePercent_MID = TeamDamagePercent_MID_NextTier;
+			
+			analysisJson[0].TOP.NextTier.CS_zeroToTenPerMatch_TOP = CS_zeroToTenPerMatch_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.CS_TOP = CS_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.D_TOP = D_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.DT_TOP = DT_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.H_TOP = H_TOP_NextTier;
+			
+			analysisJson[0].TOP.NextTier.VW_TOP = VW_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.WK_TOP = WK_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.WP_TOP = WP_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.KC_TOP = KC_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.KDA_TOP = KDA_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.FBContribution_TOP = FBContribution_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.KillSprees_TOP = KillSprees_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.LargestKillingSpree_TOP = LargestKillingSpree_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.CSDiffPerMin_zeroToTen_TOP = CSDiffPerMin_zeroToTen_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.XPPerMin_zeroToTen_TOP = XPPerMin_zeroToTen_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.XPPerMin_zeroToThirty_TOP = XPPerMin_zeroToThirty_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.XPDiffPerMin_zeroToTen_TOP = XPDiffPerMin_zeroToTen_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.XPDiffPerMin_tenToTwenty_TOP = XPDiffPerMin_tenToTwenty_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.XPDiffPerMin_twentyToThirty_TOP = XPDiffPerMin_twentyToThirty_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.TeamGoldPercent_TOP = TeamGoldPercent_TOP_NextTier;
+			analysisJson[0].TOP.NextTier.TeamDamagePercent_TOP = TeamDamagePercent_TOP_NextTier;
+			
+			analysisJson[0].JG.NextTier.CS_zeroToTenPerMatch_JG = CS_zeroToTenPerMatch_JG_NextTier;
+			analysisJson[0].JG.NextTier.CS_JG = CS_JG_NextTier;
+			analysisJson[0].JG.NextTier.D_JG = D_JG_NextTier;
+			analysisJson[0].JG.NextTier.DT_JG = DT_JG_NextTier;
+			analysisJson[0].JG.NextTier.H_JG = H_JG_NextTier;
+			
+			analysisJson[0].JG.NextTier.VW_JG = VW_JG_NextTier;
+			analysisJson[0].JG.NextTier.WK_JG = WK_JG_NextTier;
+			analysisJson[0].JG.NextTier.WP_JG = WP_JG_NextTier;
+			analysisJson[0].JG.NextTier.KC_JG = KC_JG_NextTier;
+			analysisJson[0].JG.NextTier.KDA_JG = KDA_JG_NextTier;
+			analysisJson[0].JG.NextTier.FBContribution_JG = FBContribution_JG_NextTier;
+			analysisJson[0].JG.NextTier.KillSprees_JG = KillSprees_JG_NextTier;
+			analysisJson[0].JG.NextTier.LargestKillingSpree_JG = LargestKillingSpree_JG_NextTier;
+			analysisJson[0].JG.NextTier.CSDiffPerMin_zeroToTen_JG = CSDiffPerMin_zeroToTen_JG_NextTier;
+			analysisJson[0].JG.NextTier.XPPerMin_zeroToTen_JG = XPPerMin_zeroToTen_JG_NextTier;
+			analysisJson[0].JG.NextTier.XPPerMin_zeroToThirty_JG = XPPerMin_zeroToThirty_JG_NextTier;
+			analysisJson[0].JG.NextTier.XPDiffPerMin_zeroToTen_JG = XPDiffPerMin_zeroToTen_JG_NextTier;
+			analysisJson[0].JG.NextTier.XPDiffPerMin_tenToTwenty_JG = XPDiffPerMin_tenToTwenty_JG_NextTier;
+			analysisJson[0].JG.NextTier.XPDiffPerMin_twentyToThirty_JG = XPDiffPerMin_twentyToThirty_JG_NextTier;
+			analysisJson[0].JG.NextTier.TeamGoldPercent_JG = TeamGoldPercent_JG_NextTier;
+			analysisJson[0].JG.NextTier.TeamDamagePercent_JG = TeamDamagePercent_JG_NextTier;
+			
+			analysisJson[0].SUP.NextTier.CS_zeroToTenPerMatch_SUP = CS_zeroToTenPerMatch_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.CS_SUP = CS_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.D_SUP = D_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.DT_SUP = DT_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.H_SUP = H_SUP_NextTier;
+			
+			analysisJson[0].SUP.NextTier.VW_SUP = VW_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.WK_SUP = WK_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.WP_SUP = WP_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.KC_SUP = KC_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.KDA_SUP = KDA_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.FBContribution_SUP = FBContribution_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.KillSprees_SUP = KillSprees_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.LargestKillingSpree_SUP = LargestKillingSpree_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.CSDiffPerMin_zeroToTen_SUP = CSDiffPerMin_zeroToTen_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.XPPerMin_zeroToTen_SUP = XPPerMin_zeroToTen_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.XPPerMin_zeroToThirty_SUP = XPPerMin_zeroToThirty_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.XPDiffPerMin_zeroToTen_SUP = XPDiffPerMin_zeroToTen_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.XPDiffPerMin_tenToTwenty_SUP = XPDiffPerMin_tenToTwenty_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.XPDiffPerMin_twentyToThirty_SUP = XPDiffPerMin_twentyToThirty_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.TeamGoldPercent_SUP = TeamGoldPercent_SUP_NextTier;
+			analysisJson[0].SUP.NextTier.TeamDamagePercent_SUP = TeamDamagePercent_SUP_NextTier;
+			
+			analysisJson[0].player.VW_SUP = VW_SUP;
+			analysisJson[0].player.WK_SUP = WK_SUP;
+			analysisJson[0].player.WP_SUP = WP_SUP;
+			analysisJson[0].player.KC_SUP = KC_SUP;
+			analysisJson[0].player.KDA_SUP = KDA_SUP;
+			analysisJson[0].player.FBContribution_SUP = FBContribution_SUP;
+			analysisJson[0].player.KillSprees_SUP = KillSprees_SUP;
+			analysisJson[0].player.LargestKillingSpree_SUP = LargestKillingSpree_SUP;	
+			analysisJson[0].player.CSDiffPerMin_zeroToTen_SUP = CSDiffPerMin_zeroToTen_SUP;
+			analysisJson[0].player.XPPerMin_zeroToTen_SUP = XPPerMin_zeroToTen_SUP;
+			analysisJson[0].player.XPPerMin_zeroToThirty_SUP = XPPerMin_zeroToThirty_SUP;
+			analysisJson[0].player.XPDiffPerMin_zeroToTen_SUP = XPDiffPerMin_zeroToTen_SUP;
+			analysisJson[0].player.XPDiffPerMin_tenToTwenty_SUP = XPDiffPerMin_tenToTwenty_SUP;
+			analysisJson[0].player.XPDiffPerMin_twentyToThirty_SUP = XPDiffPerMin_twentyToThirty_SUP;
+			analysisJson[0].player.TeamGoldPercent_SUP = TeamGoldPercent_SUP;
+			analysisJson[0].player.TeamDamagePercent_SUP = TeamDamagePercent_SUP;
+			
+			analysisJson[0].player.VW_TOP = VW_TOP;
+			analysisJson[0].player.WK_TOP = WK_TOP;
+			analysisJson[0].player.WP_TOP = WP_TOP;
+			analysisJson[0].player.KC_TOP = KC_TOP;
+			analysisJson[0].player.KDA_TOP = KDA_TOP;
+			analysisJson[0].player.FBContribution_TOP = FBContribution_TOP;
+			analysisJson[0].player.KillSprees_TOP = KillSprees_TOP;
+			analysisJson[0].player.LargestKillingSpree_TOP = LargestKillingSpree_TOP;	
+			analysisJson[0].player.CSDiffPerMin_zeroToTen_TOP = CSDiffPerMin_zeroToTen_TOP;
+			analysisJson[0].player.XPPerMin_zeroToTen_TOP = XPPerMin_zeroToTen_TOP;
+			analysisJson[0].player.XPPerMin_zeroToThirty_TOP = XPPerMin_zeroToThirty_TOP;
+			analysisJson[0].player.XPDiffPerMin_zeroToTen_TOP = XPDiffPerMin_zeroToTen_TOP;
+			analysisJson[0].player.XPDiffPerMin_tenToTwenty_TOP = XPDiffPerMin_tenToTwenty_TOP;
+			analysisJson[0].player.XPDiffPerMin_twentyToThirty_TOP = XPDiffPerMin_twentyToThirty_TOP;
+			analysisJson[0].player.TeamGoldPercent_TOP = TeamGoldPercent_TOP;
+			analysisJson[0].player.TeamDamagePercent_TOP = TeamDamagePercent_TOP;
+			
+			analysisJson[0].player.VW_MID = VW_MID;
+			analysisJson[0].player.WK_MID = WK_MID;
+			analysisJson[0].player.WP_MID = WP_MID;
+			analysisJson[0].player.KC_MID = KC_MID;
+			analysisJson[0].player.KDA_MID = KDA_MID;
+			analysisJson[0].player.FBContribution_MID = FBContribution_MID;
+			analysisJson[0].player.KillSprees_MID = KillSprees_MID;
+			analysisJson[0].player.LargestKillingSpree_MID = LargestKillingSpree_MID;	
+			analysisJson[0].player.CSDiffPerMin_zeroToTen_MID = CSDiffPerMin_zeroToTen_MID;
+			analysisJson[0].player.XPPerMin_zeroToTen_MID = XPPerMin_zeroToTen_MID;
+			analysisJson[0].player.XPPerMin_zeroToThirty_MID = XPPerMin_zeroToThirty_MID;
+			analysisJson[0].player.XPDiffPerMin_zeroToTen_MID = XPDiffPerMin_zeroToTen_MID;
+			analysisJson[0].player.XPDiffPerMin_tenToTwenty_MID = XPDiffPerMin_tenToTwenty_MID;
+			analysisJson[0].player.XPDiffPerMin_twentyToThirty_MID = XPDiffPerMin_twentyToThirty_MID;
+			analysisJson[0].player.TeamGoldPercent_MID = TeamGoldPercent_MID;
+			analysisJson[0].player.TeamDamagePercent_MID = TeamDamagePercent_MID;
+			
+			analysisJson[0].player.VW_ADC = VW_ADC;
+			analysisJson[0].player.WK_ADC = WK_ADC;
+			analysisJson[0].player.WP_ADC = WP_ADC;
+			analysisJson[0].player.KC_ADC = KC_ADC;
+			analysisJson[0].player.KDA_ADC = KDA_ADC;
+			analysisJson[0].player.FBContribution_ADC = FBContribution_ADC;
+			analysisJson[0].player.KillSprees_ADC = KillSprees_ADC;
+			analysisJson[0].player.LargestKillingSpree_ADC = LargestKillingSpree_ADC;	
+			analysisJson[0].player.CSDiffPerMin_zeroToTen_ADC = CSDiffPerMin_zeroToTen_ADC;
+			analysisJson[0].player.XPPerMin_zeroToTen_ADC = XPPerMin_zeroToTen_ADC;
+			analysisJson[0].player.XPPerMin_zeroToThirty_ADC = XPPerMin_zeroToThirty_ADC;
+			analysisJson[0].player.XPDiffPerMin_zeroToTen_ADC = XPDiffPerMin_zeroToTen_ADC;
+			analysisJson[0].player.XPDiffPerMin_tenToTwenty_ADC = XPDiffPerMin_tenToTwenty_ADC;
+			analysisJson[0].player.XPDiffPerMin_twentyToThirty_ADC = XPDiffPerMin_twentyToThirty_ADC;
+			analysisJson[0].player.TeamGoldPercent_ADC = TeamGoldPercent_ADC;
+			analysisJson[0].player.TeamDamagePercent_ADC = TeamDamagePercent_ADC;
+			
+			analysisJson[0].player.VW_JG = VW_JG;
+			analysisJson[0].player.WK_JG = WK_JG;
+			analysisJson[0].player.WP_JG = WP_JG;
+			analysisJson[0].player.KC_JG = KC_JG;
+			analysisJson[0].player.KDA_JG = KDA_JG;
+			analysisJson[0].player.FBContribution_JG = FBContribution_JG;
+			analysisJson[0].player.KillSprees_JG = KillSprees_JG;
+			analysisJson[0].player.LargestKillingSpree_JG = LargestKillingSpree_JG;	
+			analysisJson[0].player.CSDiffPerMin_zeroToTen_JG = CSDiffPerMin_zeroToTen_JG;
+			analysisJson[0].player.XPPerMin_zeroToTen_JG = XPPerMin_zeroToTen_JG;
+			analysisJson[0].player.XPPerMin_zeroToThirty_JG = XPPerMin_zeroToThirty_JG;
+			analysisJson[0].player.XPDiffPerMin_zeroToTen_JG = XPDiffPerMin_zeroToTen_JG;
+			analysisJson[0].player.XPDiffPerMin_tenToTwenty_JG = XPDiffPerMin_tenToTwenty_JG;
+			analysisJson[0].player.XPDiffPerMin_twentyToThirty_JG = XPDiffPerMin_twentyToThirty_JG;
+			analysisJson[0].player.TeamGoldPercent_JG = TeamGoldPercent_JG;
+			analysisJson[0].player.TeamDamagePercent_JG = TeamDamagePercent_JG;
+		})();
 		
 		
-		analysisJson[0].ADC.ThisTier.CS_zeroToTenPerMatch_ADC = CS_zeroToTenPerMatch_ADC_ThisTier;
-		analysisJson[0].ADC.ThisTier.CS_ADC = CS_ADC_ThisTier;
-		analysisJson[0].ADC.ThisTier.D_ADC = D_ADC_ThisTier;
-		analysisJson[0].ADC.ThisTier.DT_ADC = DT_ADC_ThisTier;
-		analysisJson[0].ADC.ThisTier.H_ADC = H_ADC_ThisTier;
-		
-		analysisJson[0].MID.ThisTier.CS_zeroToTenPerMatch_MID = CS_zeroToTenPerMatch_MID_ThisTier;
-		analysisJson[0].MID.ThisTier.CS_MID = CS_MID_ThisTier;
-		analysisJson[0].MID.ThisTier.D_MID = D_MID_ThisTier;
-		analysisJson[0].MID.ThisTier.DT_MID = DT_MID_ThisTier;
-		analysisJson[0].MID.ThisTier.H_MID = H_MID_ThisTier;
-		
-		analysisJson[0].TOP.ThisTier.CS_zeroToTenPerMatch_TOP = CS_zeroToTenPerMatch_TOP_ThisTier;
-		analysisJson[0].TOP.ThisTier.CS_TOP = CS_TOP_ThisTier;
-		analysisJson[0].TOP.ThisTier.D_TOP = D_TOP_ThisTier;
-		analysisJson[0].TOP.ThisTier.DT_TOP = DT_TOP_ThisTier;
-		analysisJson[0].TOP.ThisTier.H_TOP = H_TOP_ThisTier;
-		
-		analysisJson[0].JG.ThisTier.CS_zeroToTenPerMatch_JG = CS_zeroToTenPerMatch_JG_ThisTier;
-		analysisJson[0].JG.ThisTier.CS_JG = CS_JG_ThisTier;
-		analysisJson[0].JG.ThisTier.D_JG = D_JG_ThisTier;
-		analysisJson[0].JG.ThisTier.DT_JG = DT_JG_ThisTier;
-		analysisJson[0].JG.ThisTier.H_JG = H_JG_ThisTier;
-		
-		analysisJson[0].SUP.ThisTier.CS_zeroToTenPerMatch_SUP = CS_zeroToTenPerMatch_SUP_ThisTier;
-		analysisJson[0].SUP.ThisTier.CS_SUP = CS_SUP_ThisTier;
-		analysisJson[0].SUP.ThisTier.D_SUP = D_SUP_ThisTier;
-		analysisJson[0].SUP.ThisTier.DT_SUP = DT_SUP_ThisTier;
-		analysisJson[0].SUP.ThisTier.H_SUP = H_SUP_ThisTier;
-		
-		
-		analysisJson[0].ADC.NextTier.CS_zeroToTenPerMatch_ADC = CS_zeroToTenPerMatch_ADC_NextTier;
-		analysisJson[0].ADC.NextTier.CS_ADC = CS_ADC_NextTier;
-		analysisJson[0].ADC.NextTier.D_ADC = D_ADC_NextTier;
-		analysisJson[0].ADC.NextTier.DT_ADC = DT_ADC_NextTier;
-		analysisJson[0].ADC.NextTier.H_ADC = H_ADC_NextTier;
-		
-		analysisJson[0].MID.NextTier.CS_zeroToTenPerMatch_MID = CS_zeroToTenPerMatch_MID_NextTier;
-		analysisJson[0].MID.NextTier.CS_MID = CS_MID_NextTier;
-		analysisJson[0].MID.NextTier.D_MID = D_MID_NextTier;
-		analysisJson[0].MID.NextTier.DT_MID = DT_MID_NextTier;
-		analysisJson[0].MID.NextTier.H_MID = H_MID_NextTier;
-		
-		analysisJson[0].TOP.NextTier.CS_zeroToTenPerMatch_TOP = CS_zeroToTenPerMatch_TOP_NextTier;
-		analysisJson[0].TOP.NextTier.CS_TOP = CS_TOP_NextTier;
-		analysisJson[0].TOP.NextTier.D_TOP = D_TOP_NextTier;
-		analysisJson[0].TOP.NextTier.DT_TOP = DT_TOP_NextTier;
-		analysisJson[0].TOP.NextTier.H_TOP = H_TOP_NextTier;
-		
-		analysisJson[0].JG.NextTier.CS_zeroToTenPerMatch_JG = CS_zeroToTenPerMatch_JG_NextTier;
-		analysisJson[0].JG.NextTier.CS_JG = CS_JG_NextTier;
-		analysisJson[0].JG.NextTier.D_JG = D_JG_NextTier;
-		analysisJson[0].JG.NextTier.DT_JG = DT_JG_NextTier;
-		analysisJson[0].JG.NextTier.H_JG = H_JG_NextTier;
-		
-		analysisJson[0].SUP.NextTier.CS_zeroToTenPerMatch_SUP = CS_zeroToTenPerMatch_SUP_NextTier;
-		analysisJson[0].SUP.NextTier.CS_SUP = CS_SUP_NextTier;
-		analysisJson[0].SUP.NextTier.D_SUP = D_SUP_NextTier;
-		analysisJson[0].SUP.NextTier.DT_SUP = DT_SUP_NextTier;
-		analysisJson[0].SUP.NextTier.H_SUP = H_SUP_NextTier;
 		
 		console.log(JSON.stringify(analysisJson));
 		console.log(JSON.stringify(analysisJson[0].ADC.ThisTier));

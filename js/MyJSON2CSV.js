@@ -193,7 +193,7 @@ function MyJSON2CSV(obj,parent_name,rownum,colname,id){
 }
 
 
-var jsontorun = fs.readFileSync(`match_timeline.json`).toString();
+var jsontorun = fs.readFileSync(`test.json`).toString();
 var combinedMatchString = '{\"match\":[' + jsontorun + ']}';
 //var matchJsontorun = JSON.parse(combinedMatchString);
 var matchJsontorun = JSON.parse(jsontorun);
