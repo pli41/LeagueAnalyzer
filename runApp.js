@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 
-app.post('/', 
+app.get('/', 
 	function(req, res){
 
 		analysisJson = playerData.start(
@@ -51,7 +51,6 @@ http.createServer(app).listen(app.get('port') ,app.get('ip'), function () {
 });
 
 //console.log("express running on port 8080");
-
 module.exports = app;
 
 

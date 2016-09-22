@@ -5,8 +5,6 @@ define([
         .service("userInfo", function() {
             var username = "";
             var data = "aaa";
-
-
         })
         .controller("loginCtr", ['$scope', '$location', '$http', '$interval', 'userInfo',
             function($scope, $location, $http, $interval, userInfo) {
@@ -64,13 +62,12 @@ define([
                     userInfo.username = $scope.username;
                     console.log(userInfo.username);
                     $http({
-                        method: 'POST',
+                        method: 'GET',
                         url: '/',
                         contentType: "application/json",
                         data: [userInfo.username]
                     }).then(function(response) {
 						waiting = false;
-                        console.log("success pp hai shi chou sha bi");
                         //console.log(response.data[0]);
                         userInfo.data = response.data[0];
                         userInfo.username = response.data[0].name;
@@ -84,7 +81,6 @@ define([
 						response.data +
 						"!\n" +
 						"$ Please retry in 10 seconds!";
-                        console.log("error!! pp is chou sha bi");
 						
 						
 						
